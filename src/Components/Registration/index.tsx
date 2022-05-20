@@ -1,13 +1,13 @@
 import React from "react";
 import { Form, Input, Button, Card } from "antd";
-import {  useMutation } from "@apollo/client";
-import{CREATE_USER_MUTATION} from "../../Mutations"
+import { useMutation } from "@apollo/client";
+import authMutation from "../../gql/Mutation";
+
 
 function Registration() {
-  const [createUser] = useMutation(CREATE_USER_MUTATION);
+  const [createUser] = useMutation(authMutation.CREATE_USER_MUTATION);
 
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
+  const onFinish = (values: object) => {
     createUser({ variables: values });
   };
 
