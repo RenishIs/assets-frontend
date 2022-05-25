@@ -6,8 +6,6 @@ import { registrationSchema } from "../../Helper/Schema/registrationSchema";
 
 const yupSync = {
   async validator({ field }: any, value: any) {
-    console.log("field,", field);
-
     registrationSchema.validateSyncAt(field, { [field]: value });
   },
 };
