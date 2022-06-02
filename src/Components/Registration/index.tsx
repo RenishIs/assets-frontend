@@ -1,56 +1,38 @@
-import React from "react";
-import { Form, Input, Button, Card } from "antd";
-import { useMutation } from "@apollo/client";
-import authMutation from "../../gql/Mutation";
-import { registrationSchema } from "../../Helper/Schema/registrationSchema";
+import { Button, Card } from "antd";
+import { UserOutlined, KeyOutlined } from '@ant-design/icons';
+import { useDispatch, useSelector } from "react-redux";
+import { Formik, Form } from 'formik';
+import TextInput from "../UI/TextInput";
+import { registerUserStart } from "../../redux/actions/auth/register";
+import { yupValidations } from "../../Helper/ValidationSchema";
 
-const yupSync = {
-  async validator({ field }: any, value: any) {
-    registrationSchema.validateSyncAt(field, { [field]: value });
-  },
-};
-function Registration() {
-  const [createUser] = useMutation(authMutation.CREATE_USER_MUTATION);
+const Registration = () => {
 
-  const onFinish = (values: object) => {
-    createUser({ variables: values });
-  };
+	const initialValues = { username : '', email : '', password : ''}
+	const state = useSelector(state => state)
+	const dispatch = useDispatch()
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
+	const onFinish = (values: object) => {
+		dispatch(registerUserStart(values))
+	};
 
-  return (
-    <div className="form site-card-border-less-wrapper">
-      <Card>
-        <Form
-          name="basic"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="off"
-        >
-          <Form.Item label="Username" name="username" rules={[yupSync]}>
-            <Input />
-          </Form.Item>
-          <Form.Item label="Email" name="email" rules={[yupSync]}>
-            <Input />
-          </Form.Item>
-
-          <Form.Item label="Password" name="password" rules={[yupSync]}>
-            <Input.Password />
-          </Form.Item>
-
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Form.Item>
-        </Form>
-      </Card>
-    </div>
-  );
+	return (
+		<div className="form site-card-border-less-wrapper">
+			<Card style={{ width: '45%' }}>
+				<h3 className="text-center">Sign Up</h3>
+				<Formik initialValues={initialValues} validationSchema={yupValidations} onSubmit={(values) => onFinish(values)}>
+					<Form >
+						<TextInput label="USERNAME" name="username" type="text" id="username" prefix={<UserOutlined />}/>						
+						<TextInput label="EMAIL" name="email" type="email" id="email" prefix={<UserOutlined />}/>						
+						<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<KeyOutlined />} />
+						<div className="d-flex mt-4 flex-row-reverse ">
+							<Button type="primary" htmlType="submit">Sign Up</Button>
+						</div>
+					</Form>
+				</Formik>
+			</Card>
+		</div>
+	);
 }
 
 export default Registration;
