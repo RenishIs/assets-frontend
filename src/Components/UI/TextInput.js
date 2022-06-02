@@ -7,7 +7,7 @@ const TextInput = ({label, isPassword=false, ...props}) => {
         <div className='mt-4'>
             <div className='d-flex justify-content-between text-mute'>
                 <label htmlFor={props.id || props.name}>{label}</label>
-                { isPassword && <div onClick={props.resetPassword}>Forgot Password?</div >}
+                { isPassword && <div onClick={props.resetPassword} className="text-primary">Forgot Password?</div >}
             </div>
             <Input className={`text-input`} size="large" {...field} {...props}  />
             {

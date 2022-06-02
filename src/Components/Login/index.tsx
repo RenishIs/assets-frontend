@@ -23,7 +23,7 @@ const Login = () => {
 	return (
 		<div className="form site-card-border-less-wrapper">
 			<Card style={{ width: '45%' }}>
-				<h3>Sign In</h3>
+				<h3 className="text-center">Sign In</h3>
 				<Formik initialValues={initialValues} validationSchema={yupValidations} onSubmit={(values) => onFinish(values)}>
 					<Form >
 						<TextInput label="EMAIL" name="email" type="email" id="email" prefix={<UserOutlined />}/>						

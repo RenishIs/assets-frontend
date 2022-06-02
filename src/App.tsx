@@ -12,7 +12,8 @@ export const client = new ApolloClient({
 const App = () => {
 	return (
 		<ApolloProvider client={client}>
-			<Registration />
+			{/* <Registration /> */}
+			<Login />
 		</ApolloProvider>
 	);
 };
