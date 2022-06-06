@@ -4,7 +4,8 @@ const initialState = {
     data : null,
     success : false,
     loading : false,
-    error : null
+    error : null,
+    message : null
 }
 
 const loginReducer = (state=initialState, action) => {
@@ -25,7 +26,7 @@ const loginReducer = (state=initialState, action) => {
                 data : null,
                 success : false,
                 loading : false,
-                error : action.payload ? action.payload : 'SOMETHING WENT WRONG'
+                error : action.errors ? action.errors : 'SOMETHING WENT WRONG'
             }
         }
         default : return {...state}

@@ -4,7 +4,8 @@ const initialState = {
     loading : false,
     data : null,
     success : false,
-    error : null
+    error : null,
+    message : null
 }
 
 const registerReducer = ( state=initialState, action ) => {
@@ -24,7 +25,8 @@ const registerReducer = ( state=initialState, action ) => {
                 loading : false,
                 data : null,
                 success : true,
-                error : action.payload ? action.payload : 'SOMETHING WENT WRONG'
+                message : action.payload,
+                error : action.errors ? action.errors : 'SOMETHING WENT WRONG'
             }
         }
         default : return {...state}

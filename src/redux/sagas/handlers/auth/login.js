@@ -4,10 +4,13 @@ import { loginUserRequest } from "../../requests/auth/login";
 
 export function* handlerLoginUser(action){
     try{
-        const res = yield call(loginUserRequest, action.payload)
-        yield put(loginUserSuccess(res))
+        const { data } = yield call(loginUserRequest, action.payload)
+        const token = data?.loginUser?.token
+        yield localStorage.setItem('auth_token', token);
+        yield put(loginUserSuccess(data))
     }
     catch(err){
+        alert('Error')
         yield put(loginUserError(err))
     }
 }

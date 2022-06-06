@@ -2,17 +2,19 @@ export const LOGIN_USER = 'LOGIN_USER'
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS'
 export const LOGIN_USER_ERROR = 'LOGIN_USER_ERROR'
 
-export const loginUserStart = (data) => ({
+export const loginUserStart = (payload={}) => ({
     type : LOGIN_USER,
-    payload : data
+    payload
 })
 
-export const loginUserSuccess = (data) => ({
+export const loginUserSuccess = (payload = {}, token = '') => ({
     type : LOGIN_USER_SUCCESS,
-    payload : data
+    payload,
+    token
 })
 
-export const loginUserError = (err) => ({
+export const loginUserError = (payload = '', errors = {}) => ({
     type : LOGIN_USER_ERROR,
-    payload : err
+    payload,
+    errors
 })

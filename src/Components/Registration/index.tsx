@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form } from 'formik';
 import TextInput from "../UI/TextInput";
 import { registerUserStart } from "../../redux/actions/auth/register";
-import { yupValidations } from "../../Helper/ValidationSchema";
+import { registerValidations } from "../../Helper/ValidationSchema";
 import { Link } from "react-router-dom";
 
 const Registration = () => {
@@ -21,7 +21,7 @@ const Registration = () => {
 		<div className="form site-card-border-less-wrapper">
 			<Card style={{ width: '45%' }}>
 				<h3 className="text-center">Sign Up</h3>
-				<Formik initialValues={initialValues} validationSchema={yupValidations} onSubmit={(values) => onFinish(values)}>
+				<Formik initialValues={initialValues} validationSchema={registerValidations} onSubmit={(values) => onFinish(values)}>
 					<Form >
 						<TextInput label="USERNAME" name="username" type="text" id="username" prefix={<UserOutlined />}/>						
 						<TextInput label="EMAIL" name="email" type="email" id="email" prefix={<UserOutlined />}/>						
