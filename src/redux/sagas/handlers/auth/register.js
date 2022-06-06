@@ -4,10 +4,12 @@ import { registerUserRequest } from '../../requests/auth/register'
 
 export function* handlerRegisterUser(action){
     try{
-        const res = yield call(registerUserRequest, action.payload)
-        yield put(registerUserSuccess(res))
+        const { data } = yield call(registerUserRequest, action.payload)
+        const token = data?.registerUser?.token
+        yield localStorage.setItem('auth_token', token);
+        yield put(registerUserSuccess(data, token))
     }
     catch(err){
-        yield put(registerUserError(err))
+        yield put(registerUserError(err.message, err.data || {}))
     }
 }

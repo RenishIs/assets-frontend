@@ -2,17 +2,19 @@ export const REGISTER_USER = 'REGISTER_USER'
 export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS'
 export const REGISTER_USER_ERROR = 'REGISTER_USER_ERROR'
 
-export const registerUserStart = (data) => ({
+export const registerUserStart = (payload={}) => ({
     type : REGISTER_USER,
-    payload : data
+    payload
 })
 
-export const registerUserSuccess = (data) => ({
+export const registerUserSuccess = (payload = {}, token = '') => ({
     type : REGISTER_USER_SUCCESS,
-    payload : data
+    payload,
+    token
 })
 
-export const registerUserError = (err) => ({
+export const registerUserError = (payload = '', errors = {}) => ({
     type : REGISTER_USER_ERROR,
-    payload : err
+    payload,
+    errors
 })
