@@ -19,3 +19,14 @@ export const LOGIN_USER_MUTATION = gql`
 		}
 	}
 `
+
+export const RESET_PASSWORD_MUTATION = gql`
+	mutation sendResetPasswordLink($email : String!){
+		sendResetPasswordLink(email : $email){
+			message
+		}
+	}
+`
+// export const CHANGE_PASSWORD_MUTATION = gql`
+// 	mutation resetPassword
+// `
