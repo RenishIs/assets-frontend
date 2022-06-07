@@ -2,6 +2,7 @@ import { LOGIN_USER_SUCCESS, LOGIN_USER_ERROR } from "../../actions/auth/login"
 
 const initialState = {
     data : null,
+    token : null,
     success : false,
     loading : false,
     error : null,
@@ -9,12 +10,12 @@ const initialState = {
 }
 
 const loginReducer = (state=initialState, action) => {
-    console.log(action.type)
     switch(action.type){
         case LOGIN_USER_SUCCESS : {
             return {
                 ...state,
                 data : action.payload,
+                token : action.token,
                 success : true,
                 loading : false,
                 error : null
@@ -24,6 +25,7 @@ const loginReducer = (state=initialState, action) => {
             return {
                 ...state,
                 data : null,
+                token : null,
                 success : false,
                 loading : false,
                 error : action.errors ? action.errors : 'SOMETHING WENT WRONG'

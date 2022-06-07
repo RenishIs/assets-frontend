@@ -1,5 +1,6 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import Router from './Router'
+import Router from "./Routing/Router";
+import { history } from "./Routing/history";
 
 const BASE_URL = `https://graphql-api0.herokuapp.com/` 
 
@@ -11,7 +12,7 @@ export const client = new ApolloClient({
 const App = () => {
 	return (
 		<ApolloProvider client={client}>
-			<Router />
+			<Router history={history} />
 		</ApolloProvider>		
 	);
 };
