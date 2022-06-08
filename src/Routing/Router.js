@@ -6,9 +6,9 @@ import UnRestrictedRoute from "./UnRestrictedRoute";
 import RestrictedRoute from "./RestrictedRoute";
 import NoMatchFound from "./NoMatchFound";
 
-import Registration from "../Components/Registration";
-import Login from "../Components/Login";
-import ResetPassword from "../Components/ResetPassword";
+import Registration from "../Pages/Registration";
+import Login from "../Pages/Login";
+import Profile from "../Pages/Profile";
 
 const Router = ({history, isLoggedIn}) => {
     return (
@@ -17,9 +17,8 @@ const Router = ({history, isLoggedIn}) => {
                 <Switch>
                     <UnRestrictedRoute exact path="/" component={Registration} isLoggedIn={isLoggedIn}/>
                     <UnRestrictedRoute exact path="/login" component={Login} isLoggedIn={isLoggedIn}/>
-                    <UnRestrictedRoute exact path="/reset-password" component={ResetPassword} isLoggedIn={isLoggedIn}/>
 
-                    <RestrictedRoute exact path="/profile" component={ResetPassword} isLoggedIn={isLoggedIn}/>
+                    <RestrictedRoute exact path="/profile" component={Profile} isLoggedIn={isLoggedIn}/>
                     <Route path="*" component={NoMatchFound} />
                 </Switch>
             </ConnectedRouter>

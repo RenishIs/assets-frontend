@@ -2,7 +2,7 @@ import { Button, Card } from "antd";
 import { UserOutlined, KeyOutlined } from '@ant-design/icons';
 import { useDispatch } from "react-redux";
 import { Formik, Form } from 'formik';
-import TextInput from "../UI/TextInput";
+import TextInput from "../../Components/UI/TextInput";
 import { registerUserStart } from "../../redux/actions/auth/register";
 import { registerValidations } from "../../Helper/ValidationSchema";
 import { Link } from "react-router-dom";

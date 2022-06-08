@@ -3,7 +3,7 @@ import { UserOutlined, KeyOutlined } from '@ant-design/icons';
 import { useDispatch } from "react-redux";
 import { Formik, Form } from 'formik';
 import { loginUserStart } from "../../redux/actions/auth/login";
-import TextInput from "../UI/TextInput";
+import TextInput from "../../Components/UI/TextInput";
 import { loginValidations } from "../../Helper/ValidationSchema";
 
 const Login = () => {
