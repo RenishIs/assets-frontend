@@ -19,9 +19,13 @@ export const loginValidations = yup.object().shape({
     password : password
 })
 
-export const yupValidations = yup.object().shape({
-    oldPassword: yup.string().matches(passwordRegex, "Your password is not strong").required("*Required"),
-    newPassword: yup.string().matches(passwordRegex, "Your password is not strong").required("*Required"),
+export const forgotPasswordValidations = yup.object().shape({
+    email : email,
+})
+
+export const resetPasswordValidations = yup.object().shape({
+    oldPassword: password,
+    newPassword: password,
     confirmPassword: yup.string().required("*Required").when("newPassword", {
         is: (val) => (val && val.length > 0 ? true : false),
         then: yup
