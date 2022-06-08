@@ -1,19 +1,20 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import Registration from "./Components/Registration";
+import Router from "./Routing/Router";
+import { history } from "./Routing/history";
+
+const BASE_URL = `https://graphql-api0.herokuapp.com/` 
+
+export const client = new ApolloClient({
+	cache: new InMemoryCache(),
+	uri: BASE_URL,
+});
 
 const App = () => {
-  const BASE_URL = process.env.REACT_APP_API   
-
-  const client = new ApolloClient({
-    cache: new InMemoryCache(),
-    uri: BASE_URL,
-  });
-
-  return (
-    <ApolloProvider client={client}>
-      <Registration />;
-    </ApolloProvider>
-  );
+	return (
+		<ApolloProvider client={client}>
+			<Router history={history}/>
+		</ApolloProvider>		
+	);
 };
 
 export default App;
