@@ -10,7 +10,7 @@ const sagaMiddleware = createSagaMiddleware()
 const routeMiddleware = routerMiddleware(history);
 const middlewares = [sagaMiddleware, routeMiddleware]
 
-const configureStore = createStore(rootReducer, {}, compose(applyMiddleware(...middlewares)))
+const configureStore = createStore(rootReducer(history), {}, compose(applyMiddleware(...middlewares)))
 sagaMiddleware.run(watcherSaga)
 
 export default configureStore

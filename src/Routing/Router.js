@@ -1,8 +1,6 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Switch, Route } from "react-router-dom"
 import { connect } from 'react-redux';
-// import { ConnectedRouter } from 'connectedRedirect-react-router';
-
-import { history } from "./history";
+import { ConnectedRouter } from 'connected-react-router'
 
 import UnRestrictedRoute from "./UnRestrictedRoute";
 import RestrictedRoute from "./RestrictedRoute";
@@ -12,20 +10,19 @@ import Registration from "../Components/Registration";
 import Login from "../Components/Login";
 import ResetPassword from "../Components/ResetPassword";
 
-const Router = ({ history, isLoggedIn }) => {
+const Router = ({history, isLoggedIn}) => {
     return (
-        <BrowserRouter history={history}>
-            <Routes>
-                <Route element={<UnRestrictedRoute />}>
-                    <Route exact path="/" element={<Registration />} isLoggedIn={false}/>
-                    <Route exact path="/login" element={<Login />} isLoggedIn={false}/>
-                    <Route path="/reset-password" element={<ResetPassword />} isLoggedIn={false}/>
-                </Route>
-                <Route element={<RestrictedRoute />}>
-                    <Route exact path="/profile" element={<ResetPassword />} isLoggedIn={false}/>
-                </Route>
-                <Route path="*" element={<NoMatchFound />} />
-            </Routes>
+        <BrowserRouter>
+            <ConnectedRouter history={history}>
+                <Switch>
+                    <UnRestrictedRoute exact path="/" component={Registration} isLoggedIn={isLoggedIn}/>
+                    <UnRestrictedRoute exact path="/login" component={Login} isLoggedIn={isLoggedIn}/>
+                    <UnRestrictedRoute exact path="/reset-password" component={ResetPassword} isLoggedIn={isLoggedIn}/>
+
+                    <RestrictedRoute exact path="/profile" component={ResetPassword} isLoggedIn={isLoggedIn}/>
+                    <Route path="*" component={NoMatchFound} />
+                </Switch>
+            </ConnectedRouter>
         </BrowserRouter>
     )
 }
