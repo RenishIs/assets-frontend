@@ -1,13 +1,16 @@
-import { applyMiddleware, createStore } from "redux";
+import { legacy_createStore as createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga'
+import { routerMiddleware } from 'connected-react-router';
 
-import reducer from "./reducers/reducer";
+import rootReducer from "./reducers/rootReducer";
 import { watcherSaga } from "./sagas/saga";
+import { history } from '../Routing/history';
 
 const sagaMiddleware = createSagaMiddleware()
-const middlewares = [sagaMiddleware]
+const routeMiddleware = routerMiddleware(history);
+const middlewares = [sagaMiddleware, routeMiddleware]
 
-const configureStore = createStore(reducer, {}, applyMiddleware(...middlewares))
+const configureStore = createStore(rootReducer(history), {}, compose(applyMiddleware(...middlewares)))
 sagaMiddleware.run(watcherSaga)
 
 export default configureStore

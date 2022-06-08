@@ -1,8 +1,8 @@
 import { Button, Card } from "antd";
 import { UserOutlined, KeyOutlined } from '@ant-design/icons';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Formik, Form } from 'formik';
-import TextInput from "../UI/TextInput";
+import TextInput from "../../Components/UI/TextInput";
 import { registerUserStart } from "../../redux/actions/auth/register";
 import { registerValidations } from "../../Helper/ValidationSchema";
 import { Link } from "react-router-dom";
@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 const Registration = () => {
 
 	const initialValues = { username : '', email : '', password : ''}
-	const state = useSelector(state => state)
 	const dispatch = useDispatch()
 
 	const onFinish = (values: object) => {

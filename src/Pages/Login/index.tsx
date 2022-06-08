@@ -1,23 +1,21 @@
 import { Button, Card } from "antd";
 import { UserOutlined, KeyOutlined } from '@ant-design/icons';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Formik, Form } from 'formik';
 import { loginUserStart } from "../../redux/actions/auth/login";
-import TextInput from "../UI/TextInput";
+import TextInput from "../../Components/UI/TextInput";
 import { loginValidations } from "../../Helper/ValidationSchema";
 
 const Login = () => {
 
 	const initialValues = { email : '', password : ''}
 	const dispatch = useDispatch()
-	const state = useSelector(state => state)
 
 	const onFinish = (values: object) => {
 		dispatch(loginUserStart(values))
 	};
 
 	const resetPassword = () => {
-		console.log('RESET ')
 	}
 	
 	return (
