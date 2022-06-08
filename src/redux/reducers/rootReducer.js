@@ -4,13 +4,13 @@ import { connectRouter } from 'connected-react-router';
 import LoginReducer from './auth/login'
 import registerReducer from "./auth/register";
 import forgotPasswordReducer from "./auth/forgotPassword";
-import ResetPassword from "../../Pages/ResetPassword";
+import resetPasswordReducer from "./auth/resetPassword";
 
 const reducer = (history) => combineReducers({
     auth : LoginReducer,
     registerData : registerReducer,
     forgotPassword : forgotPasswordReducer,
-    resetPassword : ResetPassword,
+    resetPassword : resetPasswordReducer,
     router: connectRouter(history)
 })
 
