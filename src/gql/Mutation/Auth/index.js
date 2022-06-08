@@ -27,3 +27,10 @@ export const RESET_PASSWORD_LINK = gql`
 		}
 	}
 `
+export const RESET_PASSWORD = gql`
+	mutation resetPassword ($password: String!, $id: String!) {
+		resetPassword (password: $password, id: $id) {
+			message
+		}
+	}
+`

@@ -8,11 +8,15 @@ const ResetPassword = () => {
 
     const initialState = { oldPassword : '', newPassword : '', confirmPassword : ''}
 
+    const onFinish = (values: object) => {
+        
+    };
+
     return (
         <div className="form site-card-border-less-wrapper">
             <Card style={{ width: '45%' }}>
                 <h3 className="text-center">Reset Password</h3>
-                <Formik initialValues={initialState} validationSchema={resetPasswordValidations} onSubmit={values => console.log(values)}>
+                <Formik initialValues={initialState} validationSchema={resetPasswordValidations} onSubmit={values => onFinish(values)}>
                     <Form>
                         <TextInput label="Old Password" type="password" name="oldPassword" id="oldPassword" prefix={<KeyOutlined />}/>
                         <TextInput label="New Password" type="password" name="newPassword" id="newPassword" prefix={<KeyOutlined />}/>
