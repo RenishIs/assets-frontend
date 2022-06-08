@@ -22,7 +22,7 @@ const Login = () => {
 				<Formik initialValues={initialValues} validationSchema={loginValidations} onSubmit={(values) => onFinish(values)}>
 					<Form >
 						<TextInput label="EMAIL" name="email" type="email" id="email" prefix={<UserOutlined />}/>					
-						<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<KeyOutlined />} isPassword={true}/>
+						<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<KeyOutlined />} forgotPassword={true} isPassword={true}/>
 						<div className="d-flex mt-4 flex-row-reverse">
 							<Button type="primary" htmlType="submit">Login</Button>
 						</div>

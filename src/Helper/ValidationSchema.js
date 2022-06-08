@@ -4,9 +4,9 @@ import * as yup from "yup";
 const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const passwordRegex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 
-const email = yup.string().matches(emailRegex, "Must be a valid email!").required("*Required")
-const username =  yup.string().required("*Required")
-const password = yup.string().matches(passwordRegex, "Your password is not strong").required("*Required")
+const email = yup.string().trim().matches(emailRegex, "Must be a valid email!").required("*Required")
+const username =  yup.string().trim().required("*Required")
+const password = yup.string().trim().matches(passwordRegex, "Your password is not strong").required("*Required")
 
 export const registerValidations = yup.object().shape({
     username : username,
@@ -26,7 +26,7 @@ export const forgotPasswordValidations = yup.object().shape({
 export const resetPasswordValidations = yup.object().shape({
     oldPassword: password,
     newPassword: password,
-    confirmPassword: yup.string().required("*Required").when("newPassword", {
+    confirmPassword: yup.string().trim().required("*Required").when("newPassword", {
         is: (val) => (val && val.length > 0 ? true : false),
         then: yup
           .string()
