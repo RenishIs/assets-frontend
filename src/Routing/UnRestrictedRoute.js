@@ -9,7 +9,7 @@ const UnRestrictedRoute = ({ component:Component, isLoggedIn, ...rest}) => {
                     ) : (
                         <Redirect
                             to={{
-                                pathname: '/*',
+                                pathname: '/profile',
                                 state: { from: props.location }
                             }}
                         />

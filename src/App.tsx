@@ -2,11 +2,9 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Router from "./Routing/Router";
 import { history } from "./Routing/history";
 
-const BASE_URL = `https://graphql-api0.herokuapp.com/` 
-
 export const client = new ApolloClient({
 	cache: new InMemoryCache(),
-	uri: BASE_URL,
+	uri: process.env.REACT_APP_BASE_URL,
 });
 
 const App = () => {
