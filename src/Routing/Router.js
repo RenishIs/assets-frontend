@@ -8,6 +8,7 @@ import NoMatchFound from "./NoMatchFound";
 
 import Registration from "../Pages/Registration";
 import Login from "../Pages/Login";
+import Dashboard from "../Pages/Dashboard";
 import Profile from "../Pages/Profile";
 
 const Router = ({history, isLoggedIn}) => {
@@ -18,6 +19,7 @@ const Router = ({history, isLoggedIn}) => {
                     <UnRestrictedRoute exact path="/" component={Registration} isLoggedIn={isLoggedIn}/>
                     <UnRestrictedRoute exact path="/login" component={Login} isLoggedIn={isLoggedIn}/>
 
+                    <RestrictedRoute exact path="/dashboard" component={Dashboard} isLoggedIn={isLoggedIn}/>
                     <RestrictedRoute exact path="/profile" component={Profile} isLoggedIn={isLoggedIn}/>
                     <Route path="*" component={NoMatchFound} />
                 </Switch>
