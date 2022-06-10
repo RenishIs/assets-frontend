@@ -41,4 +41,5 @@ code {
 
 .site-layout-background {
   background: #fff;
+  background: rgba(0,0,0,0.5);
 }
