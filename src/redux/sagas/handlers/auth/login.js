@@ -1,5 +1,5 @@
 import { call, put } from "redux-saga/effects";
-import { loginUserError, loginUserSuccess } from "../../../actions/auth/login";
+import { loginUserError, loginUserSuccess, logoutUserSuccess } from "../../../actions/auth/login";
 import { loginUserRequest } from "../../requests/auth/login";
 
 export function* handlerLoginUser(action){
@@ -11,5 +11,15 @@ export function* handlerLoginUser(action){
     }
     catch(err){
         yield put(loginUserError(err.message, err.data || {}))
+    }
+}
+
+export function* handlerLogoutUser(action){
+    try{
+        yield localStorage.clear('auth_token')
+        yield put(logoutUserSuccess())
+    }
+    catch(err){
+        
     }
 }

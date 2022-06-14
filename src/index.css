@@ -39,7 +39,17 @@ code {
   margin: 16px 0 16px 24px;
 }
 
-.site-layout-background {
-  background: #fff;
-  background: rgba(0,0,0,0.5);
+.ant-layout-header{
+  background : none;
+  padding: 0;
+}
+
+.side-nav-bar-icons{
+    color : #46f092;
+    font-size: 20px !important;
+}
+
+.side-nav-bar-menu-items{
+  border-right: 0;
+  color : '#3308cc'
 }
