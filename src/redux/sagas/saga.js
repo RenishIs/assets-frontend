@@ -4,6 +4,8 @@ import { FORGOT_PASSWORD } from '../actions/auth/forgotPassword'
 import { LOGIN_USER } from '../actions/auth/login'
 import { REGISTER_USER } from '../actions/auth/register'
 import { RESET_PASSWORD } from '../actions/auth/resetPassword'
+import { CHECK_AUTHORISATION } from '../actions/auth/checkAuthorisation'
+import checkAuthorization from './handlers/auth/checkAuthorisation'
 import handlerForgotPassword from './handlers/auth/forgotPassword'
 
 import { handlerLoginUser } from './handlers/auth/login'
@@ -15,4 +17,5 @@ export function* watcherSaga(){
     yield takeLatest(REGISTER_USER, handlerRegisterUser)
     yield takeLatest(FORGOT_PASSWORD, handlerForgotPassword)
     yield takeLatest(RESET_PASSWORD, handlerResetPassword)
+    yield takeLatest(CHECK_AUTHORISATION, checkAuthorization)
 }

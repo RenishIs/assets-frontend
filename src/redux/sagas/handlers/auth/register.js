@@ -2,6 +2,7 @@ import { call, put } from 'redux-saga/effects'
 import { registerUserError, registerUserSuccess } from '../../../actions/auth/register'
 import { registerUserRequest } from '../../requests/auth/register'
 import { push } from 'connected-react-router';
+import openNotificationWithIcon from '../../../../Helper/Notification';
 
 export function* handlerRegisterUser(action){
     try{
@@ -11,6 +12,7 @@ export function* handlerRegisterUser(action){
         yield put(push('/login'));     
     }
     catch(err){
+        openNotificationWithIcon('error', err.message)
         yield put(registerUserError(err.message, err.data || {}))
     }
 }
