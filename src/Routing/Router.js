@@ -34,7 +34,7 @@ const Router = ({history, isLoggedIn}) => {
 }
 
 export default connect((state) => ({
-    isLoggedIn: "state.auth.token" === null
+    isLoggedIn: state.auth.token !== null
 }))(Router);
 
 
