@@ -11,6 +11,9 @@ import Login from "../Pages/Login";
 import Dashboard from "../Pages/Dashboard";
 import ForgotPassword from "../Pages/ForgotPassword";
 import ResetPassword from "../Pages/ResetPassword";
+import UsersListing from '../Pages/Users'
+import UsersAdd from "../Pages/Users/UsersAdd";
+import UsersEdit from "../Pages/Users/UsersEdit";
 
 import Profile from "../Pages/Profile";
 
@@ -26,6 +29,9 @@ const Router = ({history, isLoggedIn}) => {
 
                     <RestrictedRoute exact path="/dashboard" component={Dashboard} isLoggedIn={isLoggedIn}/>
                     <RestrictedRoute exact path="/profile" component={Profile} isLoggedIn={isLoggedIn}/>
+                    <RestrictedRoute exact path="/users" component={UsersListing} isLoggedIn={true}/>
+                    <RestrictedRoute exact path="/users/add" component={UsersAdd} isLoggedIn={true}/>
+                    <RestrictedRoute exact path="/users/edit/:id" component={UsersEdit} isLoggedIn={true}/>
                     <Route path="*" component={NoMatchFound} />
                 </Switch>
             </ConnectedRouter>
