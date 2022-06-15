@@ -2,6 +2,10 @@ export const GET_USERS = 'GET_USERS'
 export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS'
 export const GET_USERS_ERROR = 'GET_USERS_ERROR'
 
+export const GET_SINGLE_USER = 'GET_SINGLE_USER'
+export const GET_SINGLE_USER_SUCCESS = 'GET_SINGLE_USER_SUCCESS'
+export const GET_SINGLE_USER_ERROR = 'GET_SINGLE_USER_ERROR'
+
 export const ADD_USER = 'ADD_USER'
 export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS'
 export const ADD_USER_ERROR = 'ADD_USER_ERROR'
@@ -25,6 +29,22 @@ export const getUsersSuccess = (payload) => ({
 
 export const getUsersError = () => ({
     type : GET_USERS_ERROR
+})
+
+export const getSingleUser = (payload) => ({
+    type : GET_SINGLE_USER,
+    payload
+})
+
+export const getSingleUserSuccess = (payload) => ({
+    type : GET_SINGLE_USER_SUCCESS,
+    payload
+})
+
+export const getSingleUserError = (payload = '', errors = {}) => ({
+    type : GET_SINGLE_USER_SUCCESS,
+    payload,
+    errors
 })
 
 export const addUser = (payload) => ({

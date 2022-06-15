@@ -1,8 +1,16 @@
-import React from 'react'
+import { useDispatch } from 'react-redux';
+import UsersForm from './UsersForm';
 
 const UsersAdd = () => {
+
+    const dispatch = useDispatch()
+
+    const handleUser = (values) => {
+        console.log(values)
+    }
+
     return (
-        <div>UsersAdd</div>
+       <UsersForm handleUser={handleUser}/>
     )
 }
 

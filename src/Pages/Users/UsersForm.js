@@ -1,26 +1,14 @@
-import { useState } from 'react';
-import { Modal, Button, Card } from 'antd';
-import { useHistory } from "react-router-dom";
+import { Button, Card } from 'antd';
 import { Formik, Form } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
 
 const UsersForm = ({title, handleUser, ...rest}) => {
 
+    const {user} = rest
+
     const initialState = {
-        firstName : '',
-        lastName : ''
-    }
-
-    const [isModalVisible, setIsModalVisible] = useState(true);
-    const history = useHistory();
-  
-    const handleOk = () => {
-        
-    }
-
-    const handleCancel = () => {
-        setIsModalVisible(false);
-        history.push('/users')
+        firstName : user ? user.firstName : '',
+        lastName : user ? user.lastName : '',
     }
 
     return (

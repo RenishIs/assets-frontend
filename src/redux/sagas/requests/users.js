@@ -19,8 +19,11 @@ const data = {data : [
     },
 ]};
 
-const getUsersRequest = () => {
+export const getUsersRequest = () => {
     return data
 }
 
-export default getUsersRequest
+export const getSingleUserRequest = (id) => {
+    const user = { data : data.data.find(item => item.id == id)}
+    return user
+}
