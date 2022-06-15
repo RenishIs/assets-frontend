@@ -1,4 +1,4 @@
-import { LOGIN_USER_SUCCESS, LOGIN_USER_ERROR } from "../../actions/auth/login"
+import { LOGIN_USER_SUCCESS, LOGIN_USER_ERROR, LOGOUT_USER_SUCCESS } from "../../actions/auth/login"
 
 const initialState = {
     data : null,
@@ -31,6 +31,7 @@ const loginReducer = (state=initialState, action) => {
                 error : action.errors ? action.errors : 'SOMETHING WENT WRONG'
             }
         }
+        case LOGOUT_USER_SUCCESS : return {...initialState}
         default : return {...state}
     }
 }

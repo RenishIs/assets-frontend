@@ -1,6 +1,6 @@
 import { call, put } from "redux-saga/effects";
+import { loginUserError, loginUserSuccess, logoutUserSuccess } from "../../../actions/auth/login";
 import { push } from "connected-react-router";
-import { loginUserError, loginUserSuccess } from "../../../actions/auth/login";
 import { loginUserRequest } from "../../requests/auth/login";
 import openNotificationWithIcon from "../../../../Helper/Notification";
 
@@ -15,5 +15,15 @@ export function* handlerLoginUser(action){
     catch(err){
         openNotificationWithIcon('error', err.message)
         yield put(loginUserError(err.message, err.data || {}))
+    }
+}
+
+export function* handlerLogoutUser(action){
+    try{
+        yield localStorage.clear('auth_token')
+        yield put(logoutUserSuccess())
+    }
+    catch(err){
+        
     }
 }
