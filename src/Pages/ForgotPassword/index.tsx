@@ -23,7 +23,7 @@ const ForgotPassword = () => {
                     <Form>
                         <TextInput label="EMAIL" type="email" id="email" name="email" prefix={<UserOutlined />}/>
                         <div className="d-flex mt-4 flex-row-reverse">
-							<Button type="primary" htmlType="submit">Reset Password</Button>
+							<Button type="primary" htmlType="submit">SUBMIT</Button>
 						</div>
                     </Form>
                 </Formik>

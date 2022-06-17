@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 
 const { Header } = Layout;
 
-const Dashboard = () => {
+const Dashboard = ({children}) => {
     const [collapsed, setCollapsed] = useState(false);
     const dispatch = useDispatch()
 
@@ -46,6 +46,7 @@ const Dashboard = () => {
                     </Dropdown>
                     </Row>
                 </Header>
+                {children}
             </Layout>
         </Layout>
     )

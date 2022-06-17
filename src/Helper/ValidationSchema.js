@@ -24,7 +24,6 @@ export const forgotPasswordValidations = yup.object().shape({
 })
 
 export const resetPasswordValidations = yup.object().shape({
-    oldPassword: password,
     newPassword: password,
     confirmPassword: yup.string().trim().required("*Required").when("newPassword", {
         is: (val) => (val && val.length > 0 ? true : false),
