@@ -28,7 +28,12 @@ const UsersListing = () => {
 
     return (
         <Dashboard>
-            <Table columns={columns} dataSource={users?.data} />
+            <>
+                <div>
+                    <div>Manage Users</div>
+                </div>
+                <Table bordered columns={columns} dataSource={users?.data} pagination={false}/>
+            </>
         </Dashboard>
     )
 }
