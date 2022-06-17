@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { addUser } from '../../redux/actions/users';
 import UsersForm from './UsersForm';
 
 const UsersAdd = () => {
@@ -6,7 +7,7 @@ const UsersAdd = () => {
     const dispatch = useDispatch()
 
     const handleUser = (values) => {
-        console.log(values)
+        dispatch(addUser(values))
     }
 
     return (

@@ -2,20 +2,26 @@ const data = {data : [
     {
         id : 1,
         key: '1',
-        firstName: 'John Brown',
-        age: 32,
+        username: 'John Brown',
+        email : 'john@gmail.com',
+        contactNo : '8978675645',
+        role : 'admin',
     },
     {
         id : 2,
         key: '2',
-        firstName: 'Jim Green',
-        age: 42,
+        username: 'Jim Green',
+        email : 'john@gmail.com',
+        contactNo : '8978675645',
+        role : 'admin',
     },
     {
         id : 3,
         key: '3',
-        firstName: 'Joe Black',
-        age: 32
+        username: 'Joe Black',
+        email : 'john@gmail.com',
+        contactNo : '8978675645',
+        role : 'admin',
     },
 ]};
 
@@ -26,4 +32,16 @@ export const getUsersRequest = () => {
 export const getSingleUserRequest = (id) => {
     const user = { data : data.data.find(item => item.id == id)}
     return user
+}
+
+export const editUserRequest = (payload) => {
+    return data
+}
+
+export const addUserRequest = (payload) => {
+    return data
+}
+
+export const deleteUserRequest = () => {
+    return data
 }

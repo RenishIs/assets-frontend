@@ -52,34 +52,45 @@ export const addUser = (payload) => ({
     payload
 })
 
-export const addUserSuccess = () => ({
-    type : ADD_USER_SUCCESS
+export const addUserSuccess = (payload) => ({
+    type : ADD_USER_SUCCESS,
+    payload
 })
 
-export const addUserError = () => ({
-    type : ADD_USER_ERROR
+export const addUserError = (payload = '', errors = {}) => ({
+    type : ADD_USER_ERROR,
+    payload,
+    errors
 })
 
-export const editUser = () => ({
-    type : EDIT_USER
+export const editUser = (payload) => ({
+    type : EDIT_USER,
+    payload
 })
 
-export const editUserSuccess = () => ({
-    type : EDIT_USER_SUCCESS
+export const editUserSuccess = (payload) => ({
+    type : EDIT_USER_SUCCESS,
+    payload
 })
 
-export const editUserError = () => ({
-    type : EDIT_USER_ERROR
+export const editUserError = (payload = '', errors = {}) => ({
+    type : EDIT_USER_ERROR,
+    payload, 
+    errors
 })
 
-export const deleteUser = () => ({
-    type : DELETE_USER
+export const deleteUser = (payload) => ({
+    type : DELETE_USER,
+    payload
 })
 
-export const deleteUserSuccess = () => ({
-    type : DELETE_USER_SUCCESS
+export const deleteUserSuccess = (payload) => ({
+    type : DELETE_USER_SUCCESS,
+    payload
 })
 
-export const deleteUserError = () => ({
-    type : DELETE_USER_ERROR
+export const deleteUserError = (payload = '', errors = {}) => ({
+    type : DELETE_USER_ERROR,
+    payload,
+    errors
 })

@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getSingleUser } from '../../redux/actions/users';
+import { editUser, getSingleUser } from '../../redux/actions/users';
 import UsersForm from './UsersForm';
 
 const UsersEdit = () => {
@@ -14,7 +14,7 @@ const UsersEdit = () => {
     console.log(useSelector(state => state.users))
 
     const handleUser = (values) => {
-        console.log(values)
+        dispatch(editUser(values))
     }
 
     useEffect(() => {
