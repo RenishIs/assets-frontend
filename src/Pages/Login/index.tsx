@@ -26,7 +26,7 @@ const Login = () => {
 						<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<KeyOutlined />} forgotPassword={true} isPassword={true}/>
 						<div className="mt-2">Create account? <Link to="/">Sign Up</Link></div>
 						<div className="d-flex mt-4 flex-row-reverse">
-							<Button type="primary" htmlType="submit">Login</Button>
+							<Button type="primary" htmlType="submit">LOGIN</Button>
 						</div>
 					</Form>
 				</Formik>

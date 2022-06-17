@@ -11,8 +11,12 @@ const ResetPassword = () => {
     const initialState = { oldPassword : '', newPassword : '', confirmPassword : ''}
     const dispatch = useDispatch()
 
-    const onFinish = (values: object) => {
-        dispatch(resetPassword(values))
+    const onFinish = (values) => {
+        const data = {
+            password: values?.newPassword,
+            id : '123'
+        }
+        dispatch(resetPassword(data))
     };
 
     return (
@@ -21,11 +25,10 @@ const ResetPassword = () => {
                 <h3 className="text-center">Reset Password</h3>
                 <Formik initialValues={initialState} validationSchema={resetPasswordValidations} onSubmit={values => onFinish(values)}>
                     <Form>
-                        <TextInput label="Old Password" type="password" name="oldPassword" id="oldPassword" prefix={<KeyOutlined />} isPassword={true}/>
                         <TextInput label="New Password" type="password" name="newPassword" id="newPassword" prefix={<KeyOutlined />} isPassword={true}/>
                         <TextInput label="Confirm Password" type="password" name="confirmPassword" id="confirmPassword" prefix={<KeyOutlined />} isPassword={true}/>
                         <div className="d-flex mt-4 flex-row-reverse">
-							<Button type="primary" htmlType="submit">Reset Password</Button>
+							<Button type="primary" htmlType="submit">SUBMIT</Button>
 						</div>
                     </Form>
                 </Formik>

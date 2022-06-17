@@ -22,6 +22,7 @@ export function* handlerLogoutUser(action){
     try{
         yield localStorage.clear('auth_token')
         yield put(logoutUserSuccess())
+        yield put(push('/login'))
     }
     catch(err){
         
