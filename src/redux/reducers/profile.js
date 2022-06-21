@@ -10,7 +10,6 @@ const initialState = {
 }
 
 const profileReducer = (state=initialState, action) => {
-    console.log(action.type)
     switch(action.type){
         case GET_PROFILE_SUCCESS : {
             return {

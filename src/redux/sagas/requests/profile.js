@@ -1,15 +1,10 @@
-const data = {
-    data: {
-        Profile: {
-            username: "MerryD",
-            email: "a2@a2.com",
-            role: "Employee",
-            contactNumber: "9855656343",
-            address: "India"
-        }
-    }
-}
+import {client} from '../../../App'
+import { GET_PROFILE_QUERY } from '../../../gql/Query/profile'
 
-export const getProfileRequest = () => {
-    return data
+export const getProfileRequest = async (data) => {
+    const response = await client.query({
+        query: GET_PROFILE_QUERY,
+        variables : {...data}
+    })
+    return response
 }
