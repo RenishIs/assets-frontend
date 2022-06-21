@@ -8,6 +8,7 @@ export function* handlerRegisterUser(action){
     try{
         const { data } = yield call(registerUserRequest, action.payload)
         const token = data?.registerUser?.token
+        openNotificationWithIcon('success', 'User Registered Successfully')
         yield put(registerUserSuccess(data, token))
         yield put(push('/login'));     
     }

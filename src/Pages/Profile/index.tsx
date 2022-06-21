@@ -1,7 +1,10 @@
+import Dashboard from "../Dashboard"
 
 const Profile = () => {
     return (
-        <div>Profile</div>
+        <Dashboard>
+            <div>Profile</div>
+        </Dashboard>
     )
 }
 
