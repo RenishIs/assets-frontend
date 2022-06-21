@@ -25,7 +25,7 @@ const Router = ({history, isLoggedIn}) => {
                     <UnRestrictedRoute exact path="/reset-password" component={ResetPassword} isLoggedIn={isLoggedIn}/>
 
                     <RestrictedRoute exact path="/dashboard" component={Dashboard} isLoggedIn={isLoggedIn}/>
-                    <RestrictedRoute exact path="/profile" component={Profile} isLoggedIn={isLoggedIn}/>
+                    <RestrictedRoute exact path="/profile" component={Profile} isLoggedIn={true}/>
                     <Route path="*" component={NoMatchFound} />
                 </Switch>
             </ConnectedRouter>
