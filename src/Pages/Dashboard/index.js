@@ -41,7 +41,7 @@ const Dashboard = ({children}) => {
                     <Dropdown overlay={menu} trigger={['click']} >
                         <div className='text-center d-flex align-items-center fs-5 fw-bolder'>
                             <UserAddOutlined className='px-4'/>
-                            Hi, Admin
+                            Hi, {JSON.parse(localStorage.getItem('user')).username}
                         </div>
                     </Dropdown>
                     </Row>

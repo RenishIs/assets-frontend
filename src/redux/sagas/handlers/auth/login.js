@@ -8,7 +8,9 @@ export function* handlerLoginUser(action){
     try{
         const { data } = yield call(loginUserRequest, action.payload)
         const token = data?.loginUser?.token
+        const user = data?.loginUser?.user
         yield localStorage.setItem('auth_token', token);
+        yield localStorage.setItem('user', JSON.stringify(user));
         yield put(loginUserSuccess(data, token))
         yield put(push('/profile'))
     }
