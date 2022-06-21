@@ -8,7 +8,7 @@ import { getSingleUserRequest } from "../requests/users";
 export function* handlerGetUsers(){
     try{
         const { data } = yield call(getUsersRequest)
-        yield put(getUsersSuccess(data))
+        yield put(getUsersSuccess(data?.Users))
     }
     catch(err){
 
@@ -18,7 +18,7 @@ export function* handlerGetUsers(){
 export function* handlerGetSingleUser({payload}){
     try{
         const { data } = yield call(getSingleUserRequest, payload)
-        yield put(getSingleUserSuccess(data))
+        yield put(getSingleUserSuccess(data?.User))
     }
     catch(err){
         openNotificationWithIcon('error', err.message)
@@ -29,6 +29,7 @@ export function* handlerGetSingleUser({payload}){
 export function* handlerEditUser({payload}){
     try{
         const data = yield call(editUserRequest, payload)
+        console.log(data,89)
         yield put(editUserSuccess(data))
         yield put(push('/users'))
     }
@@ -54,6 +55,7 @@ export function* handlerDeleteUser({payload}){
     try{
         const data = yield call(deleteUserRequest, payload)
         yield put(deleteUserSuccess(data))
+        openNotificationWithIcon('success', 'USER DELETED')
         yield put(getUsers())
     }
     catch(err){

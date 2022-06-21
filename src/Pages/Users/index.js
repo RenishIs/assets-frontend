@@ -9,7 +9,7 @@ import Dashboard from '../Dashboard';
 const UsersListing = () => {
 
     const dispatch = useDispatch()
-    const users = useSelector(state => state?.users)
+    const usersState = useSelector(state => state?.users)
 
     const columns = [...tableColumns, {
 		title: 'ACTION',
@@ -32,7 +32,7 @@ const UsersListing = () => {
                 <div>
                     <div>Manage Users</div>
                 </div>
-                <Table bordered columns={columns} dataSource={users?.data} pagination={false}/>
+                <Table bordered columns={columns} dataSource={usersState?.data} pagination={false}/>
             </>
         </Dashboard>
     )

@@ -1,3 +1,7 @@
+import { client } from "../../../App";
+import { DELETE_USER_MUTATION, UPDATE_USER_MUTATION } from "../../../gql/Mutation/User";
+import { GET_USERS_QUERY, GET_USER_BY_ID_QUERY } from "../../../gql/Query/User";
+
 const data = {data : [
     {
         id : 1,
@@ -25,23 +29,37 @@ const data = {data : [
     },
 ]};
 
-export const getUsersRequest = () => {
-    return data
+export const getUsersRequest = async () => {
+    const res = await client.query({
+        query : GET_USERS_QUERY
+    })
+    return res
 }
 
-export const getSingleUserRequest = (id) => {
-    const user = { data : data.data.find(item => item.id == id)}
-    return user
+export const getSingleUserRequest = async (id) => {
+    const res = await client.query({
+        query : GET_USER_BY_ID_QUERY,
+        variables : { userId: id }
+    })
+    return res
 }
 
-export const editUserRequest = (payload) => {
-    return data
+export const editUserRequest = async (payload) => {
+    const res = await client.mutate({
+        mutation : UPDATE_USER_MUTATION,
+        variables : {...payload}
+    })
+    return res
 }
 
 export const addUserRequest = (payload) => {
     return data
 }
 
-export const deleteUserRequest = () => {
-    return data
+export const deleteUserRequest = async (id) => {
+    const res = await client.mutate({
+        mutation : DELETE_USER_MUTATION,
+        variables : { deleteUserId: id }
+    })
+    return res
 }

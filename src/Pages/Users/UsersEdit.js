@@ -11,10 +11,10 @@ const UsersEdit = () => {
     const { id } = useParams()
 
     const usersState = useSelector(state => state.users)
-    console.log(useSelector(state => state.users))
 
     const handleUser = (values) => {
-        dispatch(editUser(values))
+        const formData = {updateUserId : id,  input: {...values} }
+        dispatch(editUser(formData))
     }
 
     useEffect(() => {

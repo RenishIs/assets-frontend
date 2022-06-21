@@ -7,7 +7,10 @@ const UsersAdd = () => {
     const dispatch = useDispatch()
 
     const handleUser = (values) => {
-        dispatch(addUser(values))
+        const formData = {
+            input: {...values}
+        }
+        dispatch(addUser(formData))
     }
 
     return (
