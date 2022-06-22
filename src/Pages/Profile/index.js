@@ -20,7 +20,7 @@ const Profile = () => {
                 <div className="mt-4">
                     <div className="mb-3">
                         <div>
-                            <span className="text-body font-weight-bold">Username</span> 
+                            <span className="text-body fw-bold">Username</span> 
                         </div>
                         <div>
                             <span className="text-muted">{profile?.username}</span>
@@ -28,7 +28,7 @@ const Profile = () => {
                     </div>
                     <div className="mb-3">
                         <div>
-                            <span className="text-body font-weight-bold">Email</span> 
+                            <span className="text-body fw-bold">Email</span> 
                         </div>
                         <div>
                             <span className="text-muted">{profile?.email}</span>
@@ -36,7 +36,7 @@ const Profile = () => {
                     </div>
                     <div className="mb-3">
                         <div>
-                            <span className="text-body font-weight-bold">Role</span> 
+                            <span className="text-body fw-bold">Role</span> 
                         </div>
                         <div>
                             <span className="text-muted">{profile?.role}</span>
@@ -44,7 +44,7 @@ const Profile = () => {
                     </div>
                     <div className="mb-3">
                         <div>
-                            <span className="text-body font-weight-bold">Contact Number</span> 
+                            <span className="text-body fw-bold">Contact Number</span> 
                         </div>
                         <div>
                             <span className="text-muted">{profile?.contactNumber}</span>
@@ -52,7 +52,7 @@ const Profile = () => {
                     </div>
                     <div className="mb-3">
                         <div>
-                            <span className="text-body font-weight-bold">Address</span> 
+                            <span className="text-body fw-bold">Address</span> 
                         </div>
                         <div>
                             <span className="text-muted">{profile?.address}</span>

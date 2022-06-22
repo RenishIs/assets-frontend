@@ -1,10 +1,9 @@
 import {client} from '../../../App'
 import { GET_PROFILE_QUERY } from '../../../gql/Query/profile'
 
-export const getProfileRequest = async (data) => {
+export const getProfileRequest = async () => {
     const response = await client.query({
-        query: GET_PROFILE_QUERY,
-        variables : {...data}
+        query: GET_PROFILE_QUERY
     })
     return response
 }
