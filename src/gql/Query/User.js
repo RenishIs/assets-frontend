@@ -3,10 +3,13 @@ import { gql } from "@apollo/client";
 export const GET_USERS_QUERY = gql`
     query Users {
         Users {
-			id,
-			username,
-			email,
-			role,
+			id
+			username
+			email
+			role
+			password
+			isActive
+			address
 		}
 	}
 `

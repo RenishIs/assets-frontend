@@ -12,9 +12,12 @@ export const tableColumns = [
 		render: (text) => <span>{text}</span>,
 	},
 	{
-		title: 'CONTACT NUMBER',
-		dataIndex: 'contactNo',
-		key: 'contactNo',
+		title: 'IS ACTIVE',
+		dataIndex: 'isActive',
+		key: 'isActive',
+		render: (_, record) => (
+			<div className={`${record.isActive ? 'text-danger' : 'text-primary'}`}>{record.isActive ? "ACTIVE" : "INACTIVE"}</div>
+		)
 	},
 	{
 		title: 'ADDRESS',
