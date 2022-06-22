@@ -6,6 +6,8 @@ query Query {
       username
       email
       role
+      address
+      contactNo
     }
   }
 `

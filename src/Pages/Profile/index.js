@@ -47,7 +47,7 @@ const Profile = () => {
                             <span className="text-body fw-bold">Contact Number</span> 
                         </div>
                         <div>
-                            <span className="text-muted">{profile?.contactNumber}</span>
+                            <span className="text-muted">{profile?.contactNo}</span>
                         </div>
                     </div>
                     <div className="mb-3">
