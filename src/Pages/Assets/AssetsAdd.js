@@ -10,7 +10,7 @@ const AssetsAdd = () => {
         const formData = {
             input: {...values}
         }
-        dispatch(addAsset(values))
+        dispatch(addAsset(formData))
     }
 
     return (

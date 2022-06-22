@@ -10,7 +10,6 @@ const AssetsListing = () => {
 
     const dispatch = useDispatch()
     const assets = useSelector(state => state?.assets)
-
     const columns = [...tableColumns, {
 		title: 'ACTION',
 		key: 'action',

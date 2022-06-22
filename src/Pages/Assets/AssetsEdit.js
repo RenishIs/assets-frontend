@@ -15,7 +15,7 @@ const AssetsEdit = () => {
 
     const handleAsset = (values) => {
         const formData = {updateUserId : id,  input: {...values} }
-        dispatch(editAsset(values))
+        dispatch(editAsset(formData))
     }
 
     useEffect(() => {

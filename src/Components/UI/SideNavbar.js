@@ -1,13 +1,14 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
 import { UserOutlined, HomeFilled, TeamOutlined, LaptopOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 const { Sider } = Layout;
 
 const iconsData = [
     { icon : HomeFilled, label : 'Dashboard'},
     { icon : UserOutlined, label : 'Users', children : ['Users', 'Manage Users']},
-    { icon : LaptopOutlined, label : 'Assets', children : ['Add Assets', 'Manage Assets']},
+    { icon : UserOutlined, label : 'Assets', children : [{label : 'Add Asset', path:'/assets/add'}, {label : 'Manage Assets', path:'/assets'}]},
 ]
 
 const menuItems = iconsData.map((item, index) => {
@@ -15,12 +16,12 @@ const menuItems = iconsData.map((item, index) => {
     return {
         key :`sub${key}`,
         icon : React.createElement(item.icon, {className : 'side-nav-bar-icons',}),
-        label : item.label,
+        label : item.path ? (<Link to={`${item.path}`}>{item.label}</Link>) : item.label,
         children : item.children && item?.children.map((child, j) => {
             const subKey = index * 4 + j + 1;
             return {
                 key : subKey,
-                label : child
+                label : <Link to={`${child.path}`}>{child.label}</Link>
             }
         })
     }
@@ -36,6 +37,7 @@ const SideNavbar = ({collapsed}) => {
             <Menu mode="inline"
                   defaultSelectedKeys={['1']}
                   defaultOpenKeys={['sub1']}
+                  selectedKeys={['sub1']}
                   className='side-nav-bar-menu-items fs-6'
                   items={menuItems}/>
         </Sider>
