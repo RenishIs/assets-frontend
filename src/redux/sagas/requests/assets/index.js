@@ -18,7 +18,6 @@ export const getSingleAssetRequest = async (id) => {
 }
 
 export const editAssetRequest = async (payload) => {
-    console.log(payload,'edit request payload')
     const res = await client.mutate({
         mutation : UPDATE_ASSET_MUTATION,
         variables : {...payload}
@@ -35,7 +34,6 @@ export const addAssetRequest = async (payload) => {
 }
 
 export const deleteAssetRequest = async (id) => {
-    console.log(id,'delete id in request')
     const res = await client.mutate({
         mutation : DELETE_ASSET_MUTATION,
         variables : { deleteAssetsId: id }

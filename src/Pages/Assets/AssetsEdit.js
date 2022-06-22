@@ -10,8 +10,7 @@ const AssetsEdit = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
 
-    const assetsState = useSelector(state => state.assets)
-    console.log(assetsState,'assetsState')
+    const assetsState = useSelector(state => state?.assets)
     
     const handleAsset = (values) => {
         const formData = {updateAssetsId : id,  input: {...values} }
@@ -26,7 +25,7 @@ const AssetsEdit = () => {
         <div>
         {
             assetsState?.asset && (
-                <AssetsForm handleAsset={handleAsset} asset={assetsState?.asset}/>
+                <AssetsForm handleAsset={handleAsset} asset={assetsState?.asset?.Asset}/>
             )
         }
         </div>

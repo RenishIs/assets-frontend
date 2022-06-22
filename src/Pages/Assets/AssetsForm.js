@@ -6,7 +6,7 @@ import Dashboard from '../Dashboard';
 const AssetsForm = ({title, handleAsset, ...rest}) => {
 
     const {asset} = rest
-    
+
     const initialState = {
         name : asset ? asset.name : '',
         description : asset ? asset.description : '',

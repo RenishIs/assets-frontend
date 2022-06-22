@@ -16,14 +16,11 @@ export function* handlerGetAssets(){
 }
 
 export function* handlerGetSingleAsset({payload}){
-    console.log(payload,'single payload handler')
     try{
         const { data } = yield call(getSingleAssetRequest, payload)
-        console.log(data,'d')
         yield put(getSingleAssetSuccess(data))
     }
     catch(err){
-        console.log(err,'err single handler')
         openNotificationWithIcon('error', err.message)
         yield put(getSingleAssetError(err.message, err.data || {}))
     }
@@ -54,15 +51,12 @@ export function* handlerAddAsset({payload}){
 }
 
 export function* handlerDeleteAsset({payload}){
-    console.log(payload, 'payload in handler')
     try{
         const data = yield call(deleteAssetRequest, payload)
-        console.log(data, 'data handler')
         yield put(deleteAssetSuccess(data))
         yield put(getAssets())
     }
     catch(err){
-        console.log(err,'err')
         openNotificationWithIcon('error', err.message)
         yield put(deleteAssetError(err.message, err.data || {}))
     }
