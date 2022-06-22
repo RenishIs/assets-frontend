@@ -1,11 +1,12 @@
-import { Button, Card } from "antd";
-import { UserOutlined, KeyOutlined } from '@ant-design/icons';
+import { Button } from "antd";
+import { MailFilled } from '@ant-design/icons';
 import { useDispatch } from "react-redux";
 import { Formik, Form } from 'formik';
 import { Link } from "react-router-dom";
 import { loginUserStart } from "../../redux/actions/auth/login";
 import TextInput from "../../Components/UI/TextInput";
 import { loginValidations } from "../../Helper/ValidationSchema";
+import AuthLayout from "../../Components/AuthLayout";
 
 const Login = () => {
 
@@ -17,21 +18,17 @@ const Login = () => {
 	};
 
 	return (
-		<div className="form site-card-border-less-wrapper">
-			<Card style={{ width: '45%' }}>
-				<h3 className="text-center">Sign In</h3>
-				<Formik initialValues={initialValues} validationSchema={loginValidations} onSubmit={(values) => onFinish(values)}>
-					<Form >
-						<TextInput label="EMAIL" name="email" type="email" id="email" prefix={<UserOutlined />}/>					
-						<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<KeyOutlined />} forgotPassword={true} isPassword={true}/>
-						<div className="mt-2">Create account? <Link to="/">Sign Up</Link></div>
-						<div className="d-flex mt-4 flex-row-reverse">
-							<Button type="primary" htmlType="submit">LOGIN</Button>
-						</div>
-					</Form>
-				</Formik>
-			</Card>
-		</div>
+		<AuthLayout headerText="Sign In">
+			<Formik initialValues={initialValues} validationSchema={loginValidations} onSubmit={(values) => onFinish(values)}>
+				<Form >
+					<TextInput label="EMAIL" name="email" type="email" id="email" prefix={<MailFilled />}/>		
+					<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<img src="icon-password-key.png" alt="password"/>} isPassword={true} forgotPassword={true}/>		
+					<Button type="primary" className="auth-button" htmlType="submit">Sign In</Button>
+					<span className="auth-text">Don't have an account?</span>
+					<Link to="/" className="auth-text-inner">Sign Up</Link>
+				</Form>
+			</Formik>
+		</AuthLayout>
 	)
 }
 
