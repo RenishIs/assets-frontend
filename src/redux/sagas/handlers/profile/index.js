@@ -1,6 +1,6 @@
 import { call, put } from "redux-saga/effects";
-import { getProfile, getProfileSuccess } from "../../actions/profile";
-import { getProfileRequest } from "../requests/profile";
+import { getProfile, getProfileSuccess } from "../../../actions/profile";
+import { getProfileRequest } from "../../requests/profile";
 
 export function* handlerGetProfile(){
     try{

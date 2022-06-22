@@ -1,4 +1,4 @@
-import {GET_PROFILE_ERROR, GET_PROFILE_SUCCESS } from "../actions/profile"
+import {GET_PROFILE_ERROR, GET_PROFILE_SUCCESS } from "../../actions/profile"
 
 const initialState = {
     loading : false,
