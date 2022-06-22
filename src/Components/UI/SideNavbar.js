@@ -27,11 +27,11 @@ const menuItems = iconsData.map((item, index) => {
 
 const SideNavbar = ({collapsed}) => {
     return (
-        <Sider width='25%' className="bg-white"  collapsible collapsed={collapsed} trigger={null} >
-            <div className='mt-2 d-flex justify-content-center align-items-center'>
+        <Sider width='25%' className="mx-2 main-card pt-4" collapsible collapsed={collapsed} trigger={null} >
+            {/* <div className='mt-2 d-flex justify-content-center align-items-center'>
                 <TeamOutlined className='side-nav-bar-icons fs-1' />
                 <span className='fw-bold fs-1 text-secondary px-4'>AMS</span>
-            </div>            
+            </div>             */}
             <Menu mode="inline"
                   defaultSelectedKeys={['1']}
                   defaultOpenKeys={['sub1']}

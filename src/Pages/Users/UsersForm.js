@@ -1,4 +1,6 @@
-import { Button, Card } from 'antd';
+import { Button, Input, Col, Row } from 'antd';
+import { UserOutlined, MailFilled, PhoneFilled} from '@ant-design/icons';
+
 import { Formik, Form } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
 import { userValidations } from '../../Helper/ValidationSchema';
@@ -19,23 +21,21 @@ const UsersForm = ({title, handleUser, ...rest}) => {
 
     return (
         <Dashboard>
-            <div className="form site-card-border-less-wrapper">
-                <Card style={{ width: '45%' }}>
+            <div className='main-card p-4'>
                     <h2 className='text-center'>{user ? 'EDIT USER' : 'ADD USER'}</h2>
                     <Formik initialValues={initialState} validationSchema={userValidations} onSubmit={(values) => handleUser(values)}>
-                        <Form>
-                            <TextInput label="USER NAME" name="username" id="username" />	
-                            <TextInput label="EMAIL" name="email" id="email" type="email"/>	
-                            <TextInput label="CONTACT NUMBER" name="contactNo" id="contactNo" />	
-                            <TextInput label="ADDRESS" name="address" id="address" />
-                            <TextInput label="ROLE" name="role" id="role" />	
-                            <TextInput label="PASSWORD" name="password" id="password" type="password" isPassword={true}/>
+                        <Form className=''>
+                            <TextInput label="USER NAME" name="username" id="username" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true}/>
+                            <TextInput label="EMAIL" name="email" id="email" type="email" prefix={<MailFilled style={{color : 'black'}}/>} isLabel={true}/>
+                            <TextInput label="CONTACT NUMBER" name="contactNo" id="contactNo" prefix={<PhoneFilled style={{color : 'black'}}/>} isLabel={true}/>
+                            <TextInput label="ADDRESS" name="address" id="address" isLabel={true} prefix={<UserOutlined style={{color : 'black'}}/>}/>
+                            <TextInput label="ROLE" name="role" id="role" isLabel={true} prefix={<PhoneFilled style={{color : 'black'}}/>}/>
+                            <TextInput label="PASSWORD" name="password" id="password" type="password" isPassword={true} isLabel={true} prefix={<img src="icon-password-key.png" style={{color : 'black'}}/>}/>
                             <div className="d-flex mt-4 flex-row-reverse">
                                 <Button type="primary" htmlType="submit">Submit</Button>
                             </div>				
                         </Form>
                     </Formik>
-                </Card>
             </div>
         </Dashboard>
     )
