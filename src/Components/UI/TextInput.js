@@ -8,9 +8,9 @@ const TextInput = ({label, forgotPassword=false, isPassword=false, ...props}) =>
     const [field, meta] = useField(props)
 
     return (
-        <div className='mt-4'>
+        <div className='mt-4 w-full'>
             <div className='d-flex justify-content-between text-mute'>
-                <label htmlFor={props.id || props.name} className="text-muted fw-bolder">{label}</label>
+                <label htmlFor={props.id || props.name} className="text-muted fs-6 fw-bolder">{label}</label>
                 { 
                     forgotPassword && (
                         <Link to='/forgot-password' className="text-primary fw-bolder">Forgot Password?</Link >
@@ -19,13 +19,14 @@ const TextInput = ({label, forgotPassword=false, isPassword=false, ...props}) =>
             </div>
             {
                 isPassword ? (
-                    <Input.Password className={`text-input`} 
+                    <Input.Password className={`text-input form-input`} 
                                     size="large" 
                                     {...field}
                                     {...props} 
+                                    style={{ backgroundColor: "black", marginBottom: "15px" }} 
                                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}/>
                 ) : (
-                    <Input className={`text-input`} size="large" {...field} {...props}  />
+                    <Input className={`text-input form-input`} size="large" {...field} {...props}  style={{ backgroundColor: "black", marginBottom: "15px" }}  />
                 )
             }
             {

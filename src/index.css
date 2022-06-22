@@ -1,47 +1,48 @@
 @import '~antd/dist/antd.css';
 *{
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
+a{
+	text-decoration: none;
+}
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
 }
 .form{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
 }
 .site-card-border-less-wrapper {
-  padding: 30px;
-  background: #ececec;
+	background-image: linear-gradient(to right, #268abd, #8cffd5);
 }
 #components-layout-demo-top-side-2 .logo {
-  float: left;
-  width: 120px;
-  height: 31px;
-  margin: 16px 24px 16px 0;
-  background: rgba(255, 255, 255, 0.3);
+	float: left;
+	width: 120px;
+	height: 31px;
+	margin: 16px 24px 16px 0;
+	background: rgba(255, 255, 255, 0.3);
 }
 
 .ant-row-rtl #components-layout-demo-top-side-2 .logo {
-  float: right;
-  margin: 16px 0 16px 24px;
+	float: right;
+	margin: 16px 0 16px 24px;
 }
 
 .ant-layout-header{
-  background : none;
-  padding: 0;
+	background : none;
+	padding: 0;
 }
 
 .side-nav-bar-icons{
@@ -50,6 +51,123 @@ code {
 }
 
 .side-nav-bar-menu-items{
-  border-right: 0;
-  color : '#3308cc'
+	border-right: 0;
+	color : '#3308cc'
+}
+.gradient-background-blue{
+	background: linear-gradient(to top right,#16518a, #78f2eb);
+	height: 100vh;
+	overflow:auto;
+}
+
+.gradient-background-black-full{
+	background: linear-gradient(to top right,#03070a 70%,#20413f);
+	height: 100vh;
+	align-self: center;
+	overflow:auto;
+}
+  
+.gradient-background-black{
+	background: linear-gradient(to top right,#03070a 70%,#20413f);
+	margin: 60px 30px 60px 30px;
+	height: 80%;
+	border-radius: 25px;
+	align-self: center;
+	box-shadow: 0 40px 20px -2px #1d4a5f;
+	overflow: hidden;
+}
+
+.auth-card{
+	border-radius: 3%;
+	background: rgba(102, 104, 108, 0.1);
+}
+
+.ant-input-affix-wrapper{
+	border-radius: 5px !important;
+}
+
+.ant-input{
+	background-color: #03070a !important;
+	color:white !important;
+}
+
+.container-register-right{
+	margin-top: 80px;
+	/* margin-top: auto;
+	margin-bottom: auto; */
+	width: 50%;
+}
+  
+.heading-register{
+	color: white;
+	text-align: start;
+	font-size: 2rem;
+	font-weight: 800;
+	margin-bottom: 20px;
+}
+
+.auth-sub-heading{
+	color: white;
+	text-align: start;
+	font-size: 1rem;
+	font-weight: 400;
+	margin-bottom: 20px;
+}
+  
+.ant-checkbox-wrapper{
+	color: white;
+}
+
+.auth-button{
+	margin-top:20px;
+	margin-bottom: 20px;
+	width:100%;
+	border-radius:"4px";
+	height:36px;
+	background-color:#005ef2;
+	border-color:#005ef2
+}
+
+.auth-text{
+	color:#515455;
+	font-size: 0.8rem;
+	align-content: center
+}
+
+.auth-text-inner{
+	color:#005ef2;
+	font-size:0.8rem;
+	text-align:center;
+	margin-left:2px
+}
+
+.form-input{
+	top:0;
+	left : 0;
+	border: 2px solid grey;
+	border-radius: 0.25rem;
+	font-family: inherit;
+	font-size: inherit;
+	color: white;
+	outline: none;
+	padding: 0.5rem;
+	background: none;
+}
+
+.form-input:hover{
+	border-color: #268abd;
+}
+
+.form-input:focus{
+	border-color: #268abd;
+}
+
+.ant-input-affix-wrapper > input.ant-input{
+	background: none;
+	color: white;
+	margin-left: 0.5rem;
+}
+
+.ant-input-password-icon.anticon{
+	color: white;
 }
