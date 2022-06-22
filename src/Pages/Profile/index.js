@@ -20,42 +20,42 @@ const Profile = () => {
                 <div className="mt-4">
                     <div className="mb-3">
                         <div>
-                            <span style={{color: 'black', fontWeight: '600'}}>Username</span> 
+                            <span className="text-body font-weight-bold">Username</span> 
                         </div>
                         <div>
-                            <span style={{color: 'gray'}}>{profile?.username}</span>
-                        </div>
-                    </div>
-                    <div className="mb-3">
-                        <div>
-                            <span style={{color: 'black', fontWeight: '600'}}>Email</span> 
-                        </div>
-                        <div>
-                            <span style={{color: 'gray'}}>{profile?.email}</span>
+                            <span className="text-muted">fdfg</span>
                         </div>
                     </div>
                     <div className="mb-3">
                         <div>
-                            <span style={{color: 'black', fontWeight: '600'}}>Role</span> 
+                            <span className="text-body font-weight-bold">Email</span> 
                         </div>
                         <div>
-                            <span style={{color: 'gray'}}>{profile?.role}</span>
-                        </div>
-                    </div>
-                    <div className="mb-3">
-                        <div>
-                            <span style={{color: 'black', fontWeight: '600'}}>Contact Number</span> 
-                        </div>
-                        <div>
-                            <span style={{color: 'gray'}}>{profile?.contactNumber}</span>
+                            <span className="text-muted">{profile?.email}</span>
                         </div>
                     </div>
                     <div className="mb-3">
                         <div>
-                            <span style={{color: 'black', fontWeight: '600'}}>Address</span> 
+                            <span className="text-body font-weight-bold">Role</span> 
                         </div>
                         <div>
-                            <span style={{color: 'gray'}}>{profile?.address}</span>
+                            <span className="text-muted">{profile?.role}</span>
+                        </div>
+                    </div>
+                    <div className="mb-3">
+                        <div>
+                            <span className="text-body font-weight-bold">Contact Number</span> 
+                        </div>
+                        <div>
+                            <span className="text-muted">{profile?.contactNumber}</span>
+                        </div>
+                    </div>
+                    <div className="mb-3">
+                        <div>
+                            <span className="text-body font-weight-bold">Address</span> 
+                        </div>
+                        <div>
+                            <span className="text-muted">{profile?.address}</span>
                         </div>
                     </div>
                 </div>
