@@ -9,7 +9,7 @@ import Dashboard from '../Dashboard';
 const AssetsListing = () => {
 
     const dispatch = useDispatch()
-    const assets = useSelector(state => state?.assets)
+    const assetsState = useSelector(state => state?.assets)
     const columns = [...tableColumns, {
 		title: 'ACTION',
 		key: 'action',
@@ -27,7 +27,7 @@ const AssetsListing = () => {
 
     return (
         <Dashboard>
-            <Table columns={columns} dataSource={assets?.data} />
+            <Table bordered columns={columns} dataSource={assetsState?.data} pagination={false} />
         </Dashboard>
     )
 }
