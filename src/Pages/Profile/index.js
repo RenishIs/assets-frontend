@@ -23,7 +23,7 @@ const Profile = () => {
                             <span className="text-body font-weight-bold">Username</span> 
                         </div>
                         <div>
-                            <span className="text-muted">fdfg</span>
+                            <span className="text-muted">{profile?.username}</span>
                         </div>
                     </div>
                     <div className="mb-3">
