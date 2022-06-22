@@ -10,11 +10,13 @@ const AssetsListing = () => {
 
     const dispatch = useDispatch()
     const assetsState = useSelector(state => state?.assets)
+    console.log(assetsState,'assetsState')
     const columns = [...tableColumns, {
 		title: 'ACTION',
 		key: 'action',
 		render: (_, record) => (
 			<Space size="middle">
+                {console.log(record.id,'record.id')}
 				<Link to={`/assets/edit/${record.id}`}><Button type="primary">EDIT</Button></Link>
 				<Button type="primary" danger onClick={() => dispatch(deleteAsset(record.id))}>DELETE</Button>
 			</Space>
@@ -27,7 +29,7 @@ const AssetsListing = () => {
 
     return (
         <Dashboard>
-            <Table bordered columns={columns} dataSource={assetsState?.data} pagination={false} />
+            <Table bordered columns={columns} dataSource={assetsState?.data?.Assets} pagination={false} />
         </Dashboard>
     )
 }

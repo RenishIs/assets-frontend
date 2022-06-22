@@ -1,5 +1,5 @@
 import {client} from '../../../../App'
-import { CREATE_USER_MUTATION } from '../../../../gql/Mutation/Auth'
+import { CREATE_USER_MUTATION } from '../../../../gql/Mutation/Auth/index'
 
 export const registerUserRequest = async (data) => {
     const res = await client.mutate({
