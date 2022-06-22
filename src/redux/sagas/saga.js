@@ -6,14 +6,16 @@ import { REGISTER_USER } from '../actions/auth/register'
 import { RESET_PASSWORD } from '../actions/auth/resetPassword'
 import { CHECK_AUTHORISATION } from '../actions/auth/checkAuthorisation'
 import { ADD_ASSET, DELETE_ASSET, EDIT_ASSET, GET_SINGLE_ASSET, GET_ASSETS } from '../actions/assets'
-import checkAuthorization from './handlers/auth/checkAuthorisation'
+import { GET_PROFILE } from '../actions/profile'
 
+import checkAuthorization from './handlers/auth/checkAuthorisation'
 import { handlerLoginUser } from './handlers/auth/login'
 import { handlerRegisterUser } from './handlers/auth/register'
 import handlerResetPassword from './handlers/auth/resetPassword'
 import handlerForgotPassword from './handlers/auth/forgotPassword'
 import { handlerLogoutUser } from './handlers/auth/login'
 import { handlerAddAsset, handlerDeleteAsset, handlerEditAsset, handlerGetSingleAsset, handlerGetAssets } from './handlers/assets'
+import { handlerGetProfile } from './handlers/profile'
 
 export function* watcherSaga(){
     yield takeLatest(LOGIN_USER, handlerLoginUser )
@@ -27,4 +29,5 @@ export function* watcherSaga(){
     yield takeLatest(EDIT_ASSET, handlerEditAsset)
     yield takeLatest(ADD_ASSET, handlerAddAsset)
     yield takeLatest(DELETE_ASSET, handlerDeleteAsset)
+    yield takeLatest(GET_PROFILE, handlerGetProfile)
 }
