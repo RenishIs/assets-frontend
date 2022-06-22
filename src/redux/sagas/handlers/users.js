@@ -29,9 +29,8 @@ export function* handlerGetSingleUser({payload}){
 export function* handlerEditUser({payload}){
     try{
         const data = yield call(editUserRequest, payload)
-        console.log(data,89)
         yield put(editUserSuccess(data))
-        yield put(push('/users'))
+        openNotificationWithIcon('success', 'USER EDITED SUCCESSFULLY')
     }
     catch(err){
         openNotificationWithIcon('error', err.message)
@@ -43,7 +42,7 @@ export function* handlerAddUser({payload}){
     try{
         const data = yield call(addUserRequest, payload)
         yield put(addUserSuccess(data))
-        yield put(push('/users'))
+        openNotificationWithIcon('success', 'USER ADDED SUCCESSFULLY')
     }
     catch(err){
         openNotificationWithIcon('error', err.message)
@@ -56,7 +55,6 @@ export function* handlerDeleteUser({payload}){
         const data = yield call(deleteUserRequest, payload)
         yield put(deleteUserSuccess(data))
         openNotificationWithIcon('success', 'USER DELETED')
-        yield put(getUsers())
     }
     catch(err){
         openNotificationWithIcon('error', err.message)

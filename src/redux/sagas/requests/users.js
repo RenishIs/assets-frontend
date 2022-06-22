@@ -1,33 +1,6 @@
 import { client } from "../../../App";
-import { DELETE_USER_MUTATION, UPDATE_USER_MUTATION } from "../../../gql/Mutation/User";
+import { CREATE_USER_MUTATION, DELETE_USER_MUTATION, UPDATE_USER_MUTATION } from "../../../gql/Mutation/User";
 import { GET_USERS_QUERY, GET_USER_BY_ID_QUERY } from "../../../gql/Query/User";
-
-const data = {data : [
-    {
-        id : 1,
-        key: '1',
-        username: 'John Brown',
-        email : 'john@gmail.com',
-        contactNo : '8978675645',
-        role : 'admin',
-    },
-    {
-        id : 2,
-        key: '2',
-        username: 'Jim Green',
-        email : 'john@gmail.com',
-        contactNo : '8978675645',
-        role : 'admin',
-    },
-    {
-        id : 3,
-        key: '3',
-        username: 'Joe Black',
-        email : 'john@gmail.com',
-        contactNo : '8978675645',
-        role : 'admin',
-    },
-]};
 
 export const getUsersRequest = async () => {
     const res = await client.query({
@@ -52,8 +25,12 @@ export const editUserRequest = async (payload) => {
     return res
 }
 
-export const addUserRequest = (payload) => {
-    return data
+export const addUserRequest = async (payload) => {
+    const res = await client.mutate({
+        mutation : CREATE_USER_MUTATION,
+        variables : {...payload}
+    })
+    return res
 }
 
 export const deleteUserRequest = async (id) => {
