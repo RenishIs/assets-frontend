@@ -5,13 +5,15 @@ import { LOGIN_USER, LOGOUT_USER } from '../actions/auth/login'
 import { REGISTER_USER } from '../actions/auth/register'
 import { RESET_PASSWORD } from '../actions/auth/resetPassword'
 import { CHECK_AUTHORISATION } from '../actions/auth/checkAuthorisation'
-import checkAuthorization from './handlers/auth/checkAuthorisation'
+import { GET_PROFILE } from '../actions/profile'
 
+import checkAuthorization from './handlers/auth/checkAuthorisation'
 import { handlerLoginUser } from './handlers/auth/login'
 import { handlerRegisterUser } from './handlers/auth/register'
 import handlerResetPassword from './handlers/auth/resetPassword'
 import handlerForgotPassword from './handlers/auth/forgotPassword'
 import { handlerLogoutUser } from './handlers/auth/login'
+import { handlerGetProfile } from './handlers/profile'
 
 export function* watcherSaga(){
     yield takeLatest(LOGIN_USER, handlerLoginUser )
@@ -20,4 +22,5 @@ export function* watcherSaga(){
     yield takeLatest(RESET_PASSWORD, handlerResetPassword)
     yield takeLatest(LOGOUT_USER, handlerLogoutUser)    
     yield takeLatest(CHECK_AUTHORISATION, checkAuthorization)
+    yield takeLatest(GET_PROFILE, handlerGetProfile)
 }
