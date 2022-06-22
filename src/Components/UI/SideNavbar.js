@@ -1,12 +1,13 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
-import { UserOutlined, HomeFilled, TeamOutlined } from '@ant-design/icons';
+import { UserOutlined, HomeFilled, TeamOutlined, LaptopOutlined } from '@ant-design/icons';
 
 const { Sider } = Layout;
 
 const iconsData = [
     { icon : HomeFilled, label : 'Dashboard'},
     { icon : UserOutlined, label : 'Users', children : ['Users', 'Manage Users']},
+    { icon : LaptopOutlined, label : 'Assets', children : ['Add Assets', 'Manage Assets']},
 ]
 
 const menuItems = iconsData.map((item, index) => {
