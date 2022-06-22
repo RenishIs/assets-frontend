@@ -1,6 +1,5 @@
-import { Button, Input, Col, Row } from 'antd';
+import { Button } from 'antd';
 import { UserOutlined, MailFilled, PhoneFilled} from '@ant-design/icons';
-
 import { Formik, Form } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
 import { userValidations } from '../../Helper/ValidationSchema';
@@ -29,8 +28,8 @@ const UsersForm = ({title, handleUser, ...rest}) => {
                             <TextInput label="EMAIL" name="email" id="email" type="email" prefix={<MailFilled style={{color : 'black'}}/>} isLabel={true}/>
                             <TextInput label="CONTACT NUMBER" name="contactNo" id="contactNo" prefix={<PhoneFilled style={{color : 'black'}}/>} isLabel={true}/>
                             <TextInput label="ADDRESS" name="address" id="address" isLabel={true} prefix={<UserOutlined style={{color : 'black'}}/>}/>
-                            <TextInput label="ROLE" name="role" id="role" isLabel={true} prefix={<PhoneFilled style={{color : 'black'}}/>}/>
-                            <TextInput label="PASSWORD" name="password" id="password" type="password" isPassword={true} isLabel={true} prefix={<img src="icon-password-key.png" style={{color : 'black'}}/>}/>
+                            <TextInput label="ROLE" name="role" id="role" isLabel={true} prefix={<UserOutlined style={{color : 'black'}}/>}/>
+                            <TextInput label="PASSWORD" name="password" id="password" type="password" isPassword={true} isLabel={true} prefix={<img src="icon-password-key.png" alt="password" style={{color : 'black'}}/>}/>
                             <div className="d-flex mt-4 flex-row-reverse">
                                 <Button type="primary" htmlType="submit">Submit</Button>
                             </div>				

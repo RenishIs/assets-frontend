@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga/effects'
+import { takeEvery } from 'redux-saga/effects'
 import { FORGOT_PASSWORD } from '../actions/auth/forgotPassword'
 
 import { LOGIN_USER, LOGOUT_USER } from '../actions/auth/login'
@@ -16,15 +16,15 @@ import { handlerLogoutUser } from './handlers/auth/login'
 import { handlerAddUser, handlerDeleteUser, handlerEditUser, handlerGetSingleUser, handlerGetUsers } from './handlers/users'
 
 export function* watcherSaga(){
-    yield takeLatest(LOGIN_USER, handlerLoginUser )
-    yield takeLatest(REGISTER_USER, handlerRegisterUser)
-    yield takeLatest(FORGOT_PASSWORD, handlerForgotPassword)
-    yield takeLatest(RESET_PASSWORD, handlerResetPassword)
-    yield takeLatest(CHECK_AUTHORISATION, checkAuthorization )
-    yield takeLatest(LOGOUT_USER, handlerLogoutUser)
-    yield takeLatest(GET_USERS, handlerGetUsers)
-    yield takeLatest(GET_SINGLE_USER, handlerGetSingleUser)
-    yield takeLatest(EDIT_USER, handlerEditUser)
-    yield takeLatest(ADD_USER, handlerAddUser)
-    yield takeLatest(DELETE_USER, handlerDeleteUser)
+    yield takeEvery(LOGIN_USER, handlerLoginUser )
+    yield takeEvery(REGISTER_USER, handlerRegisterUser)
+    yield takeEvery(FORGOT_PASSWORD, handlerForgotPassword)
+    yield takeEvery(RESET_PASSWORD, handlerResetPassword)
+    yield takeEvery(CHECK_AUTHORISATION, checkAuthorization )
+    yield takeEvery(LOGOUT_USER, handlerLogoutUser)
+    yield takeEvery(GET_USERS, handlerGetUsers)
+    yield takeEvery(GET_SINGLE_USER, handlerGetSingleUser)
+    yield takeEvery(EDIT_USER, handlerEditUser)
+    yield takeEvery(ADD_USER, handlerAddUser)
+    yield takeEvery(DELETE_USER, handlerDeleteUser)
 }

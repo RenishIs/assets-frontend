@@ -21,6 +21,9 @@ export const GET_USER_BY_ID_QUERY = gql`
 			username,
 			email,
 			role,
+			password,
+			address,
+			contactNo
 		}
 	}
 `
