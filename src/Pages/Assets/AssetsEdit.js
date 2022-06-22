@@ -11,10 +11,10 @@ const AssetsEdit = () => {
     const { id } = useParams()
 
     const assetsState = useSelector(state => state.assets)
-    console.log(useSelector(state => state.assets))
-
+    console.log(assetsState,'assetsState')
+    
     const handleAsset = (values) => {
-        const formData = {updateUserId : id,  input: {...values} }
+        const formData = {updateAssetsId : id,  input: {...values} }
         dispatch(editAsset(formData))
     }
 

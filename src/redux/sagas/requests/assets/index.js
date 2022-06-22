@@ -12,12 +12,13 @@ export const getAssetsRequest = async () => {
 export const getSingleAssetRequest = async (id) => {
     const res = await client.query({
         query : GET_ASSET_BY_ID_QUERY,
-        variables : { AssetId: id }
+        variables : { assetId: id }
     })
     return res
 }
 
 export const editAssetRequest = async (payload) => {
+    console.log(payload,'edit request payload')
     const res = await client.mutate({
         mutation : UPDATE_ASSET_MUTATION,
         variables : {...payload}
@@ -37,7 +38,7 @@ export const deleteAssetRequest = async (id) => {
     console.log(id,'delete id in request')
     const res = await client.mutate({
         mutation : DELETE_ASSET_MUTATION,
-        variables : { deleteAssetId: id }
+        variables : { deleteAssetsId: id }
     })
     return res
 }
