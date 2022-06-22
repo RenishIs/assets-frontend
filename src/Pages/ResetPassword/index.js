@@ -1,10 +1,11 @@
-import { Button, Card } from "antd";
+import { Button } from "antd";
 import { Form, Formik } from "formik";
 import { KeyOutlined } from '@ant-design/icons';
 import { useDispatch } from "react-redux";
 import TextInput from "../../Components/UI/TextInput";
 import { resetPasswordValidations } from "../../Helper/ValidationSchema";
 import { resetPassword } from "../../redux/actions/auth/resetPassword";
+import AuthLayout from "../../Components/AuthLayout";
 
 const ResetPassword = () => {
 
@@ -20,20 +21,15 @@ const ResetPassword = () => {
     };
 
     return (
-        <div className="form site-card-border-less-wrapper">
-            <Card style={{ width: '45%' }}>
-                <h3 className="text-center">Reset Password</h3>
-                <Formik initialValues={initialState} validationSchema={resetPasswordValidations} onSubmit={values => onFinish(values)}>
+        <AuthLayout headerText="Reset Password">
+            <Formik initialValues={initialState} validationSchema={resetPasswordValidations} onSubmit={values => onFinish(values)}>
                     <Form>
                         <TextInput label="New Password" type="password" name="newPassword" id="newPassword" prefix={<KeyOutlined />} isPassword={true}/>
                         <TextInput label="Confirm Password" type="password" name="confirmPassword" id="confirmPassword" prefix={<KeyOutlined />} isPassword={true}/>
-                        <div className="d-flex mt-4 flex-row-reverse">
-							<Button type="primary" htmlType="submit">SUBMIT</Button>
-						</div>
+                        <Button type="primary" className="auth-button" htmlType="submit">Submit</Button>
                     </Form>
                 </Formik>
-            </Card>
-        </div>
+        </AuthLayout>
     )
 }
 
