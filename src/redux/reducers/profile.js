@@ -5,8 +5,7 @@ const initialState = {
     success : false,
     data : null,
     error : null,
-    message : null,
-    profile : null
+    message : null
 }
 
 const profileReducer = (state=initialState, action) => {
