@@ -34,6 +34,7 @@ export const addAssetRequest = async (payload) => {
 }
 
 export const deleteAssetRequest = async (id) => {
+    console.log(id,'delete id in request')
     const res = await client.mutate({
         mutation : DELETE_ASSET_MUTATION,
         variables : { deleteAssetId: id }

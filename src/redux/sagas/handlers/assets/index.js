@@ -51,12 +51,15 @@ export function* handlerAddAsset({payload}){
 }
 
 export function* handlerDeleteAsset({payload}){
+    console.log(payload, 'payload in handler')
     try{
         const data = yield call(deleteAssetRequest, payload)
+        console.log(data, 'data handler')
         yield put(deleteAssetSuccess(data))
         yield put(getAssets())
     }
     catch(err){
+        console.log(err,'err')
         openNotificationWithIcon('error', err.message)
         yield put(deleteAssetError(err.message, err.data || {}))
     }
