@@ -3,19 +3,25 @@ import { Input } from 'antd';
 import { Link } from 'react-router-dom';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
-const TextInput = ({label, forgotPassword=false, isPassword=false, ...props}) => {
+//#dae6f0
 
+const TextInput = ({label, forgotPassword=false, isPassword=false, ...rest}) => {
+
+    const { isLabel, ...props } = rest
     const [field, meta] = useField(props)
 
     return (
         <div className='mt-4 w-full'>
-            <div className='d-flex justify-content-between text-mute'>
-                <label htmlFor={props.id || props.name} className="text-muted fs-6 fw-bolder">{label}</label>
-                { 
-                    forgotPassword && (
-                        <Link to='/forgot-password' className="text-primary fw-bolder">Forgot Password?</Link >
-                    )
-                }
+            {
+                isLabel && (
+                    <label htmlFor={props.id || props.name} className="text-muted fs-6 fw-bolder">{label}</label>
+            )}
+            <div className='d-flex justify-content-end text-primary'>
+            { 
+                forgotPassword && (
+                    <Link to='/forgot-password' className="fw-bolder text-end">Forgot Password?</Link >
+                )
+            }
             </div>
             {
                 isPassword ? (
@@ -23,10 +29,10 @@ const TextInput = ({label, forgotPassword=false, isPassword=false, ...props}) =>
                                     size="large" 
                                     {...field}
                                     {...props} 
-                                    style={{ backgroundColor: "black", marginBottom: "15px" }} 
+                                    style={{backgroundColor:'#baccdb'}}
                                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}/>
                 ) : (
-                    <Input className={`text-input form-input`} size="large" {...field} {...props}  style={{ backgroundColor: "black", marginBottom: "15px" }}  />
+                    <Input className={`text-input form-input`} size="large" {...field} {...props} style={{backgroundColor:'#baccdb'}}/>
                 )
             }
             {

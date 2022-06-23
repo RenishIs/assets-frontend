@@ -12,7 +12,7 @@ body {
 }
 
 a{
-	text-decoration: none;
+	text-decoration: none !important;
 }
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -46,7 +46,7 @@ code {
 }
 
 .side-nav-bar-icons{
-    color : #46f092;
+    color : #16518a;;
     font-size: 20px !important;
 }
 
@@ -87,8 +87,8 @@ code {
 }
 
 .ant-input{
-	background-color: #03070a !important;
-	color:white !important;
+	/* background-color: #03070a !important; */
+	/* color:white !important; */
 }
 
 .container-register-right{
@@ -148,7 +148,7 @@ code {
 	border-radius: 0.25rem;
 	font-family: inherit;
 	font-size: inherit;
-	color: white;
+	/* color: white; */
 	outline: none;
 	padding: 0.5rem;
 	background: none;
@@ -164,10 +164,23 @@ code {
 
 .ant-input-affix-wrapper > input.ant-input{
 	background: none;
-	color: white;
+	/* color: white; */
 	margin-left: 0.5rem;
 }
 
 .ant-input-password-icon.anticon{
-	color: white;
+	/* color: white; */
+}
+
+.header{
+  background-color: #16518a;
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: 5px 8px 24px 5px rgba(208, 216, 243, 0.6) 
+}
+
+.main-card{
+  background-color: white;
+  box-shadow: 5px 8px 24px 5px rgba(208, 216, 243, 0.6);
+  border-radius: 10px;
+  height: 100vh;
 }
