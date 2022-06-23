@@ -5,17 +5,21 @@ import { tableColumns } from './CONSTANTS';
 import Dashboard from '../Dashboard';
 import { GET_USERS_QUERY } from '../../gql/Query/Users';
 import { DELETE_USER_MUTATION } from '../../gql/Mutation/Users';
+import openNotificationWithIcon from '../../Helper/Notification';
 
 const UsersListing = () => {
 
     const { data } = useQuery(GET_USERS_QUERY)
 
-    const [ DeleteUser, { error } ] = useMutation(DELETE_USER_MUTATION, {
+    const [ DeleteUser, { error, data : deletedUser } ] = useMutation(DELETE_USER_MUTATION, {
         refetchQueries: [
 			{ query: GET_USERS_QUERY },
 		]
     }) 
 
+    if(deletedUser){
+        openNotificationWithIcon('success', "USER DELETED SUCCESSFULLY")
+    }
     if(error) {
 		alert(error);	
 	}
