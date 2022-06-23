@@ -7,7 +7,7 @@ const Profile = () => {
     return (
         <Dashboard>
             <div className="bg-white h-100 text-center p-4" style={{borderRadius:"0.5rem"}}>
-                <img src="user-1.png" width="10%"/>
+                <img src="user-1.png" alt="profile" width="10%"/>
                 <div className="mt-4">
                     <div className="mb-3">
                         <div>

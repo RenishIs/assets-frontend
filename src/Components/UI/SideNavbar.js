@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
-import { UserOutlined, HomeFilled, TeamOutlined, LaptopOutlined } from '@ant-design/icons';
+import { UserOutlined, HomeFilled } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 const { Sider } = Layout;
 
