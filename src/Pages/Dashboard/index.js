@@ -2,14 +2,19 @@ import React, { useState } from 'react';
 import { Layout, Row, Dropdown, Menu, Col } from 'antd';
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserAddOutlined } from '@ant-design/icons';
 import SideNavbar from '../../Components/UI/SideNavbar';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import Cookies from "js-cookie";
 
 const { Header } = Layout;
 
 const Dashboard = ({children}) => {
     const [collapsed, setCollapsed] = useState(false);
+    const history = useHistory()
 
-    const logoutUser = () => {}
+    const logoutUser = () => {
+        Cookies.remove('token')
+        history.push('/login')
+    }
 
     const menu = (
         <Menu items={[
