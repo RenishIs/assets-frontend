@@ -3,14 +3,13 @@ import { Layout, Row, Dropdown, Menu, Col } from 'antd';
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserAddOutlined } from '@ant-design/icons';
 import SideNavbar from '../../Components/UI/SideNavbar';
 import { Link } from 'react-router-dom';
-import { logoutUser } from '../../redux/actions/auth/login';
-import { useDispatch } from 'react-redux';
 
 const { Header } = Layout;
 
 const Dashboard = ({children}) => {
     const [collapsed, setCollapsed] = useState(false);
-    const dispatch = useDispatch()
+
+    const logoutUser = () => {}
 
     const menu = (
         <Menu items={[
@@ -19,7 +18,7 @@ const Dashboard = ({children}) => {
                 key: '0',
             },
             {
-                label: <div onClick={() => dispatch(logoutUser())}>Logout</div>,
+                label: <div onClick={logoutUser}>Logout</div>,
                 key: '1',
             },
           ]}

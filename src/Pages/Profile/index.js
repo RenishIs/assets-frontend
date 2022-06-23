@@ -1,17 +1,8 @@
-import { useEffect } from 'react';
 import Dashboard from "../Dashboard"
-import { useDispatch, useSelector } from 'react-redux';
-import { getProfile } from '../../redux/actions/profile';
 
 const Profile = () => {
 
-    const dispatch = useDispatch()
-    const profileState = useSelector(state => state?.profile)
-
-    useEffect(() => {
-        dispatch(getProfile())
-    }, [dispatch])
-
+    const profileState = null
 
     return (
         <Dashboard>
@@ -23,7 +14,7 @@ const Profile = () => {
                             <span className="text-body fw-bold">Username</span> 
                         </div>
                         <div>
-                            <span className="text-muted">{profileState.data?.username}</span>
+                            <span className="text-muted">{profileState?.data?.username}</span>
                         </div>
                     </div>
                     <div className="mb-3">
@@ -31,7 +22,7 @@ const Profile = () => {
                             <span className="text-body fw-bold">Email</span> 
                         </div>
                         <div>
-                            <span className="text-muted">{profileState.data?.email}</span>
+                            <span className="text-muted">{profileState?.data?.email}</span>
                         </div>
                     </div>
                     <div className="mb-3">
@@ -39,7 +30,7 @@ const Profile = () => {
                             <span className="text-body fw-bold">Role</span> 
                         </div>
                         <div>
-                            <span className="text-muted">{profileState.data?.role}</span>
+                            <span className="text-muted">{profileState?.data?.role}</span>
                         </div>
                     </div>
                     <div className="mb-3">
@@ -47,7 +38,7 @@ const Profile = () => {
                             <span className="text-body fw-bold">Contact Number</span> 
                         </div>
                         <div>
-                            <span className="text-muted">{profileState.data?.contactNo}</span>
+                            <span className="text-muted">{profileState?.data?.contactNo}</span>
                         </div>
                     </div>
                     <div className="mb-3">
@@ -55,7 +46,7 @@ const Profile = () => {
                             <span className="text-body fw-bold">Address</span> 
                         </div>
                         <div>
-                            <span className="text-muted">{profileState.data?.address}</span>
+                            <span className="text-muted">{profileState?.data?.address}</span>
                         </div>
                     </div>
                 </div>

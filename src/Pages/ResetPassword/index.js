@@ -1,23 +1,19 @@
 import { Button } from "antd";
 import { Form, Formik } from "formik";
 import { KeyOutlined } from '@ant-design/icons';
-import { useDispatch } from "react-redux";
 import TextInput from "../../Components/UI/TextInput";
 import { resetPasswordValidations } from "../../Helper/ValidationSchema";
-import { resetPassword } from "../../redux/actions/auth/resetPassword";
 import AuthLayout from "../../Components/AuthLayout";
 
 const ResetPassword = () => {
 
     const initialState = { oldPassword : '', newPassword : '', confirmPassword : ''}
-    const dispatch = useDispatch()
 
     const onFinish = (values) => {
         const data = {
             password: values?.newPassword,
             id : '123'
         }
-        dispatch(resetPassword(data))
     };
 
     return (

@@ -21,10 +21,10 @@ import AssetsListing from "../Pages/Assets/index"
 import AssetsAdd from "../Pages/Assets/AssetsAdd"
 import AssetsEdit from "../Pages/Assets/AssetsEdit"
 
-const Router = ({history, isLoggedIn}) => {
+const Router = ({history, isLoggedIn=false}) => {
     return (
         <BrowserRouter>
-            <ConnectedRouter history={history}>
+            {/* <ConnectedRouter history={history}> */}
                 <Switch>
                     <UnRestrictedRoute exact path="/" component={Registration} isLoggedIn={isLoggedIn}/>
                     <UnRestrictedRoute exact path="/login" component={Login} isLoggedIn={isLoggedIn}/>
@@ -41,13 +41,14 @@ const Router = ({history, isLoggedIn}) => {
                     <RestrictedRoute exact path="/assets/edit/:id" component={AssetsEdit} isLoggedIn={true}/>
                     <Route path="*" component={NoMatchFound} />
                 </Switch>
-            </ConnectedRouter>
+            {/* </ConnectedRouter> */}
         </BrowserRouter>
     )
 }
 
-export default connect((state) => ({
-    isLoggedIn: state.auth.token !== null
-}))(Router);
+export default Router
+// export default connect((state) => ({
+//     isLoggedIn: state.auth.token !== null
+// }))(Router);
 
 

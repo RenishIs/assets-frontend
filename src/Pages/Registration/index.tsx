@@ -1,9 +1,7 @@
 import { Button } from "antd";
 import { UserOutlined, MailFilled} from '@ant-design/icons';
-import { useDispatch } from "react-redux";
 import { Formik, Form } from 'formik';
 import TextInput from "../../Components/UI/TextInput";
-import { registerUserStart } from "../../redux/actions/auth/register";
 import { registerValidations } from "../../Helper/ValidationSchema";
 import { Link } from "react-router-dom";
 import { Checkbox } from 'antd';
@@ -12,10 +10,8 @@ import AuthLayout from "../../Components/AuthLayout";
 const Registration = () => {
 
 	const initialValues = { username : '', email : '', password : ''}
-	const dispatch = useDispatch()
 
 	const onFinish = (values: object) => {
-		dispatch(registerUserStart(values))
 	};
 
 	const onChange = (value: boolean) => {
