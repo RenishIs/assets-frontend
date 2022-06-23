@@ -1,9 +1,7 @@
 import { Button } from "antd";
 import { MailFilled } from '@ant-design/icons';
-import { useDispatch } from "react-redux";
 import { Formik, Form } from 'formik';
 import { Link } from "react-router-dom";
-import { loginUserStart } from "../../redux/actions/auth/login";
 import TextInput from "../../Components/UI/TextInput";
 import { loginValidations } from "../../Helper/ValidationSchema";
 import AuthLayout from "../../Components/AuthLayout";
@@ -11,10 +9,8 @@ import AuthLayout from "../../Components/AuthLayout";
 const Login = () => {
 
 	const initialValues = { email : '', password : ''}
-	const dispatch = useDispatch()
 
 	const onFinish = (values: object) => {
-		dispatch(loginUserStart(values))
 	};
 
 	return (

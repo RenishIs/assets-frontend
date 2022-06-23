@@ -1,19 +1,15 @@
 import { Button } from "antd";
 import { Form, Formik } from "formik";
-import { useDispatch } from "react-redux";
 import { UserOutlined } from '@ant-design/icons';
 import TextInput from "../../Components/UI/TextInput";
 import { forgotPasswordValidations } from "../../Helper/ValidationSchema";
-import { forgotPassword } from "../../redux/actions/auth/forgotPassword";
 import AuthLayout from "../../Components/AuthLayout";
 
 const ForgotPassword = () => {
 
     const initialState ={email : ''}
-    const dispatch = useDispatch()
 
     const onFinish = (values: object) => {
-        dispatch(forgotPassword(values))
     };
 
     return (
