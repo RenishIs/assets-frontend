@@ -19,23 +19,23 @@ import AssetsListing from "../Pages/Assets/index"
 import AssetsAdd from "../Pages/Assets/AssetsAdd"
 import AssetsEdit from "../Pages/Assets/AssetsEdit"
 
-const Router = ({history, isLoggedIn=false}) => {
+const Router = ({history}) => {
     return (
         <BrowserRouter>
             <Switch>
-                <UnRestrictedRoute exact path="/" component={Registration} isLoggedIn={isLoggedIn}/>
-                <UnRestrictedRoute exact path="/login" component={Login} isLoggedIn={isLoggedIn}/>
-                <UnRestrictedRoute exact path="/forgot-password" component={ForgotPassword} isLoggedIn={isLoggedIn}/>
-                <UnRestrictedRoute exact path="/reset-password" component={ResetPassword} isLoggedIn={isLoggedIn}/>
+                <UnRestrictedRoute exact path="/" component={Registration} />
+                <UnRestrictedRoute exact path="/login" component={Login} />
+                <UnRestrictedRoute exact path="/forgot-password" component={ForgotPassword} />
+                <UnRestrictedRoute exact path="/reset-password" component={ResetPassword} />
 
-                <RestrictedRoute exact path="/dashboard" component={Dashboard} isLoggedIn={isLoggedIn}/>
-                <RestrictedRoute exact path="/profile" component={Profile} isLoggedIn={isLoggedIn}/>
-                <RestrictedRoute exact path="/users" component={UsersListing} isLoggedIn={true}/>
-                <RestrictedRoute exact path="/users/add" component={UsersAdd} isLoggedIn={true}/>
-                <RestrictedRoute exact path="/users/edit/:id" component={UsersEdit} isLoggedIn={true}/>
-                <RestrictedRoute exact path="/assets" component={AssetsListing} isLoggedIn={true}/>
-                <RestrictedRoute exact path="/assets/add" component={AssetsAdd} isLoggedIn={true}/>
-                <RestrictedRoute exact path="/assets/edit/:id" component={AssetsEdit} isLoggedIn={true}/>
+                <RestrictedRoute exact path="/dashboard" component={Dashboard} />
+                <RestrictedRoute exact path="/profile" component={Profile}/>
+                <RestrictedRoute exact path="/users" component={UsersListing}/>
+                <RestrictedRoute exact path="/users/add" component={UsersAdd} />
+                <RestrictedRoute exact path="/users/edit/:id" component={UsersEdit} />
+                <RestrictedRoute exact path="/assets" component={AssetsListing}/>
+                <RestrictedRoute exact path="/assets/add" component={AssetsAdd}/>
+                <RestrictedRoute exact path="/assets/edit/:id" component={AssetsEdit} />
                 <Route path="*" component={NoMatchFound} />
             </Switch>
         </BrowserRouter>

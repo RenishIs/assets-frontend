@@ -3,18 +3,25 @@ import { UserOutlined, MailFilled} from '@ant-design/icons';
 import { Formik, Form } from 'formik';
 import TextInput from "../../Components/UI/TextInput";
 import { registerValidations } from "../../Helper/ValidationSchema";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Checkbox } from 'antd';
 import AuthLayout from "../../Components/AuthLayout";
-
+import { useMutation } from "@apollo/client";
+import { SIGNUP_USER_MUTATION } from "../../gql/Mutation/Auth";
 const Registration = () => {
-
+	const history = useHistory();
 	const initialValues = { username : '', email : '', password : ''}
+	const [registerUser,{data}] = useMutation(SIGNUP_USER_MUTATION);
+	const onFinish = (values:object) => {
+		registerUser({
+			variables:values,
+		  });
 
-	const onFinish = (values: object) => {
 	};
-
-	const onChange = (value: boolean) => {
+	if (data?.registerUser?.token) {
+		history.push('/login');
+	}
+	const onChange = (value:boolean) => {
 		console.log(`checked = ${value}`);
 	};
 
