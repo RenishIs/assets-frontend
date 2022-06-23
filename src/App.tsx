@@ -2,7 +2,7 @@ import { ApolloClient, createHttpLink, InMemoryCache, ApolloProvider } from "@ap
 import { setContext } from '@apollo/client/link/context';
 import Router from "./Routing/Router";
 import { history } from "./Routing/history";
-
+import Cookies from "js-cookie";
 // import boot from "./Helper/boot";
 
 const httpLink = createHttpLink({
@@ -10,7 +10,7 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-	const token = localStorage.getItem('auth_token');
+	const token =Cookies.get('token')
 	return {
 	  headers: {
 		...headers,

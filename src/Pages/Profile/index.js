@@ -1,13 +1,11 @@
 import Dashboard from "../Dashboard"
 import { useQuery } from '@apollo/client';
-import { GET_PROFILE_QUERY } from '../../gql/Query/Profile';
+import { GET_PROFILE_QUERY } from '../../gql/Query/Profile/index';
 
 const Profile = () => {
 
     const { data } = useQuery(GET_PROFILE_QUERY);
-
-    const profileState = null
-
+    
     return (
         <Dashboard>
             <div className="bg-white h-100 text-center p-4" style={{borderRadius:"0.5rem"}}>
@@ -18,7 +16,7 @@ const Profile = () => {
                             <span className="text-body fw-bold">Username</span> 
                         </div>
                         <div>
-                            <span className="text-muted">{profileState?.data?.username}</span>
+                            <span className="text-muted">{data?.Profile?.username}</span>
                         </div>
                     </div>
                     <div className="mb-3">
@@ -26,7 +24,7 @@ const Profile = () => {
                             <span className="text-body fw-bold">Email</span> 
                         </div>
                         <div>
-                            <span className="text-muted">{profileState?.data?.email}</span>
+                            <span className="text-muted">{data?.Profile?.email}</span>
                         </div>
                     </div>
                     <div className="mb-3">
@@ -34,7 +32,7 @@ const Profile = () => {
                             <span className="text-body fw-bold">Role</span> 
                         </div>
                         <div>
-                            <span className="text-muted">{profileState?.data?.role}</span>
+                            <span className="text-muted">{data?.Profile?.role}</span>
                         </div>
                     </div>
                     <div className="mb-3">
@@ -42,7 +40,7 @@ const Profile = () => {
                             <span className="text-body fw-bold">Contact Number</span> 
                         </div>
                         <div>
-                            <span className="text-muted">{profileState?.data?.contactNo}</span>
+                            <span className="text-muted">{data?.Profile?.contactNo}</span>
                         </div>
                     </div>
                     <div className="mb-3">
@@ -50,7 +48,7 @@ const Profile = () => {
                             <span className="text-body fw-bold">Address</span> 
                         </div>
                         <div>
-                            <span className="text-muted">{profileState?.data?.address}</span>
+                            <span className="text-muted">{data?.Profile?.address}</span>
                         </div>
                     </div>
                 </div>
