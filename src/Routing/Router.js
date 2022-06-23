@@ -17,6 +17,10 @@ import UsersEdit from "../Pages/Users/UsersEdit";
 
 import Profile from "../Pages/Profile";
 
+import AssetsListing from "../Pages/Assets/index"
+import AssetsAdd from "../Pages/Assets/AssetsAdd"
+import AssetsEdit from "../Pages/Assets/AssetsEdit"
+
 const Router = ({history, isLoggedIn}) => {
     return (
         <BrowserRouter>
@@ -32,6 +36,9 @@ const Router = ({history, isLoggedIn}) => {
                     <RestrictedRoute exact path="/users" component={UsersListing} isLoggedIn={true}/>
                     <RestrictedRoute exact path="/users/add" component={UsersAdd} isLoggedIn={true}/>
                     <RestrictedRoute exact path="/users/edit/:id" component={UsersEdit} isLoggedIn={true}/>
+                    <RestrictedRoute exact path="/assets" component={AssetsListing} isLoggedIn={true}/>
+                    <RestrictedRoute exact path="/assets/add" component={AssetsAdd} isLoggedIn={true}/>
+                    <RestrictedRoute exact path="/assets/edit/:id" component={AssetsEdit} isLoggedIn={true}/>
                     <Route path="*" component={NoMatchFound} />
                 </Switch>
             </ConnectedRouter>
