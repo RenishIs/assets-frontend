@@ -1,6 +1,6 @@
 import { Redirect, Route } from "react-router-dom"
 
-const UnRestrictedRoute = ({ component:Component, isLoggedIn, ...rest}) => {
+const UnRestrictedRoute = ({ component:Component, isLoggedIn=false, ...rest}) => {
     return (
         <Route {...rest}
                render={(props) =>

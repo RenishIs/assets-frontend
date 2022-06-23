@@ -2,6 +2,7 @@ import { ApolloClient, createHttpLink, InMemoryCache, ApolloProvider } from "@ap
 import { setContext } from '@apollo/client/link/context';
 import Router from "./Routing/Router";
 import { history } from "./Routing/history";
+
 // import boot from "./Helper/boot";
 
 const httpLink = createHttpLink({
@@ -26,7 +27,7 @@ export const client = new ApolloClient({
 const App = () => {
 	return (
 		<ApolloProvider client={client}>
-			<Router history={history}/>
+			<Router history={history} />
 		</ApolloProvider>		
 	);
 };
