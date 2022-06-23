@@ -42,8 +42,8 @@ const Dashboard = ({children}) => {
                     <Dropdown overlay={menu} trigger={['click']} >
                         <div className='text-center d-flex align-items-center justify-content-end fs-5 fw-bolder'>
                             <UserAddOutlined className='px-4'/>
-                            <img src="/home/blessy/Desktop/Bless-Albiorix/assets-frontend/public/user-profile.png" alt='pic' />
-                            Hi, {JSON.parse(localStorage.getItem('user'))?.username}
+                            {/* <img src="user-1.png" alt='pic' style={{width : '20px', height:'20px', borderRadius : '10px'}}/> */}
+                            Hi,{ JSON.parse(Cookies.get('user'))?.username}
                         </div>
                     </Dropdown>
                     </Col>
