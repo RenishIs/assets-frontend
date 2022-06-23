@@ -14,6 +14,10 @@ import ResetPassword from "../Pages/ResetPassword";
 
 import Profile from "../Pages/Profile";
 
+import AssetsListing from "../Pages/Assets/index"
+import AssetsAdd from "../Pages/Assets/AssetsAdd"
+import AssetsEdit from "../Pages/Assets/AssetsEdit"
+
 const Router = ({history, isLoggedIn}) => {
     return (
         <BrowserRouter>
@@ -26,6 +30,9 @@ const Router = ({history, isLoggedIn}) => {
 
                     <RestrictedRoute exact path="/dashboard" component={Dashboard} isLoggedIn={isLoggedIn}/>
                     <RestrictedRoute exact path="/profile" component={Profile} isLoggedIn={isLoggedIn}/>
+                    <RestrictedRoute exact path="/assets" component={AssetsListing} isLoggedIn={true}/>
+                    <RestrictedRoute exact path="/assets/add" component={AssetsAdd} isLoggedIn={true}/>
+                    <RestrictedRoute exact path="/assets/edit/:id" component={AssetsEdit} isLoggedIn={true}/>
                     <Route path="*" component={NoMatchFound} />
                 </Switch>
             </ConnectedRouter>

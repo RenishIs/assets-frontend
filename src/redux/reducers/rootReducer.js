@@ -5,6 +5,7 @@ import LoginReducer from './auth/login'
 import registerReducer from "./auth/register";
 import forgotPasswordReducer from "./auth/forgotPassword";
 import resetPasswordReducer from "./auth/resetPassword";
+import AssetsReducer from "./assets";
 import profileReducer from "./profile";
 
 const reducer = (history) => combineReducers({
@@ -12,6 +13,7 @@ const reducer = (history) => combineReducers({
     registerData : registerReducer,
     forgotPassword : forgotPasswordReducer,
     resetPassword : resetPasswordReducer,
+    assets : AssetsReducer,
     profile : profileReducer,
     router: connectRouter(history)
 })
