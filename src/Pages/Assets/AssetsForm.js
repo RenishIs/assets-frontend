@@ -5,7 +5,7 @@ import Dashboard from '../Dashboard';
 
 const AssetsForm = ({title, handleAsset, ...rest}) => {
 
-    const {asset} = rest
+    const { asset } = rest
 
     const initialState = {
         name : asset ? asset.name : '',
@@ -20,7 +20,7 @@ const AssetsForm = ({title, handleAsset, ...rest}) => {
                     <Formik initialValues={initialState} onSubmit={(values) => handleAsset(values)}>
                         <Form>
                             <TextInput label="NAME" name="name" id="name"/>	
-                            <TextInput label="DESCRIPTION" name="description" id="description" />	
+                            <TextInput label="DESCRIPTION" name="description" id="description" />
                             <div className="d-flex mt-4 flex-row-reverse">
                                 <Button type="primary" htmlType="submit">Submit</Button>
                             </div>				

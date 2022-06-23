@@ -30,14 +30,14 @@ const Dashboard = ({children}) => {
              <Header className='bg-white mb-4'>
                 <Row justify="space-between" className='px-4 header' >
                     <Col span={4}>
-                        <img src="https://images-platform.99static.com/VjQlwl2IRxelKQzp4tzqY8pD4nY=/500x500/top/smart/99designs-contests-attachments/23/23280/attachment_23280405" style={{width:'50px'}}/>
+                        <img src="https://images-platform.99static.com/VjQlwl2IRxelKQzp4tzqY8pD4nY=/500x500/top/smart/99designs-contests-attachments/23/23280/attachment_23280405" alt='pic' style={{width:'50px'}}/>
                         <span>Assests Management System</span>
                     </Col>
                     <Col span={4}>
                     <Dropdown overlay={menu} trigger={['click']} >
                         <div className='text-center d-flex align-items-center justify-content-end fs-5 fw-bolder'>
                             <UserAddOutlined className='px-4'/>
-                            <img src="/home/blessy/Desktop/Bless-Albiorix/assets-frontend/public/user-profile.png"/>
+                            <img src="/home/blessy/Desktop/Bless-Albiorix/assets-frontend/public/user-profile.png" alt='pic' />
                             Hi, {JSON.parse(localStorage.getItem('user'))?.username}
                         </div>
                     </Dropdown>
