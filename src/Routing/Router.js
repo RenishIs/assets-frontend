@@ -29,7 +29,7 @@ const Router = ({history, isLoggedIn=false}) => {
                 <UnRestrictedRoute exact path="/reset-password" component={ResetPassword} isLoggedIn={isLoggedIn}/>
 
                 <RestrictedRoute exact path="/dashboard" component={Dashboard} isLoggedIn={isLoggedIn}/>
-                <RestrictedRoute exact path="/profile" component={Profile} isLoggedIn={isLoggedIn}/>
+                <RestrictedRoute exact path="/profile" component={Profile} isLoggedIn={true}/>
                 <RestrictedRoute exact path="/users" component={UsersListing} isLoggedIn={true}/>
                 <RestrictedRoute exact path="/users/add" component={UsersAdd} isLoggedIn={true}/>
                 <RestrictedRoute exact path="/users/edit/:id" component={UsersEdit} isLoggedIn={true}/>

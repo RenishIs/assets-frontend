@@ -1,6 +1,10 @@
 import Dashboard from "../Dashboard"
+import { useQuery } from '@apollo/client';
+import { GET_PROFILE_QUERY } from '../../gql/Query/Profile';
 
 const Profile = () => {
+
+    const { data } = useQuery(GET_PROFILE_QUERY);
 
     const profileState = null
 
