@@ -2,7 +2,6 @@ import { Redirect, Route } from "react-router-dom"
 import Cookies from "js-cookie";
 const RestrictedRoute = ({ component:Component, isLoggedIn, ...rest}) => {
     var token =Cookies.get('token')
-    console.log("token",token)
     return (
         <Route {...rest}
                render={(props) =>
@@ -11,7 +10,7 @@ const RestrictedRoute = ({ component:Component, isLoggedIn, ...rest}) => {
                     ) : (
                         <Redirect
                             to={{
-                                pathname: '/',
+                                pathname: '/login',
                                 state: { from: props.location }
                             }}
                         />
