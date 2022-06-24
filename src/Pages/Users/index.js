@@ -18,7 +18,7 @@ const UsersListing = () => {
     }) 
 
     if(deletedUser){
-        openNotificationWithIcon('success', "USER DELETED SUCCESSFULLY")
+        openNotificationWithIcon('userDelete', 'success', "USER DELETED SUCCESSFULLY")
     }
     if(error) {
 		alert(error);	
