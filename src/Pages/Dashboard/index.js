@@ -19,7 +19,7 @@ const Dashboard = ({children}) => {
     const menu = (
         <Menu items={[
             {
-                label: <div style={{display:'flex'}}><UserOutlined />&nbsp;<Link to="/profile" style={{textDecoration:"none", color:'black'}}>Profile</Link></div>,
+                label: <div style={{display:'flex'}}><UserOutlined style={{color:"blue"}} />&nbsp;<Link to="/profile" style={{textDecoration:"none", color:'black'}}>Profile</Link></div>,
                 key: '0',
             },
             {
