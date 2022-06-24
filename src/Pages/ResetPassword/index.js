@@ -2,7 +2,6 @@ import { Button } from "antd";
 import { Form, Formik } from "formik";
 import { KeyOutlined } from '@ant-design/icons';
 import { useMutation } from "@apollo/client";
-import { useHistory } from "react-router-dom";
 import TextInput from "../../Components/UI/TextInput";
 import { resetPasswordValidations } from "../../Helper/ValidationSchema";
 import AuthLayout from "../../Components/AuthLayout";
