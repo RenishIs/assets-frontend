@@ -2,6 +2,7 @@ import { Button } from 'antd';
 import { Formik, Form } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
 import Dashboard from '../Dashboard';
+import { assetValidations } from '../../Helper/ValidationSchema';
 import { UserOutlined, MailFilled, PhoneFilled} from '@ant-design/icons';
 
 const AssetsForm = ({title, handleAsset, ...rest}) => {
@@ -17,7 +18,7 @@ const AssetsForm = ({title, handleAsset, ...rest}) => {
         <Dashboard>
             <div className='main-card p-4'>
                 <h2 className='text-center'>{asset ? 'EDIT ASSET' : 'ADD ASSET'}</h2>
-                <Formik initialValues={initialState} onSubmit={(values) => handleAsset(values)}>
+                <Formik initialValues={initialState} validationSchema={assetValidations} onSubmit={(values) => handleAsset(values)}>
                     <Form>
                         <TextInput label="NAME" name="name" id="name" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
                         <TextInput label="DESCRIPTION" name="description" id="description" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />
