@@ -44,7 +44,7 @@ const UsersListing = () => {
                 <div className='text-end mb-3'>
                     <Link to={`/users/add`}><Button type="primary">ADD</Button></Link>
                 </div>
-                <Table bordered columns={columns} dataSource={data?.Users} pagination={false}/>
+                <Table bordered columns={columns} dataSource={data?.users} pagination={false}/>
             </>
         </Dashboard>
     )
