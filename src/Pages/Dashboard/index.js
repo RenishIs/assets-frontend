@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, Row, Dropdown, Menu, Col } from 'antd';
-import { MenuFoldOutlined, MenuUnfoldOutlined, UserAddOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined, UserAddOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import SideNavbar from '../../Components/UI/SideNavbar';
 import { Link, useHistory } from 'react-router-dom';
 import Cookies from "js-cookie";
@@ -19,11 +19,11 @@ const Dashboard = ({children}) => {
     const menu = (
         <Menu items={[
             {
-                label: <Link to="/profile">Profile</Link>,
+                label: <div style={{display:'flex'}}><UserOutlined />&nbsp;<Link to="/profile" style={{textDecoration:"none", color:'black'}}>Profile</Link></div>,
                 key: '0',
             },
             {
-                label: <div onClick={logoutUser}>Logout</div>,
+                label: <div onClick={logoutUser}><LogoutOutlined style={{color:"red"}} />&nbsp;Logout</div>,
                 key: '1',
             },
           ]}

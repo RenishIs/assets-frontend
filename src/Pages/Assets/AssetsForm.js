@@ -4,6 +4,7 @@ import TextInput from '../../Components/UI/TextInput';
 import Dashboard from '../Dashboard';
 import { UserOutlined, MailFilled, PhoneFilled} from '@ant-design/icons';
 import { Row, Col } from 'antd';
+import { Link } from 'react-router-dom';
 
 const AssetsForm = ({title, handleAsset, ...rest}) => {
 
@@ -29,7 +30,8 @@ const AssetsForm = ({title, handleAsset, ...rest}) => {
                             </Col>
                         </Row>
                         <div className="d-flex mt-4 me-4 flex-row-reverse">
-                            <Button type="primary" htmlType="submit">Submit</Button>
+                            <Link to="/users"><Button type="primary">Back</Button></Link>
+                            <Button type="primary" htmlType="submit" className='me-3'>Submit</Button>
                         </div>				
                     </Form>
                 </Formik>

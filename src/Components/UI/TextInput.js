@@ -29,7 +29,7 @@ const TextInput = ({label, forgotPassword=false, isPassword=false, isAuth=false,
                                     size="large" 
                                     {...field}
                                     {...props}
-                                    iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                                    
                                     />
                 ) : (
                     <Input className={`form-input`} size="large" {...field} {...props} 

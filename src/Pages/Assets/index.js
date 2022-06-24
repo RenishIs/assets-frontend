@@ -6,6 +6,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { GET_ASSETS_QUERY } from '../../gql/Query/Assets';
 import { DELETE_ASSET_MUTATION } from '../../gql/Mutation/Assets';
 import openNotificationWithIcon from '../../Helper/Notification';
+import { EditFilled, DeleteFilled } from '@ant-design/icons';
 
 const AssetsListing = () => {
 
@@ -29,8 +30,8 @@ const AssetsListing = () => {
 		key: 'action',
 		render: (_, record) => (
 			<Space size="middle">
-				<Link to={`/assets/edit/${record.id}`}><Button type="primary">EDIT</Button></Link>
-				<Button type="primary" danger onClick={() => deleteAssets({ variables:  { deleteAssetsId: record.id } } )}>DELETE</Button>
+				<Link to={`/assets/edit/${record.id}`}><EditFilled style={{color: "blue"}}/></Link>
+				<DeleteFilled style={{color: "red"}} onClick={() => deleteAssets({ variables:  { deleteAssetsId: record.id } } )}/>
 			</Space>
 		),
 	}]

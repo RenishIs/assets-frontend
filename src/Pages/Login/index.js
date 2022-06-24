@@ -10,6 +10,7 @@ import AuthLayout from "../../Components/AuthLayout";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER_MUTATION } from "../../gql/Mutation/Auth";
 import openNotificationWithIcon from "../../Helper/Notification";
+import { EyeInvisibleOutlined, EyeFilled } from '@ant-design/icons';
 
 const Login = () => {
 
@@ -17,7 +18,7 @@ const Login = () => {
 	const initialValues = { email: 'blessyf.albiorix@gmail.com', password: 'Blessyvdg@34' }
 	const [loginUser, { data, error }] = useMutation(LOGIN_USER_MUTATION);
 
-	const onFinish = (values: object) => {
+	const onFinish = (values) => {
 		loginUser({
 			variables: values,
 		});
@@ -40,7 +41,10 @@ const Login = () => {
 				<Form >
 					<div id="authForm">
 					<TextInput label="EMAIL" name="email" type="email" id="email" prefix={<MailFilled style={{ color: 'white' }} />} isAuth={true} style={{ backgroundColor:'black'}} className="input-black"/>
-					<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<img src="icon-password-key.png" alt="password" />} isPassword={true} forgotPassword={true} isAuth={true} style={{ backgroundColor:'#0000'}} className="input-black"/>
+					<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<img src="icon-password-key.png" alt="password" />} 
+					isPassword={true} forgotPassword={true} isAuth={true} style={{ backgroundColor:'#0000'}} className="input-black"
+					iconRender={(visible) => (visible ? <EyeFilled style={{color:"white", fontSize:"1rem"}}/> : <EyeInvisibleOutlined style={{color:"white" , fontSize:"1rem"}}/>)}
+					/>
 					</div>
 					<Button type="primary" className="auth-button" htmlType="submit">Sign In</Button>
 					<span className="auth-text">Don't have an account?</span>

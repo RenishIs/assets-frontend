@@ -5,6 +5,8 @@ import TextInput from '../../Components/UI/TextInput';
 import { userValidations } from '../../Helper/ValidationSchema';
 import Dashboard from '../Dashboard';
 import { Row, Col } from 'antd';
+import { EyeInvisibleOutlined, EyeFilled, KeyOutlined, EnvironmentFilled } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 const UsersForm = ({title, handleUser, ...rest}) => {
 
@@ -27,30 +29,33 @@ const UsersForm = ({title, handleUser, ...rest}) => {
                         <Form className=''>
                             <Row>
                                 <Col span={12}>
-                                <TextInput label="USERNAME" name="username" id="username" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true}/>
+                                    <TextInput label="USERNAME" name="username" id="username" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true}/>
                                 </Col>
                                 <Col span={12}>
-                                <TextInput label="EMAIL" name="email" id="email" type="email" prefix={<MailFilled style={{color : 'black'}}/>} isLabel={true}/>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col span={12}>
-                                <TextInput label="CONTACT NUMBER" name="contactNo" id="contactNo" prefix={<PhoneFilled style={{color : 'black'}}/>} isLabel={true}/>
-                                </Col>
-                                <Col span={12}>
-                                <TextInput label="ADDRESS" name="address" id="address" isLabel={true} prefix={<UserOutlined style={{color : 'black'}}/>}/>
+                                    <TextInput label="EMAIL" name="email" id="email" type="email" prefix={<MailFilled style={{color : 'black'}}/>} isLabel={true}/>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col span={12}>
-                                <TextInput label="ROLE" name="role" id="role" isLabel={true} prefix={<UserOutlined style={{color : 'black'}}/>}/>
+                                    <TextInput label="CONTACT NUMBER" name="contactNo" id="contactNo" prefix={<PhoneFilled style={{color : 'black'}}/>} isLabel={true}/>
                                 </Col>
                                 <Col span={12}>
-                                <TextInput label="PASSWORD" name="password" id="password" type="password" isPassword={true} isAuth={false} isLabel={true} prefix={<img src="icon-password-key.png" alt="password"/>}/>
+                                    <TextInput label="ADDRESS" name="address" id="address" isLabel={true} prefix={<EnvironmentFilled style={{color : 'black'}}/>}/>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col span={12}>
+                                    <TextInput label="ROLE" name="role" id="role" isLabel={true} prefix={<UserOutlined style={{color : 'black'}}/>}/>
+                                </Col>
+                                <Col span={12}>
+                                    <TextInput label="PASSWORD" name="password" id="password" type="password" isPassword={true} isAuth={false} isLabel={true} 
+                                    prefix={<KeyOutlined/>}
+                                    iconRender={(visible) => (visible ? <EyeFilled style={{color:"black", fontSize:"1rem"}}/> : <EyeInvisibleOutlined style={{color:"black" , fontSize:"1rem"}}/>)}/>
                                 </Col>
                             </Row>
                             <div className="d-flex mt-4 me-4 flex-row-reverse">
-                                <Button type="primary" htmlType="submit">Submit</Button>
+                                <Link to="/users"><Button type="primary">Back</Button></Link>
+                                <Button type="primary" htmlType="submit" className='me-3'>Submit</Button>
                             </div>				
                         </Form>
                     </Formik>
