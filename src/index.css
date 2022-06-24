@@ -86,8 +86,6 @@ code {
 	border-radius: 5px !important;
 }
 
-
-
 .container-register-right{
 	margin-top: 80px;
 	/* margin-top: auto;
@@ -138,19 +136,6 @@ code {
 	margin-left:2px
 }
 
-/* .input.ant-input-auth{
-	background-color: #03070a !important;
-	
-}
-.input.ant-input-normal{
-	background-color: white !important;
-	
-}
-
-.ant-input:focus{
-	background-color: white !important;
-} */
-
 .form-input{
 	top:0;
 	left : 0;
@@ -163,35 +148,6 @@ code {
 	padding: 0.5rem;
 	background: none;
 	width: 90%
-}
-
-.form-input-auth{
-	top:0;
-	left : 0;
-	border: 1px solid grey;
-	border-radius: 0.25rem;
-	font-family: inherit;
-	font-size: inherit;
-	/* color: white; */
-	outline: none;
-	padding: 0.5rem;
-	background: none;
-}
-
-/* .form-input:hover{
-	border-color: #268abd;
-} */
-/* 
-.form-input:focus{
-	border-color: #268abd;
-} */
-
-/* .ant-input-affix-wrapper > input.ant-input{
-	color: black !important;
-} */
-
-.ant-input-password-icon.anticon{
-	/* color: white; */
 }
 
 .header{
@@ -207,6 +163,12 @@ code {
   height: 100%;
 }
 
-/* .ant-layout-sider{
-	background: #03070a !important;
-} */
+div#authForm .ant-input{
+	background-color: black !important;
+	color: white !important;
+}
+
+div#authForm .ant-input:focus{
+	background-color: black !important;
+	color: white !important;
+}

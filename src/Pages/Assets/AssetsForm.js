@@ -3,6 +3,7 @@ import { Formik, Form } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
 import Dashboard from '../Dashboard';
 import { UserOutlined, MailFilled, PhoneFilled} from '@ant-design/icons';
+import { Row, Col } from 'antd';
 
 const AssetsForm = ({title, handleAsset, ...rest}) => {
 
@@ -15,13 +16,19 @@ const AssetsForm = ({title, handleAsset, ...rest}) => {
 
     return (
         <Dashboard>
-            <div className='main-card p-4'>
-                <h2 className='text-center'>{asset ? 'EDIT ASSET' : 'ADD ASSET'}</h2>
+            <div>
+                <h2 className='text-center fs-3 fw-bold'>{asset ? 'EDIT ASSET' : 'ADD ASSET'}</h2>
                 <Formik initialValues={initialState} onSubmit={(values) => handleAsset(values)}>
                     <Form>
-                        <TextInput label="NAME" name="name" id="name" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
-                        <TextInput label="DESCRIPTION" name="description" id="description" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />
-                        <div className="d-flex mt-4 flex-row-reverse">
+                        <Row>
+                            <Col span={12}>
+                                <TextInput label="NAME" name="name" id="name" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
+                            </Col>
+                            <Col span={12}>
+                                <TextInput label="DESCRIPTION" name="description" id="description" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />
+                            </Col>
+                        </Row>
+                        <div className="d-flex mt-4 me-4 flex-row-reverse">
                             <Button type="primary" htmlType="submit">Submit</Button>
                         </div>				
                     </Form>

@@ -1,5 +1,5 @@
 import { Button } from "antd";
-import { MailFilled } from '@ant-design/icons';
+import { MailFilled, MailTwoTone } from '@ant-design/icons';
 import { Formik, Form } from 'formik';
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
@@ -32,8 +32,10 @@ const Login = () => {
 		<AuthLayout headerText="Sign In">
 			<Formik initialValues={initialValues} validationSchema={loginValidations} onSubmit={(values) => onFinish(values)}>
 				<Form >
-					<TextInput label="EMAIL" name="email" type="email" id="email" prefix={<MailFilled style={{ color: 'white' }} />} isAuth={true}/>
-					<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<img src="icon-password-key.png" alt="password" />} isPassword={true} forgotPassword={true} isAuth={true}/>
+					<div id="authForm">
+					<TextInput label="EMAIL" name="email" type="email" id="email" prefix={<MailFilled style={{ color: 'white' }} />} isAuth={true} style={{ backgroundColor:'black'}} className="input-black"/>
+					<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<img src="icon-password-key.png" alt="password" />} isPassword={true} forgotPassword={true} isAuth={true} style={{ backgroundColor:'#0000'}} className="input-black"/>
+					</div>
 					<Button type="primary" className="auth-button" htmlType="submit">Sign In</Button>
 					<span className="auth-text">Don't have an account?</span>
 					<Link to="/" className="auth-text-inner">Sign Up</Link>

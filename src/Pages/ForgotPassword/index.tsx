@@ -25,7 +25,9 @@ const ForgotPassword = () => {
             <p className="auth-sub-heading">Please enter your registered email address.<br/>We'll send instructions to help you reset your password</p>
             <Formik initialValues={initialState} validationSchema={forgotPasswordValidations} onSubmit={(values) => onFinish(values)}>
                     <Form>
-                        <TextInput label="EMAIL" type="email" id="email" name="email" prefix={<UserOutlined style={{color : 'white'}}/>}/>
+                        <div id="authForm">
+                            <TextInput label="EMAIL" type="email" id="email" name="email" prefix={<UserOutlined style={{color : 'white'}}/>}/>
+                        </div>
                         <Button type="primary" className="auth-button" htmlType="submit">Send reset Instructions</Button>
                     </Form>
                 </Formik>

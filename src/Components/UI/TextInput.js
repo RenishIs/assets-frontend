@@ -3,8 +3,6 @@ import { Input } from 'antd';
 import { Link } from 'react-router-dom';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
-//#dae6f0
-
 const TextInput = ({label, forgotPassword=false, isPassword=false, isAuth=false, ...rest}) => {
 
     const { isLabel, ...props } = rest
@@ -27,16 +25,14 @@ const TextInput = ({label, forgotPassword=false, isPassword=false, isAuth=false,
             </div>
             {
                 isPassword ? (
-                    <Input.Password className={`${isAuth ? 'form-input-auth ant-input-auth' : 'form-input ant-input-normal'}`} 
+                    <Input.Password className={`form-input`} 
                                     size="large" 
                                     {...field}
-                                    {...props} 
-                                    // style={{backgroundColor:'#baccdb'}}
+                                    {...props}
                                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                                     />
                 ) : (
-                    <Input className={`${isAuth ? 'form-input-auth ant-input-auth' : 'form-input ant-input-normal'}`} size="large" {...field} {...props} 
-                    // style={{backgroundColor:'#baccdb'}}
+                    <Input className={`form-input`} size="large" {...field} {...props} 
                     />
                 )
             }
