@@ -2,6 +2,7 @@ import { Button, Card } from 'antd';
 import { Formik, Form } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
 import Dashboard from '../Dashboard';
+import { assetValidations } from '../../Helper/ValidationSchema';
 
 const AssetsForm = ({title, handleAsset, ...rest}) => {
 
@@ -17,7 +18,7 @@ const AssetsForm = ({title, handleAsset, ...rest}) => {
             <div className="form site-card-border-less-wrapper">
                 <Card style={{ width: '45%' }}>
                     <h2 className='text-center'>{asset ? 'EDIT ASSET' : 'ADD ASSET'}</h2>
-                    <Formik initialValues={initialState} onSubmit={(values) => handleAsset(values)}>
+                    <Formik initialValues={initialState} validationSchema={assetValidations} onSubmit={(values) => handleAsset(values)}>
                         <Form>
                             <TextInput label="NAME" name="name" id="name"/>	
                             <TextInput label="DESCRIPTION" name="description" id="description" />

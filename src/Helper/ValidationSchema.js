@@ -44,3 +44,8 @@ export const userValidations = yup.object().shape({
     password : password,
     contactNo : contactNo,
 })
+
+export const assetValidations = yup.object().shape({
+    name : yup.string().trim().required("*Required"),
+    description : yup.string().trim().required("*Required") 
+})
