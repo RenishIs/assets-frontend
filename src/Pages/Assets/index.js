@@ -18,7 +18,7 @@ const AssetsListing = () => {
 	});
 
 	if(deletedAsset){
-        openNotificationWithIcon('success', "ASSET DELETED SUCCESSFULLY")
+        openNotificationWithIcon('deleteAsset', 'success', "ASSET DELETED SUCCESSFULLY")
     }
 	if(error) {
 		alert(error);	

@@ -26,7 +26,7 @@ const UsersEdit = () => {
     }
 
     if(updatedUser) {
-        openNotificationWithIcon('success', "USER EDITED SUCCESSFULLY")
+        openNotificationWithIcon('userEdit', 'success', "USER EDITED SUCCESSFULLY")
         history.push('/users')
     }
     return (

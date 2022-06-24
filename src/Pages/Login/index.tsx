@@ -9,12 +9,13 @@ import { loginValidations } from "../../Helper/ValidationSchema";
 import AuthLayout from "../../Components/AuthLayout";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER_MUTATION } from "../../gql/Mutation/Auth";
+import openNotificationWithIcon from "../../Helper/Notification";
 
 const Login = () => {
 
 	const history = useHistory();
-	const initialValues = { email: '', password: '' }
-	const [loginUser, { data }] = useMutation(LOGIN_USER_MUTATION);
+	const initialValues = { email: 'blessyf.albiorix@gmail.com', password: 'Blessyvdg@34' }
+	const [loginUser, { data, error }] = useMutation(LOGIN_USER_MUTATION);
 
 	const onFinish = (values: object) => {
 		loginUser({
@@ -22,9 +23,14 @@ const Login = () => {
 		});
 	};
 
+	if(error){
+		openNotificationWithIcon('loginUserError', 'error', 'INVALID CREDENTIALS')
+	}
+
 	if (data?.loginUser?.token) {
 		Cookies.set('token', data?.loginUser?.token)
 		Cookies.set('user', JSON.stringify(data?.loginUser?.user))
+		openNotificationWithIcon('loginUser', 'success', "LOGIN SUCCESSFUL")
 		history.push('/dashboard');
 	}
 

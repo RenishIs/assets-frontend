@@ -1,27 +1,30 @@
 import { Button } from "antd";
 import { Form, Formik } from "formik";
 import { KeyOutlined } from '@ant-design/icons';
+import { useMutation } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 import TextInput from "../../Components/UI/TextInput";
 import { resetPasswordValidations } from "../../Helper/ValidationSchema";
 import AuthLayout from "../../Components/AuthLayout";
-import { useMutation } from "@apollo/client";
 import { RESET_PASSWORD } from "../../gql/Mutation/Auth";
-import { useHistory } from "react-router-dom";
+import openNotificationWithIcon from "../../Helper/Notification";
 
 const ResetPassword = () => {
+
 	const history = useHistory();
     const initialState = { oldPassword : '', newPassword : '', confirmPassword : ''}
 	const [resetPassword,{data}] = useMutation(RESET_PASSWORD);
+
     const onFinish = (values) => {
         const data = {
             password: values?.newPassword,
             id : '123'
         }
-        resetPassword({
-			variables:data,
-		  });
+        resetPassword({ variables : data});
     };
+
 	if (data?.sendResetPasswordLink?.message) {
+        openNotificationWithIcon('resetPassword', 'success', "RESET PASSWORD SUCCESSFUL")
 		history.push('/reset-password');
 	}
     return (

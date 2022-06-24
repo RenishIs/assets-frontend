@@ -25,7 +25,7 @@ const AssetsEdit = () => {
 	}
 
 	if (updatedData) {
-		openNotificationWithIcon('success', "ASSET EDITED SUCCESSFULLY")
+		openNotificationWithIcon('editAsset','success', "ASSET EDITED SUCCESSFULLY")
 		history.push('/assets');
 	}
 	
