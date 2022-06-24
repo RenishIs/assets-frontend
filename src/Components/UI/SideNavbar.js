@@ -1,13 +1,13 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
-import { UserOutlined, HomeFilled } from '@ant-design/icons';
+import { UserOutlined, HomeFilled, TeamOutlined, LaptopOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 const { Sider } = Layout;
 
 const iconsData = [
     { icon : HomeFilled, label : 'Dashboard'},
     { icon : UserOutlined, label : 'Users', children : [{label : 'Add User', path:'/users/add'}, {label : 'Manage Users', path:'/users'}]},
-    { icon : UserOutlined, label : 'Assets', children : [{label : 'Add Asset', path:'/assets/add'}, {label : 'Manage Assets', path:'/assets'}]},
+    { icon : LaptopOutlined, label : 'Assets', children : [{label : 'Add Asset', path:'/assets/add'}, {label : 'Manage Assets', path:'/assets'}]},
 ]
 
 const menuItems = iconsData.map((item, index) => {
@@ -28,12 +28,15 @@ const menuItems = iconsData.map((item, index) => {
 
 const SideNavbar = ({collapsed}) => {
     return (
-        <Sider width='25%' className="mx-2 main-card pt-4" collapsible collapsed={collapsed} trigger={null} >
-            {/* <div className='mt-2 d-flex justify-content-center align-items-center'>
-                <TeamOutlined className='side-nav-bar-icons fs-1' />
-                <span className='fw-bold fs-1 text-secondary px-4'>AMS</span>
-            </div>             */}
-            <Menu mode="inline"
+        <Sider width='18%' className="" collapsible collapsed={collapsed} trigger={null} >
+            <div className='d-flex justify-content-center align-items-center p-1'>
+            <img src="https://images-platform.99static.com/VjQlwl2IRxelKQzp4tzqY8pD4nY=/500x500/top/smart/99designs-contests-attachments/23/23280/attachment_23280405" alt='pic' style={{width:'50px'}}/>
+                {/* <span className='fw-bold fs-1 text-secondary px-4'>AMS</span> */}
+            <span className='fw-bold fs-0.5 text-secondary px-4'>Assests Management</span>
+            </div>            
+            <Menu 
+                  theme="dark"
+                  mode="inline"
                   defaultSelectedKeys={['1']}
                   defaultOpenKeys={['sub1']}
                   selectedKeys={['sub1']}

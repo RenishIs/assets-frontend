@@ -37,7 +37,7 @@ const UsersListing = () => {
                 <div>
                     <div>Manage Users</div>
                 </div>
-                <Table bordered columns={columns} dataSource={data?.Users} pagination={false}/>
+                <Table bordered columns={columns} dataSource={data?.Users} pagination={false} size={'middle'}/>
             </>
         </Dashboard>
     )

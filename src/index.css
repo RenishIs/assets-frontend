@@ -86,10 +86,7 @@ code {
 	border-radius: 5px !important;
 }
 
-.ant-input{
-	/* background-color: #03070a !important; */
-	/* color:white !important; */
-}
+
 
 .container-register-right{
 	margin-top: 80px;
@@ -141,10 +138,37 @@ code {
 	margin-left:2px
 }
 
+/* .input.ant-input-auth{
+	background-color: #03070a !important;
+	
+}
+.input.ant-input-normal{
+	background-color: white !important;
+	
+}
+
+.ant-input:focus{
+	background-color: white !important;
+} */
+
 .form-input{
 	top:0;
 	left : 0;
-	border: 2px solid grey;
+	border: 1px solid grey;
+	border-radius: 0.25rem;
+	font-family: inherit;
+	font-size: inherit;
+	/* color: white; */
+	outline: none;
+	padding: 0.5rem;
+	background: none;
+	width: 90%
+}
+
+.form-input-auth{
+	top:0;
+	left : 0;
+	border: 1px solid grey;
 	border-radius: 0.25rem;
 	font-family: inherit;
 	font-size: inherit;
@@ -154,33 +178,35 @@ code {
 	background: none;
 }
 
-.form-input:hover{
+/* .form-input:hover{
 	border-color: #268abd;
-}
-
+} */
+/* 
 .form-input:focus{
 	border-color: #268abd;
-}
+} */
 
-.ant-input-affix-wrapper > input.ant-input{
-	background: none;
-	/* color: white; */
-	margin-left: 0.5rem;
-}
+/* .ant-input-affix-wrapper > input.ant-input{
+	color: black !important;
+} */
 
 .ant-input-password-icon.anticon{
 	/* color: white; */
 }
 
 .header{
-  background-color: #16518a;
-  border-radius: 0px 0px 10px 10px;
+  background-color: white;
+  /* border-radius: 0px 0px 10px 10px; */
   box-shadow: 5px 8px 24px 5px rgba(208, 216, 243, 0.6) 
 }
 
 .main-card{
   background-color: white;
   box-shadow: 5px 8px 24px 5px rgba(208, 216, 243, 0.6);
-  border-radius: 10px;
-  height: 100vh;
+  /* border-radius: 10px; */
+  height: 100%;
 }
+
+/* .ant-layout-sider{
+	background: #03070a !important;
+} */
