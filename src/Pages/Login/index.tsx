@@ -9,6 +9,7 @@ import { loginValidations } from "../../Helper/ValidationSchema";
 import AuthLayout from "../../Components/AuthLayout";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER_MUTATION } from "../../gql/Mutation/Auth";
+import openNotificationWithIcon from "../../Helper/Notification";
 
 const Login = () => {
 
@@ -25,6 +26,7 @@ const Login = () => {
 	if (data?.loginUser?.token) {
 		Cookies.set('token', data?.loginUser?.token)
 		Cookies.set('user', JSON.stringify(data?.loginUser?.user))
+		openNotificationWithIcon('loginUser', 'success', "LOGIN SUCCESSFUL")
 		history.push('/dashboard');
 	}
 
