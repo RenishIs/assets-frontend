@@ -41,7 +41,7 @@ const AssetsListing = () => {
 			<div className='text-end mb-3'>
 				<Link to={`/assets/add`}><Button type="primary">ADD</Button></Link>
 			</div>
-			<Table bordered columns={columns} dataSource={data?.Assets} pagination={false} />
+			<Table bordered columns={columns} dataSource={data?.assets} pagination={false} />
 		</Dashboard>
 	)
 }

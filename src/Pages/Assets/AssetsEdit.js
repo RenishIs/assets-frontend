@@ -32,8 +32,8 @@ const AssetsEdit = () => {
 	return (
 		<div>
 			{
-				data?.Asset && (
-				<AssetsForm handleAsset={handleAsset} asset={data?.Asset} />
+				data?.assetById && (
+				<AssetsForm handleAsset={handleAsset} asset={data?.assetById} />
 				)
 			}
 		</div>
