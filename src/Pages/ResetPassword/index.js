@@ -6,23 +6,24 @@ import { resetPasswordValidations } from "../../Helper/ValidationSchema";
 import AuthLayout from "../../Components/AuthLayout";
 import { useMutation } from "@apollo/client";
 import { RESET_PASSWORD } from "../../gql/Mutation/Auth";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const ResetPassword = () => {
 	const history = useHistory();
     const initialState = { oldPassword : '', newPassword : '', confirmPassword : ''}
 	const [resetPassword,{data}] = useMutation(RESET_PASSWORD);
+    const params = useParams();
     const onFinish = (values) => {
         const data = {
             password: values?.newPassword,
-            id : '123'
+            id : params.id
         }
         resetPassword({
 			variables:data,
 		  });
     };
-	if (data?.sendResetPasswordLink?.message) {
-		history.push('/reset-password');
+	if (data?.resetPassword?.message) {
+		history.push('/login');
 	}
     return (
         <AuthLayout headerText="Reset Password">

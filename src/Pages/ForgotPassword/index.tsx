@@ -6,10 +6,10 @@ import { forgotPasswordValidations } from "../../Helper/ValidationSchema";
 import AuthLayout from "../../Components/AuthLayout";
 import { useMutation } from "@apollo/client";
 import { RESET_PASSWORD_LINK } from "../../gql/Mutation/Auth";
-import { useHistory } from "react-router-dom";
+
 
 const ForgotPassword = () => {
-	const history = useHistory();
+
     const initialState ={email : ''}
 	const [sendResetPasswordLink,{ data }] = useMutation(RESET_PASSWORD_LINK);
     const onFinish = (values: object) => {
@@ -17,9 +17,7 @@ const ForgotPassword = () => {
 			variables:values,
 		  });
     };
-	if (data?.sendResetPasswordLink?.message) {
-		history.push('/reset-password');
-	}
+
     return (
         <AuthLayout headerText="Forgot Password?">
             <p className="auth-sub-heading">Please enter your registered email address.<br/>We'll send instructions to help you reset your password</p>
