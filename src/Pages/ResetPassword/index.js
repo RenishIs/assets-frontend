@@ -24,6 +24,7 @@ const ResetPassword = () => {
 			variables:data,
 		  });
     };
+    
 	if (data?.resetPassword?.message) {
 		history.push('/login');
 	}
