@@ -2,14 +2,19 @@ import React, { useState } from 'react';
 import { Layout, Row, Dropdown, Menu, Col } from 'antd';
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserAddOutlined } from '@ant-design/icons';
 import SideNavbar from '../../Components/UI/SideNavbar';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import Cookies from "js-cookie";
 
 const { Header } = Layout;
 
 const Dashboard = ({children}) => {
     const [collapsed, setCollapsed] = useState(false);
+    const history = useHistory()
 
-    const logoutUser = () => {}
+    const logoutUser = () => {
+        Cookies.remove('token')
+        history.push('/login')
+    }
 
     const menu = (
         <Menu items={[
@@ -37,8 +42,8 @@ const Dashboard = ({children}) => {
                     <Dropdown overlay={menu} trigger={['click']} >
                         <div className='text-center d-flex align-items-center justify-content-end fs-5 fw-bolder'>
                             <UserAddOutlined className='px-4'/>
-                            <img src="/home/blessy/Desktop/Bless-Albiorix/assets-frontend/public/user-profile.png" alt='pic' />
-                            Hi, {JSON.parse(localStorage.getItem('user'))?.username}
+                            {/* <img src="user-1.png" alt='pic' style={{width : '20px', height:'20px', borderRadius : '10px'}}/> */}
+                            Hi,{ JSON.parse(Cookies.get('user'))?.username}
                         </div>
                     </Dropdown>
                     </Col>

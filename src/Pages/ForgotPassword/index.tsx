@@ -1,16 +1,28 @@
 import { Button } from "antd";
 import { Form, Formik } from "formik";
 import { UserOutlined } from '@ant-design/icons';
+import { useMutation } from "@apollo/client";
 import TextInput from "../../Components/UI/TextInput";
 import { forgotPasswordValidations } from "../../Helper/ValidationSchema";
 import AuthLayout from "../../Components/AuthLayout";
+import { RESET_PASSWORD_LINK } from "../../gql/Mutation/Auth";
 
+import openNotificationWithIcon from "../../Helper/Notification";
 const ForgotPassword = () => {
 
     const initialState ={email : ''}
+	const [sendResetPasswordLink,{ data }] = useMutation(RESET_PASSWORD_LINK);
 
     const onFinish = (values: object) => {
-    };
+        sendResetPasswordLink({
+			variables:values,
+		  });
+    }
+
+	if (data?.sendResetPasswordLink?.message) {
+        openNotificationWithIcon('forgotPassword', 'success', "Reset password link is sent to your Registered mail")
+	
+	}
 
     return (
         <AuthLayout headerText="Forgot Password?">

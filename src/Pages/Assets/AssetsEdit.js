@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { UPDATE_ASSET_MUTATION } from '../../gql/Mutation/Assets';
 import { GET_ASSETS_QUERY, GET_ASSET_BY_ID_QUERY } from '../../gql/Query/Assets';
 import AssetsForm from './AssetsForm';
+import openNotificationWithIcon from '../../Helper/Notification';
 
 const AssetsEdit = () => {
 	const history = useHistory();
@@ -24,14 +25,15 @@ const AssetsEdit = () => {
 	}
 
 	if (updatedData) {
+		openNotificationWithIcon('editAsset','success', "ASSET EDITED SUCCESSFULLY")
 		history.push('/assets');
 	}
 	
 	return (
 		<div>
 			{
-				data?.Asset && (
-				<AssetsForm handleAsset={handleAsset} asset={data?.Asset} />
+				data?.assetById && (
+				<AssetsForm handleAsset={handleAsset} asset={data?.assetById} />
 				)
 			}
 		</div>

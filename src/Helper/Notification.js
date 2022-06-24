@@ -1,8 +1,9 @@
 import { notification } from 'antd';
 
-const openNotificationWithIcon = (type, message) => {
+const openNotificationWithIcon = (key, type, message) => {
     notification[type]({
-        message: message,
+        key,
+        message,
         description:''
     });
 };
