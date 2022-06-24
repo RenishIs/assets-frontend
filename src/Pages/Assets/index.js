@@ -5,18 +5,21 @@ import Dashboard from '../Dashboard';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_ASSETS_QUERY } from '../../gql/Query/Assets';
 import { DELETE_ASSET_MUTATION } from '../../gql/Mutation/Assets';
-
+import openNotificationWithIcon from '../../Helper/Notification';
 
 const AssetsListing = () => {
 
 	const { data } = useQuery(GET_ASSETS_QUERY);
 
-	const [deleteAssets, { error }] = useMutation(DELETE_ASSET_MUTATION, {
+	const [deleteAssets, { error, data : deletedAsset }] = useMutation(DELETE_ASSET_MUTATION, {
 		refetchQueries: [
 			{ query: GET_ASSETS_QUERY },
 		]
 	});
 
+	if(deletedAsset){
+        openNotificationWithIcon('success', "ASSET DELETED SUCCESSFULLY")
+    }
 	if(error) {
 		alert(error);	
 	}

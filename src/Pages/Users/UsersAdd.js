@@ -2,6 +2,7 @@ import { useMutation } from '@apollo/client';
 import { useHistory } from 'react-router-dom';
 import { CREATE_USER_MUTATION } from '../../gql/Mutation/Users';
 import { GET_USERS_QUERY } from '../../gql/Query/Users';
+import openNotificationWithIcon from '../../Helper/Notification';
 
 import UsersForm from './UsersForm';
 
@@ -20,6 +21,7 @@ const UsersAdd = () => {
     }
 
     if(data){
+        openNotificationWithIcon('success', "USER ADDED SUCCESSFULLY")
         history.push('/users')
     }
 

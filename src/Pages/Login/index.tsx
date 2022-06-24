@@ -2,28 +2,32 @@ import { Button } from "antd";
 import { MailFilled } from '@ant-design/icons';
 import { Formik, Form } from 'formik';
 import { Link } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+import Cookies from 'js-cookie'
 import TextInput from "../../Components/UI/TextInput";
 import { loginValidations } from "../../Helper/ValidationSchema";
 import AuthLayout from "../../Components/AuthLayout";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER_MUTATION } from "../../gql/Mutation/Auth";
-import { useHistory } from 'react-router-dom';
-import Cookies from 'js-cookie'
+
 const Login = () => {
+
 	const history = useHistory();
 	const initialValues = { email: '', password: '' }
-	const [loginUser, { data }] = useMutation(LOGIN_USER_MUTATION,);
+	const [loginUser, { data }] = useMutation(LOGIN_USER_MUTATION);
+
 	const onFinish = (values: object) => {
 		loginUser({
 			variables: values,
 		});
 	};
-	if (data?.loginUser?.token) {
-	
-		Cookies.set('token', data?.loginUser?.token)
 
+	if (data?.loginUser?.token) {
+		Cookies.set('token', data?.loginUser?.token)
+		Cookies.set('user', JSON.stringify(data?.loginUser?.user))
 		history.push('/dashboard');
 	}
+
 	return (
 		<AuthLayout headerText="Sign In">
 			<Formik initialValues={initialValues} validationSchema={loginValidations} onSubmit={(values) => onFinish(values)}>

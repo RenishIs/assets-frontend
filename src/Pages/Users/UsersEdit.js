@@ -4,6 +4,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import UsersForm from './UsersForm';
 import { GET_USERS_QUERY, GET_USER_BY_ID_QUERY } from '../../gql/Query/Users';
 import { UPDATE_USER_MUTATION } from '../../gql/Mutation/Users';
+import openNotificationWithIcon from '../../Helper/Notification';
 
 const UsersEdit = () => {
 
@@ -25,6 +26,7 @@ const UsersEdit = () => {
     }
 
     if(updatedUser) {
+        openNotificationWithIcon('success', "USER EDITED SUCCESSFULLY")
         history.push('/users')
     }
     return (

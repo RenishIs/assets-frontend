@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { CREATE_ASSET_MUTATION } from '../../gql/Mutation/Assets';
 import { GET_ASSETS_QUERY } from '../../gql/Query/Assets';
 import AssetsForm from './AssetsForm';
+import openNotificationWithIcon from '../../Helper/Notification';
 
 const AssetsAdd = () => {
 	const history = useHistory();
@@ -13,6 +14,7 @@ const AssetsAdd = () => {
 	});
 
 	if (data) {
+		openNotificationWithIcon('success', "ASSET ADDED SUCCESSFULLY")
 		history.push('/assets');
 	}
 
