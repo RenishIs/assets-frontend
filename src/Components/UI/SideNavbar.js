@@ -1,13 +1,13 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
-import { UserOutlined, HomeFilled } from '@ant-design/icons';
+import { UserOutlined, HomeFilled, LaptopOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 const { Sider } = Layout;
 
 const iconsData = [
     { icon : HomeFilled, label : 'Dashboard'},
-    { icon : UserOutlined, label : 'Users', children : [{label : 'Add User', path:'/users/add'}, {label : 'Manage Users', path:'/users'}]},
-    { icon : UserOutlined, label : 'Assets', children : [{label : 'Add Asset', path:'/assets/add'}, {label : 'Manage Assets', path:'/assets'}]},
+    { icon : UserOutlined, label : 'Users' ,path:'/users'},
+    { icon : LaptopOutlined, label : 'Assets', path:'/assets'},
 ]
 
 const menuItems = iconsData.map((item, index) => {
