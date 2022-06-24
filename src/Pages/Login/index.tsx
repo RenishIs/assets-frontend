@@ -14,14 +14,18 @@ import openNotificationWithIcon from "../../Helper/Notification";
 const Login = () => {
 
 	const history = useHistory();
-	const initialValues = { email: '', password: '' }
-	const [loginUser, { data }] = useMutation(LOGIN_USER_MUTATION);
+	const initialValues = { email: 'blessyf.albiorix@gmail.com', password: 'Blessyvdg@34' }
+	const [loginUser, { data, error }] = useMutation(LOGIN_USER_MUTATION);
 
 	const onFinish = (values: object) => {
 		loginUser({
 			variables: values,
 		});
 	};
+
+	if(error){
+		openNotificationWithIcon('loginUserError', 'error', 'INVALID CREDENTIALS')
+	}
 
 	if (data?.loginUser?.token) {
 		Cookies.set('token', data?.loginUser?.token)

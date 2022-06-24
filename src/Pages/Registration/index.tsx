@@ -14,7 +14,7 @@ const Registration = () => {
 
 	const history = useHistory();
 	const initialValues = { username : '', email : '', password : ''}
-	const [registerUser,{data}] = useMutation(SIGNUP_USER_MUTATION);
+	const [ registerUser, { data, error }] = useMutation(SIGNUP_USER_MUTATION);
 
 	const onFinish = (values:object) => {
 		registerUser({
@@ -22,6 +22,10 @@ const Registration = () => {
 		  });
 
 	};
+
+	if(error){
+		openNotificationWithIcon('registerUserError', 'error', 'REGISTRATION FAILED')
+	}
 
 	if (data?.registerUser?.token) {
 		openNotificationWithIcon('registerUser', 'success', "REGISTRATION SUCCESSFUL")
