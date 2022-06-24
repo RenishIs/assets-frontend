@@ -21,7 +21,7 @@ const UsersAdd = () => {
     }
 
     if(data){
-        openNotificationWithIcon('success', "USER ADDED SUCCESSFULLY")
+        openNotificationWithIcon('userAdd', 'success', "USER ADDED SUCCESSFULLY")
         history.push('/users')
     }
 

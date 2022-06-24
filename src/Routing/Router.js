@@ -26,7 +26,7 @@ const Router = ({history}) => {
                 <UnRestrictedRoute exact path="/" component={Registration} />
                 <UnRestrictedRoute exact path="/login" component={Login} />
                 <UnRestrictedRoute exact path="/forgot-password" component={ForgotPassword} />
-                <UnRestrictedRoute exact path="/reset-password" component={ResetPassword} />
+                <UnRestrictedRoute exact path="/reset-password/:id" component={ResetPassword} />
 
                 <RestrictedRoute exact path="/dashboard" component={Dashboard} />
                 <RestrictedRoute exact path="/profile" component={Profile}/>
