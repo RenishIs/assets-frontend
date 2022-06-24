@@ -15,7 +15,7 @@ import { EyeInvisibleOutlined, EyeFilled } from '@ant-design/icons';
 const Login = () => {
 
 	const history = useHistory();
-	const initialValues = { email: 'blessyf.albiorix@gmail.com', password: 'Blessyvdg@34' }
+	const initialValues = { email: '', password: '' }
 	const [loginUser, { data, error }] = useMutation(LOGIN_USER_MUTATION);
 
 	const onFinish = (values) => {
