@@ -33,7 +33,7 @@ const UsersEdit = () => {
         <div>
         {
             !loading && (
-                <UsersForm handleUser={handleUser} user={data?.User}/>
+                <UsersForm handleUser={handleUser} user={data?.userById}/>
             )
         }
         </div>

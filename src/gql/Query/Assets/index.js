@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const GET_ASSETS_QUERY = gql`
     query Query {
-        Assets {
+        assets {
         id
         name
         description
@@ -12,7 +12,7 @@ export const GET_ASSETS_QUERY = gql`
 
 export const GET_ASSET_BY_ID_QUERY = gql`
     query Query($assetId: ID!) {
-        Asset(id: $assetId) {
+        assetById(id: $assetId) {
         id
         name
         description
