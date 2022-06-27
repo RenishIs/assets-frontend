@@ -31,14 +31,16 @@ const AssetsListing = () => {
 		render: (_, record) => (
 			<Space size="middle">
 				<Link to={`/assets/edit/${record.id}`}><EditFilled style={{color: "blue"}}/></Link>
-				<DeleteFilled style={{color: "red"}} onClick={() => deleteAssets({ variables:  { deleteAssetsId: record.id } } )}/>
+				<DeleteFilled style={{color: "red"}}
+				onClick={() => deleteAssets({ variables:  { deleteAssetsId: record.id } } )}
+				/>
 			</Space>
 		),
 	}]
 
 	return (
 		<Dashboard>
-			<div className='text-cente mb-3'>
+			<div className='text-center mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSETS</h2>
                 <div className='add-button'>
                     <Link to={`/assets/add`}><Button type="primary">ADD</Button></Link>
