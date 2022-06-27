@@ -1,4 +1,4 @@
-import { Table, Space, Button } from 'antd';
+import { Table, Space, Button, Modal } from 'antd';
 import { Link } from 'react-router-dom';
 import { tableColumns } from './CONSTANTS';
 import Dashboard from '../Dashboard';
@@ -7,10 +7,27 @@ import { GET_ASSETS_QUERY } from '../../gql/Query/Assets';
 import { DELETE_ASSET_MUTATION } from '../../gql/Mutation/Assets';
 import openNotificationWithIcon from '../../Helper/Notification';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
+const confirm = Modal.confirm;
 
 const AssetsListing = () => {
 
 	const { data } = useQuery(GET_ASSETS_QUERY);
+
+	const showDeleteConfirm = (id) => {
+		confirm({
+		  title: 'Are you sure you want to delete this Asset?',
+		  content: '',
+		  okText: 'Yes',
+		  okType: 'danger',
+		  cancelText: 'No',
+		  onOk() {
+			deleteAssets({ variables:  { deleteAssetsId: id } } )
+		  },
+		  onCancel() {
+			console.log('Cancel');
+		  },
+		});
+	  }
 
 	const [deleteAssets, { error, data : deletedAsset }] = useMutation(DELETE_ASSET_MUTATION, {
 		refetchQueries: [
@@ -24,6 +41,8 @@ const AssetsListing = () => {
 	if(error) {
 		alert(error);	
 	}
+
+
 	
 	const columns = [...tableColumns, {
 		title: 'ACTION',
@@ -31,7 +50,7 @@ const AssetsListing = () => {
 		render: (_, record) => (
 			<Space size="middle">
 				<Link to={`/assets/edit/${record.id}`}><EditFilled style={{color: "blue"}}/></Link>
-				<DeleteFilled style={{color: "red"}} onClick={() => deleteAssets({ variables:  { deleteAssetsId: record.id } } )}/>
+				<DeleteFilled style={{color: "red"}} onClick={() => showDeleteConfirm(record.id)}/>
 			</Space>
 		),
 	}]
