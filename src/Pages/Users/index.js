@@ -15,8 +15,8 @@ const UsersListing = () => {
 
     const showDeleteConfirm = (id) => {
 		confirm({
-		  title: 'Are you sure you want to delete this User?',
-		  content: '',
+		  title: 'Are you sure?',
+		  content: 'Do you really want to delete this User? This process cannot be undone.',
 		  okText: 'Yes',
 		  okType: 'danger',
 		  cancelText: 'No',

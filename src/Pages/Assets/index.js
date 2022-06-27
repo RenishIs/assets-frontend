@@ -15,8 +15,8 @@ const AssetsListing = () => {
 
 	const showDeleteConfirm = (id) => {
 		confirm({
-		  title: 'Are you sure you want to delete this Asset?',
-		  content: '',
+		  title: 'Are you sure?',
+		  content: 'Do you really want to delete this Asset? This process cannot be undone.',
 		  okText: 'Yes',
 		  okType: 'danger',
 		  cancelText: 'No',
