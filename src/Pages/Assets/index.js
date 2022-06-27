@@ -38,9 +38,12 @@ const AssetsListing = () => {
 
 	return (
 		<Dashboard>
-			<div className='text-end mb-3'>
-				<Link to={`/assets/add`}><Button type="primary">ADD</Button></Link>
-			</div>
+			<div className='text-cente mb-3'>
+                <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSETS</h2>
+                <div className='add-button'>
+                    <Link to={`/assets/add`}><Button type="primary">ADD</Button></Link>
+                </div>
+            </div>
 			<Table bordered columns={columns} dataSource={data?.assets} pagination={false} />
 		</Dashboard>
 	)

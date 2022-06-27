@@ -46,9 +46,9 @@ const Registration = () => {
 						<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<img src="icon-password-key.png" alt="password"/>} isPassword={true}/>
 					</div>		
 					<Checkbox onChange={(e) => onChange(e.target.value)}>I agree to the Terms & Conditions</Checkbox>
-					<Button type="primary" className="auth-button" htmlType="submit">Create my account</Button>
-					<span className="auth-text">Already have an account?</span>
-					<Link to="/login" className="auth-text-inner">Sign In</Link>
+					<Button type="primary" className="auth-button" htmlType="submit" style={{width:"90%"}}>Create my account</Button>
+					<div className="auth-text">Already have an account? <Link to="/login" className="auth-text-inner">Sign In</Link></div>
+					
 				</Form>
 			</Formik>
 		</AuthLayout>

@@ -18,7 +18,7 @@ const AssetsForm = ({title, handleAsset, ...rest}) => {
     return (
         <Dashboard>
             <div>
-                <h2 className='text-center fs-3 fw-bold'>{asset ? 'EDIT ASSET' : 'ADD ASSET'}</h2>
+                <h2 className='text-center fs-4 fw-bold'>{asset ? 'EDIT ASSET' : 'ADD ASSET'}</h2>
                 <Formik initialValues={initialState} onSubmit={(values) => handleAsset(values)}>
                     <Form>
                         <Row>

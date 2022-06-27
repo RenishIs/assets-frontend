@@ -40,15 +40,14 @@ const Login = () => {
 			<Formik initialValues={initialValues} validationSchema={loginValidations} onSubmit={(values) => onFinish(values)}>
 				<Form >
 					<div id="authForm">
-					<TextInput label="EMAIL" name="email" type="email" id="email" prefix={<MailFilled style={{ color: 'white' }} />} isAuth={true} style={{ backgroundColor:'black'}} className="input-black"/>
-					<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<img src="icon-password-key.png" alt="password" />} 
-					isPassword={true} forgotPassword={true} isAuth={true} style={{ backgroundColor:'#0000'}} className="input-black"
-					iconRender={(visible) => (visible ? <EyeFilled style={{color:"white", fontSize:"1rem"}}/> : <EyeInvisibleOutlined style={{color:"white" , fontSize:"1rem"}}/>)}
-					/>
+						<TextInput label="EMAIL" name="email" type="email" id="email" prefix={<MailFilled style={{ color: 'white' }} />} isAuth={true}/>
+						<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<img src="icon-password-key.png" alt="password" />} 
+						isPassword={true} forgotPassword={true}
+						iconRender={(visible) => (visible ? <EyeFilled style={{color:"white", fontSize:"1rem"}}/> : <EyeInvisibleOutlined style={{color:"white" , fontSize:"1rem"}}/>)}
+						/>
 					</div>
-					<Button type="primary" className="auth-button" htmlType="submit">Sign In</Button>
-					<span className="auth-text">Don't have an account?</span>
-					<Link to="/" className="auth-text-inner">Sign Up</Link>
+					<Button type="primary" className="auth-button" htmlType="submit" style={{width:'90%'}}>Sign In</Button>
+					<div className="auth-text">Don't have an account? <Link to="/" className="auth-text-inner">Sign Up</Link></div>
 				</Form>
 			</Formik>
 		</AuthLayout>

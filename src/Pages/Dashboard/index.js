@@ -19,7 +19,7 @@ const Dashboard = ({children}) => {
     const menu = (
         <Menu items={[
             {
-                label: <div style={{display:'flex'}}><UserOutlined style={{color:"blue"}} />&nbsp;<Link to="/profile" style={{textDecoration:"none", color:'black'}}>Profile</Link></div>,
+                label: <Link to="/profile" className="text-body"><UserOutlined style={{color:"blue"}} />&nbsp;Profile</Link>,
                 key: '0',
             },
             {
@@ -32,9 +32,9 @@ const Dashboard = ({children}) => {
 
     return (
         <Layout style={{height : '100vh'}}>
-            <Layout className=''>
+            <Layout>
                 <SideNavbar collapsed={collapsed}/>
-                <Layout className=''>
+                <Layout className='overflow-auto'>
                     <Header className='bg-white mb-4'>
                         <Row justify="space-between" className='px-4 header' >
                             <Col>
@@ -48,29 +48,16 @@ const Dashboard = ({children}) => {
                             <Col span={4}>
                                 <Dropdown overlay={menu} trigger={['click']} >
                                     <div className='text-center d-flex align-items-center justify-content-end fs-5 fw-bolder'>
-                                        <UserAddOutlined className='px-4'/>
-                                        <img src="/home/blessy/Desktop/Bless-Albiorix/assets-frontend/public/user-profile.png" alt='pic' />
+                                        <img src="/user-1.png" alt='pic' width="45px" /> &nbsp;
                                         Hi, {JSON.parse(localStorage.getItem('user'))?.username}
                                     </div>
                                 </Dropdown>
                             </Col>
                         </Row>
                     </Header>
-                    {/* <Header className="site-layout-background ">
-                        <Row justify="space-between" className='d-flex align-items-center'>
-                        */}
-                        {/* <Dropdown overlay={menu} trigger={['click']} >
-                            <div className='text-center d-flex align-items-center fs-5 fw-bolder'>
-                                <UserAddOutlined className='px-4'/>
-                                Hi, {JSON.parse(localStorage.getItem('user'))?.username}
-                            </div>
-                        </Dropdown> */}
-                        {/* </Row>
-                    </Header> */}
                     <div className="bg-white text-center p-4 mx-4 main-card mb-4">
                         {children}
                     </div>
-                    
                 </Layout>
             </Layout>
         </Layout>

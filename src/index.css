@@ -160,7 +160,7 @@ code {
   background-color: white;
   box-shadow: 5px 8px 24px 5px rgba(208, 216, 243, 0.6);
   /* border-radius: 10px; */
-  height: 100%;
+  height: fit-content;
 }
 
 div#authForm .ant-input{
@@ -171,4 +171,9 @@ div#authForm .ant-input{
 div#authForm .ant-input:focus{
 	background-color: black !important;
 	color: white !important;
+}
+
+.add-button{
+	display: inline-block;
+	float: right;
 }

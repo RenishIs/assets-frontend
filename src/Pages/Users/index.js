@@ -39,13 +39,13 @@ const UsersListing = () => {
     return (
         <Dashboard>
             <>
-                {/* <div>
-                    <div>Manage Users</div>
-                </div> */}
-                <div className='text-end mb-3'>
+            <div className='text-cente mb-3'>
+                <h2 className='d-inline fs-4 fw-bold'>MANAGE USERS</h2>
+                <div className='add-button'>
                     <Link to={`/users/add`}><Button type="primary">ADD</Button></Link>
                 </div>
-                <Table bordered columns={columns} dataSource={data?.Users} pagination={false} size={'middle'}/>
+            </div>
+                <Table bordered columns={columns} dataSource={data?.users} pagination={false}/>
             </>
         </Dashboard>
     )

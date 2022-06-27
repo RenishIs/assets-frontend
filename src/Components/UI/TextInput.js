@@ -19,23 +19,13 @@ const TextInput = ({label, forgotPassword=false, isPassword=false, isAuth=false,
             <div className='d-flex justify-content-end text-primary'>
             { 
                 forgotPassword && (
-                    <Link to='/forgot-password' className="fw-bolder text-end">Forgot Password?</Link >
+                    <Link to='/forgot-password' className="fw-bolder text-end" style={{marginRight: '55px'}}>Forgot Password?</Link >
                 )
             }
             </div>
-            {
-                isPassword ? (
-                    <Input.Password className={`form-input`} 
-                                    size="large" 
-                                    {...field}
-                                    {...props}
-                                    
-                                    />
-                ) : (
-                    <Input className={`form-input`} size="large" {...field} {...props} 
-                    />
-                )
-            }
+                
+                <Input className={`form-input`} size="large" {...field} {...props} />
+
             {
                 meta.touched && meta.error ? (
                     <div className="text-start ms-4 mb-0 fs-6 text-danger">{meta.error}</div>

@@ -8,6 +8,7 @@ const Profile = () => {
     
     return (
         <Dashboard>
+            {data?.Profile &&
             <div className="bg-white h-100 text-center p-4" style={{borderRadius:"0.5rem"}}>
                 <img src="user-1.png" alt="profile" width="10%"/>
                 <div className="mt-4">
@@ -52,7 +53,7 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>}
         </Dashboard>
     )
 }
