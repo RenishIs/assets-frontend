@@ -86,11 +86,6 @@ code {
 	border-radius: 5px !important;
 }
 
-.ant-input{
-	/* background-color: #03070a !important; */
-	/* color:white !important; */
-}
-
 .container-register-right{
 	margin-top: 80px;
 	/* margin-top: auto;
@@ -144,7 +139,7 @@ code {
 .form-input{
 	top:0;
 	left : 0;
-	border: 2px solid grey;
+	border: 1px solid grey;
 	border-radius: 0.25rem;
 	font-family: inherit;
 	font-size: inherit;
@@ -152,35 +147,33 @@ code {
 	outline: none;
 	padding: 0.5rem;
 	background: none;
-}
-
-.form-input:hover{
-	border-color: #268abd;
-}
-
-.form-input:focus{
-	border-color: #268abd;
-}
-
-.ant-input-affix-wrapper > input.ant-input{
-	background: none;
-	/* color: white; */
-	margin-left: 0.5rem;
-}
-
-.ant-input-password-icon.anticon{
-	/* color: white; */
+	width: 90%
 }
 
 .header{
-  background-color: #16518a;
-  border-radius: 0px 0px 10px 10px;
+  background-color: white;
+  /* border-radius: 0px 0px 10px 10px; */
   box-shadow: 5px 8px 24px 5px rgba(208, 216, 243, 0.6) 
 }
 
 .main-card{
   background-color: white;
   box-shadow: 5px 8px 24px 5px rgba(208, 216, 243, 0.6);
-  border-radius: 10px;
-  height: 100vh;
+  /* border-radius: 10px; */
+  height: fit-content;
+}
+
+div#authForm .ant-input{
+	background-color: black !important;
+	color: white !important;
+}
+
+div#authForm .ant-input:focus{
+	background-color: black !important;
+	color: white !important;
+}
+
+.add-button{
+	display: inline-block;
+	float: right;
 }

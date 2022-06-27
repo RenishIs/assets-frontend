@@ -6,6 +6,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { GET_ASSETS_QUERY } from '../../gql/Query/Assets';
 import { DELETE_ASSET_MUTATION } from '../../gql/Mutation/Assets';
 import openNotificationWithIcon from '../../Helper/Notification';
+import { EditFilled, DeleteFilled } from '@ant-design/icons';
 
 const AssetsListing = () => {
 
@@ -29,17 +30,20 @@ const AssetsListing = () => {
 		key: 'action',
 		render: (_, record) => (
 			<Space size="middle">
-				<Link to={`/assets/edit/${record.id}`}><Button type="primary">EDIT</Button></Link>
-				<Button type="primary" danger onClick={() => deleteAssets({ variables:  { deleteAssetsId: record.id } } )}>DELETE</Button>
+				<Link to={`/assets/edit/${record.id}`}><EditFilled style={{color: "blue"}}/></Link>
+				<DeleteFilled style={{color: "red"}} onClick={() => deleteAssets({ variables:  { deleteAssetsId: record.id } } )}/>
 			</Space>
 		),
 	}]
 
 	return (
 		<Dashboard>
-			<div className='text-end mb-3'>
-				<Link to={`/assets/add`}><Button type="primary">ADD</Button></Link>
-			</div>
+			<div className='text-cente mb-3'>
+                <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSETS</h2>
+                <div className='add-button'>
+                    <Link to={`/assets/add`}><Button type="primary">ADD</Button></Link>
+                </div>
+            </div>
 			<Table bordered columns={columns} dataSource={data?.assets} pagination={false} />
 		</Dashboard>
 	)

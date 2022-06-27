@@ -31,9 +31,11 @@ const ResetPassword = () => {
         <AuthLayout headerText="Reset Password">
             <Formik initialValues={initialState} validationSchema={resetPasswordValidations} onSubmit={values => onFinish(values)}>
                     <Form>
-                        <TextInput label="New Password" type="password" name="newPassword" id="newPassword" prefix={<KeyOutlined style={{color : 'white'}}/>} isPassword={true}/>
-                        <TextInput label="Confirm Password" type="password" name="confirmPassword" id="confirmPassword" prefix={<KeyOutlined style={{color : 'white'}}/>} isPassword={true}/>
-                        <Button type="primary" className="auth-button" htmlType="submit">Submit</Button>
+                        <div id="authForm">
+                            <TextInput label="New Password" type="password" name="newPassword" id="newPassword" prefix={<KeyOutlined style={{color : 'white'}}/>} isPassword={true}/>
+                            <TextInput label="Confirm Password" type="password" name="confirmPassword" id="confirmPassword" prefix={<KeyOutlined style={{color : 'white'}}/>} isPassword={true}/>
+                        </div>
+                        <Button type="primary" className="auth-button" htmlType="submit" style={{width:"90%"}}>Submit</Button>
                     </Form>
                 </Formik>
         </AuthLayout>

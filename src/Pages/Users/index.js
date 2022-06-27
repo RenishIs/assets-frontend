@@ -6,6 +6,7 @@ import Dashboard from '../Dashboard';
 import { GET_USERS_QUERY } from '../../gql/Query/Users';
 import { DELETE_USER_MUTATION } from '../../gql/Mutation/Users';
 import openNotificationWithIcon from '../../Helper/Notification';
+import { EditFilled, DeleteFilled } from '@ant-design/icons';
 
 const UsersListing = () => {
 
@@ -29,8 +30,8 @@ const UsersListing = () => {
 		key: 'action',
 		render: (_, record) => (
 			<Space size="middle">
-				<Link to={`/users/edit/${record.id}`}><Button type="primary">EDIT</Button></Link>
-				<Button type="primary" danger onClick={() => DeleteUser({ variables : { deleteUserId : record.id}})}>DELETE</Button>
+                <Link to={`/users/edit/${record.id}`}><EditFilled style={{color: "blue"}}/></Link>
+				<DeleteFilled style={{color: "red"}} onClick={() => DeleteUser({ variables : { deleteUserId : record.id}})}/>
 			</Space>
 		),
 	}]
@@ -38,12 +39,12 @@ const UsersListing = () => {
     return (
         <Dashboard>
             <>
-                {/* <div>
-                    <div>Manage Users</div>
-                </div> */}
-                <div className='text-end mb-3'>
+            <div className='text-cente mb-3'>
+                <h2 className='d-inline fs-4 fw-bold'>MANAGE USERS</h2>
+                <div className='add-button'>
                     <Link to={`/users/add`}><Button type="primary">ADD</Button></Link>
                 </div>
+            </div>
                 <Table bordered columns={columns} dataSource={data?.users} pagination={false}/>
             </>
         </Dashboard>
