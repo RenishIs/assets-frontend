@@ -2,6 +2,7 @@ import { Button } from 'antd';
 import { Formik, Form } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
 import Dashboard from '../Dashboard';
+import { assetValidations } from '../../Helper/ValidationSchema';
 import { UserOutlined, MailFilled, PhoneFilled} from '@ant-design/icons';
 import { Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
@@ -19,7 +20,7 @@ const AssetsForm = ({title, handleAsset, ...rest}) => {
         <Dashboard>
             <div>
                 <h2 className='text-center fs-4 fw-bold'>{asset ? 'EDIT ASSET' : 'ADD ASSET'}</h2>
-                <Formik initialValues={initialState} onSubmit={(values) => handleAsset(values)}>
+                <Formik initialValues={initialState} validationSchema={assetValidations} onSubmit={(values) => handleAsset(values)}>
                     <Form>
                         <Row>
                             <Col span={12}>
