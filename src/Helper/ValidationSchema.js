@@ -9,6 +9,7 @@ const email = yup.string().trim().matches(emailRegex, "Must be a valid email!").
 const username =  yup.string().trim().required("*Required")
 const password = yup.string().trim().matches(passwordRegex, "Your password is not strong").required("*Required")
 const contactNo = yup.string().matches(phoneRegExp, 'Phone number is not valid')
+const name = yup.string().trim().required("*Required")
 
 export const registerValidations = yup.object().shape({
     username : username,
@@ -46,6 +47,10 @@ export const userValidations = yup.object().shape({
 })
 
 export const assetValidations = yup.object().shape({
-    name : yup.string().trim().required("*Required"),
-    description : yup.string().trim().required("*Required") 
+    name : name,
+    description : name 
+})
+
+export const assetCategoryValidation = yup.object().shape({
+    name : name,
 })
