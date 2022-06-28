@@ -31,7 +31,7 @@ const AssetsForm = ({title, handleAsset, ...rest}) => {
                             </Col>
                         </Row>
                         <div className="d-flex mt-4 me-4 flex-row-reverse">
-                            <Link to="/users"><Button type="primary">Back</Button></Link>
+                            <Link to="/assets"><Button type="primary">Back</Button></Link>
                             <Button type="primary" htmlType="submit" className='me-3'>Submit</Button>
                         </div>				
                     </Form>

@@ -19,6 +19,10 @@ import AssetsListing from "../Pages/Assets/index"
 import AssetsAdd from "../Pages/Assets/AssetsAdd"
 import AssetsEdit from "../Pages/Assets/AssetsEdit"
 
+import AssetStatusListing from "../Pages/AssetStatus/index"
+import AssetStatusAdd from "../Pages/AssetStatus/AssetStatusAdd"
+import AssetStatusEdit from "../Pages/AssetStatus/AssetStatusEdit"
+
 const Router = ({history}) => {
     return (
         <BrowserRouter>
@@ -36,6 +40,9 @@ const Router = ({history}) => {
                 <RestrictedRoute exact path="/assets" component={AssetsListing}/>
                 <RestrictedRoute exact path="/assets/add" component={AssetsAdd}/>
                 <RestrictedRoute exact path="/assets/edit/:id" component={AssetsEdit} />
+                <RestrictedRoute exact path="/asset-status" component={AssetStatusListing}/>
+                <RestrictedRoute exact path="/asset-status/add" component={AssetStatusAdd}/>
+                <RestrictedRoute exact path="/asset-status/edit/:id" component={AssetStatusEdit} />
                 <Route path="*" component={NoMatchFound} />
             </Switch>
         </BrowserRouter>
