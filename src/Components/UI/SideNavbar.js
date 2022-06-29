@@ -9,6 +9,7 @@ const iconsData = [
     { icon : UserOutlined, label : 'Users', path:'/users'},
     { icon : LaptopOutlined, label : 'Assets', path:'/assets'},
     { icon : LaptopOutlined, label : 'Asset Types', path:'/asset-types'},
+    { icon : LaptopOutlined, label : 'Asset Status', path:'/asset-status'}
 ]
 
 const menuItems = iconsData.map((item, index) => {
