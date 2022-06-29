@@ -12,12 +12,14 @@ import ResetPassword from "../Pages/ResetPassword";
 import UsersListing from '../Pages/Users'
 import UsersAdd from "../Pages/Users/UsersAdd";
 import UsersEdit from "../Pages/Users/UsersEdit";
-
 import Profile from "../Pages/Profile";
-
 import AssetsListing from "../Pages/Assets/index"
 import AssetsAdd from "../Pages/Assets/AssetsAdd"
 import AssetsEdit from "../Pages/Assets/AssetsEdit"
+import AssetCategories from "../Pages/AssetCategories";
+import AssetCategoryAdd from "../Pages/AssetCategories/AssetCategoryAdd";
+import AssetCategoryEdit from "../Pages/AssetCategories/AssetCategoryEdit";
+import AssetDetails from "../Pages/Assets/AssetDetails";
 
 import AssetTypesListing from "../Pages/AssetTypes/index";
 import AssetTypeAdd from "../Pages/AssetTypes/AssetTypeAdd";
@@ -42,8 +44,13 @@ const Router = ({history}) => {
                 <RestrictedRoute exact path="/users/add" component={UsersAdd} />
                 <RestrictedRoute exact path="/users/edit/:id" component={UsersEdit} />
                 <RestrictedRoute exact path="/assets" component={AssetsListing}/>
+                <RestrictedRoute exact path="/assets/:id" component={AssetDetails} />
                 <RestrictedRoute exact path="/assets/add" component={AssetsAdd}/>
                 <RestrictedRoute exact path="/assets/edit/:id" component={AssetsEdit} />
+                <RestrictedRoute exact path="/asset-categories" component={AssetCategories} />
+                <RestrictedRoute exact path="/asset-categories/add" component={AssetCategoryAdd} />
+                <RestrictedRoute exact path="/asset-categories/edit/:id" component={AssetCategoryEdit} />
+
                 <RestrictedRoute exact path="/asset-types" component={AssetTypesListing}/>
                 <RestrictedRoute exact path="/asset-types/add" component={AssetTypeAdd}/>
                 <RestrictedRoute exact path="/asset-types/edit/:id" component={AssetTypeEdit} />

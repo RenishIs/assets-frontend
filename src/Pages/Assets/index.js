@@ -1,5 +1,5 @@
+import { Link, useHistory } from 'react-router-dom';
 import { Table, Space, Button, Modal } from 'antd';
-import { Link } from 'react-router-dom';
 import { tableColumns } from './CONSTANTS';
 import Dashboard from '../Dashboard';
 import { useMutation, useQuery } from '@apollo/client';
@@ -12,8 +12,10 @@ const confirm = Modal.confirm;
 const AssetsListing = () => {
 
 	const { data } = useQuery(GET_ASSETS_QUERY);
+	const history = useHistory()
 
-	const showDeleteConfirm = (id) => {
+	const showDeleteConfirm = (e, id) => {
+		e.stopPropagation(); 
 		confirm({
 		  title: 'Are you sure?',
 		  content: 'Do you really want to delete this Asset? This process cannot be undone.',
@@ -49,12 +51,19 @@ const AssetsListing = () => {
 		key: 'action',
 		render: (_, record) => (
 			<Space size="middle">
-				<Link to={`/assets/edit/${record.id}`}><EditFilled style={{color: "blue"}}/></Link>
-				<DeleteFilled style={{color: "red"}} onClick={() => showDeleteConfirm(record.id)}/>
+				<Link to="#"  onClick={(e) => {
+					e.stopPropagation();      
+					history.push(`/assets/edit/${record.id}`)
+				}}><EditFilled style={{color: "blue"}}/></Link>
+				<DeleteFilled style={{color: "red"}} onClick={(e) => showDeleteConfirm(e, record.id)}/>
 			</Space>
 		),
 	}]
 
+	const navigation = (id) => {
+		history.push(`/assets/${id}`)
+	}
+	
 	return (
 		<Dashboard>
 			<div className='text-center mb-3'>
@@ -63,7 +72,16 @@ const AssetsListing = () => {
                     <Link to={`/assets/add`}><Button type="primary">ADD</Button></Link>
                 </div>
             </div>
-			<Table bordered columns={columns} dataSource={data?.assets} pagination={false} />
+			<Table bordered 
+			       columns={columns} 
+				   dataSource={data?.assets.map(item => ({...item, key: item.id}))} 
+				   pagination={false} 
+				   onRow={(record, rowIndex) => {
+						return {
+							onClick: (event) => navigation(record.id) 
+						}
+				   }}
+				   />
 		</Dashboard>
 	)
 }

@@ -3,7 +3,7 @@ import { Formik, Form } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
 import Dashboard from '../Dashboard';
 import { assetValidations } from '../../Helper/ValidationSchema';
-import { UserOutlined, MailFilled, PhoneFilled} from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 import { Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 

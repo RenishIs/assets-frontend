@@ -1,7 +1,6 @@
 import { useField } from 'formik';
 import { Input } from 'antd';
 import { Link } from 'react-router-dom';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 const TextInput = ({label, forgotPassword=false, isPassword=false, isAuth=false, ...rest}) => {
 
@@ -23,9 +22,15 @@ const TextInput = ({label, forgotPassword=false, isPassword=false, isAuth=false,
                 )
             }
             </div>
-                
-                <Input className={`form-input`} size="large" {...field} {...props} />
+            {
+                isPassword ? (
+                    <Input.Password className={`form-input`} size="large" {...field} {...props} />
 
+                ) : (
+                    <Input className={`form-input`} size="large" {...field} {...props} />
+
+                )
+            }
             {
                 meta.touched && meta.error ? (
                     <div className="text-start ms-4 mb-0 fs-6 text-danger">{meta.error}</div>
