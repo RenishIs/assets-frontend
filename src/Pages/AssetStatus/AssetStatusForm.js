@@ -7,7 +7,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 
-const AssetsForm = ({title, handleAsset, ...rest}) => {
+const AssetsForm = ({title, handleAssetStatus, ...rest}) => {
 
     const { assetStatus } = rest
 

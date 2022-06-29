@@ -63,7 +63,7 @@ const AssetStatusListing = () => {
                     <Link to={`/asset-status/add`}><Button type="primary">ADD</Button></Link>
                 </div>
             </div>
-			<Table bordered columns={columns} dataSource={data?.assets} pagination={false} />
+			<Table bordered columns={columns} dataSource={data?.assetStatus} pagination={false} />
 		</Dashboard>
 	)
 }

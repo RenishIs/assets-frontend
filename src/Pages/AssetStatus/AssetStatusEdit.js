@@ -33,7 +33,7 @@ const AssetStatusEdit = () => {
 		<div>
 			{
 				data?.assetStatusById && (
-				<AssetsForm AssetStatusForm={handleAssetStatus} assetStatus={data?.assetStatusById} />
+				<AssetStatusForm handleAssetStatus={handleAssetStatus} assetStatus={data?.assetStatusById} />
 				)
 			}
 		</div>
