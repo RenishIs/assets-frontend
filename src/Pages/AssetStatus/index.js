@@ -7,6 +7,7 @@ import { GET_ASSET_STATUS_QUERY } from '../../gql/Query/AssetStatus';
 import { DELETE_ASSET_STATUS_MUTATION } from '../../gql/Mutation/AssetStatus';
 import openNotificationWithIcon from '../../Helper/Notification';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
+
 const confirm = Modal.confirm;
 
 const AssetStatusListing = () => {

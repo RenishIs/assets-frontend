@@ -27,7 +27,7 @@ const AssetsForm = ({title, handleAssetStatus, ...rest}) => {
                             </Col>
                         </Row>
                         <div className="d-flex mt-4 me-4 flex-row-reverse">
-                            <Link to="/assets-status"><Button type="primary">Back</Button></Link>
+                            <Link to="/asset-status"><Button type="primary">Back</Button></Link>
                             <Button type="primary" htmlType="submit" className='me-3'>Submit</Button>
                         </div>				
                     </Form>

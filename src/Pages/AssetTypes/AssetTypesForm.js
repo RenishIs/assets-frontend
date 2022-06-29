@@ -23,7 +23,7 @@ const AssetTypesForm = ({title, handleAssetType, ...rest}) => {
                     <Form>
                         <Row>
                             <Col span={12}>
-                                <TextInput label="NAME" name="name" id="name" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
+                                <TextInput label="TYPE" name="name" id="name" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
                             </Col>
                         </Row>
                         <div className="d-flex mt-4 me-4 flex-row-reverse">

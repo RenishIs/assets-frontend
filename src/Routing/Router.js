@@ -44,8 +44,8 @@ const Router = ({history}) => {
                 <RestrictedRoute exact path="/users/add" component={UsersAdd} />
                 <RestrictedRoute exact path="/users/edit/:id" component={UsersEdit} />
                 <RestrictedRoute exact path="/assets" component={AssetsListing}/>
-                <RestrictedRoute exact path="/assets/:id" component={AssetDetails} />
                 <RestrictedRoute exact path="/assets/add" component={AssetsAdd}/>
+                <RestrictedRoute exact path="/assets/:id" component={AssetDetails} />
                 <RestrictedRoute exact path="/assets/edit/:id" component={AssetsEdit} />
                 <RestrictedRoute exact path="/asset-categories" component={AssetCategories} />
                 <RestrictedRoute exact path="/asset-categories/add" component={AssetCategoryAdd} />

@@ -1,6 +1,6 @@
 import { Button } from "antd";
 import { Form, Formik } from "formik";
-import { KeyOutlined } from '@ant-design/icons';
+import {  EyeInvisibleOutlined, EyeFilled } from '@ant-design/icons';
 import { useMutation } from "@apollo/client";
 import TextInput from "../../Components/UI/TextInput";
 import { resetPasswordValidations } from "../../Helper/ValidationSchema";
@@ -32,8 +32,12 @@ const ResetPassword = () => {
             <Formik initialValues={initialState} validationSchema={resetPasswordValidations} onSubmit={values => onFinish(values)}>
                     <Form>
                         <div id="authForm">
-                            <TextInput label="New Password" type="password" name="newPassword" id="newPassword" prefix={<KeyOutlined style={{color : 'white'}}/>} isPassword={true}/>
-                            <TextInput label="Confirm Password" type="password" name="confirmPassword" id="confirmPassword" prefix={<KeyOutlined style={{color : 'white'}}/>} isPassword={true}/>
+                            <TextInput label="New Password" type="password" name="newPassword" id="newPassword" 
+                            prefix={<img src="/icon-password-key.png" alt="password"/>} isPassword={true}
+                            iconRender={(visible) => (visible ? <EyeFilled style={{color:"white", fontSize:"1rem"}}/> : <EyeInvisibleOutlined style={{color:"white" , fontSize:"1rem"}}/>)}/>
+                            <TextInput label="Confirm Password" type="password" name="confirmPassword" id="confirmPassword" 
+                            prefix={<img src="/icon-password-key.png" alt="password"/>} isPassword={true}
+                            iconRender={(visible) => (visible ? <EyeFilled style={{color:"white", fontSize:"1rem"}}/> : <EyeInvisibleOutlined style={{color:"white" , fontSize:"1rem"}}/>)}/>
                         </div>
                         <Button type="primary" className="auth-button" htmlType="submit" style={{width:"90%"}}>Submit</Button>
                     </Form>

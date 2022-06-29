@@ -5,6 +5,7 @@ import { UserOutlined } from '@ant-design/icons';
 import TextInput from '../../Components/UI/TextInput';
 import Dashboard from '../Dashboard';
 import { assetCategoryValidation } from '../../Helper/ValidationSchema';
+import { Row, Col } from 'antd';
 
 const AssetsForm = ({ handleAssetCategory, ...rest}) => {
 
@@ -20,7 +21,11 @@ const AssetsForm = ({ handleAssetCategory, ...rest}) => {
                 <h2 className='text-center fs-4 fw-bold'>{assetCategory ? 'EDIT ASSET CATEGORY' : 'ADD ASSET CATEGORY'}</h2>
                 <Formik initialValues={initialState} validationSchema={assetCategoryValidation} onSubmit={(values) => handleAssetCategory(values)}>
                     <Form>
-                        <TextInput label="NAME" name="name" id="name" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	  
+                        <Row>
+                            <Col span={12}>
+                                <TextInput label="NAME" name="name" id="name" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />
+                            </Col>
+                        </Row>  
                         <div className="d-flex mt-4 me-4 flex-row-reverse">
                             <Link to="/asset-categories"><Button type="primary">Back</Button></Link>
                             <Button type="primary" htmlType="submit" className='me-3'>Submit</Button>

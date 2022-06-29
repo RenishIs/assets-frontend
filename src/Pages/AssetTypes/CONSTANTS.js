@@ -1,6 +1,6 @@
 export const tableColumns = [
 	{
-		title: 'Name',
+		title: 'TYPE',
 		dataIndex: 'name',
 		key: 'name',
 		render: (text) => <span>{text}</span>,
