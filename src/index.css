@@ -88,8 +88,6 @@ code {
 
 .container-register-right{
 	margin-top: 80px;
-	/* margin-top: auto;
-	margin-bottom: auto; */
 	width: 50%;
 }
   
@@ -143,7 +141,6 @@ code {
 	border-radius: 0.25rem;
 	font-family: inherit;
 	font-size: inherit;
-	/* color: white; */
 	outline: none;
 	padding: 0.5rem;
 	background: none;
@@ -152,14 +149,12 @@ code {
 
 .header{
   background-color: white;
-  /* border-radius: 0px 0px 10px 10px; */
   box-shadow: 5px 8px 24px 5px rgba(208, 216, 243, 0.6) 
 }
 
 .main-card{
   background-color: white;
   box-shadow: 5px 8px 24px 5px rgba(208, 216, 243, 0.6);
-  /* border-radius: 10px; */
   height: fit-content;
 }
 

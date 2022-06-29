@@ -1,5 +1,5 @@
 import { Button } from "antd";
-import { MailFilled, MailTwoTone } from '@ant-design/icons';
+import { MailFilled, EyeInvisibleOutlined, EyeFilled } from '@ant-design/icons';
 import { Formik, Form } from 'formik';
 import { Link } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
@@ -10,7 +10,6 @@ import AuthLayout from "../../Components/AuthLayout";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER_MUTATION } from "../../gql/Mutation/Auth";
 import openNotificationWithIcon from "../../Helper/Notification";
-import { EyeInvisibleOutlined, EyeFilled } from '@ant-design/icons';
 
 const Login = () => {
 
@@ -32,7 +31,7 @@ const Login = () => {
 		Cookies.set('token', data?.loginUser?.token)
 		Cookies.set('user', JSON.stringify(data?.loginUser?.user))
 		openNotificationWithIcon('loginUser', 'success', "LOGIN SUCCESSFUL")
-		history.push('/dashboard');
+		history.push('/profile');
 	}
 
 	return (
@@ -41,7 +40,7 @@ const Login = () => {
 				<Form >
 					<div id="authForm">
 						<TextInput label="EMAIL" name="email" type="email" id="email" prefix={<MailFilled style={{ color: 'white' }} />} isAuth={true}/>
-						<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<img src="icon-password-key.png" alt="password" />} 
+						<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<img src="/icon-password-key.png" alt="password" />} 
 						isPassword={true} forgotPassword={true}
 						iconRender={(visible) => (visible ? <EyeFilled style={{color:"white", fontSize:"1rem"}}/> : <EyeInvisibleOutlined style={{color:"white" , fontSize:"1rem"}}/>)}
 						/>

@@ -7,6 +7,7 @@ import { GET_USERS_QUERY } from '../../gql/Query/Users/index';
 import { DELETE_USER_MUTATION } from '../../gql/Mutation/Users/index';
 import openNotificationWithIcon from '../../Helper/Notification';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
+
 const confirm = Modal.confirm;
 
 const UsersListing = () => {

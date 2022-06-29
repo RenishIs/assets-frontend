@@ -7,6 +7,7 @@ import { GET_ASSET_TYPES_QUERY } from '../../gql/Query/AssetTypes';
 import { DELETE_ASSET_TYPE_MUTATION } from '../../gql/Mutation/AssetTypes';
 import openNotificationWithIcon from '../../Helper/Notification';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
+
 const confirm = Modal.confirm;
 
 const AssetTypesListing = () => {
