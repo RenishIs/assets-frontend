@@ -12,7 +12,7 @@ const confirm = Modal.confirm;
 
 const AssetStatusListing = () => {
 
-	const { data } = useQuery(GET_ASSET_STATUS_QUERY);
+	const { data, loading : getLoading } = useQuery(GET_ASSET_STATUS_QUERY);
 
 	const showDeleteConfirm = (id) => {
 		confirm({
@@ -30,7 +30,7 @@ const AssetStatusListing = () => {
 		});
 	  }
 
-	const [deleteAssetStatus, { error, data : deletedAssetStatus }] = useMutation(DELETE_ASSET_STATUS_MUTATION, {
+	const [deleteAssetStatus, { error, data : deletedAssetStatus, loading : deleteLoading }] = useMutation(DELETE_ASSET_STATUS_MUTATION, {
 		refetchQueries: [
 			{ query: GET_ASSET_STATUS_QUERY },
 		]
@@ -64,7 +64,7 @@ const AssetStatusListing = () => {
                     <Link to={`/asset-status/add`}><Button type="primary">ADD</Button></Link>
                 </div>
             </div>
-			<Table bordered columns={columns} dataSource={data?.assetStatus} pagination={false} />
+			<Table bordered columns={columns} dataSource={data?.assetStatus} pagination={false} loading={getLoading || deleteLoading}/>
 		</Dashboard>
 	)
 }

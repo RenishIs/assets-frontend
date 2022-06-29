@@ -12,7 +12,7 @@ const confirm = Modal.confirm;
 
 const UsersListing = () => {
 
-    const { data } = useQuery(GET_USERS_QUERY)
+    const { data, loading : getLoading } = useQuery(GET_USERS_QUERY)
 
     const showDeleteConfirm = (id) => {
 		confirm({
@@ -30,7 +30,7 @@ const UsersListing = () => {
 		});
 	}
 
-    const [ DeleteUser, { error, data : deletedUser } ] = useMutation(DELETE_USER_MUTATION, {
+    const [ DeleteUser, { error, data : deletedUser, loading : deleteLoading } ] = useMutation(DELETE_USER_MUTATION, {
         refetchQueries: [
 			{ query: GET_USERS_QUERY },
 		]
@@ -63,7 +63,11 @@ const UsersListing = () => {
                     <Link to={`/users/add`}><Button type="primary">ADD</Button></Link>
                 </div>
             </div>
-                <Table bordered columns={columns} dataSource={data?.users.map(item => ({...item, key: item.id}))} pagination={false}/>
+                <Table bordered 
+				       columns={columns} 
+					   dataSource={data?.users.map(item => ({...item, key: item.id}))} 
+					   loading={getLoading || deleteLoading}
+					   pagination={false}/>
             </>
         </Dashboard>
     )

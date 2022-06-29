@@ -20,7 +20,7 @@ const tableColumns = [
 
 const AssetCategories = () => {
 
-	const { data } = useQuery(GET_ASSET_CATEGORIES_QUERY);
+	const { data, loading : getLoading } = useQuery(GET_ASSET_CATEGORIES_QUERY);
 
 	const showDeleteConfirm = (id) => {
 		confirm({
@@ -38,7 +38,7 @@ const AssetCategories = () => {
 		});
 	  }
 
-	const [ deleteAssetCategory, { data: deletedAssetCategory }] = useMutation(DELETE_ASSET_CATEGORY_MUTATION, {
+	const [ deleteAssetCategory, { data: deletedAssetCategory, loading : deleteLoading, }] = useMutation(DELETE_ASSET_CATEGORY_MUTATION, {
 		refetchQueries : [
 			{ query : GET_ASSET_CATEGORIES_QUERY }
 		]
@@ -67,7 +67,11 @@ const AssetCategories = () => {
                     <Link to={`/asset-categories/add`}><Button type="primary">ADD</Button></Link>
                 </div>
             </div>
-			<Table bordered columns={columns} dataSource={data?.assetCategories.map(item => ({...item, key: item.id}))} pagination={false} />
+			<Table bordered 
+			       columns={columns} 
+				   dataSource={data?.assetCategories.map(item => ({...item, key: item.id}))} 
+				   loading={getLoading || deleteLoading}
+				   pagination={false} />
 		</Dashboard>
 	)
 }

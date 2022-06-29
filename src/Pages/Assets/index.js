@@ -12,7 +12,7 @@ const confirm = Modal.confirm;
 
 const AssetsListing = () => {
 
-	const { data } = useQuery(GET_ASSETS_QUERY);
+	const { data, loading : getLoading } = useQuery(GET_ASSETS_QUERY);
 	const history = useHistory()
 
 	const showDeleteConfirm = (e, id) => {
@@ -32,7 +32,7 @@ const AssetsListing = () => {
 		});
 	  }
 
-	const [deleteAssets, { error, data : deletedAsset }] = useMutation(DELETE_ASSET_MUTATION, {
+	const [deleteAssets, { error, data : deletedAsset, loading : deleteLoading }] = useMutation(DELETE_ASSET_MUTATION, {
 		refetchQueries: [
 			{ query: GET_ASSETS_QUERY },
 		]
@@ -82,6 +82,7 @@ const AssetsListing = () => {
 							onClick: (event) => navigation(record.id) 
 						}
 				   }}
+				   loading={getLoading || deleteLoading}
 				   />
 		</Dashboard>
 	)
