@@ -22,9 +22,11 @@ const AssetTypesForm = ({title, handleAssetType, ...rest}) => {
                 <Formik initialValues={initialState} validationSchema={assetTypeValidations} onSubmit={(values) => handleAssetType(values)}>
                     <Form>
                         <Row>
+                            <Col span={6}></Col>
                             <Col span={12}>
                                 <TextInput label="TYPE" name="name" id="name" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
                             </Col>
+                            <Col span={6}></Col>
                         </Row>
                         <div className="d-flex mt-4 me-4 flex-row-reverse">
                             <Link to="/asset-types"><Button type="primary">Back</Button></Link>

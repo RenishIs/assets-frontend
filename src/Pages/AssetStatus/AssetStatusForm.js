@@ -22,9 +22,11 @@ const AssetsForm = ({title, handleAssetStatus, ...rest}) => {
                 <Formik initialValues={initialState} validationSchema={assetStatusValidations} onSubmit={(values) => handleAssetStatus(values)}>
                     <Form>
                         <Row>
+                            <Col span={6}></Col>
                             <Col span={12}>
                                 <TextInput label="STATUS" name="name" id="name" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
                             </Col>
+                            <Col span={6}></Col>
                         </Row>
                         <div className="d-flex mt-4 me-4 flex-row-reverse">
                             <Link to="/asset-status"><Button type="primary">Back</Button></Link>
