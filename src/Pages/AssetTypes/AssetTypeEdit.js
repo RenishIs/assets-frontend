@@ -25,7 +25,7 @@ const AssetTypeEdit = () => {
 	}
 
 	if (updatedData) {
-		openNotificationWithIcon('editAssetType','success', "ASSET EDITED SUCCESSFULLY")
+		openNotificationWithIcon('editAssetType','success', "ASSET TYPE EDITED SUCCESSFULLY")
 		history.push('/asset-types');
 	}
 	
