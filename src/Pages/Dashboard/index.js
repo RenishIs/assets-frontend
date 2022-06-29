@@ -11,6 +11,8 @@ const Dashboard = ({children}) => {
     const [collapsed, setCollapsed] = useState(false);
     const history = useHistory()
 
+    const user= Cookies.get('user')
+
     const logoutUser = () => {
         Cookies.remove('token')
         history.push('/login')
@@ -49,7 +51,7 @@ const Dashboard = ({children}) => {
                                 <Dropdown overlay={menu} trigger={['click']} >
                                     <div className='text-center d-flex align-items-center justify-content-end fs-5 fw-bolder'>
                                         <img src="/user-1.png" alt='pic' width="45px" /> &nbsp;
-                                        Hi, {JSON.parse(localStorage.getItem('user'))?.username}
+                                        Hi, {user}
                                     </div>
                                 </Dropdown>
                             </Col>
