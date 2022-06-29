@@ -54,3 +54,11 @@ export const assetValidations = yup.object().shape({
 export const assetCategoryValidation = yup.object().shape({
     name : name,
 })
+
+export const assetTypeValidations = yup.object().shape({
+    name : name
+})
+
+export const assetStatusValidations = yup.object().shape({
+    name : name
+})

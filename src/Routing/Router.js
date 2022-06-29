@@ -21,6 +21,14 @@ import AssetCategoryAdd from "../Pages/AssetCategories/AssetCategoryAdd";
 import AssetCategoryEdit from "../Pages/AssetCategories/AssetCategoryEdit";
 import AssetDetails from "../Pages/Assets/AssetDetails";
 
+import AssetTypesListing from "../Pages/AssetTypes/index";
+import AssetTypeAdd from "../Pages/AssetTypes/AssetTypeAdd";
+import AssetTypeEdit from "../Pages/AssetTypes/AssetTypeEdit";
+
+import AssetStatusListing from "../Pages/AssetStatus/index"
+import AssetStatusAdd from "../Pages/AssetStatus/AssetStatusAdd"
+import AssetStatusEdit from "../Pages/AssetStatus/AssetStatusEdit"
+
 const Router = ({history}) => {
     return (
         <BrowserRouter>
@@ -43,6 +51,12 @@ const Router = ({history}) => {
                 <RestrictedRoute exact path="/asset-categories/add" component={AssetCategoryAdd} />
                 <RestrictedRoute exact path="/asset-categories/edit/:id" component={AssetCategoryEdit} />
 
+                <RestrictedRoute exact path="/asset-types" component={AssetTypesListing}/>
+                <RestrictedRoute exact path="/asset-types/add" component={AssetTypeAdd}/>
+                <RestrictedRoute exact path="/asset-types/edit/:id" component={AssetTypeEdit} />
+                <RestrictedRoute exact path="/asset-status" component={AssetStatusListing}/>
+                <RestrictedRoute exact path="/asset-status/add" component={AssetStatusAdd}/>
+                <RestrictedRoute exact path="/asset-status/edit/:id" component={AssetStatusEdit} />
                 <Route path="*" component={NoMatchFound} />
             </Switch>
         </BrowserRouter>
