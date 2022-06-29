@@ -49,3 +49,7 @@ export const assetValidations = yup.object().shape({
     name : yup.string().trim().required("*Required"),
     description : yup.string().trim().required("*Required") 
 })
+
+export const assetTypeValidations = yup.object().shape({
+    name : yup.string().trim().required("*Required")
+})
