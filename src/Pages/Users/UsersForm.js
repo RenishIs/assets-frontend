@@ -5,7 +5,7 @@ import TextInput from '../../Components/UI/TextInput';
 import { userValidations } from '../../Helper/ValidationSchema';
 import Dashboard from '../Dashboard';
 import { Row, Col } from 'antd';
-import { EyeInvisibleOutlined, EyeFilled, KeyOutlined, EnvironmentFilled } from '@ant-design/icons';
+import { KeyOutlined, EnvironmentFilled } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
 const UsersForm = ({title, handleUser, ...rest}) => {
@@ -29,28 +29,55 @@ const UsersForm = ({title, handleUser, ...rest}) => {
                     <Form>
                         <Row>
                             <Col span={12}>
-                                <TextInput label="USERNAME" name="username" id="username" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true}/>
+                                <TextInput label="USERNAME" 
+                                           name="username" 
+                                           id="username" 
+                                           prefix={<UserOutlined style={{color : 'black'}}/>} 
+                                           isLabel={true}/>
                             </Col>
                             <Col span={12}>
-                                <TextInput label="EMAIL" name="email" id="email" type="email" prefix={<MailFilled style={{color : 'black'}}/>} isLabel={true}/>
+                                <TextInput label="EMAIL" 
+                                           name="email" 
+                                           id="email" 
+                                           type="email" 
+                                           prefix={<MailFilled style={{color : 'black'}}/>} 
+                                           isLabel={true}/>
                             </Col>
                         </Row>
                         <Row>
                             <Col span={12}>
-                                <TextInput label="CONTACT NUMBER" name="contactNo" id="contactNo" prefix={<PhoneFilled style={{color : 'black'}}/>} isLabel={true}/>
+                                <TextInput label="CONTACT NUMBER" 
+                                           name="contactNo" 
+                                           id="contactNo" 
+                                           prefix={<PhoneFilled style={{color : 'black'}}/>} 
+                                           isLabel={true}/>
                             </Col>
                             <Col span={12}>
-                                <TextInput label="ADDRESS" name="address" id="address" isLabel={true} prefix={<EnvironmentFilled style={{color : 'black'}}/>}/>
+                                <TextInput label="ADDRESS" 
+                                           name="address" 
+                                           id="address"  
+                                           prefix={<EnvironmentFilled style={{color : 'black'}}/>}
+                                           isLabel={true}/>
                             </Col>
                         </Row>
                         <Row>
                             <Col span={12}>
-                                <TextInput label="ROLE" name="role" id="role" isLabel={true} prefix={<UserOutlined style={{color : 'black'}}/>}/>
+                                <TextInput label="ROLE" 
+                                           name="role" 
+                                           id="role"
+                                           prefix={<UserOutlined style={{color : 'black'}}/>}
+                                           isLabel={true}/>
                             </Col>
                             <Col span={12}>
-                                <TextInput label="PASSWORD" name="password" id="password" type="password" isPassword={true} isAuth={false} isLabel={true} 
-                                prefix={<KeyOutlined/>}
-                                iconRender={(visible) => (visible ? <EyeFilled style={{color:"black", fontSize:"1rem"}}/> : <EyeInvisibleOutlined style={{color:"black" , fontSize:"1rem"}}/>)}/>
+                                <TextInput label="PASSWORD" 
+                                           name="password" 
+                                           id="password" 
+                                           type="password" 
+                                           isPassword={true} 
+                                           isAuth={false} 
+                                           disabled={user}
+                                           prefix={<KeyOutlined/>}
+                                           isLabel={true} />
                             </Col>
                         </Row>
                         <div className="d-flex mt-4 me-4 flex-row-reverse">

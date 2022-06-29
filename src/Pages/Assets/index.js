@@ -31,7 +31,10 @@ const AssetsListing = () => {
 		key: 'action',
 		render: (_, record) => (
 			<Space size="middle">
-				<Link to={`/assets/edit/${record.id}`}><EditFilled style={{color: "blue"}}/></Link>
+				<Link to="#"  onClick={(e) => {
+					e.stopPropagation();      
+					history.push(`/assets/edit/${record.id}`)
+				}}><EditFilled style={{color: "blue"}}/></Link>
 				<DeleteFilled style={{color: "red"}} onClick={() => deleteAssets({ variables:  { deleteAssetsId: record.id } } )}/>
 			</Space>
 		),
