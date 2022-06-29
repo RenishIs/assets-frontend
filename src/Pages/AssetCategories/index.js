@@ -48,7 +48,7 @@ const AssetCategories = () => {
                     <Link to={`/asset-categories/add`}><Button type="primary">ADD</Button></Link>
                 </div>
             </div>
-			<Table bordered columns={columns} dataSource={data?.assetCategories} pagination={false} />
+			<Table bordered columns={columns} dataSource={data?.assetCategories.map(item => ({...item, key: item.id}))} pagination={false} />
 		</Dashboard>
 	)
 }

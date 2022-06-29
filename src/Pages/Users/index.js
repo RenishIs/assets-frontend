@@ -45,7 +45,7 @@ const UsersListing = () => {
                     <Link to={`/users/add`}><Button type="primary">ADD</Button></Link>
                 </div>
             </div>
-                <Table bordered columns={columns} dataSource={data?.users} pagination={false}/>
+                <Table bordered columns={columns} dataSource={data?.users.map(item => ({...item, key: item.id}))} pagination={false}/>
             </>
         </Dashboard>
     )

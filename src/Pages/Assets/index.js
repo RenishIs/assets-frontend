@@ -1,5 +1,5 @@
 import { Table, Space, Button } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { tableColumns } from './CONSTANTS';
 import Dashboard from '../Dashboard';
 import { useMutation, useQuery } from '@apollo/client';
@@ -11,6 +11,7 @@ import { EditFilled, DeleteFilled } from '@ant-design/icons';
 const AssetsListing = () => {
 
 	const { data } = useQuery(GET_ASSETS_QUERY);
+	const history = useHistory()
 
 	const [deleteAssets, { error, data : deletedAsset }] = useMutation(DELETE_ASSET_MUTATION, {
 		refetchQueries: [
@@ -36,6 +37,10 @@ const AssetsListing = () => {
 		),
 	}]
 
+	const navigation = (id) => {
+		history.push(`/assets/${id}`)
+	}
+	
 	return (
 		<Dashboard>
 			<div className='text-cente mb-3'>
@@ -44,7 +49,16 @@ const AssetsListing = () => {
                     <Link to={`/assets/add`}><Button type="primary">ADD</Button></Link>
                 </div>
             </div>
-			<Table bordered columns={columns} dataSource={data?.assets} pagination={false} />
+			<Table bordered 
+			       columns={columns} 
+				   dataSource={data?.assets.map(item => ({...item, key: item.id}))} 
+				   pagination={false} 
+				   onRow={(record, rowIndex) => {
+						return {
+							onClick: (event) => navigation(record.id) 
+						}
+				   }}
+				   />
 		</Dashboard>
 	)
 }
