@@ -5,11 +5,11 @@ const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0
 const passwordRegex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
-const email = yup.string().trim().matches(emailRegex, "Must be a valid email!").required("*Required")
-const username =  yup.string().trim().required("*Required")
-const password = yup.string().trim().matches(passwordRegex, "Your password is not strong").required("*Required")
+const email = yup.string().trim().matches(emailRegex, "Must be a valid email!").required("*Email is required")
+const username =  yup.string().trim().required("*Username is required")
+const password = yup.string().trim().matches(passwordRegex, "Your password is not strong").required("*Password is required")
 const contactNo = yup.string().matches(phoneRegExp, 'Phone number is not valid')
-const name = yup.string().trim().required("*Required")
+const name = yup.string().trim().required("*Name is required")
 
 export const registerValidations = yup.object().shape({
     username : username,
@@ -48,7 +48,7 @@ export const userValidations = yup.object().shape({
 
 export const assetValidations = yup.object().shape({
     name : name,
-    description : name 
+    description : name.required("*Description is required") 
 })
 
 export const assetCategoryValidation = yup.object().shape({

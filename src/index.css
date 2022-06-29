@@ -172,3 +172,7 @@ div#authForm .ant-input:focus{
 	display: inline-block;
 	float: right;
 }
+
+.ant-input-prefix {
+    margin-right: 10px;
+}

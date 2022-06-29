@@ -41,9 +41,9 @@ const Registration = () => {
 			<Formik initialValues={initialValues} validationSchema={registerValidations} onSubmit={(values) => onFinish(values)}>
 				<Form>
 					<div id="authForm">
-						<TextInput label="USERNAME" name="username" type="text" id="username" prefix={<UserOutlined style={{color : 'white'}}/>} />	
-						<TextInput label="EMAIL" name="email" type="email" id="email" prefix={<MailFilled style={{color : 'white'}} />}/>		
-						<TextInput label="PASSWORD" name="password" type="password" id="password" prefix={<img src="/icon-password-key.png" alt="password"/>} 
+						<TextInput label="USERNAME" placeholder="USERNAME" name="username" type="text" id="username" prefix={<UserOutlined style={{color : 'white'}}/>} />	
+						<TextInput label="EMAIL" placeholder="EMAIL" name="email" type="email" id="email" prefix={<MailFilled style={{color : 'white'}} />}/>		
+						<TextInput label="PASSWORD" placeholder="PASSWORD" name="password" type="password" id="password" prefix={<img src="/icon-password-key.png" alt="password"/>} 
 						isPassword={true}
 						iconRender={(visible) => (visible ? <EyeFilled style={{color:"white", fontSize:"1rem"}}/> : <EyeInvisibleOutlined style={{color:"white" , fontSize:"1rem"}}/>)}
 						/>

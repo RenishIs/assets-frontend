@@ -2,7 +2,7 @@ import { useField } from 'formik';
 import { Input } from 'antd';
 import { Link } from 'react-router-dom';
 
-const TextInput = ({label, forgotPassword=false, isPassword=false, isAuth=false, ...rest}) => {
+const TextInput = ({label, forgotPassword=false, isPassword=false, ...rest}) => {
 
     const { isLabel, ...props } = rest
     const [field, meta] = useField(props)
