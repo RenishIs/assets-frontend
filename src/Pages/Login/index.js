@@ -29,7 +29,7 @@ const Login = () => {
 
 	if (data?.loginUser?.token) {
 		Cookies.set('token', data?.loginUser?.token)
-		Cookies.set('user', JSON.stringify(data?.loginUser?.user))
+		Cookies.set('user', data?.loginUser?.user?.username)
 		openNotificationWithIcon('loginUser', 'success', "LOGIN SUCCESSFUL")
 		history.push('/profile');
 	}
