@@ -1,12 +1,23 @@
 import { Button } from 'antd';
 import { UserOutlined, MailFilled, PhoneFilled} from '@ant-design/icons';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
 import { userValidations } from '../../Helper/ValidationSchema';
 import Dashboard from '../Dashboard';
 import { Row, Col } from 'antd';
 import { KeyOutlined, EnvironmentFilled } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+
+const items=[
+    {
+        label: 'Admin',
+        key: 'Admin',
+    },
+    {
+        label: 'Employee',
+        key: 'Employee',
+    },
+  ]
 
 const UsersForm = ({title, handleUser, ...rest}) => {
 
@@ -62,11 +73,20 @@ const UsersForm = ({title, handleUser, ...rest}) => {
                         </Row>
                         <Row>
                             <Col span={12}>
-                                <TextInput label="ROLE" 
-                                           name="role" 
-                                           id="role"
-                                           prefix={<UserOutlined style={{color : 'black'}}/>}
-                                           isLabel={true}/>
+                                <div className='text-start ms-4 mb-1 mt-4'>
+                                    <label htmlFor="role" className="text-body text-start fs-6 fw-bold">ROLE</label>
+                                </div>
+                                <Field as="select" 
+                                       name="role" 
+                                       id="role"  
+                                       style={{height:"43px"}} 
+                                       className="form-input">
+                                   {
+                                    items.map(item => (
+                                        <option value={item.label} key={item.key}>{item.label}</option>
+                                    ))
+                                   }
+                                </Field>
                             </Col>
                             <Col span={12}>
                                 <TextInput label="PASSWORD" 
