@@ -33,7 +33,7 @@ const Profile = () => {
                             <span className="text-body fw-bold">Role</span> 
                         </div>
                         <div>
-                            <span className="text-muted">{data?.Profile?.role}</span>
+                            <span className="text-muted">{data?.Profile?.role?.name}</span>
                         </div>
                     </div>
                     <div className="mb-3">

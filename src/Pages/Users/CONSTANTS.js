@@ -28,5 +28,6 @@ export const tableColumns = [
 		title: 'ROLE',
 		dataIndex: 'role',
 		key: 'role',
+		render: (text) => <span>{text.name}</span>
 	},
 ]
