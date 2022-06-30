@@ -1,6 +1,6 @@
-import { Button, Select, Dropdown, Menu } from 'antd';
+import { Button } from 'antd';
 import { UserOutlined, MailFilled, PhoneFilled} from '@ant-design/icons';
-import { Formik, Form, useField } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
 import { userValidations } from '../../Helper/ValidationSchema';
 import Dashboard from '../Dashboard';
@@ -8,23 +8,16 @@ import { Row, Col } from 'antd';
 import { KeyOutlined, EnvironmentFilled } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
-const { Option } = Select;
-const options = ['Admin', 'Employee']
-
-const MySelect = ({ label, ...props }) => {
-    const [field, meta] = useField(props);
-    return (
-        <div className='mt-4 w-full'>
-            <div className='text-start ms-4 mb-1'>
-                <label htmlFor={props.id || props.name} className="text-body text-start fs-6 fw-bold">{label}</label>
-            </div>
-            <Select {...field} {...props} style={{width : '100%'}}/>
-            {meta.touched && meta.error ? (
-            <div className="error">{meta.error}</div>
-            ) : null}
-      </div>
-    );
-};
+const items=[
+    {
+        label: 'Admin',
+        key: 'Admin',
+    },
+    {
+        label: 'Employee',
+        key: 'Employee',
+    },
+  ]
 
 const UsersForm = ({title, handleUser, ...rest}) => {
 
@@ -80,20 +73,20 @@ const UsersForm = ({title, handleUser, ...rest}) => {
                         </Row>
                         <Row>
                             <Col span={12}>
-                                {/* <Select id="role" name="role" defaultValue={options[0]}  style={{width : '100%'}}>
-                                {
-                                    options.map(option => (
-                                        <Option value={options} key={option}>{option}</Option>
+                                <div className='text-start ms-4 mb-1 mt-4'>
+                                    <label htmlFor="role" className="text-body text-start fs-6 fw-bold">ROLE</label>
+                                </div>
+                                <Field as="select" 
+                                       name="role" 
+                                       id="role"  
+                                       style={{height:"43px"}} 
+                                       className="form-input">
+                                   {
+                                    items.map(item => (
+                                        <option value={item.label} key={item.key}>{item.label}</option>
                                     ))
-                                }
-                                </Select> */}
-                                <MySelect name="role" id="role" label="ROLE">
-                                {
-                                    options.map(option => (
-                                        <Option value={option}>{option}</Option>
-                                    ))
-                                }
-                                </MySelect>
+                                   }
+                                </Field>
                             </Col>
                             <Col span={12}>
                                 <TextInput label="PASSWORD" 
