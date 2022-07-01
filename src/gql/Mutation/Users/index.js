@@ -8,7 +8,9 @@ export const CREATE_USER_MUTATION = gql`
             email
             contactNo
             address
-            role
+            role {
+                name
+            }
             password
             isActive
         }
@@ -23,7 +25,9 @@ export const UPDATE_USER_MUTATION = gql`
             email
             contactNo
             address
-            role
+            role {
+                name
+            }
             password
             isActive
         }

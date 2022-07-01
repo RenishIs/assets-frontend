@@ -8,7 +8,10 @@ query Query {
     email
     contactNo
     address
-    role
+    role{
+      id,
+      name
+    }
     password
     isActive
   }

@@ -7,28 +7,22 @@ import Dashboard from '../Dashboard';
 import { Row, Col } from 'antd';
 import { KeyOutlined, EnvironmentFilled } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { GET_USER_ROLE } from '../../gql/Query/Users/index';
 
-const items=[
-    {
-        label: 'Admin',
-        key: 'Admin',
-    },
-    {
-        label: 'Employee',
-        key: 'Employee',
-    },
-  ]
 
 const UsersForm = ({title, handleUser, ...rest}) => {
 
     const {user} = rest
+
+    const { data } = useQuery(GET_USER_ROLE)
 
     const initialState = {
         username : user ? user.username : '',
         email : user ? user.email : '',
         contactNo : user ? user.contactNo : '',
         address : user ? user.address : '',
-        role : user ? user.role : '',
+        role : user ? user.role.id : '',
         password : user ? user.password : ''
     }
 
@@ -82,8 +76,8 @@ const UsersForm = ({title, handleUser, ...rest}) => {
                                        style={{height:"43px"}} 
                                        className="form-input">
                                    {
-                                    items.map(item => (
-                                        <option value={item.label} key={item.key}>{item.label}</option>
+                                    data?.role.map(item => (
+                                        <option value={item.id} key={item.id}>{item.name}</option>
                                     ))
                                    }
                                 </Field>

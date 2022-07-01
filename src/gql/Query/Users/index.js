@@ -6,7 +6,10 @@ export const GET_USERS_QUERY = gql`
 			id
 			username
 			email
-			role
+			role{
+				id,
+				name
+			}
 			password
 			isActive
 			address
@@ -20,11 +23,21 @@ export const GET_USER_BY_ID_QUERY = gql`
 			id,
 			username,
 			email,
-			role,
+			role{
+				id,
+				name
+			},
 			password,
 			address,
 			contactNo
 		}
 	}
 `
-
+export const GET_USER_ROLE = gql`
+	query Role {
+		role {
+		id
+		name
+		}
+	}
+`

@@ -20,7 +20,9 @@ export const LOGIN_USER_MUTATION = gql`
                 id
                 username
                 email
-                role
+                role {
+					name
+				}
             }
 		}
 	}
