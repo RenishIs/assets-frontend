@@ -29,7 +29,6 @@ const UsersForm = ({title, handleUser, ...rest}) => {
     return (
         <Dashboard>
             <div>
-                {console.log(user,'user')}
                 <h2 className='text-center fs-4 fw-bold'>{user ? 'EDIT USER' : 'ADD USER'}</h2>
                 <Formik initialValues={initialState} validationSchema={userValidations} onSubmit={(values) => handleUser(values)}>
                     <Form>
