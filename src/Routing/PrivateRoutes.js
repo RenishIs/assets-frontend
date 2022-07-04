@@ -9,23 +9,22 @@ import Cookies from 'js-cookie';
 const PrivateRoutes = () => {
     const match = useRouteMatch('/app')
 
+    console.log(useRouteMatch('/profile'))
+
     let allowedRoutes = [];
 
     const isLoggedIn = Cookies.get('token')
     if (isLoggedIn) {
         allowedRoutes = getAllowedRoutes(PrivateRoutesConfig);
-        console.log(isLoggedIn)
-
     } else {
         return <Redirect to="/" />;
     }
 
     return (
         <Fragment>
-            <Dashboard routes={allowedRoutes} path={match.path}/>
-            <h2>jbkj</h2>
-        {/* <TopNav routes={allowedRoutes}  path={match.path} className="bg-white" /> */}
-            <MapAllowedRoutes routes={allowedRoutes} isAddNotFound />
+            <Dashboard routes={allowedRoutes} path={match.path}>
+                <MapAllowedRoutes routes={allowedRoutes} isAddNotFound />
+            </Dashboard>
         </Fragment>
     )
 }

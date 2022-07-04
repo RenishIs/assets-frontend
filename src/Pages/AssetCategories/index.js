@@ -60,7 +60,7 @@ const AssetCategories = () => {
 	}]
 
 	return (
-		<Dashboard>
+		<>
 			<div className='text-cente mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSET CATEGORIES</h2>
                 <div className='add-button'>
@@ -68,7 +68,7 @@ const AssetCategories = () => {
                 </div>
             </div>
 			<Table bordered columns={columns} dataSource={data?.assetCategories.map(item => ({...item, key: item.id}))} pagination={false} />
-		</Dashboard>
+		</>
 	)
 }
 

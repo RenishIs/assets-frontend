@@ -14,7 +14,7 @@ import openNotificationWithIcon from "../../Helper/Notification";
 const Login = () => {
 
 	const history = useHistory();
-	const initialValues = { email: '', password: '' }
+	const initialValues = { email: 'blessyf.albiorix@gmail.com', password: 'Blessy@123' }
 	const [loginUser, { data, error }] = useMutation(LOGIN_USER_MUTATION);
 
 	const onFinish = (values) => {

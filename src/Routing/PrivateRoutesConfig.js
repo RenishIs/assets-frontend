@@ -72,9 +72,9 @@ export const PrivateRoutesConfig = [
     {
         key : 3,
         icon : React.createElement(UserOutlined, {className : 'side-nav-bar-icons',}),
-        label : <Link to="/users">Users</Link>,
+        label : <Link to="/app/users">Users</Link>,
         component : UsersListing,
-        path : '/users',
+        path : '/app/users',
         exact : true,
         permissions : [
             Roles.ADMIN,
@@ -98,9 +98,9 @@ export const PrivateRoutesConfig = [
     {
         key : 6,
         icon : React.createElement(LaptopOutlined, {className : 'side-nav-bar-icons',}),
-        label : <Link to="/assets">Assets</Link>,
+        label : <Link to="/app/assets">Assets</Link>,
         component : AssetsListing,
-        path : '/assets',
+        path : '/app/assets',
         exact : true,
         permissions : [
             Roles.ADMIN
@@ -129,9 +129,9 @@ export const PrivateRoutesConfig = [
     {
         key : 10,
         icon : React.createElement(LaptopOutlined, {className : 'side-nav-bar-icons',}),
-        label : <Link to="/asset-categories">Asset Categories</Link>,
+        label : <Link to="/app/asset-categories">Asset Categories</Link>,
         component : AssetCategories,
-        path : '/asset-categories',
+        path : '/app/asset-categories',
         exact : true,
         permissions : [
             Roles.ADMIN
@@ -154,9 +154,9 @@ export const PrivateRoutesConfig = [
     {
         key : 13,
         icon : React.createElement(LaptopOutlined, {className : 'side-nav-bar-icons',}),
-        label : <Link to="/asset-types">Asset Types</Link>,
+        label : <Link to="/app/asset-types">Asset Types</Link>,
         component : AssetTypesListing,
-        path : '/asset-types',
+        path : '/app/asset-types',
         exact : true,
         permissions : [
             Roles.ADMIN
@@ -179,9 +179,9 @@ export const PrivateRoutesConfig = [
     {
         key : 16,
         icon : React.createElement(LaptopOutlined, {className : 'side-nav-bar-icons',}),
-        label : <Link to="/asset-status">Asset Status</Link>,
+        label : <Link to="/app/asset-status">Asset Status</Link>,
         component : AssetStatusListing,
-        path : '/asset-status',
+        path : '/app/asset-status',
         exact : true,
         permissions : [
             Roles.ADMIN

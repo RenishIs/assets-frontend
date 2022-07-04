@@ -9,9 +9,9 @@ const PublicRoutes = () => {
 	return (
 		<Fragment>
 			<Switch>
-				<Route exact path="/forgot-password" component={ForgotPassword}/>
-				<Route exact path="/register" component={Registration}/>
+				<Route exact path="/" component={Registration}/>
 				<Route exact path="/login" component={Login}/>
+				<Route exact path="/forgot-password" component={ForgotPassword}/>
 				<Route path="/reset-password/:id" component={ResetPassword}/>
 			</Switch>
 		</Fragment>

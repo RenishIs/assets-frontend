@@ -1,7 +1,6 @@
 import { Table, Space, Button, Modal } from 'antd';
 import { Link } from 'react-router-dom';
 import { tableColumns } from './CONSTANTS';
-import Dashboard from '../Dashboard';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_ASSET_STATUS_QUERY } from '../../gql/Query/AssetStatus';
 import { DELETE_ASSET_STATUS_MUTATION } from '../../gql/Mutation/AssetStatus';
@@ -57,7 +56,7 @@ const AssetStatusListing = () => {
 	}]
 
 	return (
-		<Dashboard>
+		<>
 			<div className='text-cente mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSET STATUS</h2>
                 <div className='add-button'>
@@ -65,7 +64,7 @@ const AssetStatusListing = () => {
                 </div>
             </div>
 			<Table bordered columns={columns} dataSource={data?.assetStatus} pagination={false} />
-		</Dashboard>
+		</>
 	)
 }
 
