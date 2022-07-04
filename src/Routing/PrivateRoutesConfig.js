@@ -53,6 +53,7 @@ export const PrivateRoutesConfig = [
         sidebar : false,
         component: Profile,
         path: '/profile',
+        exact : true,
         permissions: [
             Roles.ADMIN,
             Roles.EMPLOYEE,

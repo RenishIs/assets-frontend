@@ -3,7 +3,12 @@ const { Sider } = Layout;
 
 const SideNavbar = ({collapsed, routes, path}) => {
 
-    const menuItems = routes?.filter(route => route.sidebar)
+    const updated = routes?.filter(route => route.sidebar).map(item => {
+        const a = {...item}
+        delete a.sidebar
+        delete a.exact
+        return ({...a})
+    } )
     
     return (
         <Sider width='18%' height="100vh" className='overflow-hidden' collapsible collapsed={collapsed} trigger={null} >
@@ -16,7 +21,7 @@ const SideNavbar = ({collapsed, routes, path}) => {
                 mode="inline"
                 defaultSelectedKeys={['1']}
                 className='side-nav-bar-menu-items fs-6'
-                items={menuItems}
+                items={updated}
                   />
         </Sider>
     )
