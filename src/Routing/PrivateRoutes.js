@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { Redirect, useRouteMatch } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { getAllowedRoutes } from './filterRoutes';
+import { getAllowedRoutes } from '../Helper/getAllowedRoutes';
 import { PrivateRoutesConfig } from './PrivateRoutesConfig';
 import MainLayout from '../Components/MainLayout';
 import MapAllowedRoutes from './MapAllowedRoutes';
