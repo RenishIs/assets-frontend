@@ -7,7 +7,7 @@ import MainLayout from '../Components/MainLayout';
 import MapAllowedRoutes from './MapAllowedRoutes';
 
 const PrivateRoutes = () => {
-    const match = useRouteMatch('/app')
+    const match = useRouteMatch('')
     let allowedRoutes = [];
 
     const isLoggedIn = Cookies.get('token')

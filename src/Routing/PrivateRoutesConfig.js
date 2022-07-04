@@ -62,9 +62,9 @@ export const PrivateRoutesConfig = [
         key : 3,
         sidebar : true,
         icon : React.createElement(UserOutlined, {className : 'side-nav-bar-icons',}),
-        label : <Link to="/app/users">Users</Link>,
+        label : <Link to="/users">Users</Link>,
         component : UsersListing,
-        path : '/app/users',
+        path : '/users',
         exact : true,
         permissions : [
             Roles.ADMIN,
@@ -89,9 +89,9 @@ export const PrivateRoutesConfig = [
         key : 6,
         sidebar : true,
         icon : React.createElement(LaptopOutlined, {className : 'side-nav-bar-icons',}),
-        label : <Link to="/app/assets">Assets</Link>,
+        label : <Link to="/assets">Assets</Link>,
         component : AssetsListing,
-        path : '/app/assets',
+        path : '/assets',
         exact : true,
         permissions : [
             Roles.ADMIN
@@ -121,9 +121,9 @@ export const PrivateRoutesConfig = [
         key : 10,
         sidebar : true,
         icon : React.createElement(LaptopOutlined, {className : 'side-nav-bar-icons',}),
-        label : <Link to="/app/asset-categories">Asset Categories</Link>,
+        label : <Link to="/asset-categories">Asset Categories</Link>,
         component : AssetCategories,
-        path : '/app/asset-categories',
+        path : '/asset-categories',
         exact : true,
         permissions : [
             Roles.ADMIN
@@ -147,9 +147,9 @@ export const PrivateRoutesConfig = [
         key : 13,
         sidebar : true,
         icon : React.createElement(LaptopOutlined, {className : 'side-nav-bar-icons',}),
-        label : <Link to="/app/asset-types">Asset Types</Link>,
+        label : <Link to="/asset-types">Asset Types</Link>,
         component : AssetTypesListing,
-        path : '/app/asset-types',
+        path : '/asset-types',
         exact : true,
         permissions : [
             Roles.ADMIN
@@ -173,9 +173,9 @@ export const PrivateRoutesConfig = [
         key : 16,
         sidebar : true,
         icon : React.createElement(LaptopOutlined, {className : 'side-nav-bar-icons',}),
-        label : <Link to="/app/asset-status">Asset Status</Link>,
+        label : <Link to="/asset-status">Asset Status</Link>,
         component : AssetStatusListing,
-        path : '/app/asset-status',
+        path : '/asset-status',
         exact : true,
         permissions : [
             Roles.ADMIN

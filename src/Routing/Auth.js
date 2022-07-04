@@ -13,7 +13,7 @@ import PublicRoutes from './PublicRoutes';
 const Auth = () => {
 	const token = Cookies.get('token')
 	return token ? (
-			<Redirect to="/app" />
+			<Redirect to="/profile" />
 		) : (
 			<PublicRoutes />
 		)

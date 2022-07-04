@@ -47,7 +47,7 @@ const Login = () => {
 						/>
 					</div>
 					<Button type="primary" className="auth-button" htmlType="submit" style={{width:'90%'}}>Sign In</Button>
-					<div className="auth-text">Don't have an account? <Link to="/" className="auth-text-inner">Sign Up</Link></div>
+					<div className="auth-text">Don't have an account? <Link to="/user/signup" className="auth-text-inner">Sign Up</Link></div>
 				</Form>
 			</Formik>
 		</AuthLayout>

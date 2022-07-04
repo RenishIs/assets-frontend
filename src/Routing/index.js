@@ -8,11 +8,11 @@ const Routes = () => {
 	return (
 		<Router history={history}>
 			<Switch>
-				<Route path="/app">
-					<PrivateRoutes />
+				<Route path="/user">
+					<Auth />
 				</Route>
 				<Route path="">
-					<Auth />
+					<PrivateRoutes />
 				</Route>
 			</Switch>
 		</Router>

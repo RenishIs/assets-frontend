@@ -16,7 +16,7 @@ const MainLayout = ({children, routes, path}) => {
     const logoutUser = () => {
         Cookies.remove('token')
         Cookies.remove('role')
-        history.push('/login')
+        history.push('/user/login')
     }
 
     const menu = (
