@@ -15,7 +15,7 @@ const AssetDetails = () => {
     return (
     <Dashboard>
         <div className='text-center mb-4'>
-            <h2 className='d-inline fs-5 fw-bold'>Assets Details</h2>
+            <h2 className='d-inline fs-5 fw-bold'>ASSETS DETAILS</h2>
         </div>
         {data?.assetById &&
         <div>

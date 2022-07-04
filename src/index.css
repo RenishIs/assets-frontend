@@ -172,15 +172,3 @@ div#authForm .ant-input:focus{
 	display: inline-block;
 	float: right;
 }
-
-.profile-card{
-	background-color: #fdfdfd;
-	padding: 1rem;
-	border: 1px solid #dee2e6;
-	border-radius: 0.25rem;
-}
-
-.profile-card:hover{
-	border-left-color: blue !important;
-	border-left-width: 5px !important;
-}
