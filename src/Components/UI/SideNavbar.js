@@ -12,8 +12,8 @@ function getItem(label, icon, path) {
     };
 }
 const iconsData = [
-    getItem("Dashboard", HomeFilled, '/users'),
-    getItem("Assets", UserOutlined, '/assets'),
+    getItem("Users", UserOutlined, '/users'),
+    getItem("Assets", LaptopOutlined, '/assets'),
     getItem("Asset Categories", LaptopOutlined, '/asset-categories'),
     getItem("Asset Types", LaptopOutlined, '/asset-types'),
     getItem("Asset Status", LaptopOutlined, '/asset-status'),
