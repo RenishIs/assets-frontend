@@ -29,7 +29,7 @@ const Registration = () => {
 
 	if (data?.registerUser?.token) {
 		openNotificationWithIcon('registerUser', 'success', "REGISTRATION SUCCESSFUL")
-		history.push('/login');
+		history.push('/user/login');
 	}
 
 	const onChange = (value) => {
@@ -50,7 +50,7 @@ const Registration = () => {
 					</div>		
 					<Checkbox onChange={(e) => onChange(e.target.value)}>I agree to the Terms & Conditions</Checkbox>
 					<Button type="primary" className="auth-button" htmlType="submit" style={{width:"90%"}}>Create my account</Button>
-					<div className="auth-text">Already have an account? <Link to="/login" className="auth-text-inner">Sign In</Link></div>
+					<div className="auth-text">Already have an account? <Link to="/user/login" className="auth-text-inner">Sign In</Link></div>
 					
 				</Form>
 			</Formik>

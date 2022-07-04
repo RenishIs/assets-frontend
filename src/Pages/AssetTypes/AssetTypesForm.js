@@ -1,7 +1,6 @@
 import { Button } from 'antd';
 import { Formik, Form } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
-import Dashboard from '../Dashboard';
 import { assetTypeValidations } from '../../Helper/ValidationSchema';
 import { UserOutlined } from '@ant-design/icons';
 import { Row, Col } from 'antd';
@@ -16,26 +15,24 @@ const AssetTypesForm = ({title, handleAssetType, ...rest}) => {
     }
 
     return (
-        <Dashboard>
-            <div>
-                <h2 className='text-center fs-4 fw-bold'>{assetType ? 'EDIT ASSET TYPE' : 'ADD ASSET TYPE'}</h2>
-                <Formik initialValues={initialState} validationSchema={assetTypeValidations} onSubmit={(values) => handleAssetType(values)}>
-                    <Form>
-                        <Row>
-                            <Col span={6}></Col>
-                            <Col span={12}>
-                                <TextInput label="TYPE" name="name" id="name" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
-                            </Col>
-                            <Col span={6}></Col>
-                        </Row>
-                        <div className="d-flex mt-4 me-4 flex-row-reverse">
-                            <Link to="/asset-types"><Button type="primary">Back</Button></Link>
-                            <Button type="primary" htmlType="submit" className='me-3'>Submit</Button>
-                        </div>				
-                    </Form>
-                </Formik>
-            </div>
-        </Dashboard>
+        <div>
+            <h2 className='text-center fs-4 fw-bold'>{assetType ? 'EDIT ASSET TYPE' : 'ADD ASSET TYPE'}</h2>
+            <Formik initialValues={initialState} validationSchema={assetTypeValidations} onSubmit={(values) => handleAssetType(values)}>
+                <Form>
+                    <Row>
+                        <Col span={6}></Col>
+                        <Col span={12}>
+                            <TextInput label="TYPE" name="name" id="name" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
+                        </Col>
+                        <Col span={6}></Col>
+                    </Row>
+                    <div className="d-flex mt-4 me-4 flex-row-reverse">
+                        <Link to="/asset-types"><Button type="primary">Back</Button></Link>
+                        <Button type="primary" htmlType="submit" className='me-3'>Submit</Button>
+                    </div>				
+                </Form>
+            </Formik>
+        </div>
     )
 }
 

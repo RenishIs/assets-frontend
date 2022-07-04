@@ -1,7 +1,6 @@
 import { Table, Space, Button, Modal } from 'antd';
 import { Link } from 'react-router-dom';
 import { tableColumns } from './CONSTANTS';
-import Dashboard from '../Dashboard';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_ASSET_TYPES_QUERY } from '../../gql/Query/AssetTypes';
 import { DELETE_ASSET_TYPE_MUTATION } from '../../gql/Mutation/AssetTypes';
@@ -55,15 +54,18 @@ const AssetTypesListing = () => {
 	}]
 
 	return (
-		<Dashboard>
+		<>
 			<div className='text-center mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSET TYPES</h2>
                 <div className='add-button'>
                     <Link to={`/asset-types/add`}><Button type="primary">ADD</Button></Link>
                 </div>
             </div>
-			<Table bordered columns={columns} dataSource={data?.assetTypes} pagination={false} />
-		</Dashboard>
+			<Table bordered 
+			       columns={columns} 
+				   dataSource={data?.assetTypes.map(item => ({...item, key: item.id}))} 
+				   pagination={false} />
+		</>
 	)
 }
 
