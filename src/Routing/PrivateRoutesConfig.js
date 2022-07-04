@@ -69,21 +69,27 @@ export const PrivateRoutesConfig = [
         permissions : [
             Roles.ADMIN,
             Roles.EMPLOYEE
-        ],
-        childrens : [
-            {
-                key : 4,
-                component : UsersAdd,
-                path : '/users/add',
-                exact : true
-            },
-            {
-                key : 5,
-                component : UsersEdit,
-                path : '/users/edit/:id',
-                exact : true
-            },
         ]
+    },
+    {
+        key : 4,
+        component : UsersAdd,
+        path : '/users/add',
+        exact : true,
+        permissions : [
+            Roles.ADMIN,
+            Roles.EMPLOYEE
+        ],
+    },
+    {
+        key : 5,
+        component : UsersEdit,
+        path : '/users/edit/:id',
+        exact : true,
+        permissions : [
+            Roles.ADMIN,
+            Roles.EMPLOYEE
+        ],
     },
     {
         key : 6,
@@ -95,26 +101,33 @@ export const PrivateRoutesConfig = [
         exact : true,
         permissions : [
             Roles.ADMIN
-        ],
-        childrens : [
-            {
-                key : 7,
-                component : AssetDetails,
-                path : '/assets/:id',
-                exact : true
-            },
-            {
-                key : 8,
-                component : AssetsAdd,
-                path : '/assets/add',
-                exact : true
-            },
-            {
-                key : 9,
-                component : AssetsEdit,
-                path : '/assets/edit/:id',
-                exact : true
-            },
+        ]
+    },
+    {
+        key : 7,
+        component : AssetDetails,
+        path : '/assets/:id',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
+        ]
+    },
+    {
+        key : 8,
+        component : AssetsAdd,
+        path : '/assets/add',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
+        ]
+    },
+    {
+        key : 9,
+        component : AssetsEdit,
+        path : '/assets/edit/:id',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
         ]
     },
     {
@@ -127,20 +140,24 @@ export const PrivateRoutesConfig = [
         exact : true,
         permissions : [
             Roles.ADMIN
-        ],
-        childrens : [
-            {
-                key : 11,
-                component : AssetCategoryAdd,
-                path : '/asset-categories/add',
-                exact : true
-            },
-            {
-                key : 12,
-                component : AssetCategoryEdit,
-                path : '/asset-categories/edit/:id',
-                exact : true
-            },
+        ]
+    },
+    {
+        key : 11,
+        component : AssetCategoryAdd,
+        path : '/asset-categories/add',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
+        ]
+    },
+    {
+        key : 12,
+        component : AssetCategoryEdit,
+        path : '/asset-categories/edit/:id',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
         ]
     },
     {
@@ -153,20 +170,24 @@ export const PrivateRoutesConfig = [
         exact : true,
         permissions : [
             Roles.ADMIN
-        ],
-        childrens : [
-            {
-                key : 14,
-                component : AssetTypeAdd,
-                path : '/asset-types/add',
-                exact : true
-            },
-            {
-                key : 15,
-                component : AssetTypeEdit,
-                path : '/asset-types/edit/:id',
-                exact : true
-            },
+        ]
+    },
+    {
+        key : 14,
+        component : AssetTypeAdd,
+        path : '/asset-types/add',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
+        ]
+    },
+    {
+        key : 15,
+        component : AssetTypeEdit,
+        path : '/asset-types/edit/:id',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
         ]
     },
     {
@@ -179,20 +200,24 @@ export const PrivateRoutesConfig = [
         exact : true,
         permissions : [
             Roles.ADMIN
-        ],
-        childrens : [
-            {
-                key : 17,
-                component : AssetStatusAdd,
-                path : '/asset-status/add',
-                exact : true
-            },
-            {
-                key : 18,
-                component : AssetStatusEdit,
-                path : '/asset-status/edit/:id',
-                exact : true
-            },
+        ]
+    },
+    {
+        key : 17,
+        component : AssetStatusAdd,
+        path : '/asset-status/add',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
+        ]
+    },
+    {
+        key : 18,
+        component : AssetStatusEdit,
+        path : '/asset-status/edit/:id',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
         ]
     },
 ]
