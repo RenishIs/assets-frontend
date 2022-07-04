@@ -14,7 +14,7 @@ const PrivateRoutes = () => {
     if (isLoggedIn) {
         allowedRoutes = getAllowedRoutes(PrivateRoutesConfig);
     } else {
-        return <Redirect to="/" />;
+        return <Redirect to="/user/signup" />;
     }
 
     return (
