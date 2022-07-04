@@ -1,4 +1,4 @@
-import { Route, useHistory } from "react-router-dom"
+import { Route, useHistory, Redirect } from "react-router-dom"
 import Cookies from "js-cookie";
 
 const UnRestrictedRoute = ({ component: Component, isLoggedIn = false, ...rest }) => {
@@ -11,7 +11,13 @@ const UnRestrictedRoute = ({ component: Component, isLoggedIn = false, ...rest }
                 <Component {...props} />
             }
         /> :
-            history.goBack()
+        <Redirect
+                            to={{
+                                pathname: '/profile',
+                                // state: { from: props.location }
+                            }}
+                        />
+            // history.goBack()
     )
 }
 

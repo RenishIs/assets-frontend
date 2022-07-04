@@ -29,7 +29,7 @@ const menuItems = iconsData.map((item, index) => {
     }
 })
 
-const SideNavbar = ({collapsed}) => {
+const SideNavbar = ({collapsed, routes, path}) => {
     return (
         <Sider width='18%' height="100vh" className='overflow-hidden' collapsible collapsed={collapsed} trigger={null} >
             <div className='d-flex justify-content-center align-items-center p-1'>
@@ -41,7 +41,7 @@ const SideNavbar = ({collapsed}) => {
                 mode="inline"
                 defaultSelectedKeys={['1']}
                 className='side-nav-bar-menu-items fs-6'
-                items={menuItems}
+                items={routes}
                   />
         </Sider>
     )

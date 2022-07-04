@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 
 const { Header } = Layout;
 
-const Dashboard = ({children}) => {
+const Dashboard = ({children, routes, path}) => {
     const [collapsed, setCollapsed] = useState(false);
     const history = useHistory()
 
@@ -15,6 +15,7 @@ const Dashboard = ({children}) => {
 
     const logoutUser = () => {
         Cookies.remove('token')
+        Cookies.remove('role')
         history.push('/login')
     }
 
@@ -35,7 +36,7 @@ const Dashboard = ({children}) => {
     return (
         <Layout style={{height : '100vh'}}>
             <Layout>
-                <SideNavbar collapsed={collapsed}/>
+                <SideNavbar collapsed={collapsed} routes={routes} path={path}/>
                 <Layout className='overflow-auto'>
                     <Header className='bg-white mb-4'>
                         <Row justify="space-between" className='px-4 header' >
