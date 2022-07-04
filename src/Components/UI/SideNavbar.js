@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Layout, Menu } from 'antd';
 import { UserOutlined, HomeFilled, LaptopOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 const { Sider } = Layout;
-function getItem(label, key, icon, path) {
+function getItem(label, icon, path) {
     return {
         label,
-        key,
+
         icon,
         path,
     };
 }
 const iconsData = [
-    getItem("Dashboard", "1", HomeFilled, '/users'),
-    getItem("Assets", "2", UserOutlined, '/assets'),
-    getItem("Asset Categories", "3", LaptopOutlined, '/asset-categories'),
-    getItem("Asset Types", "4", LaptopOutlined, '/asset-types'),
-    getItem("Asset Status", "5", LaptopOutlined, '/asset-status'),
+    getItem("Dashboard", HomeFilled, '/users'),
+    getItem("Assets", UserOutlined, '/assets'),
+    getItem("Asset Categories", LaptopOutlined, '/asset-categories'),
+    getItem("Asset Types", LaptopOutlined, '/asset-types'),
+    getItem("Asset Status", LaptopOutlined, '/asset-status'),
 
 ]
 
 const menuItems = iconsData.map((item, index) => {
 
     return {
-        key: item.key,
+        key: item.path,
         icon: React.createElement(item.icon, { className: 'side-nav-bar-icons', }),
         label: item.path ? (<Link to={`${item.path}`}>{item.label}</Link>) : item.label
     }
@@ -31,8 +31,8 @@ const menuItems = iconsData.map((item, index) => {
 })
 
 const SideNavbar = () => {
-   
 
+    let location = useLocation()
     return (
         <Sider width='18%' height="100vh" className='overflow-hidden' trigger={null} >
             <div className='d-flex justify-content-center align-items-center p-1'>
@@ -42,10 +42,10 @@ const SideNavbar = () => {
             <Menu
                 theme="dark"
                 mode="inline"
-             
-                defaultSelectedKeys={['1']}
-             
-       
+
+                defaultSelectedKeys={["/users"]}
+
+                selectedKeys={[location.pathname]}
                 items={menuItems}
             />
         </Sider>
