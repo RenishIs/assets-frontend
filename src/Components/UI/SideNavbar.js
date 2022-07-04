@@ -1,35 +1,10 @@
-import React from 'react';
 import { Layout, Menu } from 'antd';
-import { UserOutlined, HomeFilled, LaptopOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
 const { Sider } = Layout;
 
-const iconsData = [
-    { icon : HomeFilled, label : 'Dashboard'},
-    { icon : UserOutlined, label : 'Users', path:'/users'},
-    { icon : LaptopOutlined, label : 'Assets', path:'/assets'},
-    { icon : LaptopOutlined, label : 'Asset Categories', path:'/asset-categories'},
-    { icon : LaptopOutlined, label : 'Asset Types', path:'/asset-types'},
-    { icon : LaptopOutlined, label : 'Asset Status', path:'/asset-status'}
-]
-
-const menuItems = iconsData.map((item, index) => {
-    const key = String(index + 1)
-    return {
-        key :`sub${key}`,
-        icon : React.createElement(item.icon, {className : 'side-nav-bar-icons',}),
-        label : item.path ? (<Link to={`${item.path}`}>{item.label}</Link>) : item.label,
-        children : item.children && item?.children.map((child, j) => {
-            const subKey = index * 4 + j + 1;
-            return {
-                key : subKey,
-                label : <Link to={`${child.path}`}>{child.label}</Link>
-            }
-        })
-    }
-})
-
 const SideNavbar = ({collapsed, routes, path}) => {
+
+    const menuItems = routes?.filter(route => route.sidebar)
+    
     return (
         <Sider width='18%' height="100vh" className='overflow-hidden' collapsible collapsed={collapsed} trigger={null} >
             <div className='d-flex justify-content-center align-items-center p-1'>
@@ -41,7 +16,7 @@ const SideNavbar = ({collapsed, routes, path}) => {
                 mode="inline"
                 defaultSelectedKeys={['1']}
                 className='side-nav-bar-menu-items fs-6'
-                items={routes}
+                items={menuItems}
                   />
         </Sider>
     )

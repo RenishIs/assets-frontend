@@ -1,11 +1,10 @@
 import React from 'react';
-import { UserOutlined, HomeFilled, LaptopOutlined } from '@ant-design/icons';
+import { UserOutlined, LaptopOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import Roles from "./Roles";
 
 import Registration from "../Pages/Registration";
 import Login from "../Pages/Login";
-import Dashboard from "../Pages/Dashboard";
 import ForgotPassword from "../Pages/ForgotPassword";
 import ResetPassword from "../Pages/ResetPassword";
 import UsersListing from '../Pages/Users'
@@ -50,18 +49,8 @@ export const PrivateRoutesConfig = [
         exact : true
     },
     {
-        key : 1,
-        icon : React.createElement(HomeFilled, {className : 'side-nav-bar-icons',}),
-        label : 'Dashboard',
-        component: Dashboard,
-        path: '/dashboard',
-        permissions: [
-            Roles.ADMIN,
-            Roles.EMPLOYEE,
-        ]
-    },
-    {
         key : 2,
+        sidebar : false,
         component: Profile,
         path: '/profile',
         permissions: [
@@ -71,6 +60,7 @@ export const PrivateRoutesConfig = [
     },
     {
         key : 3,
+        sidebar : true,
         icon : React.createElement(UserOutlined, {className : 'side-nav-bar-icons',}),
         label : <Link to="/app/users">Users</Link>,
         component : UsersListing,
@@ -97,6 +87,7 @@ export const PrivateRoutesConfig = [
     },
     {
         key : 6,
+        sidebar : true,
         icon : React.createElement(LaptopOutlined, {className : 'side-nav-bar-icons',}),
         label : <Link to="/app/assets">Assets</Link>,
         component : AssetsListing,
@@ -128,6 +119,7 @@ export const PrivateRoutesConfig = [
     },
     {
         key : 10,
+        sidebar : true,
         icon : React.createElement(LaptopOutlined, {className : 'side-nav-bar-icons',}),
         label : <Link to="/app/asset-categories">Asset Categories</Link>,
         component : AssetCategories,
@@ -153,6 +145,7 @@ export const PrivateRoutesConfig = [
     },
     {
         key : 13,
+        sidebar : true,
         icon : React.createElement(LaptopOutlined, {className : 'side-nav-bar-icons',}),
         label : <Link to="/app/asset-types">Asset Types</Link>,
         component : AssetTypesListing,
@@ -178,6 +171,7 @@ export const PrivateRoutesConfig = [
     },
     {
         key : 16,
+        sidebar : true,
         icon : React.createElement(LaptopOutlined, {className : 'side-nav-bar-icons',}),
         label : <Link to="/app/asset-status">Asset Status</Link>,
         component : AssetStatusListing,
