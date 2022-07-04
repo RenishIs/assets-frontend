@@ -5,7 +5,7 @@ import { tableColumns } from './CONSTANTS';
 import { GET_USERS_QUERY } from '../../gql/Query/Users/index';
 import { DELETE_USER_MUTATION } from '../../gql/Mutation/Users/index';
 import openNotificationWithIcon from '../../Helper/Notification';
-import { EditFilled, DeleteFilled } from '@ant-design/icons';
+import { EditFilled, DeleteFilled, EyeFilled } from '@ant-design/icons';
 
 const confirm = Modal.confirm;
 
@@ -49,6 +49,7 @@ const UsersListing = () => {
 			<Space size="middle">
                 <Link to={`/users/edit/${record.id}`}><EditFilled style={{color: "blue"}}/></Link>
 				<DeleteFilled style={{color: "red"}} onClick={() => showDeleteConfirm(record.id)}/>
+				<Link to={`/users/edit/${record.id}`}><EyeFilled style={{color:"green"}}/></Link>
 			</Space>
 		),
 	}]

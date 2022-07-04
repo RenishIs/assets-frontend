@@ -1,56 +1,69 @@
 import { useQuery } from '@apollo/client';
 import { GET_PROFILE_QUERY } from '../../gql/Query/Profile/index';
+import { Row, Col } from 'antd';
 
 const Profile = () => {
 
     const { data } = useQuery(GET_PROFILE_QUERY);
     
     return (
-        <div className="bg-white h-100 text-center p-4" style={{borderRadius:"0.5rem"}}>
-            <img src="/user-1.png" alt="profile" width="10%"/>
-            <div className="mt-4">
-                <div className="mb-3">
-                    <div>
-                        <span className="text-body fw-bold">Username</span> 
-                    </div>
-                    <div>
-                        <span className="text-muted">{data?.Profile?.username}</span>
-                    </div>
-                </div>
-                <div className="mb-3">
-                    <div>
-                        <span className="text-body fw-bold">Email</span> 
-                    </div>
-                    <div>
-                        <span className="text-muted">{data?.Profile?.email}</span>
-                    </div>
-                </div>
-                <div className="mb-3">
-                    <div>
-                        <span className="text-body fw-bold">Role</span> 
-                    </div>
-                    <div>
-                        <span className="text-muted">{data?.Profile?.role?.name}</span>
-                    </div>
-                </div>
-                <div className="mb-3">
-                    <div>
-                        <span className="text-body fw-bold">Contact Number</span> 
-                    </div>
-                    <div>
-                        <span className="text-muted">{data?.Profile?.contactNo}</span>
-                    </div>
-                </div>
-                <div className="mb-3">
-                    <div>
-                        <span className="text-body fw-bold">Address</span> 
-                    </div>
-                    <div>
-                        <span className="text-muted">{data?.Profile?.address}</span>
-                    </div>
-                </div>
+        <>
+            <div className='text-center mb-4'>
+                <h2 className='d-inline fs-5 fw-bold'>PROFILE DETAILS</h2>
             </div>
-        </div>
+            {data?.Profile &&
+            <div>
+                <img src="/user-1.png" alt="profile" width="10%"/>
+                <Row>
+                    <Col span={8}></Col>
+                    <Col span={10}>
+                    <div className="mt-4 text-start">
+                        <Row  className="mb-3">
+                            <Col span={12}>
+                                <span className="text-muted">Username :</span> 
+                            </Col>
+                            <Col span={12}>
+                                <span className="text-body fw-bold">{data?.Profile?.username}</span>
+                            </Col>
+                        </Row>
+                        <Row  className="mb-3">
+                            <Col span={12}>
+                                <span className="text-muted">Email :</span> 
+                            </Col>
+                            <Col span={12}>
+                                <span className="text-body fw-bold">{data?.Profile?.email}</span>
+                            </Col>
+                        </Row>
+                        <Row  className="mb-3">
+                            <Col span={12}>
+                                <span className="text-muted">Role :</span> 
+                            </Col>
+                            <Col span={12}>
+                                <span className="text-body fw-bold">{data?.Profile?.role?.name}</span>
+                            </Col>
+                        </Row>
+                        <Row  className="mb-3">
+                            <Col span={12}>
+                                <span className="text-muted">Contact Number :</span> 
+                            </Col>
+                            <Col span={12}>
+                                <span className="text-body fw-bold">{data?.Profile?.contactNo}</span>
+                            </Col>
+                        </Row>
+                        <Row  className="mb-3">
+                            <Col span={12}>
+                                <span className="text-muted">Address :</span> 
+                            </Col>
+                            <Col span={12}>
+                                <span className="text-body fw-bold">{data?.Profile?.address}</span>
+                            </Col>
+                        </Row>
+                    </div>
+                    </Col>
+                    <Col span={6}></Col>
+                </Row>
+            </div>}
+        </>
     )
 }
 
