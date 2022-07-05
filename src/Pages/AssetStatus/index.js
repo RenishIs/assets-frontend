@@ -43,10 +43,6 @@ const AssetStatusListing = () => {
 		alert(error);	
 	}
 
-	if(loading || deleteLoading){
-		return <Loader />
-	}
-	
 	const columns = [...tableColumns, {
 		title: 'ACTION',
 		key: 'action',
@@ -60,6 +56,7 @@ const AssetStatusListing = () => {
 
 	return (
 		<>
+			{ (loading || deleteLoading ) && <Loader /> }
 			<div className='text-cente mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSET STATUS</h2>
                 <div className='add-button'>

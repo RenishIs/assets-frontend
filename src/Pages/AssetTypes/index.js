@@ -42,9 +42,6 @@ const AssetTypesListing = () => {
 	if(error) {
 		alert(error);	
 	}
-	if(loading || deleteLoading){
-		return <Loader />
-	}
 
 	const columns = [...tableColumns, {
 		title: 'ACTION',
@@ -59,6 +56,7 @@ const AssetTypesListing = () => {
 
 	return (
 		<>
+			{ (loading || deleteLoading ) && <Loader /> }
 			<div className='text-center mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSET TYPES</h2>
                 <div className='add-button'>
