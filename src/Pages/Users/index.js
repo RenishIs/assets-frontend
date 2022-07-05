@@ -6,6 +6,7 @@ import { tableColumns } from './CONSTANTS';
 import { GET_USERS_QUERY } from '../../gql/Query/Users/index';
 import { DELETE_USER_MUTATION } from '../../gql/Mutation/Users/index';
 import openNotificationWithIcon from '../../Helper/Notification';
+import Loader from '../../Components/UI/Loader';
 
 const confirm = Modal.confirm;
 
@@ -29,7 +30,7 @@ const UsersListing = () => {
 		});
 	}
 
-    const [ DeleteUser, { error, data : deletedUser } ] = useMutation(DELETE_USER_MUTATION, {
+    const [ DeleteUser, { error, data : deletedUser, loading : deleteLoading } ] = useMutation(DELETE_USER_MUTATION, {
         refetchQueries: [
 			{ query: GET_USERS_QUERY },
 		]
@@ -40,6 +41,9 @@ const UsersListing = () => {
     }
     if(error) {
 		alert(error);	
+	}
+	if(loading || deleteLoading){
+		return <Loader />
 	}
 
     const columns = [...tableColumns, {

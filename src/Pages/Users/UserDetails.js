@@ -8,7 +8,7 @@ const UserDetails = () => {
 
     const { id } = useParams()
     const { loading, data } = useQuery(GET_USER_BY_ID_QUERY, {
-        variables : { userId : id }
+        variables : { userByIdId : id }
     })
 
     if(loading){
