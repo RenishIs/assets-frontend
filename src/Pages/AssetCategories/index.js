@@ -1,11 +1,11 @@
 import { Table, Space, Button, Modal } from 'antd';
 import { useMutation, useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
-import Dashboard from '../Dashboard';
 import { GET_ASSET_CATEGORIES_QUERY } from '../../gql/Query/AssetCategories';
 import { DELETE_ASSET_CATEGORY_MUTATION } from '../../gql/Mutation/AssetCategories';
 import openNotificationWithIcon from '../../Helper/Notification';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
+import Loader from '../../Components/UI/Loader';
 
 const confirm = Modal.confirm;
 
@@ -20,7 +20,7 @@ const tableColumns = [
 
 const AssetCategories = () => {
 
-	const { data } = useQuery(GET_ASSET_CATEGORIES_QUERY);
+	const { loading, data } = useQuery(GET_ASSET_CATEGORIES_QUERY);
 
 	const showDeleteConfirm = (id) => {
 		confirm({
@@ -38,12 +38,15 @@ const AssetCategories = () => {
 		});
 	  }
 
-	const [ deleteAssetCategory, { data: deletedAssetCategory }] = useMutation(DELETE_ASSET_CATEGORY_MUTATION, {
+	const [ deleteAssetCategory, { data: deletedAssetCategory, loading : deleteLoading }] = useMutation(DELETE_ASSET_CATEGORY_MUTATION, {
 		refetchQueries : [
 			{ query : GET_ASSET_CATEGORIES_QUERY }
 		]
 	})
 
+	if(loading || deleteLoading){
+		return <Loader />
+	}
 	if(deletedAssetCategory){
 		openNotificationWithIcon('deleteAssetCategory', 'success', "ASSET CATEGORY DELETED SUCCESSFULLY")
 	}

@@ -4,17 +4,21 @@ import { useHistory } from 'react-router-dom'
 import { ADD_ASSET_CATEGORY_MUTATION } from '../../gql/Mutation/AssetCategories'
 import { GET_ASSET_CATEGORIES_QUERY } from '../../gql/Query/AssetCategories'
 import openNotificationWithIcon from '../../Helper/Notification'
+import Loader from '../../Components/UI/Loader';
 
 const AssetCategoryAdd = () => {
     
     const history = useHistory()
 
-    const [ createAssetCategory, { data} ] = useMutation(ADD_ASSET_CATEGORY_MUTATION, {
+    const [ createAssetCategory, { data, loading } ] = useMutation(ADD_ASSET_CATEGORY_MUTATION, {
         refetchQueries : [
             { query : GET_ASSET_CATEGORIES_QUERY}
         ]
     })
 
+    if(loading){
+		return <Loader />
+    }
     if(data){
         openNotificationWithIcon('addAssetCategory', 'success', 'ASSET CATEGORY ADDED SUCCESSFULLY')
         history.push('/asset-categories')

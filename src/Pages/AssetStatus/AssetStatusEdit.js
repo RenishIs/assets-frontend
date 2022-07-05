@@ -5,16 +5,17 @@ import { UPDATE_ASSET_STATUS_MUTATION } from '../../gql/Mutation/AssetStatus';
 import { GET_ASSET_STATUS_QUERY, GET_ASSET_STATUS_BY_ID_QUERY } from '../../gql/Query/AssetStatus';
 import AssetStatusForm from './AssetStatusForm';
 import openNotificationWithIcon from '../../Helper/Notification';
+import Loader from '../../Components/UI/Loader';
 
 const AssetStatusEdit = () => {
 	const history = useHistory();
 	const { id } = useParams();
 
-	const { data } = useQuery(GET_ASSET_STATUS_BY_ID_QUERY, {
+	const { data, loading } = useQuery(GET_ASSET_STATUS_BY_ID_QUERY, {
 		variables: { assetStatusById: id }
 	});
 
-	const [updateAssetStatus, { data : updatedData }] = useMutation(UPDATE_ASSET_STATUS_MUTATION, {
+	const [updateAssetStatus, { data : updatedData, loading : editLoading }] = useMutation(UPDATE_ASSET_STATUS_MUTATION, {
 		refetchQueries: [
 			{ query: GET_ASSET_STATUS_QUERY },
 		]
@@ -28,7 +29,9 @@ const AssetStatusEdit = () => {
 		openNotificationWithIcon('editAssetStatus','success', "ASSET STATUS EDITED SUCCESSFULLY")
 		history.push('/asset-status');
 	}
-	
+	if(loading || editLoading){
+        return <Loader />
+    }
 	return (
 		<div>
 			{

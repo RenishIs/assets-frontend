@@ -6,12 +6,13 @@ import { GET_ASSET_TYPES_QUERY } from '../../gql/Query/AssetTypes';
 import { DELETE_ASSET_TYPE_MUTATION } from '../../gql/Mutation/AssetTypes';
 import openNotificationWithIcon from '../../Helper/Notification';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
+import Loader from '../../Components/UI/Loader';
 
 const confirm = Modal.confirm;
 
 const AssetTypesListing = () => {
 
-	const { data } = useQuery(GET_ASSET_TYPES_QUERY);
+	const { loading, data } = useQuery(GET_ASSET_TYPES_QUERY);
 
 	const showDeleteConfirm = (id) => {
 		confirm({
@@ -29,7 +30,7 @@ const AssetTypesListing = () => {
 		});
 	  }
 
-	const [deleteAssetType, { error, data : deletedAssetType }] = useMutation(DELETE_ASSET_TYPE_MUTATION, {
+	const [deleteAssetType, { error, data : deletedAssetType, loading : deleteLoading }] = useMutation(DELETE_ASSET_TYPE_MUTATION, {
 		refetchQueries: [
 			{ query: GET_ASSET_TYPES_QUERY },
 		]
@@ -41,7 +42,10 @@ const AssetTypesListing = () => {
 	if(error) {
 		alert(error);	
 	}
-	
+	if(loading || deleteLoading){
+		return <Loader />
+	}
+
 	const columns = [...tableColumns, {
 		title: 'ACTION',
 		key: 'action',

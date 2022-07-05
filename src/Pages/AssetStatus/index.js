@@ -6,12 +6,13 @@ import { GET_ASSET_STATUS_QUERY } from '../../gql/Query/AssetStatus';
 import { DELETE_ASSET_STATUS_MUTATION } from '../../gql/Mutation/AssetStatus';
 import openNotificationWithIcon from '../../Helper/Notification';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
+import Loader from '../../Components/UI/Loader';
 
 const confirm = Modal.confirm;
 
 const AssetStatusListing = () => {
 
-	const { data } = useQuery(GET_ASSET_STATUS_QUERY);
+	const { loading, data } = useQuery(GET_ASSET_STATUS_QUERY);
 
 	const showDeleteConfirm = (id) => {
 		confirm({
@@ -29,7 +30,7 @@ const AssetStatusListing = () => {
 		});
 	  }
 
-	const [deleteAssetStatus, { error, data : deletedAssetStatus }] = useMutation(DELETE_ASSET_STATUS_MUTATION, {
+	const [deleteAssetStatus, { error, data : deletedAssetStatus, loading : deleteLoading }] = useMutation(DELETE_ASSET_STATUS_MUTATION, {
 		refetchQueries: [
 			{ query: GET_ASSET_STATUS_QUERY },
 		]
@@ -42,7 +43,9 @@ const AssetStatusListing = () => {
 		alert(error);	
 	}
 
-
+	if(loading || deleteLoading){
+		return <Loader />
+	}
 	
 	const columns = [...tableColumns, {
 		title: 'ACTION',
