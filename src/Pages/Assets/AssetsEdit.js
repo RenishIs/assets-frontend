@@ -11,7 +11,7 @@ const AssetsEdit = () => {
 	const { id } = useParams();
 
 	const { data } = useQuery(GET_ASSET_BY_ID_QUERY, {
-		variables: { assetId: id }
+		variables: { assetById: id }
 	});
 
 	const [updateAssets, { data : updatedData }] = useMutation(UPDATE_ASSET_MUTATION, {

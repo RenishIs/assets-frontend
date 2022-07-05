@@ -82,6 +82,10 @@ const AssetsListing = () => {
 							onClick: (event) => navigation(record.id) 
 						}
 				   }}
+				   scroll={{
+					x: 1500,
+				  }}
+			  
 				   />
 		</Dashboard>
 	)
