@@ -71,7 +71,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                     id="assetCategory"  
                                     style={{height:"43px"}} 
                                     className="form-input">
-                                <option>--select category--</option>
+                                <option>--Select Category--</option>
                                 { 
                                 assetCategories?.assetCategories.map(item => (
                                     <option value={item.id} key={item.id}>{item.name}</option>
@@ -95,7 +95,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                     id="assetType"  
                                     style={{height:"43px"}} 
                                     className="form-input">
-                                <option>--select type--</option>
+                                <option>--Select Type--</option>
                                 {
                                 assetTypes?.assetTypes.map(item => (
                                     <option value={item.id} key={item.id}>{item.name}</option>
@@ -131,7 +131,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                     id="assetStatus"  
                                     style={{height:"43px"}} 
                                     className="form-input">
-                                <option>--select status--</option>
+                                <option>--Select Status--</option>
                                 {
                                 assetStatus?.assetStatus.map(item => (
                                     <option value={item.id} key={item.id}>{item.name}</option>
@@ -158,7 +158,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                     id="employeeId"  
                                     style={{height:"43px"}} 
                                     className="form-input">
-                                <option>--select employee--</option>
+                                <option>--Select Employee--</option>
                                 {
                                 users?.users.map(item => (
                                     <option value={item.id} key={item.id}>{item.username}</option>

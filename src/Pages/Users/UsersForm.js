@@ -33,6 +33,12 @@ const UsersForm = ({title, handleUser, loading, ...rest}) => {
             { loading && <Loader /> }
             <h2 className='text-center fs-4 fw-bold'>{user ? 'EDIT USER' : 'ADD USER'}</h2>
             <Formik initialValues={initialState} validationSchema={userValidations} onSubmit={(values) => handleUser(values)}>
+            {({
+                values,
+                touched,
+                errors
+            }) => {
+                return (
                 <Form>
                     <Row>
                         <Col span={12}>
@@ -77,12 +83,18 @@ const UsersForm = ({title, handleUser, loading, ...rest}) => {
                                     id="role"  
                                     style={{height:"43px"}} 
                                     className="form-input">
+                                <option>--Select Role--</option>
                                 {
                                 data?.role.map(item => (
                                     <option value={item.id} key={item.id}>{item.name}</option>
                                 ))
                                 }
                             </Field>
+                            {
+                                touched.role && errors.role ? (
+                                    <div className="text-start ms-4 mb-0 fs-6 text-danger">{errors.role}</div>
+                                ) : null
+                            }
                         </Col>
                         <Col span={12}>
                             <TextInput label="PASSWORD" 
@@ -114,6 +126,8 @@ const UsersForm = ({title, handleUser, loading, ...rest}) => {
                         <Button type="primary" htmlType="submit" className='me-3'>Submit</Button>
                     </div>				
                 </Form>
+                 )
+                }}
             </Formik>
         </div>
     )
