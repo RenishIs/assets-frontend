@@ -9,12 +9,13 @@ import { registerValidations } from "../../Helper/ValidationSchema";
 import AuthLayout from "../../Components/AuthLayout";
 import { SIGNUP_USER_MUTATION } from "../../gql/Mutation/Auth";
 import openNotificationWithIcon from "../../Helper/Notification";
+import AuthLoader from "../../Components/UI/AuthLoader";
 
 const Registration = () => {
 
 	const history = useHistory();
 	const initialValues = { username : '', email : '', password : ''}
-	const [ registerUser, { data, error }] = useMutation(SIGNUP_USER_MUTATION);
+	const [ registerUser, { data, error, loading }] = useMutation(SIGNUP_USER_MUTATION);
 
 	const onFinish = (values) => {
 		registerUser({
@@ -49,7 +50,9 @@ const Registration = () => {
 						/>
 					</div>		
 					<Checkbox onChange={(e) => onChange(e.target.value)}>I agree to the Terms & Conditions</Checkbox>
-					<Button type="primary" className="auth-button" htmlType="submit" style={{width:"90%"}}>Create my account</Button>
+					<Button type="primary" className="auth-button" htmlType="submit" style={{width:"90%"}}>
+						{ loading ? <AuthLoader /> : 'Create my account' }
+					</Button>
 					<div className="auth-text">Already have an account? <Link to="/user/login" className="auth-text-inner">Sign In</Link></div>
 					
 				</Form>

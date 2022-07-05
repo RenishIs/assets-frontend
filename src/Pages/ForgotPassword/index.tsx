@@ -7,11 +7,12 @@ import { forgotPasswordValidations } from "../../Helper/ValidationSchema";
 import AuthLayout from "../../Components/AuthLayout";
 import { RESET_PASSWORD_LINK } from "../../gql/Mutation/Auth";
 import openNotificationWithIcon from "../../Helper/Notification";
+import AuthLoader from "../../Components/UI/AuthLoader";
 
 const ForgotPassword = () => {
 
     const initialState ={email : ''}
-	const [sendResetPasswordLink,{ data }] = useMutation(RESET_PASSWORD_LINK);
+	const [sendResetPasswordLink,{ data, loading }] = useMutation(RESET_PASSWORD_LINK);
 
     const onFinish = (values: object) => {
         sendResetPasswordLink({
@@ -32,7 +33,9 @@ const ForgotPassword = () => {
                         <div id="authForm">
                             <TextInput label="EMAIL" type="email" id="email" name="email" prefix={<UserOutlined style={{color : 'white'}}/>}/>
                         </div>
-                        <Button type="primary" className="auth-button" htmlType="submit" style={{width:"90%"}}>Send reset Instructions</Button>
+                        <Button type="primary" className="auth-button" htmlType="submit" style={{width:"90%"}}>
+                            { loading ? <AuthLoader /> : 'Send reset Instructions'}
+                        </Button>
                     </Form>
                 </Formik>
         </AuthLayout>
