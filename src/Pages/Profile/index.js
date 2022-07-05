@@ -1,17 +1,19 @@
 import { useQuery } from '@apollo/client';
 import { GET_PROFILE_QUERY } from '../../gql/Query/Profile/index';
 import { Row, Col } from 'antd';
+import Loader from '../../Components/UI/Loader';
 
 const Profile = () => {
 
-    const { data } = useQuery(GET_PROFILE_QUERY);
-    
+    const { data, loading } = useQuery(GET_PROFILE_QUERY);
     return (
         <>
+            { 
+                loading && <Loader /> 
+            }
             <div className='text-center mb-4'>
                 <h2 className='d-inline fs-5 fw-bold'>PROFILE DETAILS</h2>
             </div>
-            {data?.Profile &&
             <div>
                 <img src="/user-1.png" alt="profile" width="10%"/>
                 <Row>
@@ -62,7 +64,7 @@ const Profile = () => {
                     </Col>
                     <Col span={6}></Col>
                 </Row>
-            </div>}
+            </div>
         </>
     )
 }

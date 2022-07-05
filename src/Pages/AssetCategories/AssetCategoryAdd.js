@@ -9,7 +9,7 @@ const AssetCategoryAdd = () => {
     
     const history = useHistory()
 
-    const [ createAssetCategory, { data} ] = useMutation(ADD_ASSET_CATEGORY_MUTATION, {
+    const [ createAssetCategory, { data, loading } ] = useMutation(ADD_ASSET_CATEGORY_MUTATION, {
         refetchQueries : [
             { query : GET_ASSET_CATEGORIES_QUERY}
         ]
@@ -25,7 +25,7 @@ const AssetCategoryAdd = () => {
     }
 
     return (
-        <AssetCategoryForm handleAssetCategory={handleAssetCategory}/>
+        <AssetCategoryForm handleAssetCategory={handleAssetCategory} loading={loading}/>
     )
 }
 

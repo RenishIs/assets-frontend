@@ -5,6 +5,7 @@ import UsersForm from './UsersForm';
 import { GET_USERS_QUERY, GET_USER_BY_ID_QUERY } from '../../gql/Query/Users';
 import { UPDATE_USER_MUTATION } from '../../gql/Mutation/Users';
 import openNotificationWithIcon from '../../Helper/Notification';
+import Loader from '../../Components/UI/Loader';
 
 const UsersEdit = () => {
 
@@ -12,10 +13,10 @@ const UsersEdit = () => {
     const history = useHistory()
 
     const { loading, data } = useQuery(GET_USER_BY_ID_QUERY, {
-        variables : { userId : id }
+        variables : { userByIdId : id }
     })
 
-    const [ UpdateUser, { data : updatedUser }] = useMutation(UPDATE_USER_MUTATION, {
+    const [ UpdateUser, { data : updatedUser, loading : editLoading }] = useMutation(UPDATE_USER_MUTATION, {
         refetchQueries : [
             { query : GET_USERS_QUERY }
         ]
@@ -25,6 +26,10 @@ const UsersEdit = () => {
         UpdateUser({ variables : {updateUserId : id,  input: {...values} }})
     }
 
+    if(loading){
+		return <Loader />
+	}
+
     if(updatedUser) {
         openNotificationWithIcon('userEdit', 'success', "USER EDITED SUCCESSFULLY")
         history.push('/users')
@@ -33,7 +38,7 @@ const UsersEdit = () => {
         <div>
         {
             !loading && (
-                <UsersForm handleUser={handleUser} user={data?.userById}/>
+                <UsersForm handleUser={handleUser} user={data?.userById} loading={editLoading}/>
             )
         }
         </div>

@@ -3,14 +3,13 @@ import { useHistory } from 'react-router-dom';
 import { CREATE_USER_MUTATION } from '../../gql/Mutation/Users';
 import { GET_USERS_QUERY } from '../../gql/Query/Users';
 import openNotificationWithIcon from '../../Helper/Notification';
-
 import UsersForm from './UsersForm';
 
 const UsersAdd = () => {
 
     const history = useHistory();
 
-    const [ CreateUser, { data }] = useMutation(CREATE_USER_MUTATION, {
+    const [ CreateUser, { data, loading }] = useMutation(CREATE_USER_MUTATION, {
         refetchQueries : [
             {query : GET_USERS_QUERY}
         ]
@@ -26,7 +25,7 @@ const UsersAdd = () => {
     }
 
     return (
-       <UsersForm handleUser={handleUser}/>
+       <UsersForm handleUser={handleUser} loading={loading}/>
     )
 }
 

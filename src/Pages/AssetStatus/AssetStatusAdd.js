@@ -7,7 +7,7 @@ import openNotificationWithIcon from '../../Helper/Notification';
 
 const AssetStatusAdd = () => {
 	const history = useHistory();
-	const [addAssetStatus, { data }] = useMutation(CREATE_ASSET_STATUS_MUTATION, {
+	const [addAssetStatus, { data, loading }] = useMutation(CREATE_ASSET_STATUS_MUTATION, {
 		refetchQueries: [
 			{ query: GET_ASSET_STATUS_QUERY },
 		]
@@ -23,7 +23,7 @@ const AssetStatusAdd = () => {
 	}
 
 	return (
-		<AssetStatusForm handleAssetStatus={handleAssetStatus} />
+		<AssetStatusForm handleAssetStatus={handleAssetStatus} loading={loading} />
 	)
 }
 

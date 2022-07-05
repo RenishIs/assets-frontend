@@ -26,6 +26,7 @@ import AssetTypeEdit from "../Pages/AssetTypes/AssetTypeEdit";
 import AssetStatusListing from "../Pages/AssetStatus/index"
 import AssetStatusAdd from "../Pages/AssetStatus/AssetStatusAdd"
 import AssetStatusEdit from "../Pages/AssetStatus/AssetStatusEdit"
+import UserDetails from '../Pages/Users/UserDetails';
 
 export const PrivateRoutesConfig = [
     {
@@ -94,20 +95,21 @@ export const PrivateRoutesConfig = [
     },
     {
         key : 6,
+        component : UserDetails,
+        path : '/users/:id',
+        exact : true,
+        permissions : [
+            Roles.ADMIN,
+            Roles.EMPLOYEE
+        ],
+    },
+    {
+        key : 6,
         sidebar : true,
         icon : React.createElement(LaptopOutlined, {className : 'side-nav-bar-icons',}),
         label : <Link to="/assets">Assets</Link>,
         component : AssetsListing,
         path : '/assets',
-        exact : true,
-        permissions : [
-            Roles.ADMIN
-        ]
-    },
-    {
-        key : 7,
-        component : AssetDetails,
-        path : '/assets/:id',
         exact : true,
         permissions : [
             Roles.ADMIN
@@ -126,6 +128,15 @@ export const PrivateRoutesConfig = [
         key : 9,
         component : AssetsEdit,
         path : '/assets/edit/:id',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
+        ]
+    },
+    {
+        key : 7,
+        component : AssetDetails,
+        path : '/assets/:id',
         exact : true,
         permissions : [
             Roles.ADMIN

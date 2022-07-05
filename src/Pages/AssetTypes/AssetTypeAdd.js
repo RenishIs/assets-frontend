@@ -8,7 +8,7 @@ import openNotificationWithIcon from '../../Helper/Notification';
 const AssetTypeAdd = () => {
 	const history = useHistory();
 
-	const [addAssetType, { data }] = useMutation(CREATE_ASSET_TYPE_MUTATION, {
+	const [addAssetType, { data, loading }] = useMutation(CREATE_ASSET_TYPE_MUTATION, {
 		refetchQueries: [
 			{ query: GET_ASSET_TYPES_QUERY },
 		]
@@ -25,7 +25,7 @@ const AssetTypeAdd = () => {
 
 	return (
 		<div>
-			<AssetTypesForm handleAssetType={handleAssetType} />
+			<AssetTypesForm handleAssetType={handleAssetType} loading={loading}/>
 		</div>
 	)
 }

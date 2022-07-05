@@ -18,18 +18,36 @@ export const GET_USERS_QUERY = gql`
 `
 
 export const GET_USER_BY_ID_QUERY = gql`
-	query Query($userId: ID!) {
-		userById(id: $userId) {
-			id,
-			username,
-			email,
-			role{
-				id,
-				name
-			},
-			password,
-			address,
+	query Query($userByIdId: ID!) {
+		userById(id: $userByIdId) {
+			username
+			email
 			contactNo
+			address
+			role {
+				name
+			}
+			password
+			isActive
+			assetDetails {
+				id
+				name
+				description
+				location
+				assetCategory {
+				  name
+				}
+				assetType {
+				  name
+				}
+				purchasedOn
+				assetCondition
+				assetStatus {
+				  name
+				}
+				reason
+				dateOfAssetAssignment
+			}
 		}
 	}
 `

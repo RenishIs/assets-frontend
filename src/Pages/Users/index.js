@@ -1,17 +1,18 @@
 import { Table, Space, Button, Modal } from 'antd';
 import { Link } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
+import { EditFilled, DeleteFilled, EyeFilled } from '@ant-design/icons';
 import { tableColumns } from './CONSTANTS';
 import { GET_USERS_QUERY } from '../../gql/Query/Users/index';
 import { DELETE_USER_MUTATION } from '../../gql/Mutation/Users/index';
 import openNotificationWithIcon from '../../Helper/Notification';
-import { EditFilled, DeleteFilled, EyeFilled } from '@ant-design/icons';
+import Loader from '../../Components/UI/Loader';
 
 const confirm = Modal.confirm;
 
 const UsersListing = () => {
 
-    const { data } = useQuery(GET_USERS_QUERY)
+    const { loading, data } = useQuery(GET_USERS_QUERY)
 
     const showDeleteConfirm = (id) => {
 		confirm({
@@ -29,7 +30,7 @@ const UsersListing = () => {
 		});
 	}
 
-    const [ DeleteUser, { error, data : deletedUser } ] = useMutation(DELETE_USER_MUTATION, {
+    const [ DeleteUser, { error, data : deletedUser, loading : deleteLoading } ] = useMutation(DELETE_USER_MUTATION, {
         refetchQueries: [
 			{ query: GET_USERS_QUERY },
 		]
@@ -49,13 +50,14 @@ const UsersListing = () => {
 			<Space size="middle">
                 <Link to={`/users/edit/${record.id}`}><EditFilled style={{color: "blue"}}/></Link>
 				<DeleteFilled style={{color: "red"}} onClick={() => showDeleteConfirm(record.id)}/>
-				<Link to={`/users/edit/${record.id}`}><EyeFilled style={{color:"green"}}/></Link>
+				<Link to={`/users/${record.id}`}><EyeFilled style={{color:"green"}}/></Link>
 			</Space>
 		),
 	}]
 
     return (
 		<>
+		{ (loading || deleteLoading ) && <Loader /> }
 		<div className='text-cente mb-3'>
 			<h2 className='d-inline fs-4 fw-bold'>MANAGE USERS</h2>
 			<div className='add-button'>

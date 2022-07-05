@@ -8,13 +8,16 @@ import { KeyOutlined, EnvironmentFilled } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_USER_ROLE } from '../../gql/Query/Users/index';
+import MultiSelect from '../../Components/UI/MultiSelect';
+import { GET_ASSETS_QUERY } from '../../gql/Query/Assets';
+import Loader from '../../Components/UI/Loader';
 
-
-const UsersForm = ({title, handleUser, ...rest}) => {
+const UsersForm = ({title, handleUser, loading, ...rest}) => {
 
     const {user} = rest
 
     const { data } = useQuery(GET_USER_ROLE)
+    const { data : assets} = useQuery(GET_ASSETS_QUERY)
 
     const initialState = {
         username : user ? user.username : '',
@@ -27,6 +30,7 @@ const UsersForm = ({title, handleUser, ...rest}) => {
 
     return (
         <div>
+            { loading && <Loader /> }
             <h2 className='text-center fs-4 fw-bold'>{user ? 'EDIT USER' : 'ADD USER'}</h2>
             <Formik initialValues={initialState} validationSchema={userValidations} onSubmit={(values) => handleUser(values)}>
                 <Form>
@@ -92,6 +96,19 @@ const UsersForm = ({title, handleUser, ...rest}) => {
                                         isLabel={true} />
                         </Col>
                     </Row>
+                    {/* <Row>
+                        <Col span={12}>
+                            <div className='text-start ms-4 mb-1 mt-4'>
+                                <label htmlFor="role" className="text-body text-start fs-6 fw-bold">ROLE</label>
+                            </div>
+                            <Field name="assets"
+                                   id="assets"  
+                                   component={MultiSelect}
+                                   style={{height:"50px"}} 
+                                   options={assets?.assets}
+                                    />
+                        </Col>
+                    </Row> */}
                     <div className="d-flex mt-4 me-4 flex-row-reverse">
                         <Link to="/users"><Button type="primary">Back</Button></Link>
                         <Button type="primary" htmlType="submit" className='me-3'>Submit</Button>

@@ -6,12 +6,13 @@ import { GET_ASSET_STATUS_QUERY } from '../../gql/Query/AssetStatus';
 import { DELETE_ASSET_STATUS_MUTATION } from '../../gql/Mutation/AssetStatus';
 import openNotificationWithIcon from '../../Helper/Notification';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
+import Loader from '../../Components/UI/Loader';
 
 const confirm = Modal.confirm;
 
 const AssetStatusListing = () => {
 
-	const { data } = useQuery(GET_ASSET_STATUS_QUERY);
+	const { loading, data } = useQuery(GET_ASSET_STATUS_QUERY);
 
 	const showDeleteConfirm = (id) => {
 		confirm({
@@ -29,7 +30,7 @@ const AssetStatusListing = () => {
 		});
 	  }
 
-	const [deleteAssetStatus, { error, data : deletedAssetStatus }] = useMutation(DELETE_ASSET_STATUS_MUTATION, {
+	const [deleteAssetStatus, { error, data : deletedAssetStatus, loading : deleteLoading }] = useMutation(DELETE_ASSET_STATUS_MUTATION, {
 		refetchQueries: [
 			{ query: GET_ASSET_STATUS_QUERY },
 		]
@@ -42,8 +43,6 @@ const AssetStatusListing = () => {
 		alert(error);	
 	}
 
-
-	
 	const columns = [...tableColumns, {
 		title: 'ACTION',
 		key: 'action',
@@ -57,6 +56,7 @@ const AssetStatusListing = () => {
 
 	return (
 		<>
+			{ (loading || deleteLoading ) && <Loader /> }
 			<div className='text-cente mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSET STATUS</h2>
                 <div className='add-button'>
