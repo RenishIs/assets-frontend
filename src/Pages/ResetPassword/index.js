@@ -33,10 +33,10 @@ const ResetPassword = () => {
             <Formik initialValues={initialState} validationSchema={resetPasswordValidations} onSubmit={values => onFinish(values)}>
                     <Form>
                         <div id="authForm">
-                            <TextInput label="New Password" type="password" name="newPassword" id="newPassword" 
+                            <TextInput placeholder="New Password" label="New Password" type="password" name="newPassword" id="newPassword" 
                             prefix={<img src="/icon-password-key.png" alt="password"/>} isPassword={true}
                             iconRender={(visible) => (visible ? <EyeFilled style={{color:"white", fontSize:"1rem"}}/> : <EyeInvisibleOutlined style={{color:"white" , fontSize:"1rem"}}/>)}/>
-                            <TextInput label="Confirm Password" type="password" name="confirmPassword" id="confirmPassword" 
+                            <TextInput placeholder="Confirm Password" label="Confirm Password" type="password" name="confirmPassword" id="confirmPassword" 
                             prefix={<img src="/icon-password-key.png" alt="password"/>} isPassword={true}
                             iconRender={(visible) => (visible ? <EyeFilled style={{color:"white", fontSize:"1rem"}}/> : <EyeInvisibleOutlined style={{color:"white" , fontSize:"1rem"}}/>)}/>
                         </div>

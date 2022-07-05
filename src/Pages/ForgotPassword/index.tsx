@@ -31,7 +31,7 @@ const ForgotPassword = () => {
             <Formik initialValues={initialState} validationSchema={forgotPasswordValidations} onSubmit={(values) => onFinish(values)}>
                     <Form>
                         <div id="authForm">
-                            <TextInput label="EMAIL" type="email" id="email" name="email" prefix={<UserOutlined style={{color : 'white'}}/>}/>
+                            <TextInput placeholder="Email" label="EMAIL" type="email" id="email" name="email" prefix={<UserOutlined style={{color : 'white'}}/>}/>
                         </div>
                         <Button type="primary" className="auth-button" htmlType="submit" style={{width:"90%"}}>
                             { loading ? <AuthLoader /> : 'Send reset Instructions'}
