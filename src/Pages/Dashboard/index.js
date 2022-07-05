@@ -58,7 +58,7 @@ const Dashboard = ({children, routes, path}) => {
                             </Col>
                         </Row>
                     </Header>
-                    <div className="bg-white text-center p-4 mx-4 main-card mb-4">
+                    <div className="text-center p-4 mx-4 main-card mb-4">
                         {children}
                     </div>
                 </Layout>

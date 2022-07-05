@@ -58,7 +58,7 @@ const UsersListing = () => {
     return (
 		<>
 		{ (loading || deleteLoading ) && <Loader /> }
-		<div className='text-cente mb-3'>
+		<div className='text-center mb-3'>
 			<h2 className='d-inline fs-4 fw-bold'>MANAGE USERS</h2>
 			<div className='add-button'>
 				<Link to={`/users/add`}><Button type="primary">ADD</Button></Link>

@@ -58,7 +58,7 @@ const MainLayout = ({children, routes, path}) => {
                             </Col>
                         </Row>
                     </Header>
-                    <div className="bg-white text-center p-4 mx-4 main-card mb-4 h-100">
+                    <div className="bg-white text-center p-4 mx-4 main-card mb-4">
                         {children}
                     </div>
                 </Layout>

@@ -44,6 +44,7 @@ export const userValidations = yup.object().shape({
     email : email,
     password : password,
     contactNo : contactNo,
+    role : name.required("*Role is required")
 })
 
 export const assetValidations = yup.object().shape({
