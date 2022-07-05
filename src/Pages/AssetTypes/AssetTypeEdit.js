@@ -29,14 +29,14 @@ const AssetTypeEdit = () => {
 		openNotificationWithIcon('editAssetType','success', "ASSET TYPE EDITED SUCCESSFULLY")
 		history.push('/asset-types');
 	}
-	if(loading || editLoading){
+	if(loading){
         return <Loader />
     }
 	return (
 		<div>
 			{
 				data?.assetTypeById && (
-				<AssetTypesForm handleAssetType={handleAssetType} assetType={data?.assetTypeById} />
+				<AssetTypesForm handleAssetType={handleAssetType} assetType={data?.assetTypeById} loading={editLoading}/>
 				)
 			}
 		</div>

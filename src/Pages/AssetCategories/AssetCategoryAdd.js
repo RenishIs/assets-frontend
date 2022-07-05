@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom'
 import { ADD_ASSET_CATEGORY_MUTATION } from '../../gql/Mutation/AssetCategories'
 import { GET_ASSET_CATEGORIES_QUERY } from '../../gql/Query/AssetCategories'
 import openNotificationWithIcon from '../../Helper/Notification'
-import Loader from '../../Components/UI/Loader';
 
 const AssetCategoryAdd = () => {
     
@@ -16,9 +15,6 @@ const AssetCategoryAdd = () => {
         ]
     })
 
-    if(loading){
-		return <Loader />
-    }
     if(data){
         openNotificationWithIcon('addAssetCategory', 'success', 'ASSET CATEGORY ADDED SUCCESSFULLY')
         history.push('/asset-categories')
@@ -29,7 +25,7 @@ const AssetCategoryAdd = () => {
     }
 
     return (
-        <AssetCategoryForm handleAssetCategory={handleAssetCategory}/>
+        <AssetCategoryForm handleAssetCategory={handleAssetCategory} loading={loading}/>
     )
 }
 

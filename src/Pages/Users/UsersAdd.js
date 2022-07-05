@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { CREATE_USER_MUTATION } from '../../gql/Mutation/Users';
 import { GET_USERS_QUERY } from '../../gql/Query/Users';
 import openNotificationWithIcon from '../../Helper/Notification';
-import Loader from '../../Components/UI/Loader';
 import UsersForm from './UsersForm';
 
 const UsersAdd = () => {
@@ -19,9 +18,6 @@ const UsersAdd = () => {
     const handleUser = (values) => {
         CreateUser({ variables : {input: {...values}}})
     }
-	if(loading ){
-		return <Loader />
-	}
 
     if(data){
         openNotificationWithIcon('userAdd', 'success', "USER ADDED SUCCESSFULLY")
@@ -29,7 +25,7 @@ const UsersAdd = () => {
     }
 
     return (
-       <UsersForm handleUser={handleUser}/>
+       <UsersForm handleUser={handleUser} loading={loading}/>
     )
 }
 

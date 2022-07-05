@@ -26,7 +26,7 @@ const UsersEdit = () => {
         UpdateUser({ variables : {updateUserId : id,  input: {...values} }})
     }
 
-    if(loading || editLoading){
+    if(loading){
 		return <Loader />
 	}
 
@@ -38,7 +38,7 @@ const UsersEdit = () => {
         <div>
         {
             !loading && (
-                <UsersForm handleUser={handleUser} user={data?.userById}/>
+                <UsersForm handleUser={handleUser} user={data?.userById} loading={editLoading}/>
             )
         }
         </div>

@@ -29,14 +29,14 @@ const AssetStatusEdit = () => {
 		openNotificationWithIcon('editAssetStatus','success', "ASSET STATUS EDITED SUCCESSFULLY")
 		history.push('/asset-status');
 	}
-	if(loading || editLoading){
+	if(loading){
         return <Loader />
     }
 	return (
 		<div>
 			{
 				data?.assetStatusById && (
-				<AssetStatusForm handleAssetStatus={handleAssetStatus} assetStatus={data?.assetStatusById} />
+				<AssetStatusForm handleAssetStatus={handleAssetStatus} assetStatus={data?.assetStatusById} loading={editLoading}/>
 				)
 			}
 		</div>

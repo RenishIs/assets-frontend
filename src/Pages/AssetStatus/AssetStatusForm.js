@@ -5,8 +5,9 @@ import { assetStatusValidations } from '../../Helper/ValidationSchema';
 import { UserOutlined } from '@ant-design/icons';
 import { Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
+import Loader from '../../Components/UI/Loader';
 
-const AssetsForm = ({title, handleAssetStatus, ...rest}) => {
+const AssetsForm = ({title, handleAssetStatus, loading, ...rest}) => {
 
     const { assetStatus } = rest
 
@@ -16,6 +17,7 @@ const AssetsForm = ({title, handleAssetStatus, ...rest}) => {
 
     return (
         <div>
+            { loading && <Loader /> }
             <h2 className='text-center fs-4 fw-bold'>{assetStatus ? 'EDIT ASSET STATUS' : 'ADD ASSET STATUS'}</h2>
             <Formik initialValues={initialState} validationSchema={assetStatusValidations} onSubmit={(values) => handleAssetStatus(values)}>
                 <Form>

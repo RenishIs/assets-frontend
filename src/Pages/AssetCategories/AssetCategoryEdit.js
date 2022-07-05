@@ -21,7 +21,7 @@ const AssetCategoryEdit = () => {
         ]
     })
 
-    if(loading || editLoading){
+    if(loading){
         return <Loader />
     }
 
@@ -37,7 +37,7 @@ const AssetCategoryEdit = () => {
     return (
         <>
         {
-            data?.assetCategoryById && <AssetCategoryForm handleAssetCategory={handleAssetCategory} assetCategory={data?.assetCategoryById}/>
+            data?.assetCategoryById && <AssetCategoryForm handleAssetCategory={handleAssetCategory} assetCategory={data?.assetCategoryById} loading={editLoading}/>
 
         }
         </>

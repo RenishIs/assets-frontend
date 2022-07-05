@@ -5,8 +5,9 @@ import { UserOutlined } from '@ant-design/icons';
 import TextInput from '../../Components/UI/TextInput';
 import { assetCategoryValidation } from '../../Helper/ValidationSchema';
 import { Row, Col } from 'antd';
+import Loader from '../../Components/UI/Loader';
 
-const AssetsForm = ({ handleAssetCategory, ...rest}) => {
+const AssetsForm = ({ handleAssetCategory, loading, ...rest}) => {
 
     const { assetCategory } = rest
 
@@ -16,6 +17,7 @@ const AssetsForm = ({ handleAssetCategory, ...rest}) => {
 
     return (
         <div>
+            { loading && <Loader /> }
             <h2 className='text-center fs-4 fw-bold'>{assetCategory ? 'EDIT ASSET CATEGORY' : 'ADD ASSET CATEGORY'}</h2>
             <Formik initialValues={initialState} validationSchema={assetCategoryValidation} onSubmit={(values) => handleAssetCategory(values)}>
                 <Form>

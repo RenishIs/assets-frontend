@@ -10,8 +10,9 @@ import { useQuery } from '@apollo/client';
 import { GET_USER_ROLE } from '../../gql/Query/Users/index';
 import MultiSelect from '../../Components/UI/MultiSelect';
 import { GET_ASSETS_QUERY } from '../../gql/Query/Assets';
+import Loader from '../../Components/UI/Loader';
 
-const UsersForm = ({title, handleUser, ...rest}) => {
+const UsersForm = ({title, handleUser, loading, ...rest}) => {
 
     const {user} = rest
 
@@ -29,6 +30,7 @@ const UsersForm = ({title, handleUser, ...rest}) => {
 
     return (
         <div>
+            { loading && <Loader /> }
             <h2 className='text-center fs-4 fw-bold'>{user ? 'EDIT USER' : 'ADD USER'}</h2>
             <Formik initialValues={initialState} validationSchema={userValidations} onSubmit={(values) => handleUser(values)}>
                 <Form>
