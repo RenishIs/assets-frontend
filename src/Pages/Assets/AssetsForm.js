@@ -2,18 +2,19 @@ import { Button } from 'antd';
 import { Formik, Form, Field } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
 import { assetValidations } from '../../Helper/ValidationSchema';
-import { UserOutlined, EnvironmentFilled, CalendarOutlined} from '@ant-design/icons';
+import { UserOutlined, EnvironmentFilled} from '@ant-design/icons';
 import { Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
-import { DatePicker, Space } from 'antd';
+import { DatePicker } from 'antd';
 import { useQuery } from '@apollo/client';
 import { GET_ASSET_CATEGORIES_QUERY } from '../../gql/Query/AssetCategories/index';
 import { GET_ASSET_STATUS_QUERY } from '../../gql/Query/AssetStatus/index';
 import { GET_ASSET_TYPES_QUERY } from '../../gql/Query/AssetTypes/index';
 import { GET_USERS_QUERY } from '../../gql/Query/Users/index';
 import moment from 'moment'
+import Loader from '../../Components/UI/Loader';
 
-const AssetsForm = ({title, handleAsset, ...rest}) => {
+const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
 
     const { asset } = rest
 
@@ -38,6 +39,7 @@ const AssetsForm = ({title, handleAsset, ...rest}) => {
 
     return (
         <div>
+            { loading && <Loader />}
             <h2 className='text-center fs-4 fw-bold'>{asset ? 'EDIT ASSET' : 'ADD ASSET'}</h2>
             <Formik initialValues={initialState} validationSchema={assetValidations} onSubmit={(values) => handleAsset(values)}>
             {({

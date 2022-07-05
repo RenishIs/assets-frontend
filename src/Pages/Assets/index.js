@@ -6,12 +6,13 @@ import { GET_ASSETS_QUERY } from '../../gql/Query/Assets';
 import { DELETE_ASSET_MUTATION } from '../../gql/Mutation/Assets';
 import openNotificationWithIcon from '../../Helper/Notification';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
+import Loader from '../../Components/UI/Loader';
 
 const confirm = Modal.confirm;
 
 const AssetsListing = () => {
 
-	const { data } = useQuery(GET_ASSETS_QUERY);
+	const { loading, data } = useQuery(GET_ASSETS_QUERY);
 	const history = useHistory()
 
 	const showDeleteConfirm = (e, id) => {
@@ -31,7 +32,7 @@ const AssetsListing = () => {
 		});
 	  }
 
-	const [deleteAssets, { error, data : deletedAsset }] = useMutation(DELETE_ASSET_MUTATION, {
+	const [deleteAssets, { error, data : deletedAsset, loading : deleteLoading }] = useMutation(DELETE_ASSET_MUTATION, {
 		refetchQueries: [
 			{ query: GET_ASSETS_QUERY },
 		]
@@ -66,6 +67,7 @@ const AssetsListing = () => {
 	
 	return (
 		<>
+			{ (loading || deleteLoading ) && <Loader /> }
 			<div className='text-center mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSETS</h2>
                 <div className='add-button'>

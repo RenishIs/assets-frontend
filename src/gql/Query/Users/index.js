@@ -30,11 +30,21 @@ export const GET_USER_BY_ID_QUERY = gql`
 			password
 			isActive
 			assetDetails {
+				id
 				name
 				description
 				location
+				assetCategory {
+				  name
+				}
+				assetType {
+				  name
+				}
 				purchasedOn
 				assetCondition
+				assetStatus {
+				  name
+				}
 				reason
 				dateOfAssetAssignment
 			}
