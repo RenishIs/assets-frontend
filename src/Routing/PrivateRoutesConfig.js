@@ -74,16 +74,6 @@ export const PrivateRoutesConfig = [
         ]
     },
     {
-        key : 5,
-        component : UserDetails,
-        path : '/users/:id',
-        exact : true,
-        permissions : [
-            Roles.ADMIN,
-            Roles.EMPLOYEE
-        ],
-    },
-    {
         key : 4,
         component : UsersAdd,
         path : '/users/add',
@@ -105,20 +95,21 @@ export const PrivateRoutesConfig = [
     },
     {
         key : 6,
+        component : UserDetails,
+        path : '/users/:id',
+        exact : true,
+        permissions : [
+            Roles.ADMIN,
+            Roles.EMPLOYEE
+        ],
+    },
+    {
+        key : 6,
         sidebar : true,
         icon : React.createElement(LaptopOutlined, {className : 'side-nav-bar-icons',}),
         label : <Link to="/assets">Assets</Link>,
         component : AssetsListing,
         path : '/assets',
-        exact : true,
-        permissions : [
-            Roles.ADMIN
-        ]
-    },
-    {
-        key : 7,
-        component : AssetDetails,
-        path : '/assets/:id',
         exact : true,
         permissions : [
             Roles.ADMIN
@@ -137,6 +128,15 @@ export const PrivateRoutesConfig = [
         key : 9,
         component : AssetsEdit,
         path : '/assets/edit/:id',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
+        ]
+    },
+    {
+        key : 7,
+        component : AssetDetails,
+        path : '/assets/:id',
         exact : true,
         permissions : [
             Roles.ADMIN
