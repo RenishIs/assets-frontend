@@ -19,7 +19,6 @@ const AssetsAdd = () => {
 	}
 
 	const handleAsset = (values) => {
-		console.log(values,'values')
 		addAssets({ variables: { input: { ...values } } });
 	}
 
