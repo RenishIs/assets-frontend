@@ -56,6 +56,7 @@ export const GET_ASSET_BY_ID_QUERY = gql`
         }
         reason
         employeeId {
+            id
             username
             email
             role {

@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Button } from 'antd';
 import { Formik, Form, Field } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
@@ -13,6 +12,7 @@ import { GET_ASSET_CATEGORIES_QUERY } from '../../gql/Query/AssetCategories/inde
 import { GET_ASSET_STATUS_QUERY } from '../../gql/Query/AssetStatus/index';
 import { GET_ASSET_TYPES_QUERY } from '../../gql/Query/AssetTypes/index';
 import { GET_USERS_QUERY } from '../../gql/Query/Users/index';
+import moment from 'moment'
 
 const AssetsForm = ({title, handleAsset, ...rest}) => {
 
@@ -23,48 +23,30 @@ const AssetsForm = ({title, handleAsset, ...rest}) => {
     const { data : assetStatus } = useQuery(GET_ASSET_STATUS_QUERY)
     const { data : assetTypes } = useQuery(GET_ASSET_TYPES_QUERY)
 
-    const [purchasedOnDate, setPurchasedOnDate] = useState('');
-    const [dateOfAssetAssignmentDate, setDateOfAssetAssignmentDate] = useState('');
-
     const initialState = {
         name : asset ? asset.name : '',
         description : asset ? asset.description : '',
         location : asset ? asset.location : '',
         assetCategory : asset ? asset.assetCategory.id : '',
         assetType : asset ? asset.assetType.id : '',
-        purchasedOn : asset ? asset.purchasedOn : '22/7',
+        purchasedOn : asset ? moment(asset.purchasedOn) : null,
         assetCondition : asset ? asset.assetCondition : '',
         assetStatus : asset ? asset.assetStatus.id : '',
         reason : asset ? asset.reason : '',
         employeeId : asset ? asset.employeeId.id : '',
-        dateOfAssetAssignment : asset ? asset.dateOfAssetAssignment : '22/5'
+        dateOfAssetAssignment : asset ? moment(asset.dateOfAssetAssignment) : moment()
     }
-
-    const onPurchasedOnChange = (date, dateString) => {
-        setPurchasedOnDate(dateString)
-    };
-
-    const onDateOfAssetAssignmentChange = (date, dateString) => {
-        setDateOfAssetAssignmentDate(dateString)
-    };
-
-      
 
     return (
         <Dashboard>
             <div>
-                {console.log(users?.users, 'assetCategories')}
                 <h2 className='text-center fs-4 fw-bold'>{asset ? 'EDIT ASSET' : 'ADD ASSET'}</h2>
-                <Formik initialValues={initialState}  onSubmit={(values) => handleAsset(values)}>
+                <Formik initialValues={initialState} validationSchema={assetValidations} onSubmit={(values) => handleAsset(values)}>
                 {({
                     values,
-                    errors,
                     touched,
-                    handleSubmit,
-                    handleChange,
-                    isSubmitting,
-                    validating,
-                    valid
+                    errors,
+                    setFieldValue
                 }) => {
                     return (
                     <Form>
@@ -89,12 +71,18 @@ const AssetsForm = ({title, handleAsset, ...rest}) => {
                                        id="assetCategory"  
                                        style={{height:"43px"}} 
                                        className="form-input">
+                                    <option>--select category--</option>
                                    { 
                                     assetCategories?.assetCategories.map(item => (
                                         <option value={item.id} key={item.id}>{item.name}</option>
                                     ))
                                    }
                                 </Field>
+                                {
+                                    touched.assetCategory && errors.assetCategory ? (
+                                        <div className="text-start ms-4 mb-0 fs-6 text-danger">{errors.assetCategory}</div>
+                                    ) : null
+                                }
                             </Col>
                         </Row>
                         <Row>
@@ -107,20 +95,26 @@ const AssetsForm = ({title, handleAsset, ...rest}) => {
                                        id="assetType"  
                                        style={{height:"43px"}} 
                                        className="form-input">
+                                    <option>--select type--</option>
                                    {
                                     assetTypes?.assetTypes.map(item => (
                                         <option value={item.id} key={item.id}>{item.name}</option>
                                     ))
                                    }
                                 </Field>
+                                {
+                                    touched.assetType && errors.assetType ? (
+                                        <div className="text-start ms-4 mb-0 fs-6 text-danger">{errors.assetType}</div>
+                                    ) : null
+                                }
                             </Col>
                             <Col span={12}>
                                 <div className='text-start ms-4 mb-1 mt-4'>
                                     <label htmlFor="purchasedOn" className="text-body text-start fs-6 fw-bold">PURCHASED ON</label>
                                 </div>
                                 <DatePicker style={{height:"43px"}} className="form-input" 
-                                // onChange={(date,dateString) => handleChange(dateString)}
-                                // value={values.purchasedOn} 
+                                value={values.purchasedOn} 
+                                onChange={(date) => setFieldValue('purchasedOn', date)}
                                 />
                             </Col>
                         </Row>
@@ -137,12 +131,18 @@ const AssetsForm = ({title, handleAsset, ...rest}) => {
                                        id="assetStatus"  
                                        style={{height:"43px"}} 
                                        className="form-input">
+                                    <option>--select status--</option>
                                    {
                                     assetStatus?.assetStatus.map(item => (
                                         <option value={item.id} key={item.id}>{item.name}</option>
                                     ))
                                    }
                                 </Field>
+                                {
+                                    touched.assetStatus && errors.assetStatus ? (
+                                        <div className="text-start ms-4 mb-0 fs-6 text-danger">{errors.assetStatus}</div>
+                                    ) : null
+                                }
                             </Col>
                         </Row>
                         <Row>
@@ -158,12 +158,18 @@ const AssetsForm = ({title, handleAsset, ...rest}) => {
                                        id="employeeId"  
                                        style={{height:"43px"}} 
                                        className="form-input">
+                                    <option>--select employee--</option>
                                    {
                                     users?.users.map(item => (
                                         <option value={item.id} key={item.id}>{item.username}</option>
                                     ))
                                    }
                                 </Field>
+                                {
+                                    touched.employeeId && errors.employeeId ? (
+                                        <div className="text-start ms-4 mb-0 fs-6 text-danger">{errors.employeeId}</div>
+                                    ) : null
+                                }
                             </Col>
                         </Row>
                         <Row>
@@ -172,9 +178,14 @@ const AssetsForm = ({title, handleAsset, ...rest}) => {
                                     <label htmlFor="dateOfAssetAssignment" className="text-body text-start fs-6 fw-bold">DATE OF ASSET ASSIGNMENT</label>
                                 </div>
                                 <DatePicker style={{height:"43px"}}  className="form-input" 
-                                // value={values.dateOfAssetAssignment}
-                                // onChange={(date,dateString) => handleChange(dateString)}
+                                value={values.dateOfAssetAssignment}
+                                onChange={(date) => setFieldValue('dateOfAssetAssignment', date)}
                                  />
+                                {
+                                    touched.dateOfAssetAssignment && errors.dateOfAssetAssignment ? (
+                                        <div className="text-start ms-4 mb-0 fs-6 text-danger">{errors.dateOfAssetAssignment}</div>
+                                    ) : null
+                                }
                             </Col>
                             <Col span={12}></Col>
                         </Row>

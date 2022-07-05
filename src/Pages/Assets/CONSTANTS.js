@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export const tableColumns = [
 	{
 		title: 'NAME',
@@ -33,7 +35,7 @@ export const tableColumns = [
 		title: 'PURCHASED ON',
 		dataIndex: 'purchasedOn',
 		key: 'purchasedOn',
-		render: (text) => <span style={{cursor:"pointer"}}>{text}</span>,
+		render: (text) => <span style={{cursor:"pointer"}}>{text ? moment(text).format("MMM Do YY") : ''}</span>,
 	},
 	{
 		title: 'CONDITION',
@@ -63,6 +65,6 @@ export const tableColumns = [
 		title: 'DATE OF ASSET ASSIGNMENT',
 		dataIndex: 'dateOfAssetAssignment',
 		key: 'dateOfAssetAssignment',
-		render: (text) => <span style={{cursor:"pointer"}}>{text}</span>,
+		render: (text) => <span style={{cursor:"pointer"}}>{moment(text).format("MMM Do YY")}</span>,
 	},
 ]
