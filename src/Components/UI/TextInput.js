@@ -18,7 +18,7 @@ const TextInput = ({label, forgotPassword=false, isPassword=false, isAuth=false,
             <div className='d-flex justify-content-end text-primary'>
             { 
                 forgotPassword && (
-                    <Link to='/forgot-password' className="fw-bolder text-end" style={{marginRight: '55px'}}>Forgot Password?</Link >
+                    <Link to='/user/forgot-password' className="fw-bolder text-end" style={{marginRight: '55px'}}>Forgot Password?</Link >
                 )
             }
             </div>

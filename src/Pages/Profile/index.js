@@ -1,4 +1,3 @@
-import Dashboard from "../Dashboard"
 import { useQuery } from '@apollo/client';
 import { GET_PROFILE_QUERY } from '../../gql/Query/Profile/index';
 import { Row, Col } from 'antd';
@@ -8,7 +7,7 @@ const Profile = () => {
     const { data } = useQuery(GET_PROFILE_QUERY);
     
     return (
-        <Dashboard>
+        <>
             <div className='text-center mb-4'>
                 <h2 className='d-inline fs-5 fw-bold'>PROFILE DETAILS</h2>
             </div>
@@ -64,7 +63,7 @@ const Profile = () => {
                     <Col span={6}></Col>
                 </Row>
             </div>}
-        </Dashboard>
+        </>
     )
 }
 

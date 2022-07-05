@@ -1,7 +1,6 @@
 import { Link, useHistory } from 'react-router-dom';
 import { Table, Space, Button, Modal } from 'antd';
 import { tableColumns } from './CONSTANTS';
-import Dashboard from '../Dashboard';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_ASSETS_QUERY } from '../../gql/Query/Assets';
 import { DELETE_ASSET_MUTATION } from '../../gql/Mutation/Assets';
@@ -66,7 +65,7 @@ const AssetsListing = () => {
 	}
 	
 	return (
-		<Dashboard>
+		<>
 			<div className='text-center mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSETS</h2>
                 <div className='add-button'>
@@ -87,7 +86,7 @@ const AssetsListing = () => {
 				  }}
 			  
 				   />
-		</Dashboard>
+		</>
 	)
 }
 

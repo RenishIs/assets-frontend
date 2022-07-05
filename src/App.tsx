@@ -3,6 +3,7 @@ import { setContext } from '@apollo/client/link/context';
 import Router from "./Routing/Router";
 import { history } from "./Routing/history";
 import Cookies from "js-cookie";
+import Routes from './Routing'
 
 const httpLink = createHttpLink({
 	uri: process.env.REACT_APP_BASE_URL,
@@ -26,7 +27,8 @@ export const client = new ApolloClient({
 const App = () => {
 	return (
 		<ApolloProvider client={client}>
-			<Router history={history} />
+			<Routes />
+			{/* <Router history={history} /> */}
 		</ApolloProvider>		
 	);
 };

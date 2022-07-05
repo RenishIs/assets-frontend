@@ -1,36 +1,32 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
-import { UserOutlined, HomeFilled, LaptopOutlined } from '@ant-design/icons';
+import { UserOutlined, LaptopOutlined } from '@ant-design/icons';
 import { Link, useLocation } from 'react-router-dom';
+import Cookies from 'js-cookie';
 const { Sider } = Layout;
-function getItem(label, icon, path) {
-    return {
-        label,
 
-        icon,
-        path,
-    };
+function getItem(label, icon, path, role) {
+    return { label, icon, path, role}
 }
 const iconsData = [
-    getItem("Users", UserOutlined, '/users'),
-    getItem("Assets", LaptopOutlined, '/assets'),
-    getItem("Asset Categories", LaptopOutlined, '/asset-categories'),
-    getItem("Asset Types", LaptopOutlined, '/asset-types'),
-    getItem("Asset Status", LaptopOutlined, '/asset-status'),
+    getItem("Users", UserOutlined, '/users', ['admin', 'employee']),
+    getItem("Assets", LaptopOutlined, '/assets', ['admin']),
+    getItem("Asset Categories", LaptopOutlined, '/asset-categories', ['admin']),
+    getItem("Asset Types", LaptopOutlined, '/asset-types', ['admin']),
+    getItem("Asset Status", LaptopOutlined, '/asset-status', ['admin']),
 
 ]
 
-const menuItems = iconsData.map((item, index) => {
+const SideNavbar = ({ routes }) => {
 
-    return {
-        key: item.path,
-        icon: React.createElement(item.icon, { className: 'side-nav-bar-icons', }),
-        label: item.path ? (<Link to={`${item.path}`}>{item.label}</Link>) : item.label
-    }
-
-})
-
-const SideNavbar = () => {
+    const role = Cookies.get('role')
+    const menuItems = iconsData.filter(item => item.role?.includes(role)).map((item, index) => {
+        return {
+            key: item.path,
+            icon: React.createElement(item.icon, { className: 'side-nav-bar-icons', }),
+            label: item.path ? (<Link to={`${item.path}`}>{item.label}</Link>) : item.label
+        }
+    })
 
     let location = useLocation()
     return (
@@ -42,9 +38,7 @@ const SideNavbar = () => {
             <Menu
                 theme="dark"
                 mode="inline"
-
                 defaultSelectedKeys={["/users"]}
-
                 selectedKeys={[location.pathname]}
                 items={menuItems}
             />

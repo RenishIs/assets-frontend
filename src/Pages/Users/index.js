@@ -2,11 +2,10 @@ import { Table, Space, Button, Modal } from 'antd';
 import { Link } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { tableColumns } from './CONSTANTS';
-import Dashboard from '../Dashboard';
 import { GET_USERS_QUERY } from '../../gql/Query/Users/index';
 import { DELETE_USER_MUTATION } from '../../gql/Mutation/Users/index';
 import openNotificationWithIcon from '../../Helper/Notification';
-import { EditFilled, DeleteFilled } from '@ant-design/icons';
+import { EditFilled, DeleteFilled, EyeFilled } from '@ant-design/icons';
 
 const confirm = Modal.confirm;
 
@@ -50,22 +49,21 @@ const UsersListing = () => {
 			<Space size="middle">
                 <Link to={`/users/edit/${record.id}`}><EditFilled style={{color: "blue"}}/></Link>
 				<DeleteFilled style={{color: "red"}} onClick={() => showDeleteConfirm(record.id)}/>
+				<Link to={`/users/edit/${record.id}`}><EyeFilled style={{color:"green"}}/></Link>
 			</Space>
 		),
 	}]
 
     return (
-        <Dashboard>
-            <>
-            <div className='text-cente mb-3'>
-                <h2 className='d-inline fs-4 fw-bold'>MANAGE USERS</h2>
-                <div className='add-button'>
-                    <Link to={`/users/add`}><Button type="primary">ADD</Button></Link>
-                </div>
-            </div>
-                <Table bordered columns={columns} dataSource={data?.users.map(item => ({...item, key: item.id}))} pagination={false}/>
-            </>
-        </Dashboard>
+		<>
+		<div className='text-cente mb-3'>
+			<h2 className='d-inline fs-4 fw-bold'>MANAGE USERS</h2>
+			<div className='add-button'>
+				<Link to={`/users/add`}><Button type="primary">ADD</Button></Link>
+			</div>
+		</div>
+			<Table bordered columns={columns} dataSource={data?.users.map(item => ({...item, key: item.id}))} pagination={false}/>
+		</>
     )
 }
 
