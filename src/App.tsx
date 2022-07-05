@@ -1,7 +1,5 @@
 import { ApolloClient, createHttpLink, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
-import Router from "./Routing/Router";
-import { history } from "./Routing/history";
 import Cookies from "js-cookie";
 import Routes from './Routing'
 
@@ -28,7 +26,6 @@ const App = () => {
 	return (
 		<ApolloProvider client={client}>
 			<Routes />
-			{/* <Router history={history} /> */}
 		</ApolloProvider>		
 	);
 };

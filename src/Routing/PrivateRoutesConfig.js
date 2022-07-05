@@ -26,6 +26,7 @@ import AssetTypeEdit from "../Pages/AssetTypes/AssetTypeEdit";
 import AssetStatusListing from "../Pages/AssetStatus/index"
 import AssetStatusAdd from "../Pages/AssetStatus/AssetStatusAdd"
 import AssetStatusEdit from "../Pages/AssetStatus/AssetStatusEdit"
+import UserDetails from '../Pages/Users/UserDetails';
 
 export const PrivateRoutesConfig = [
     {
@@ -71,6 +72,16 @@ export const PrivateRoutesConfig = [
             Roles.ADMIN,
             Roles.EMPLOYEE
         ]
+    },
+    {
+        key : 5,
+        component : UserDetails,
+        path : '/users/:id',
+        exact : true,
+        permissions : [
+            Roles.ADMIN,
+            Roles.EMPLOYEE
+        ],
     },
     {
         key : 4,
