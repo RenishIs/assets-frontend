@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client";
-import { Row, Col } from 'antd';
+import { Row, Col, Collapse } from 'antd';
 import { GET_USER_BY_ID_QUERY } from '../../gql/Query/Users';
 import Loader from "../../Components/UI/Loader";
+
+const { Panel } = Collapse;
 
 const UserDetails = () => {
 
@@ -14,6 +16,8 @@ const UserDetails = () => {
     if(loading){
        return <Loader />
     }
+
+    console.log(data?.userById)
 
     return (
         <>
@@ -57,14 +61,27 @@ const UserDetails = () => {
                                 <span className="text-body fw-bold">{data?.userById?.address}</span>
                             </Col>
                         </Row>
-                        <Row className="mb-3">
-                            <Col span={12}>
-                                <span className="text-muted">Type :</span> 
-                            </Col>
-                            <Col span={12}>
-                                <span className="text-body fw-bold">{data?.userById?.__typename}</span>
-                            </Col>
-                        </Row>
+                        <h2 className='d-inline fs-6 fw-bolder text-muted'>ASSETS</h2>
+                        {
+                            data?.userById?.assetDetails?.map(asset => {
+                                const {id, name, description, location, assetCategory, assetType, purchasedOn, assetCondition, assetStatus, reason, dateOfAssetAssignment} = asset
+                                return (
+                                    <Collapse key={id}>
+                                        <Panel header={name} key={id}>
+                                            { description && <p>Description : {description}</p>}
+                                            { location && <p>Location : {location} </p>}
+                                            { assetCategory && <p>Category : {assetCategory?.name} </p>}
+                                            { assetType && <p>Type : {assetType?.name}</p>}
+                                            { purchasedOn && <p>Purchased On : {purchasedOn} </p>}
+                                            { assetCondition && <p>Condition : {assetCondition}</p>}
+                                            { assetStatus && <p>Status : {assetStatus?.name}</p>}
+                                            { reason && <p>Reason : {reason}</p>}
+                                            { dateOfAssetAssignment &&<p>Date of Assetment : {dateOfAssetAssignment}</p>}
+                                        </Panel>
+                                    </Collapse>
+                                )}
+                            )
+                        }
                     </div>
                 </Col>
                 <Col span={4}></Col>
