@@ -4,6 +4,7 @@ import { GET_ASSET_BY_ID_QUERY } from "../../gql/Query/Assets"
 import { Row, Col } from 'antd';
 import Loader from "../../Components/UI/Loader";
 import moment from 'moment'
+import Timeline from "../../Components/UI/Timeline";
 
 const RowUI = ({label, ...rest}) => (
     <Row className="mb-3">
@@ -19,10 +20,10 @@ const RowUI = ({label, ...rest}) => (
 const AssetDetails = () => {
 
     const { id } = useParams()
-
     const { data, loading } = useQuery(GET_ASSET_BY_ID_QUERY, {
 		variables: { assetById: id }
 	});
+    const asset = data?.assetById
 
     return (
         <>
@@ -34,36 +35,37 @@ const AssetDetails = () => {
                 <Col span={8}></Col>
                 <Col span={12}>
                     <div className="mt-4 text-start">
-                        <RowUI label="Name" value={data?.assetById?.name}/>
+                        <RowUI label="Name" value={asset?.name}/>
                         { 
-                            data?.assetById?.description && (
-                                <RowUI label="Description" value={data?.assetById?.description}/>
+                            asset?.description && (
+                                <RowUI label="Description" value={asset?.description}/>
                             )
                         }
-                        <RowUI label="Location" value={data?.assetById?.location}/>
-                        <RowUI label="Asset Category" value={data?.assetById?.assetCategory?.name}/>
-                        <RowUI label="Asset Type" value={data?.assetById?.assetType?.name}/>
+                        <RowUI label="Location" value={asset?.location}/>
+                        <RowUI label="Asset Category" value={asset?.assetCategory?.name}/>
+                        <RowUI label="Asset Type" value={asset?.assetType?.name}/>
                         {
-                            data?.assetById?.purchasedOn && (
-                                <RowUI label="Purchased On" value={moment(data?.assetById?.purchasedOn).format("MMMM Do YYYY")}/>
+                            asset?.purchasedOn && (
+                                <RowUI label="Purchased On" value={moment(asset?.purchasedOn).format("MMMM Do YYYY")}/>
                             )
                         }
-                        <RowUI label="Asset Condition" value={data?.assetById?.assetCondition}/>
-                        <RowUI label="Asset Status" value={data?.assetById?.assetStatus?.name}/>
+                        <RowUI label="Asset Condition" value={asset?.assetCondition}/>
+                        <RowUI label="Asset Status" value={asset?.assetStatus?.name}/>
                         { 
-                            data?.assetById?.reason && (
-                                <RowUI label="Reason" value={data?.assetById?.reason}/>
+                            asset?.reason && (
+                                <RowUI label="Reason" value={asset?.reason}/>
                             )
                         }
-                        <RowUI label="Employee" value={data?.assetById?.employeeId?.username}/>
-                        {   data?.assetById?.dateOfAssetAssignment && (
-                                <RowUI label="Date of Asset Assignment" value={moment(data?.assetById?.dateOfAssetAssignment).format("MMMM Do YYYY")}/>
+                        <RowUI label="Employee" value={asset?.employeeId?.username}/>
+                        {   asset?.dateOfAssetAssignment && (
+                                <RowUI label="Date of Asset Assignment" value={moment(asset?.dateOfAssetAssignment).format("MMMM Do YYYY")}/>
                             )
                         }
                     </div>
                 </Col>
                 <Col span={4}></Col>
             </Row>
+            <Timeline />
         </>
     )
 }

@@ -26,7 +26,7 @@ const UserDetails = () => {
     const { loading, data } = useQuery(GET_USER_BY_ID_QUERY, {
         variables : { userByIdId : id }
     })
-
+    const user = data?.userById
     return (
         <>
             { loading && <Loader /> } 
@@ -35,26 +35,26 @@ const UserDetails = () => {
             </div>
             <div className="mt-4">
                 <RowUI label1="Username" 
-                       value1={data?.userById?.username} 
+                       value1={user?.username} 
                        label2="Email" 
-                       value2={data?.userById?.email}
+                       value2={user?.email}
                        loading={loading}/>
                 {
-                    (data?.userById?.contactNo || data?.userById?.address) && (
+                    (user?.contactNo || user?.address) && (
                         <RowUI label1="Contact Number" 
-                               value1={data?.userById?.contactNo} 
+                               value1={user?.contactNo} 
                                label2="Address" 
-                               value2={data?.userById?.address}
+                               value2={user?.address}
                                loading={loading}/>
                     )
                 }
             </div>
             <h2 className='d-inline fs-6 fw-bolder text-muted'>ASSETS</h2>
             {
-                data?.userById?.assetDetails && (
+                user?.assetDetails && (
                     <Table bordered 
                            columns={tableColumns} 
-                           dataSource={data?.userById?.assetDetails?.map(item => ({...item, key: item.id}))} 
+                           dataSource={user?.assetDetails?.map(item => ({...item, key: item.id}))} 
                            pagination={false}/>
                 )
             }
