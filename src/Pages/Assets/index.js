@@ -5,7 +5,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { GET_ASSETS_QUERY } from '../../gql/Query/Assets';
 import { DELETE_ASSET_MUTATION } from '../../gql/Mutation/Assets';
 import openNotificationWithIcon from '../../Helper/Notification';
-import { EditFilled, DeleteFilled } from '@ant-design/icons';
+import { EditFilled, DeleteFilled, EyeFilled } from '@ant-design/icons';
 import Loader from '../../Components/UI/Loader';
 
 const confirm = Modal.confirm;
@@ -57,6 +57,7 @@ const AssetsListing = () => {
 					history.push(`/assets/edit/${record.id}`)
 				}}><EditFilled style={{color: "blue"}}/></Link>
 				<DeleteFilled style={{color: "red"}} onClick={(e) => showDeleteConfirm(e, record.id)}/>
+				<Link to={`/assets/${record.id}`}><EyeFilled style={{color:"green"}}/></Link>
 			</Space>
 		),
 	}]
