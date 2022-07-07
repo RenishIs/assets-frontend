@@ -13,7 +13,11 @@ const confirm = Modal.confirm;
 
 const UsersListing = () => {
 
-    const { loading, data } = useQuery(GET_USERS_QUERY)
+    const { loading, data } = useQuery(GET_USERS_QUERY, {
+		variables : { 
+			status: null
+		}
+	})
 
     const showDeleteConfirm = (id) => {
 		confirm({

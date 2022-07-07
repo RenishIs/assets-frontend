@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_USERS_QUERY = gql`
-    query Users {
-        users {
+    query Users($status: Status) {
+        users(status: $status) {
 			id
 			username
 			email
@@ -28,7 +28,6 @@ export const GET_USER_BY_ID_QUERY = gql`
 			}
 			isActive
 			assetDetails {
-				id
 				name
 				description
 				location
