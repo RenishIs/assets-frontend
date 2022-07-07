@@ -14,7 +14,7 @@ export const tableColumns = [
 		render: (text) => <span>{text}</span>,
 	},
 	{
-		title: 'IS ACTIVE',
+		title: 'STATUS',
 		dataIndex: 'isActive',
 		key: 'isActive',
 		render: (_, record) => (
