@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import NoMatchFound from './NoMatchFound';
-
+import Profile from '../Pages/Profile';
 /*
 * This is the route utility component used for generating
 * routes and child routes it only requires routes array and basePath
@@ -19,6 +19,7 @@ const MapAllowedRoutes = ({routes, isAddNotFound}) => {
                            render={(props) => <Component {...props} />}/>
                 )
         })}
+        <Route exact path="/" component={Profile}/>
         {isAddNotFound && <Route><NoMatchFound /></Route>}
         </Switch>
     )
