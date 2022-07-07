@@ -1,10 +1,9 @@
 import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client";
-import { Row, Col, Collapse } from 'antd';
+import { Row, Col, Table } from 'antd';
 import { GET_USER_BY_ID_QUERY } from '../../gql/Query/Users';
 import Loader from "../../Components/UI/Loader";
-
-const { Panel } = Collapse;
+import { tableColumns } from '../Assets/CONSTANTS';
 
 const UserDetails = () => {
 
@@ -17,76 +16,55 @@ const UserDetails = () => {
        return <Loader />
     }
 
-    console.log(data?.userById)
-
+    const {username, email, contactNo, address, assetDetails} = data?.userById
     return (
         <>
-        <div className='text-center mb-4'>
-            <h2 className='d-inline fs-5 fw-bold'>USER DETAILS</h2>
-        </div>
-        <div>
-            <Row>
-                <Col span={8}></Col>
-                <Col span={12}>
-                    <div className="mt-4 text-start">
-                        <Row className="mb-3">
-                            <Col span={12}>
-                                <span className="text-muted">Username :</span> 
-                            </Col>
-                            <Col span={12}>
-                                <span className="text-body fw-bold">{data?.userById?.username}</span>
-                            </Col>
+            <div className='text-center mb-4'>
+                <h2 className='d-inline fs-5 fw-bold'>USER DETAILS</h2>
+            </div>
+            <div className="mt-4">
+                <Row className="mb-3">
+                    <Col span={12}>
+                        <Row span={24}>
+                            <div className="text-muted">Username : <span className="text-body fw-bold">{username}</span></div>
                         </Row>
-                        <Row className="mb-3">
-                            <Col span={12}>
-                                <span className="text-muted">Email :</span> 
-                            </Col>
-                            <Col span={12}>
-                                <span className="text-body fw-bold">{data?.userById?.email}</span>
-                            </Col>
+                    </Col>
+                    <Col span={12}>
+                        <Row span={24}>
+                            <div className="text-muted">Email : <span className="text-body fw-bold">{email}</span></div>
                         </Row>
-                        <Row className="mb-3">
-                            <Col span={12}>
-                                <span className="text-muted">Contact Number :</span> 
-                            </Col>
-                            <Col span={12}>
-                                <span className="text-body fw-bold">{data?.userById?.contactNo}</span>
-                            </Col>
-                        </Row>
-                        <Row className="mb-3">
-                            <Col span={12}>
-                                <span className="text-muted">Address :</span> 
-                            </Col>
-                            <Col span={12}>
-                                <span className="text-body fw-bold">{data?.userById?.address}</span>
-                            </Col>
-                        </Row>
-                        <h2 className='d-inline fs-6 fw-bolder text-muted'>ASSETS</h2>
-                        {
-                            data?.userById?.assetDetails?.map(asset => {
-                                const {id, name, description, location, assetCategory, assetType, purchasedOn, assetCondition, assetStatus, reason, dateOfAssetAssignment} = asset
-                                return (
-                                    <Collapse key={id}>
-                                        <Panel header={name} key={id}>
-                                            { description && <p>Description : {description}</p>}
-                                            { location && <p>Location : {location} </p>}
-                                            { assetCategory && <p>Category : {assetCategory?.name} </p>}
-                                            { assetType && <p>Type : {assetType?.name}</p>}
-                                            { purchasedOn && <p>Purchased On : {purchasedOn} </p>}
-                                            { assetCondition && <p>Condition : {assetCondition}</p>}
-                                            { assetStatus && <p>Status : {assetStatus?.name}</p>}
-                                            { reason && <p>Reason : {reason}</p>}
-                                            { dateOfAssetAssignment &&<p>Date of Assetment : {dateOfAssetAssignment}</p>}
-                                        </Panel>
-                                    </Collapse>
-                                )}
-                            )
-                        }
-                    </div>
-                </Col>
-                <Col span={4}></Col>
-            </Row>
-        </div>
+                    </Col>
+                </Row>
+                <Row className={`${contactNo} || ${address } && 'mb-4'`}>
+                {
+                    contactNo && (
+                        <Col span={12}>
+                            <Row span={24}>
+                                <div className="text-muted">Contact Number : <span className="text-body fw-bold">{contactNo}</span></div>
+                            </Row>
+                        </Col>
+                    )
+                }
+                {
+                    address && (
+                        <Col span={12}>
+                            <Row span={24}>
+                                <div className="text-muted">Address : <span className="text-body fw-bold">{address}</span></div>
+                            </Row>
+                        </Col>
+                    )
+                }                    
+                </Row>
+            </div>
+            <h2 className='d-inline fs-6 fw-bolder text-muted'>ASSETS</h2>
+            {
+                assetDetails && (
+                    <Table bordered 
+                           columns={tableColumns} 
+                           dataSource={assetDetails?.map(item => ({...item, key: item.id}))} 
+                           pagination={false}/>
+                )
+            }
         </>
     )
 }
