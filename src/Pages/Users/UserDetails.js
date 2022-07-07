@@ -49,13 +49,15 @@ const UserDetails = () => {
                     )
                 }
             </div>
-            <h2 className='d-inline fs-6 fw-bolder text-muted'>ASSETS</h2>
             {
-                user?.assetDetails && (
-                    <Table bordered 
+                user?.assetDetails?.length > 0 && (
+                    <>
+                        <h2 className='d-inline fs-6 fw-bolder text-muted'>ASSETS</h2>
+                        <Table bordered 
                            columns={tableColumns} 
                            dataSource={user?.assetDetails?.map(item => ({...item, key: item.id}))} 
                            pagination={false}/>
+                    </>
                 )
             }
         </>

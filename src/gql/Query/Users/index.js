@@ -28,7 +28,6 @@ export const GET_USER_BY_ID_QUERY = gql`
 			}
 			isActive
 			assetDetails {
-				id
 				name
 				description
 				location
