@@ -10,7 +10,6 @@ export const GET_USERS_QUERY = gql`
 				id,
 				name
 			}
-			password
 			isActive
 			address
 		}
@@ -27,7 +26,6 @@ export const GET_USER_BY_ID_QUERY = gql`
 			role {
 				name
 			}
-			password
 			isActive
 			assetDetails {
 				id
