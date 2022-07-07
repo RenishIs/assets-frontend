@@ -1,3 +1,5 @@
+import { Tag } from 'antd';
+
 export const tableColumns = [
 	{
 		title: 'USER NAME',
@@ -16,13 +18,8 @@ export const tableColumns = [
 		dataIndex: 'isActive',
 		key: 'isActive',
 		render: (_, record) => (
-			<div className={`${record.isActive ? 'text-danger' : 'text-primary'}`}>{record.isActive ? "ACTIVE" : "INACTIVE"}</div>
+			<div>{record.isActive ? <Tag color="success">ACTIVE</Tag> : <Tag color="success">INACTIVE</Tag>}</div>
 		)
-	},
-	{
-		title: 'ADDRESS',
-		dataIndex: 'address',
-		key: 'address',
 	},
 	{
 		title: 'ROLE',

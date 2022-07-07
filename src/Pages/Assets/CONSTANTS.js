@@ -1,4 +1,4 @@
-import moment from 'moment'
+import { Tag } from 'antd';
 
 export const tableColumns = [
 	{
@@ -8,63 +8,31 @@ export const tableColumns = [
 		render: (text) => <span style={{cursor:"pointer"}}>{text}</span>,
 	},
 	{
-		title: 'DESCRIPTION',
-		dataIndex: 'description',
-		key: 'description',
-		render: (text) => <span style={{cursor:"pointer"}}>{text}</span>,
-	},
-	{
-		title: 'LOCATION',
-		dataIndex: 'location',
-		key: 'location',
-		render: (text) => <span style={{cursor:"pointer"}}>{text}</span>,
-	},
-	{
 		title: 'CATEGORY',
 		dataIndex: 'assetCategory',
 		key: 'assetCategory',
-		render: (text) => <span style={{cursor:"pointer"}}>{text.name}</span>,
+		render: (text) => <span style={{cursor:"pointer"}}>{text?.name}</span>,
 	},
 	{
 		title: 'TYPE',
 		dataIndex: 'assetType',
 		key: 'assetType',
-		render: (text) => <span style={{cursor:"pointer"}}>{text.name}</span>,
-	},
-	{
-		title: 'PURCHASED ON',
-		dataIndex: 'purchasedOn',
-		key: 'purchasedOn',
-		render: (text) => <span style={{cursor:"pointer"}}>{text ? moment(text).format("MMM Do YY") : ''}</span>,
-	},
-	{
-		title: 'CONDITION',
-		dataIndex: 'assetCondition',
-		key: 'assetCondition',
-		render: (text) => <span style={{cursor:"pointer"}}>{text}</span>,
+		render: (text) => <span style={{cursor:"pointer"}}>{text?.name}</span>,
 	},
 	{
 		title: 'STATUS',
 		dataIndex: 'assetStatus',
 		key: 'assetStatus',
-		render: (text) => <span style={{cursor:"pointer"}}>{text.name}</span>,
+			render: (text) => <span style={{cursor:"pointer"}}>
+								{text.name == 'Assigned' && <Tag color="success">{text?.name}</Tag>}
+								{text.name == 'Available' && <Tag color="processing">{text?.name}</Tag>}
+								{text.name == 'NotAvailable' && <Tag color="error">{text?.name}</Tag>}
+							</span>,
 	},
 	{
-		title: 'REASON IF NOT AVAILABLE',
-		dataIndex: 'reason',
-		key: 'reason',
-		render: (text) => <span style={{cursor:"pointer"}}>{text}</span>,
-	},
-	{
-		title: 'EMPLOYEE ID',
+		title: 'EMPLOYEE',
 		dataIndex: 'employeeId',
 		key: 'employeeId',
-		render: (text) => <span style={{cursor:"pointer"}}>{text.username}</span>,
-	},
-	{
-		title: 'DATE OF ASSET ASSIGNMENT',
-		dataIndex: 'dateOfAssetAssignment',
-		key: 'dateOfAssetAssignment',
-		render: (text) => <span style={{cursor:"pointer"}}>{moment(text).format("MMM Do YY")}</span>,
-	},
+		render: (text) => <span style={{cursor:"pointer"}}>{text?.username}</span>,
+	}
 ]

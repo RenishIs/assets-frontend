@@ -7,6 +7,7 @@ import { GET_USERS_QUERY } from '../../gql/Query/Users/index';
 import { DELETE_USER_MUTATION } from '../../gql/Mutation/Users/index';
 import openNotificationWithIcon from '../../Helper/Notification';
 import Loader from '../../Components/UI/Loader';
+import { Tooltip } from 'antd';
 
 const confirm = Modal.confirm;
 
@@ -48,9 +49,9 @@ const UsersListing = () => {
 		key: 'action',
 		render: (_, record) => (
 			<Space size="middle">
-                <Link to={`/users/edit/${record.id}`}><EditFilled style={{color: "blue"}}/></Link>
-				<DeleteFilled style={{color: "red"}} onClick={() => showDeleteConfirm(record.id)}/>
-				<Link to={`/users/${record.id}`}><EyeFilled style={{color:"green"}}/></Link>
+                <Tooltip title="Edit"><Link to={`/users/edit/${record.id}`}><EditFilled style={{color: "blue"}}/></Link></Tooltip>
+				<Tooltip title="Delete"><DeleteFilled style={{color: "red"}} onClick={() => showDeleteConfirm(record.id)}/></Tooltip>
+				<Tooltip title="View"><Link to={`/users/${record.id}`}><EyeFilled style={{color:"green"}}/></Link></Tooltip>
 			</Space>
 		),
 	}]

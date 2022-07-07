@@ -82,8 +82,9 @@ const UsersForm = ({title, handleUser, loading, ...rest}) => {
                                     name="role" 
                                     id="role"  
                                     style={{height:"43px"}} 
-                                    className="form-input">
-                                <option>--Select Role--</option>
+                                    className="form-input"
+                                    disabled={user}>
+                                <option>Select Role</option>
                                 {
                                 data?.role.map(item => (
                                     <option value={item.id} key={item.id}>{item.name}</option>

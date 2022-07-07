@@ -7,6 +7,7 @@ import { DELETE_ASSET_MUTATION } from '../../gql/Mutation/Assets';
 import openNotificationWithIcon from '../../Helper/Notification';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
 import Loader from '../../Components/UI/Loader';
+import { Tooltip } from 'antd';
 
 const confirm = Modal.confirm;
 
@@ -52,11 +53,11 @@ const AssetsListing = () => {
 		key: 'action',
 		render: (_, record) => (
 			<Space size="middle">
-				<Link to="#"  onClick={(e) => {
+				<Tooltip title="Edit"><Link to="#"  onClick={(e) => {
 					e.stopPropagation();      
 					history.push(`/assets/edit/${record.id}`)
-				}}><EditFilled style={{color: "blue"}}/></Link>
-				<DeleteFilled style={{color: "red"}} onClick={(e) => showDeleteConfirm(e, record.id)}/>
+				}}><EditFilled style={{color: "blue"}}/></Link></Tooltip>
+				<Tooltip title="Delete"><DeleteFilled style={{color: "red"}} onClick={(e) => showDeleteConfirm(e, record.id)}/></Tooltip>
 			</Space>
 		),
 	}]
