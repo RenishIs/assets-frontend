@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client"
 import { GET_ASSET_BY_ID_QUERY } from "../../gql/Query/Assets"
-import { Row, Col } from 'antd';
+import { Row, Col, Tag } from 'antd';
 import Loader from "../../Components/UI/Loader";
 import moment from 'moment'
 import Timeline from "../../Components/UI/Timeline";
@@ -12,7 +12,15 @@ const RowUI = ({label, ...rest}) => (
             <span className="text-muted">{label} :</span> 
         </Col>
         <Col span={12}>
-            <span className="text-body fw-bold">{rest?.value}</span>
+            <span className="text-body fw-bold">
+                {
+                    label === 'Asset Status'? 
+                        (rest?.value == 'Assigned') ? <Tag color="success">{rest?.value}</Tag> :
+                        (rest?.value == 'Available') ? <Tag color="processing">{rest?.value}</Tag> :
+                        (rest?.value == 'NotAvailable') && <Tag color="error">{rest?.value}</Tag> :
+                    rest?.value
+                } 
+            </span>
         </Col>
     </Row>
 )
