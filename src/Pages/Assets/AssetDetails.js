@@ -45,7 +45,7 @@ const AssetDetails = () => {
                         <RowUI label="Asset Type" value={data?.assetById?.assetType?.name}/>
                         {
                             data?.assetById?.purchasedOn && (
-                                <RowUI label="Purchased On" value={moment(data?.assetById?.purchasedOn).format("Do MM YYYY")}/>
+                                <RowUI label="Purchased On" value={moment(data?.assetById?.purchasedOn).format("MMMM Do YYYY")}/>
                             )
                         }
                         <RowUI label="Asset Condition" value={data?.assetById?.assetCondition}/>
