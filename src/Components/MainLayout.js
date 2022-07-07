@@ -8,7 +8,9 @@ import SideNavbar from './UI/SideNavbar';
 const { Header } = Layout;
 
 const MainLayout = ({children, routes, path}) => {
+    
     const [collapsed, setCollapsed] = useState(false);
+
     const history = useHistory()
 
     const user= Cookies.get('user')
