@@ -73,7 +73,11 @@ const AssetDetails = () => {
                 </Col>
                 <Col span={4}></Col>
             </Row>
-            <Timeline />
+            <div style={{background:'rgba(0,0,0,0.1)'}}>
+            {
+                asset?.history?.length > 0 && <Timeline data={asset?.history}/>
+            }
+            </div>
         </>
     )
 }

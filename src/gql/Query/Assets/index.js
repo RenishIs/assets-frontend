@@ -54,6 +54,10 @@ export const GET_ASSET_BY_ID_QUERY = gql`
                 id
                 name
             }
+            history {
+                id
+                username
+            }
             reason
             employeeId {
                 id

@@ -1,34 +1,25 @@
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
-import { LaptopOutlined } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
+import { useHistory } from 'react-router-dom';
 
-const Timeline = () => {
+const Timeline = ({data}) => {
+    const history = useHistory()
     return (
         <VerticalTimeline>
-            <VerticalTimelineElement className="vertical-timeline-element--work"
-                                     contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-                                     contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
-                                     date="2011 - present"
-                                    //  icon={<LaptopOutlined />}
-                                     iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}>
-                <h3 className="vertical-timeline-element-title">Creative Director</h3>
-                <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-                <p>
-                    Creative Direction, User Experience, Visual Design, Project Management, Team Leading
-                </p>
+        {
+            data?.map(item => (
+                <VerticalTimelineElement className="vertical-timeline-element--work"
+                                         contentStyle={{ background: '#001529' }}
+                                         contentArrowStyle={{ borderRight: '7px solid #001529' }}
+                                         icon={<UserOutlined />}
+                                         iconStyle={{ background: '#001529', color: '#fff', padding : 18 }}
+                                         lineColor={'#001529'}
+                                         onTimelineElementClick={() => history.push(`/users/${item.id}`)}>
+                <h3 className="vertical-timeline-element-title text-white fs-6">{item?.username}</h3>
             </VerticalTimelineElement>
-            <VerticalTimelineElement className="vertical-timeline-element--work"
-                                     contentStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
-                                     contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
-                                     date="2011 - present"
-                                    //  icon={<LaptopOutlined />}
-                                     iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}>
-                <h3 className="vertical-timeline-element-title">Creative Director</h3>
-                <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-                <p>
-                    Creative Direction, User Experience, Visual Design, Project Management, Team Leading
-                </p>
-            </VerticalTimelineElement>
+            ))
+        }            
         </VerticalTimeline>
     )
 }
