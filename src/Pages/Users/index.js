@@ -55,7 +55,7 @@ const UsersListing = () => {
 		render: (_, record) => (
 			<Space size="middle">
 				{
-					role === 'ADMIN' && (
+					role === 'admin' && (
 						<>
 							<Tooltip title="Edit"><Link to={`/users/edit/${record.id}`}><EditFilled style={{color: "blue"}}/></Link></Tooltip>
 							<Tooltip title="Delete"><DeleteFilled style={{color: "red"}} onClick={() => showDeleteConfirm(record.id)}/></Tooltip>
@@ -73,7 +73,7 @@ const UsersListing = () => {
 		<div className='text-center mb-3'>
 			<h2 className='d-inline fs-4 fw-bold'>MANAGE USERS</h2>
 			{
-				role === "ADMIN" && (
+				role === "admin" && (
 					<div className='add-button'>
 						<Link to={`/users/add`}><Button type="primary">ADD</Button></Link>
 					</div>

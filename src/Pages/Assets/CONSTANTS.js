@@ -1,11 +1,14 @@
 import { Tag } from 'antd';
+import { Link } from 'react-router-dom';
 
 export const tableColumns = [
 	{
 		title: 'NAME',
 		dataIndex: 'name',
 		key: 'name',
-		render: (text) => <span style={{cursor:"pointer"}}>{text}</span>,
+		render: (_, record) => (
+			<Link to={`/assets/${record.id}`} style={{cursor:"pointer", color:'black'}}>{record.name}</Link>
+		),
 	},
 	{
 		title: 'CATEGORY',
