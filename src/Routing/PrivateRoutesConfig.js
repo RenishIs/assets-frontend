@@ -80,7 +80,6 @@ export const PrivateRoutesConfig = [
         exact : true,
         permissions : [
             Roles.ADMIN,
-            Roles.EMPLOYEE
         ],
     },
     {
@@ -90,7 +89,6 @@ export const PrivateRoutesConfig = [
         exact : true,
         permissions : [
             Roles.ADMIN,
-            Roles.EMPLOYEE
         ],
     },
     {
