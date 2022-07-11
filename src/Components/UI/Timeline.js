@@ -10,6 +10,7 @@ const Timeline = ({data}) => {
         {
             data?.map(item => (
                 <VerticalTimelineElement className="vertical-timeline-element--work"
+                                         key={item.id}
                                          contentStyle={{ background: '#001529' }}
                                          contentArrowStyle={{ borderRight: '7px solid #001529' }}
                                          icon={<UserOutlined />}
