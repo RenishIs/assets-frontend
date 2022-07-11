@@ -25,7 +25,7 @@ const UsersForm = ({title, handleUser, loading, ...rest}) => {
         contactNo : user ? user.contactNo : '',
         address : user ? user.address : '',
         role : user ? user.role.id : '',
-        password : user ? user.password : ''
+        password : user ? 'Albiorix@123' : ''
     }
 
     return (
