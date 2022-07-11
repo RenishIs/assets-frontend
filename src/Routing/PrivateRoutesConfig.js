@@ -3,10 +3,6 @@ import { UserOutlined, LaptopOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import Roles from "./Roles";
 
-import Registration from "../Pages/Registration";
-import Login from "../Pages/Login";
-import ForgotPassword from "../Pages/ForgotPassword";
-import ResetPassword from "../Pages/ResetPassword";
 import UsersListing from '../Pages/Users'
 import UsersAdd from "../Pages/Users/UsersAdd";
 import UsersEdit from "../Pages/Users/UsersEdit";
