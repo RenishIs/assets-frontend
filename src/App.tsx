@@ -1,6 +1,7 @@
 import { ApolloClient, createHttpLink, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
 import Cookies from "js-cookie";
+import { onError } from '@apollo/client/link/error';
 import Routes from './Routing'
 
 const httpLink = createHttpLink({
@@ -17,8 +18,19 @@ const authLink = setContext((_, { headers }) => {
 	}
 });
 
+
+const logoutLink = onError(( error) => {
+	const graphqlErr = error?.graphQLErrors?.[0]
+	const notAuthorised = graphqlErr?.extensions?.code == "UNAUTHENTICATED" ? true : false
+	if(notAuthorised){
+		Cookies.remove('token')
+		Cookies.remove('role')
+		window.location.reload()
+	}
+})
+
 export const client = new ApolloClient({
-	link: authLink.concat(httpLink),
+	link: authLink.concat(logoutLink).concat(httpLink),
 	cache: new InMemoryCache()
 });
 
