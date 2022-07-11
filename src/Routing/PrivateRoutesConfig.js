@@ -27,27 +27,18 @@ import AssetStatusListing from "../Pages/AssetStatus/index"
 import AssetStatusAdd from "../Pages/AssetStatus/AssetStatusAdd"
 import AssetStatusEdit from "../Pages/AssetStatus/AssetStatusEdit"
 import UserDetails from '../Pages/Users/UserDetails';
+import Dashboard from '../Pages/Dashboard';
 
 export const PrivateRoutesConfig = [
     {
-        component : Registration,
-        path : '/',
-        exact : true
-    },
-    {
-        component : Login,
-        path : '/login',
-        exact : true
-    },
-    {
-        component : ForgotPassword,
-        path : '/forgot-password',
-        exact : true
-    },
-    {
-        component : ResetPassword,
-        path : '/reset-password/:id',
-        exact : true
+        key : 1,
+        sidebar : false,
+        component: Dashboard,
+        path: '/',
+        exact : true,
+        permissions: [
+            Roles.ADMIN,
+        ],
     },
     {
         key : 2,
