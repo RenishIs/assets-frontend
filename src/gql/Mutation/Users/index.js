@@ -11,7 +11,6 @@ export const CREATE_USER_MUTATION = gql`
             role {
                 name
             }
-            password
             isActive
         }
     }
@@ -28,7 +27,6 @@ export const UPDATE_USER_MUTATION = gql`
             role {
                 name
             }
-            password
             isActive
         }
     }
