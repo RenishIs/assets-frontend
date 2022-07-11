@@ -1,7 +1,10 @@
+import { Card } from "antd"
 const Dashboard = () => {
-    
+
     return (
-        <>hhj</>
+        <>
+            <Card style={{width : '20%'}}></Card>
+        </>
     )
 }
 

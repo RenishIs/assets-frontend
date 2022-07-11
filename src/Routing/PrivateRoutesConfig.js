@@ -28,7 +28,7 @@ import Dashboard from '../Pages/Dashboard';
 export const PrivateRoutesConfig = [
     {
         key : 1,
-        sidebar : false,
+        sidebar : true,
         component: Dashboard,
         path: '/',
         exact : true,
