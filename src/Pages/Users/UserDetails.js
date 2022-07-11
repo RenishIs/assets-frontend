@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import { useQuery } from "@apollo/client";
 import { Row, Col, Table } from 'antd';
 import { GET_USER_BY_ID_QUERY } from '../../gql/Query/Users';
@@ -23,10 +23,16 @@ const RowUI = ({label1, label2, loading, ...rest}) => (
 const UserDetails = () => {
 
     const { id } = useParams()
+    const history = useHistory()
     const { loading, data } = useQuery(GET_USER_BY_ID_QUERY, {
         variables : { userByIdId : id }
     })
     const user = data?.userById
+
+    const navigation = (id) => {
+		history.push(`/assets/${id}`)
+	}
+
     return (
         <>
             { loading && <Loader /> } 
@@ -54,9 +60,14 @@ const UserDetails = () => {
                     <>
                         <h2 className='d-inline fs-6 fw-bolder text-muted'>ASSETS</h2>
                         <Table bordered 
-                           columns={tableColumns} 
-                           dataSource={user?.assetDetails?.map(item => ({...item, key: item.id}))} 
-                           pagination={false}/>
+                               columns={tableColumns} 
+                               dataSource={user?.assetDetails?.map(item => ({...item, key: item.id}))} 
+                               pagination={false}
+                               onRow={(record, rowIndex) => {
+                                    return {
+                                        onClick: (event) => navigation(record.id) 
+                                    }
+                                }}/>
                     </>
                 )
             }
