@@ -41,7 +41,7 @@ const UserDetails = () => {
             </div>
             <div className="mt-4">
                 <RowUI label1="Username" 
-                       value1={user?.username} 
+                       value1={user?.firstName + `   `+ user?.lastName}
                        label2="Email" 
                        value2={user?.email}
                        loading={loading}/>

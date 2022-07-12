@@ -23,7 +23,8 @@ export const GET_ASSETS_QUERY = gql`
         }
         reason
         employeeId {
-            username
+            firstName
+            lastName
             email
             role {
             name
@@ -56,12 +57,14 @@ export const GET_ASSET_BY_ID_QUERY = gql`
             }
             history {
                 id
-                username
+                fisrtName
+                lastName
             }
             reason
             employeeId {
                 id
-                username
+                firstName
+                lastName
                 email
                 role {
                 name

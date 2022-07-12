@@ -25,7 +25,7 @@ const Profile = () => {
                                 <span className="text-muted">Username :</span> 
                             </Col>
                             <Col span={12}>
-                                <span className="text-body fw-bold">{data?.Profile?.username}</span>
+                                <span className="text-body fw-bold">{data?.Profile?.firstName} {data?.Profile?.lastName}</span>
                             </Col>
                         </Row>
                         <Row  className="mb-3">

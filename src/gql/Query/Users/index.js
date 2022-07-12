@@ -4,7 +4,8 @@ export const GET_USERS_QUERY = gql`
     query Users($status: Status) {
         users(status: $status) {
 			id
-			username
+			firstName
+			lastName
 			email
 			role{
 				id,
@@ -19,7 +20,8 @@ export const GET_USERS_QUERY = gql`
 export const GET_USER_BY_ID_QUERY = gql`
 	query Query($userByIdId: ID!) {
 		userById(id: $userByIdId) {
-			username
+			firstName
+			lastName
 			email
 			contactNo
 			address
@@ -46,7 +48,8 @@ export const GET_USER_BY_ID_QUERY = gql`
 				}
 				reason
 				employeeId {
-					username
+					firstName
+					lastName
 				}
 				dateOfAssetAssignment
 			}
