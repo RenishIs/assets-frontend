@@ -1,0 +1,90 @@
+import { Button } from 'antd';
+import { Formik, Form, Field } from 'formik';
+import TextInput from '../../Components/UI/TextInput';
+import { ticketValidations } from '../../Helper/ValidationSchema';
+import { UserOutlined, EnvironmentFilled} from '@ant-design/icons';
+import { Row, Col } from 'antd';
+import { Link } from 'react-router-dom';
+import { DatePicker } from 'antd';
+import { useQuery } from '@apollo/client';
+import moment from 'moment'
+import Loader from '../../Components/UI/Loader';
+
+const status=[
+    {'id':'1', 'name': 'New'},
+    {'id':'2', 'name': 'In-progress'},
+    {'id':'3', 'name': 'Resolved'}
+]
+
+const TicketForm = ({title, handleTicket, loading, ...rest}) => {
+
+    const { ticket } = rest
+
+    const initialState = {
+        title : ticket ? ticket.title : '',
+        description : ticket ? ticket.description : '',
+        assignedTo : ticket ? ticket.assignedTo : '',
+        status : ticket ? ticket.status.id : ''
+    }
+
+    return (
+        <div>
+            { loading && <Loader />}
+            <h2 className='text-center fs-4 fw-bold'>{ticket ? 'EDIT TICKET' : 'ADD TICKET'}</h2>
+            <Formik initialValues={initialState} validationSchema={ticketValidations} onSubmit={(values) => handleTicket(values)}>
+            {({
+                values,
+                touched,
+                errors,
+                setFieldValue
+            }) => {
+                return (
+                <Form>
+                    <Row>
+                        <Col span={12}>
+                            <TextInput label="TITLE" name="title" id="title" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
+                        </Col>
+                        <Col span={12}>
+                            <TextInput label="DESCRIPTION" name="description" id="description" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={12}>
+                            <TextInput label="ASSIGNED TO" name="assignedTo" id="assignedTo" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
+                        </Col>
+                        <Col span={12}>
+                            <div className='text-start ms-4 mb-1 mt-4'>
+                                <label htmlFor="status" className="text-body text-start fs-6 fw-bold">STATUS</label>
+                            </div>
+                            <Field as="select" 
+                                    name="status" 
+                                    id="status"  
+                                    style={{height:"43px"}} 
+                                    className="form-input">
+                                <option>Select Status</option>
+                                {
+                                status?.status.map(item => (
+                                    <option value={item.name} key={item.id}>{item.name}</option>
+                                ))
+                                }
+                            </Field>
+                            {
+                                touched.status && errors.status ? (
+                                    <div className="text-start ms-4 mb-0 fs-6 text-danger">{errors.status}</div>
+                                ) : null
+                            }
+                        </Col>
+                    </Row>
+                    <div className="d-flex mt-4 me-4 flex-row-reverse">
+                        <Link to="/tickets"><Button type="primary">Back</Button></Link>
+                        <Button type="primary" htmlType="submit" className='me-3'>Submit</Button>
+                    </div>				
+                </Form>
+                )
+            }}
+            </Formik>
+        </div>
+    )
+}
+
+export default TicketForm

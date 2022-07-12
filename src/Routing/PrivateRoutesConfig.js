@@ -1,5 +1,6 @@
 import React from 'react';
 import { UserOutlined, LaptopOutlined } from '@ant-design/icons';
+import { FaTicketAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Roles from "./Roles";
 
@@ -27,6 +28,9 @@ import AssetStatusListing from "../Pages/AssetStatus/index"
 import AssetStatusAdd from "../Pages/AssetStatus/AssetStatusAdd"
 import AssetStatusEdit from "../Pages/AssetStatus/AssetStatusEdit"
 import UserDetails from '../Pages/Users/UserDetails';
+
+import TicketsListing from '../Pages/Tickets/index';
+import TicketAdd from '../Pages/Tickets/TicketAdd'
 
 export const PrivateRoutesConfig = [
     {
@@ -228,6 +232,27 @@ export const PrivateRoutesConfig = [
         exact : true,
         permissions : [
             Roles.ADMIN
+        ]
+    },
+    {
+        key : 19,
+        sidebar : true,
+        icon : React.createElement(FaTicketAlt, {className : 'side-nav-bar-icons',}),
+        label : <Link to="/users">Users</Link>,
+        component : TicketsListing,
+        path : '/tickets',
+        exact : true,
+        permissions : [
+            Roles.EMPLOYEE
+        ]
+    },
+    {
+        key : 20,
+        component : TicketAdd,
+        path : '/tickets/add',
+        exact : true,
+        permissions : [
+            Roles.EMPLOYEE
         ]
     },
 ]
