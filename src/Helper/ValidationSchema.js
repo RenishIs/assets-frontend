@@ -6,13 +6,15 @@ const passwordRegex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const email = yup.string().trim().matches(emailRegex, "Must be a valid email!").required("*Email is required")
-const username =  yup.string().trim().required("*Username is required")
+const firstName =  yup.string().trim().required("*FirstName is required")
+const lastName =  yup.string().trim().required("*LastName is required")
 const password = yup.string().trim().matches(passwordRegex, "Your password is not strong").required("*Password is required")
 const contactNo = yup.string().matches(phoneRegExp, 'Phone number is not valid')
 const name = yup.string().trim().required("*Name is required")
 
 export const registerValidations = yup.object().shape({
-    username : username,
+    firstName : firstName,
+    lastName : lastName,
     email : email,
     password : password
 })
@@ -40,10 +42,13 @@ export const resetPasswordValidations = yup.object().shape({
 });
 
 export const userValidations = yup.object().shape({
-    username : username,
+    firstName : firstName,
+    lastName : lastName,
     email : email,
+    employeeCode: name.required("*Employee code is required"),
     password : password,
     contactNo : contactNo,
+    isActive: name.required("*Status is required"),
     role : name.required("*Role is required")
 })
 
