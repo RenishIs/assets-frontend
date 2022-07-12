@@ -6,8 +6,8 @@ const passwordRegex = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const email = yup.string().trim().matches(emailRegex, "Must be a valid email!").required("*Email is required")
-const firstName =  yup.string().trim().required("*FirstName is required")
-const lastName =  yup.string().trim().required("*LastName is required")
+const firstName =  yup.string().trim().required("*First name is required")
+const lastName =  yup.string().trim().required("*Last name is required")
 const password = yup.string().trim().matches(passwordRegex, "Your password is not strong").required("*Password is required")
 const contactNo = yup.string().matches(phoneRegExp, 'Phone number is not valid')
 const name = yup.string().trim().required("*Name is required")
