@@ -1,10 +1,14 @@
-import { Card } from "antd"
-const Dashboard = () => {
+import CustomCard from "./Card"
 
+const Dashboard = () => {
     return (
-        <>
-            <Card style={{width : '20%'}}></Card>
-        </>
+        <div className="dashboard">
+            <CustomCard title="In-stock"/>
+            <CustomCard title="New"/>
+            <CustomCard title="Assigned"/>
+            <CustomCard title="In-repair"/>
+            <CustomCard title="Broken"/>
+        </div>
     )
 }
 

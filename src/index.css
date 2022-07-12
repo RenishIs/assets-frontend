@@ -206,3 +206,48 @@ div#authForm .ant-input:focus{
 	background-color: #021a30;
 	color: white;
 }
+
+.dashboard{
+	width: 100%;
+	overflow: auto;
+	display: flex;
+	background-color :rgba(7, 41, 74, 0.6)
+}
+
+.dashboard-card-add-button{
+	background-color: #07294a;
+	color: whitesmoke;
+	padding: 0.5rem;
+	border-radius: 4px;
+	font-weight: bolder;
+}
+
+.dashboard-card-add-button:hover{
+	background-color: rgba(7, 41, 74, 0.9);
+}
+
+.dashboard-card-inner-add-button{
+	padding: 0.5rem;
+	border-radius: 4px;
+	font-weight: bolder;
+	background-color: #07294a;
+	color: whitesmoke;
+	margin-right: 3%;
+}
+
+.dashboard-main-card{
+	width: 514px;
+	margin: 16px;
+	border-radius : 5px;
+	background-color : #e3e4e6 
+}
+.dashboard-card{
+	margin-top: 2%;
+	padding: 3%;
+	border-radius: 4px !important;
+	margin-bottom: 3%;
+	box-shadow: 3px 2px 3px #888888;
+	border: #55aaeb;
+	background-color: white;
+	height: 80px;
+}
