@@ -4,7 +4,8 @@ export const GET_PROFILE_QUERY = gql`
 query Query {
   Profile {
     id
-    username
+    firstName
+    lastName
     email
     contactNo
     address

@@ -167,7 +167,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                 <option>Select Employee</option>
                                 {
                                 users?.users.map(item => (
-                                    <option value={item.id} key={item.id}>{item.username}</option>
+                                    <option value={item.id} key={item.id}>{item.firstName} {item.lastName}</option>
                                 ))
                                 }
                             </Field>

@@ -25,7 +25,7 @@ const Profile = () => {
                                 <span className="text-muted">Username :</span> 
                             </Col>
                             <Col span={12}>
-                                <span className="text-body fw-bold">{data?.Profile?.username}</span>
+                                <span className="text-body fw-bold">{data?.Profile?.firstName} {data?.Profile?.lastName}</span>
                             </Col>
                         </Row>
                         <Row  className="mb-3">
@@ -44,22 +44,22 @@ const Profile = () => {
                                 <span className="text-body fw-bold">{data?.Profile?.role?.name}</span>
                             </Col>
                         </Row>
-                        <Row  className="mb-3">
+                        {data?.Profile?.contactNo && <Row  className="mb-3">
                             <Col span={12}>
                                 <span className="text-muted">Contact Number :</span> 
                             </Col>
                             <Col span={12}>
                                 <span className="text-body fw-bold">{data?.Profile?.contactNo}</span>
                             </Col>
-                        </Row>
-                        <Row  className="mb-3">
+                        </Row>}
+                        {data?.Profile?.address && <Row  className="mb-3">
                             <Col span={12}>
                                 <span className="text-muted">Address :</span> 
                             </Col>
                             <Col span={12}>
                                 <span className="text-body fw-bold">{data?.Profile?.address}</span>
                             </Col>
-                        </Row>
+                        </Row>}
                     </div>
                     </Col>
                     <Col span={6}></Col>

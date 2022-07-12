@@ -27,15 +27,17 @@ export const tableColumns = [
 		dataIndex: 'assetStatus',
 		key: 'assetStatus',
 			render: (text) => <span style={{cursor:"pointer"}}>
+								{text.name == 'In-stock' && <Tag color="success">{text?.name}</Tag>}
+								{text.name == 'New' && <Tag color="processing">{text?.name}</Tag>}
 								{text.name == 'Assigned' && <Tag color="success">{text?.name}</Tag>}
-								{text.name == 'Available' && <Tag color="processing">{text?.name}</Tag>}
-								{text.name == 'NotAvailable' && <Tag color="error">{text?.name}</Tag>}
+								{text.name == 'In-Repair' && <Tag color="processing">{text?.name}</Tag>}
+								{text.name == 'Broken' && <Tag color="error">{text?.name}</Tag>}
 							</span>,
 	},
 	{
 		title: 'EMPLOYEE',
 		dataIndex: 'employeeId',
 		key: 'employeeId',
-		render: (text) => <span style={{cursor:"pointer"}}>{text?.username}</span>,
+		render:  (_, record) => (<span>{record.employeeId.firstName} {record.employeeId.lastName}</span>)
 	}
 ]

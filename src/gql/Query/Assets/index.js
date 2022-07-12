@@ -23,7 +23,8 @@ export const GET_ASSETS_QUERY = gql`
         }
         reason
         employeeId {
-            username
+            firstName
+            lastName
             email
             role {
             name
@@ -35,40 +36,41 @@ export const GET_ASSETS_QUERY = gql`
 `
 
 export const GET_ASSET_BY_ID_QUERY = gql`
-    query AssetById($assetById: ID!) {
+    query Query($assetById: ID!) {
         assetById(id: $assetById) {
+        id
+        name
+        description
+        location
+        assetCategory {
+            id
             name
-            description
-            location
-            assetCategory {
-                id
-                name
-            }
-            assetType {
-                id
-                name
-            }
-            purchasedOn
-            assetCondition
-            assetStatus {
-                id
-                name
-            }
-            history {
-                id
-                username
-            }
-            reason
+        }
+        assetType {
+            id
+            name
+        }
+        purchasedOn
+        assetCondition
+        assetStatus {
+            id
+            name
+        }
+        reason
+        employeeId {
+            firstName
+            lastName
+        }
+        dateOfAssetAssignment
+        history {
             employeeId {
-                id
-                username
-                email
-                role {
-                name
-                }
+            firstName
+            lastName
+            id
+            email
             }
             dateOfAssetAssignment
         }
+        }
     }
 `
-

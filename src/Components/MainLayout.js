@@ -13,7 +13,7 @@ const MainLayout = ({children, routes, path}) => {
 
     const history = useHistory()
 
-    const user= Cookies.get('user')
+    const user= Cookies.get('user');
 
     const logoutUser = () => {
         Cookies.remove('token')
