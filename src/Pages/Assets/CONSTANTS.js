@@ -36,6 +36,6 @@ export const tableColumns = [
 		title: 'EMPLOYEE',
 		dataIndex: 'employeeId',
 		key: 'employeeId',
-		render: (text) => <span style={{cursor:"pointer"}}>{text?.username}</span>,
+		render:  (_, record) => (<span>{record.firstName} {record.lastName}</span>)
 	}
 ]

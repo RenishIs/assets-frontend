@@ -4,7 +4,8 @@ export const CREATE_USER_MUTATION = gql`
     mutation CreateUser($input: CreateUserInput!) {
         createUser(input: $input) {
             id
-            username
+            firstName
+            lastName
             email
             contactNo
             address
@@ -12,6 +13,7 @@ export const CREATE_USER_MUTATION = gql`
                 name
             }
             isActive
+            employeeCode
         }
     }
 `
@@ -20,7 +22,8 @@ export const UPDATE_USER_MUTATION = gql`
     mutation UpdateUser($updateUserId: ID!, $input: UpdateUserInput!) {
         updateUser(id: $updateUserId, input: $input) {
             id
-            username
+            firstName
+            lastName
             email
             contactNo
             address
@@ -28,6 +31,7 @@ export const UPDATE_USER_MUTATION = gql`
                 name
             }
             isActive
+            employeeCode
         }
     }
 `

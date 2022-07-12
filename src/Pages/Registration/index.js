@@ -14,7 +14,7 @@ import AuthLoader from "../../Components/UI/AuthLoader";
 const Registration = () => {
 
 	const history = useHistory();
-	const initialValues = { username : '', email : '', password : ''}
+	const initialValues = { firstName : '', lastName:'', email : '', password : ''}
 	const [ registerUser, { data, error, loading }] = useMutation(SIGNUP_USER_MUTATION);
 
 	const onFinish = (values) => {
@@ -42,7 +42,9 @@ const Registration = () => {
 			<Formik initialValues={initialValues} validationSchema={registerValidations} onSubmit={(values) => onFinish(values)}>
 				<Form>
 					<div id="authForm">
-						<TextInput placeholder="Username" label="USERNAME" name="username" type="text" id="username" prefix={<UserOutlined style={{color : 'white'}}/>} />	
+						{/* <TextInput placeholder="Username" label="USERNAME" name="username" type="text" id="username" prefix={<UserOutlined style={{color : 'white'}}/>} />	 */}
+						<TextInput placeholder="Firstname" label="FIRSTNAME" name="firstName" type="text" id="fisrtname" prefix={<UserOutlined style={{color : 'white'}}/>} />	
+						<TextInput placeholder="Lastname" label="LASTNAME" name="lastName" type="text" id="lastname" prefix={<UserOutlined style={{color : 'white'}}/>} />	
 						<TextInput placeholder="Email" label="EMAIL" name="email" type="email" id="email" prefix={<MailFilled style={{color : 'white'}} />}/>		
 						<TextInput placeholder="Password" label="PASSWORD" name="password" type="password" id="password" prefix={<img src="/icon-password-key.png" alt="password"/>} 
 						isPassword={true}
