@@ -14,7 +14,7 @@ import AuthLoader from "../../Components/UI/AuthLoader";
 const Registration = () => {
 
 	const history = useHistory();
-	const initialValues = { username : '', email : '', password : ''}
+	const initialValues = { firstName : '', lastName : '', email : '', password : ''}
 	const [ registerUser, { data, error, loading }] = useMutation(SIGNUP_USER_MUTATION);
 
 	const onFinish = (values) => {
@@ -42,9 +42,10 @@ const Registration = () => {
 			<Formik initialValues={initialValues} validationSchema={registerValidations} onSubmit={(values) => onFinish(values)}>
 				<Form>
 					<div id="authForm">
-						<TextInput placeholder="Username" label="USERNAME" name="username" type="text" id="username" prefix={<UserOutlined style={{color : 'white'}}/>} />	
-						<TextInput placeholder="Email" label="EMAIL" name="email" type="email" id="email" prefix={<MailFilled style={{color : 'white'}} />}/>		
-						<TextInput placeholder="Password" label="PASSWORD" name="password" type="password" id="password" prefix={<img src="/icon-password-key.png" alt="password"/>} 
+						<TextInput placeholder="First Name" name="firstName" type="text" id="firstName" prefix={<UserOutlined style={{color : 'white'}}/>} />	
+						<TextInput placeholder="Last Name" name="lastName" type="text" id="lastName" prefix={<UserOutlined style={{color : 'white'}}/>} />	
+						<TextInput placeholder="Email" name="email" type="email" id="email" prefix={<MailFilled style={{color : 'white'}} />}/>		
+						<TextInput placeholder="Password" name="password" type="password" id="password" prefix={<img src="/icon-password-key.png" alt="password"/>} 
 						isPassword={true}
 						iconRender={(visible) => (visible ? <EyeFilled style={{color:"white", fontSize:"1rem"}}/> : <EyeInvisibleOutlined style={{color:"white" , fontSize:"1rem"}}/>)}
 						/>

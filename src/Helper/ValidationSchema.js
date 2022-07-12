@@ -12,7 +12,8 @@ const contactNo = yup.string().matches(phoneRegExp, 'Phone number is not valid')
 const name = yup.string().trim().required("*Name is required")
 
 export const registerValidations = yup.object().shape({
-    username : username,
+    firstName : name.required('*First Name is required'),
+    lastName : name.required('*Last Name is required'),
     email : email,
     password : password
 })

@@ -3,9 +3,9 @@ import { Tag } from 'antd';
 export const tableColumns = [
 	{
 		title: 'USER NAME',
-		dataIndex: 'username',
-		key: 'username',
-		render: (text) => <span>{text}</span>,
+		dataIndex: 'firstName',
+		key: 'firstName',
+		render: (_, record) => <span>{record.firstName} {record.lastName}</span>
 	},
 	{
 		title: 'EMAIL',
