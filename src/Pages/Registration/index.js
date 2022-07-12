@@ -14,7 +14,7 @@ import AuthLoader from "../../Components/UI/AuthLoader";
 const Registration = () => {
 
 	const history = useHistory();
-	const initialValues = { firstName : '', lastName : '', email : '', password : ''}
+	const initialValues = { firstName : '', lastName:'', email : '', password : ''}
 	const [ registerUser, { data, error, loading }] = useMutation(SIGNUP_USER_MUTATION);
 
 	const onFinish = (values) => {

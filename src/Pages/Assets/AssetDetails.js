@@ -64,7 +64,7 @@ const AssetDetails = () => {
                                 <RowUI label="Reason" value={asset?.reason}/>
                             )
                         }
-                        <RowUI label="Employee" value={asset?.employeeId?.username}/>
+                        <RowUI label="Employee" value={asset?.employeeId?.firstName + `   ` + asset?.employeeId?.lastName}/>
                         {   asset?.dateOfAssetAssignment && (
                                 <RowUI label="Date of Asset Assignment" value={moment(asset?.dateOfAssetAssignment).format("MMMM Do YYYY")}/>
                             )

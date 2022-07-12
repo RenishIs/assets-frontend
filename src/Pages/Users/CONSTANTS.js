@@ -5,7 +5,7 @@ export const tableColumns = [
 		title: 'USER NAME',
 		dataIndex: 'firstName',
 		key: 'firstName',
-		render: (_, record) => <span>{record.firstName} {record.lastName}</span>
+		render:  (_, record) => (<span>{record.firstName} {record.lastName}</span>)
 	},
 	{
 		title: 'EMAIL',

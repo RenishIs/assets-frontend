@@ -17,7 +17,7 @@ const Timeline = ({data}) => {
                                          iconStyle={{ background: '#001529', color: '#fff', padding : 18 }}
                                          lineColor={'#001529'}
                                          onTimelineElementClick={() => history.push(`/users/${item.id}`)}>
-                <h3 className="vertical-timeline-element-title text-white fs-6">{item?.username}</h3>
+                <h3 className="vertical-timeline-element-title text-white fs-6">{item?.firstName + `  ` + item?.lastName}</h3>
             </VerticalTimelineElement>
             ))
         }            
