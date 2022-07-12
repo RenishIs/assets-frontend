@@ -10,10 +10,6 @@ const TicketsListing = () => {
 	const { loading, data } = useQuery(GET_TICKETS_QUERY);
 
 	const history = useHistory()
-
-	const navigation = (id) => {
-		history.push(`/tickets/${id}`)
-	}
 	
 	return (
 		<>
@@ -26,13 +22,8 @@ const TicketsListing = () => {
             </div>
 			<Table bordered 
 			       columns={tableColumns} 
-				   dataSource={data?.tickets.map(item => ({...item, key: item.id}))} 
+				   dataSource={data?.employeeTickets.map(item => ({...item, key: item.id}))} 
 				   pagination={false} 
-				   onRow={(record, rowIndex) => {
-						return {
-							onClick: (event) => navigation(record.id) 
-						}
-				   }}
 				   />
 		</>
 	)

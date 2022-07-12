@@ -5,9 +5,6 @@ import { ticketValidations } from '../../Helper/ValidationSchema';
 import { UserOutlined, EnvironmentFilled} from '@ant-design/icons';
 import { Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
-import { DatePicker } from 'antd';
-import { useQuery } from '@apollo/client';
-import moment from 'moment'
 import Loader from '../../Components/UI/Loader';
 
 const status=[
@@ -16,22 +13,24 @@ const status=[
     {'id':'3', 'name': 'Resolved'}
 ]
 
-const TicketForm = ({title, handleTicket, loading, ...rest}) => {
+const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
 
     const { ticket } = rest
 
     const initialState = {
-        title : ticket ? ticket.title : '',
-        description : ticket ? ticket.description : '',
-        assignedTo : ticket ? ticket.assignedTo : '',
-        status : ticket ? ticket.status.id : ''
+        title : '',
+        description : '',
+        assignedTo : '',
+        status : ''
     }
 
     return (
         <div>
             { loading && <Loader />}
             <h2 className='text-center fs-4 fw-bold'>{ticket ? 'EDIT TICKET' : 'ADD TICKET'}</h2>
-            <Formik initialValues={initialState} validationSchema={ticketValidations} onSubmit={(values) => handleTicket(values)}>
+            <Formik initialValues={initialState} 
+            // validationSchema={ticketValidations} 
+            onSubmit={(values) => handleTicket(values)}>
             {({
                 values,
                 touched,
@@ -50,7 +49,26 @@ const TicketForm = ({title, handleTicket, loading, ...rest}) => {
                     </Row>
                     <Row>
                         <Col span={12}>
-                            <TextInput label="ASSIGNED TO" name="assignedTo" id="assignedTo" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
+                            <div className='text-start ms-4 mb-1 mt-4'>
+                                <label htmlFor="assignedTo" className="text-body text-start fs-6 fw-bold">ASSIGNED TO</label>
+                            </div>
+                            <Field as="select" 
+                                    name="assignedTo" 
+                                    id="assignedTo"  
+                                    style={{height:"43px"}} 
+                                    className="form-input">
+                                <option>Select Admin</option>
+                                {
+                                adminList?.usersByRole?.map(item => (
+                                    <option value={item.id} key={item.id}>{`${item.firstName} ${item.lastName}`}</option>
+                                ))
+                                }
+                            </Field>
+                            {
+                                touched.assignedTo && errors.assignedTo ? (
+                                    <div className="text-start ms-4 mb-0 fs-6 text-danger">{errors.assignedTo}</div>
+                                ) : null
+                            }
                         </Col>
                         <Col span={12}>
                             <div className='text-start ms-4 mb-1 mt-4'>
@@ -63,7 +81,7 @@ const TicketForm = ({title, handleTicket, loading, ...rest}) => {
                                     className="form-input">
                                 <option>Select Status</option>
                                 {
-                                status?.status.map(item => (
+                                status?.map(item => (
                                     <option value={item.name} key={item.id}>{item.name}</option>
                                 ))
                                 }

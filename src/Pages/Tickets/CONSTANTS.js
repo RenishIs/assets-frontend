@@ -1,5 +1,3 @@
-import { Tag } from 'antd';
-
 export const tableColumns = [
 	{
 		title: 'TITLE',
@@ -17,7 +15,7 @@ export const tableColumns = [
 		title: 'ASSIGNED TO',
 		dataIndex: 'assignedTo',
 		key: 'assignedTo',
-        render: (text) => <span>{text}</span>
+        render: (text) => <span>{text.firstName}</span>
 	},
 	{
 		title: 'STATUS',

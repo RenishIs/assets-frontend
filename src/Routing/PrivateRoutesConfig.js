@@ -30,7 +30,8 @@ import AssetStatusEdit from "../Pages/AssetStatus/AssetStatusEdit"
 import UserDetails from '../Pages/Users/UserDetails';
 
 import TicketsListing from '../Pages/Tickets/index';
-import TicketAdd from '../Pages/Tickets/TicketAdd'
+import TicketAdd from '../Pages/Tickets/TicketAdd';
+import AllTicketsListing from '../Pages/AllTickets';
 
 export const PrivateRoutesConfig = [
     {
@@ -238,7 +239,7 @@ export const PrivateRoutesConfig = [
         key : 19,
         sidebar : true,
         icon : React.createElement(FaTicketAlt, {className : 'side-nav-bar-icons',}),
-        label : <Link to="/users">Users</Link>,
+        label : <Link to="/tickets">Tickets</Link>,
         component : TicketsListing,
         path : '/tickets',
         exact : true,
@@ -253,6 +254,18 @@ export const PrivateRoutesConfig = [
         exact : true,
         permissions : [
             Roles.EMPLOYEE
+        ]
+    },
+    {
+        key : 21,
+        sidebar : true,
+        icon : React.createElement(FaTicketAlt, {className : 'side-nav-bar-icons'}),
+        label : <Link to="/all-tickets">All Tickets</Link>,
+        component : AllTicketsListing,
+        path : '/all-tickets',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
         ]
     },
 ]

@@ -1,17 +1,18 @@
 import { gql } from "@apollo/client";
 
 export const CREATE_TICKET_MUTATION = gql`
-    query Tickets {
-        tickets {
+    mutation Mutation($input: TicketInput!) {
+        createTicket(input: $input) {
         id
         title
         description
         status
         assignedTo {
             firstName
-            id
+        }
+        raisedBy {
+            firstName
             lastName
-            email
         }
         }
     }
