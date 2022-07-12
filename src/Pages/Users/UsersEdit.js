@@ -23,6 +23,7 @@ const UsersEdit = () => {
     })
 
     const handleUser = (values) => {
+        Boolean(values.isActive);
         UpdateUser({ variables : {updateUserId : id,  input: {...values} }})
     }
 

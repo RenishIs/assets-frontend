@@ -10,14 +10,14 @@ const Timeline = ({data}) => {
         {
             data?.map(item => (
                 <VerticalTimelineElement className="vertical-timeline-element--work"
-                                         key={item.id}
+                                         key={item?.employeeId?.id}
                                          contentStyle={{ background: '#001529' }}
                                          contentArrowStyle={{ borderRight: '7px solid #001529' }}
                                          icon={<UserOutlined />}
                                          iconStyle={{ background: '#001529', color: '#fff', padding : 18 }}
                                          lineColor={'#001529'}
-                                         onTimelineElementClick={() => history.push(`/users/${item.id}`)}>
-                <h3 className="vertical-timeline-element-title text-white fs-6">{item?.firstName + `  ` + item?.lastName}</h3>
+                                         onTimelineElementClick={() => history.push(`/users/${item?.employeeId?.id}`)}>
+                <h3 className="vertical-timeline-element-title text-white fs-6">{item?.employeeId?.firstName + `  ` + item?.employeeId?.lastName}</h3>
             </VerticalTimelineElement>
             ))
         }            
