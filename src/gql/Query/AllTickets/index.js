@@ -9,9 +9,11 @@ export const GET_ALL_TICKETS_QUERY = gql`
         status
         assignedTo {
             firstName
+            lastName
         }
         raisedBy {
             firstName
+            lastName
         }
         }
     }

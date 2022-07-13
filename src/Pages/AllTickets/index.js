@@ -28,11 +28,11 @@ const AllTicketsListing = () => {
 		<>
 			{ loading && <Loader /> }
 			<div className='text-center mb-3'>
-                <h2 className='d-inline fs-4 fw-bold'>MANAGE ALL TICKETS</h2>
+                <h2 className='d-inline fs-4 fw-bold text-center'>MANAGE ALL TICKETS</h2>
 				{
 					role === "admin" && (
 						<div className='add-button'>
-							<Select defaultValue={true} style={{ width: 150, marginRight: 10 }} onChange={handleChange}>
+							<Select defaultValue={true} style={{ width: 150 }} onChange={handleChange}>
 							<option>Select User</option>
                                 { 
                                 employeeList?.usersByRole?.map(item => (

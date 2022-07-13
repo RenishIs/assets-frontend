@@ -9,9 +9,11 @@ export const GET_TICKETS_QUERY = gql`
         status
         assignedTo {
             firstName
+            lastName
         }
         raisedBy {
             firstName
+            lastName
         }
         }
     }
@@ -25,6 +27,7 @@ export const GET_TICKET_BY_ID_QUERY = gql`
         description
         status
         assignedTo {
+            firstName
             lastName
         }
         }
