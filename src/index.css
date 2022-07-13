@@ -251,3 +251,39 @@ div#authForm .ant-input:focus{
 	background-color: white;
 	height: 80px;
 }
+
+.dashboard-column-container{
+	width: 320px;
+	margin: 16px;
+	background-color : #e3e4e6;
+	margin: 1%;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+}
+
+.dashboard-task-container{
+	border: 1px solid lightgray;
+	padding: 1rem;
+	margin-bottom: 2%;
+	border-radius: 5px;
+}
+
+.dashboard-tasklist-container{
+	transition: 0.2 ease;
+	flex-grow: 1;
+	min-height: 1px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	/* width: 88%; */
+}
+
+.dashboard-container{
+	width: 100%;
+	overflow: auto;
+	display: flex;
+	background-color :rgba(7, 41, 74, 0.6);
+	height: 100vh;
+}
