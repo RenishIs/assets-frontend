@@ -31,7 +31,7 @@ import UserDetails from '../Pages/Users/UserDetails';
 
 import TicketsListing from '../Pages/Tickets/index';
 import TicketAdd from '../Pages/Tickets/TicketAdd';
-import AllTicketsListing from '../Pages/AllTickets';
+import AllTicketsListing from '../Pages/AllTickets/index';
 
 export const PrivateRoutesConfig = [
     {

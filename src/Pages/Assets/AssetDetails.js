@@ -12,16 +12,20 @@ const RowUI = ({label, ...rest}) => (
             <span className="text-muted">{label} :</span> 
         </Col>
         <Col span={12}>
-            <span className="text-body fw-bold">
+            <span>
                 {
-                    label === 'Asset Status'? 
-                        (rest?.value == 'In-stock') ? <Tag color="success">{rest?.value}</Tag> :
-                        (rest?.value == 'New') ? <Tag color="processing">{rest?.value}</Tag> :
-                        (rest?.value == 'Assigned') ? <Tag color="cyan">{rest?.value}</Tag> :
-                        (rest?.value == 'Available') ? <Tag color="purple">{rest?.value}</Tag> :
-                        (rest?.value == 'NotAvailable') && <Tag color="red">{rest?.value}</Tag> :
-                    rest?.value
-                } 
+                    (rest?.value == 'In-stock' || rest?.value == 'New' || rest?.value == 'Assigned' || rest?.value == 'In-Repair' || rest?.value == 'Broken') 
+                    ?
+                    (<span>
+                        {rest?.value == 'In-stock' && <Tag color="geekblue">{rest?.value}</Tag>}
+                        {rest?.value == 'New' && <Tag color="cyan">{rest?.value}</Tag>}
+                        {rest?.value == 'Assigned' && <Tag color="success">{rest?.value}</Tag>}
+                        {rest?.value == 'In-Repair' && <Tag color="processing">{rest?.value}</Tag>}
+                        {rest?.value == 'Broken' && <Tag color="error">{rest?.value}</Tag>}
+                    </span>) 
+                    :
+                    (<span className="text-body fw-bold">{rest?.value}</span>)
+                }
             </span>
         </Col>
     </Row>
