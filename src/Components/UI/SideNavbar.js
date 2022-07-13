@@ -3,6 +3,8 @@ import { Layout, Menu } from 'antd';
 import { UserOutlined, LaptopOutlined } from '@ant-design/icons';
 import { Link, useLocation } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { FaTicketAlt } from 'react-icons/fa';
+
 const { Sider } = Layout;
 
 function getItem(label, icon, path, role) {
@@ -15,6 +17,8 @@ const iconsData = [
     getItem("Asset Categories", LaptopOutlined, '/asset-categories', ['admin']),
     getItem("Asset Types", LaptopOutlined, '/asset-types', ['admin']),
     getItem("Asset Status", LaptopOutlined, '/asset-status', ['admin']),
+    getItem("Tickets", FaTicketAlt, '/tickets', ['employee']),
+    getItem("All Tickets", FaTicketAlt, '/all-tickets', ['admin']),
 ]
 
 const SideNavbar = (props) => {

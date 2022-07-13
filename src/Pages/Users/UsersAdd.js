@@ -16,7 +16,9 @@ const UsersAdd = () => {
     })
 
     const handleUser = (values) => {
-        Boolean(values.isActive);
+        if(values.isActive) {
+            values.isActive = Boolean(values.isActive);
+        }
         CreateUser({ variables : {input: {...values}}})
     }
 

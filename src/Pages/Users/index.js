@@ -12,8 +12,8 @@ import Loader from '../../Components/UI/Loader';
 const confirm = Modal.confirm;
 const { Option } = Select;
 
-const UsersListing = () => {
 
+const UsersListing = () => {
 	const role = Cookies.get('role')
 	const { loading, data, refetch } = useQuery(GET_USERS_QUERY, { variables: { status: null } })
 
@@ -66,7 +66,11 @@ const UsersListing = () => {
 
 	const handleChange = (value) => {
 		console.log("value", value)
-		refetch({ variables: { status: { isActive: value } }})
+		if(value == null) {
+			refetch({ status: null })
+		}else {
+			refetch({ status: { isActive: value } })
+		}
 	};
 
 	return (
@@ -77,7 +81,8 @@ const UsersListing = () => {
 				{
 					role === "admin" && (
 						<div className='add-button'>
-							<Select defaultValue={true} style={{ width: 120, marginRight: 10 }} onChange={handleChange}>
+							<Select defaultValue={null} style={{ width: 120, marginRight: 10 }} onChange={handleChange}>
+								<Option value={null} key={null}>All</Option>
 								<Option value={true} key={true}>Active</Option>
 								<Option value={false} key={false}>In-Active</Option>
 							</Select>

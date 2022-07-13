@@ -48,7 +48,7 @@ export const userValidations = yup.object().shape({
     employeeCode: name.required("*Employee code is required"),
     password : password,
     contactNo : contactNo,
-    isActive: name.required("*Status is required"),
+    //isActive: name.required("*Status is required"),
     role : name.required("*Role is required")
 })
 
@@ -73,4 +73,11 @@ export const assetTypeValidations = yup.object().shape({
 
 export const assetStatusValidations = yup.object().shape({
     name : name
+})
+
+export const ticketValidations = yup.object().shape({
+    title : name.required("*Title is required"),
+    description : name.required("*Description is required"),
+    assignedTo : name.required("*User is required"),
+    status : name.required("*Status is required")
 })
