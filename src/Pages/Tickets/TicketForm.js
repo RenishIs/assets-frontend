@@ -2,7 +2,7 @@ import { Button } from 'antd';
 import { Formik, Form, Field } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
 import { ticketValidations } from '../../Helper/ValidationSchema';
-import { UserOutlined, EnvironmentFilled} from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 import { Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import Loader from '../../Components/UI/Loader';
@@ -28,14 +28,10 @@ const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
         <div>
             { loading && <Loader />}
             <h2 className='text-center fs-4 fw-bold'>{ticket ? 'EDIT TICKET' : 'ADD TICKET'}</h2>
-            <Formik initialValues={initialState} 
-            // validationSchema={ticketValidations} 
-            onSubmit={(values) => handleTicket(values)}>
+            <Formik initialValues={initialState} validationSchema={ticketValidations} onSubmit={(values) => handleTicket(values)}>
             {({
-                values,
                 touched,
                 errors,
-                setFieldValue
             }) => {
                 return (
                 <Form>

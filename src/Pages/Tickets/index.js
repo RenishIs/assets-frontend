@@ -1,7 +1,7 @@
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Table, Button } from 'antd';
 import { tableColumns } from './CONSTANTS';
-import { useMutation, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { GET_TICKETS_QUERY } from '../../gql/Query/Tickets';
 import Loader from '../../Components/UI/Loader';
 
@@ -9,8 +9,6 @@ const TicketsListing = () => {
 
 	const { loading, data } = useQuery(GET_TICKETS_QUERY);
 
-	const history = useHistory()
-	
 	return (
 		<>
 			{ loading && <Loader /> }
