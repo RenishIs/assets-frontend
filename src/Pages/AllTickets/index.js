@@ -14,9 +14,7 @@ const AllTicketsListing = () => {
 
 	const { data : employeeList } = useQuery(GET_USERS_BY_ROLE, {
 		variables: {  
-            roleId : {
-              id: "62bd8209a8e1f2f685107437"
-            }
+            roleId : "62bd8209a8e1f2f685107437"
           }
 	});
 
