@@ -50,7 +50,7 @@ const MainLayout = ({children, routes, path}) => {
                             })
                             }
                             </Col>
-                            <Col span={4}>
+                            <Col span={6}>
                                 <Dropdown overlay={menu} trigger={['click']} >
                                     <div className='text-center d-flex align-items-center justify-content-end fs-5 fw-bolder'>
                                         <img src="/user-1.png" alt='pic' width="45px" /> &nbsp;

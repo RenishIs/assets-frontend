@@ -65,3 +65,18 @@ export const GET_USER_ROLE = gql`
 		}
 	}
 `
+
+export const GET_USERS_BY_ROLE = gql`
+	query Query($roleId: RoleId) {
+		usersByRole(roleId: $roleId) {
+		id
+		firstName
+		lastName
+		email
+		role {
+			name
+			id
+		}
+		}
+	}
+`
