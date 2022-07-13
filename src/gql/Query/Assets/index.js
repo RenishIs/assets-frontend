@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_ASSETS_QUERY = gql`
-    query Query {
-        assets {
+    query Query($status : String ) {
+        assets(status: $status) {
         id
         name
         description

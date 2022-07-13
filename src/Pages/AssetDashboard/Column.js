@@ -27,11 +27,9 @@ const Column = ({column, tasks}) => {
                 <Droppable droppableId={column.id}>
                 {
                     (provided, snapshot) => (
-                        <div className={`dashboard-tasklist-container ${snapshot.isDraggingOver ? 'bg-warning' : 'bg-white'}`} 
+                    <div className="dashboard-tasklist-container" 
                              {...provided.droppableProps} 
-                             ref={provided.innerRef} 
-                            //  isdragging={snapshot.isDraggingOver}
-                             >
+                             ref={provided.innerRef}>
                         {
                             tasks?.map((task, index) => (
                                 <Task key={task.id} task={task} index={index}/>

@@ -4,7 +4,7 @@ import CustomCard from "./Card"
 import { initialData } from "./CONSTANtS"
 import Column from "./Column"
 
-const Dashboard = () => {
+const AssetDashboard = () => {
 
     const [ data, setData ] = useState(initialData)
     
@@ -78,4 +78,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default AssetDashboard

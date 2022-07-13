@@ -10,9 +10,7 @@ const Task = ({ task, index }) => {
                      style={{ backgroundColor : bgColor}}
                      {...provided.draggableProps} 
                      {...provided.dragHandleProps} 
-                     ref={provided.innerRef}
-                    //  isDragging={snapshot.isDragging}
-                >
+                     ref={provided.innerRef}>
                     {task.content}
                 </div>
         )}}
