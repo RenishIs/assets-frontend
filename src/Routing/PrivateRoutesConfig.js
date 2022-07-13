@@ -23,14 +23,14 @@ import AssetStatusListing from "../Pages/AssetStatus/index"
 import AssetStatusAdd from "../Pages/AssetStatus/AssetStatusAdd"
 import AssetStatusEdit from "../Pages/AssetStatus/AssetStatusEdit"
 import UserDetails from '../Pages/Users/UserDetails';
-import Dashboard from '../Pages/Dashboard';
+import AssetDashboard from '../Pages/AssetDashboard';
 
 export const PrivateRoutesConfig = [
     {
         key : 1,
         sidebar : true,
-        component: Dashboard,
-        path: '/',
+        component: AssetDashboard,
+        path: '/assets/dashboard',
         exact : true,
         permissions: [
             Roles.ADMIN,

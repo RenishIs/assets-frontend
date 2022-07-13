@@ -9,7 +9,7 @@ function getItem(label, icon, path, role) {
     return { label, icon, path, role}
 }
 const iconsData = [
-    getItem("Dashboard", UserOutlined, '/', ['admin']),
+    getItem("Dashboard", UserOutlined, '/assets/dashboard', ['admin']),
     getItem("Users", UserOutlined, '/users', ['admin', 'employee']),
     getItem("Assets", LaptopOutlined, '/assets', ['admin']),
     getItem("Asset Categories", LaptopOutlined, '/asset-categories', ['admin']),
