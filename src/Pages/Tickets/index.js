@@ -18,7 +18,6 @@ const TicketsListing = () => {
                     <Link to={`/tickets/add`}><Button type="primary">ADD</Button></Link>
                 </div>
             </div>
-			{console.log(data,'d')}
 			<Table bordered 
 			       columns={tableColumns} 
 				   dataSource={data?.employeeTickets.map(item => ({...item, key: item.id}))} 
