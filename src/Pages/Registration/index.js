@@ -25,7 +25,7 @@ const Registration = () => {
 	};
 
 	if(error){
-		openNotificationWithIcon('registerUserError', 'error', 'REGISTRATION FAILED')
+		openNotificationWithIcon('registerUserError', 'error', error.message)
 	}
 
 	if (data?.registerUser?.token) {
