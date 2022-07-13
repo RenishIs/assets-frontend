@@ -15,9 +15,11 @@ const RowUI = ({label, ...rest}) => (
             <span className="text-body fw-bold">
                 {
                     label === 'Asset Status'? 
-                        (rest?.value == 'Assigned') ? <Tag color="success">{rest?.value}</Tag> :
-                        (rest?.value == 'Available') ? <Tag color="processing">{rest?.value}</Tag> :
-                        (rest?.value == 'NotAvailable') && <Tag color="error">{rest?.value}</Tag> :
+                        (rest?.value == 'In-stock') ? <Tag color="success">{rest?.value}</Tag> :
+                        (rest?.value == 'New') ? <Tag color="processing">{rest?.value}</Tag> :
+                        (rest?.value == 'Assigned') ? <Tag color="cyan">{rest?.value}</Tag> :
+                        (rest?.value == 'Available') ? <Tag color="purple">{rest?.value}</Tag> :
+                        (rest?.value == 'NotAvailable') && <Tag color="red">{rest?.value}</Tag> :
                     rest?.value
                 } 
             </span>
@@ -65,10 +67,6 @@ const AssetDetails = () => {
                             )
                         }
                         <RowUI label="Employee" value={asset?.employeeId?.firstName + `   ` + asset?.employeeId?.lastName}/>
-                        {   asset?.dateOfAssetAssignment && (
-                                <RowUI label="Date of Asset Assignment" value={moment(asset?.dateOfAssetAssignment).format("MMMM Do YYYY")}/>
-                            )
-                        }
                     </div>
                 </Col>
                 <Col span={4}></Col>

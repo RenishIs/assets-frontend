@@ -30,6 +30,7 @@ export const GET_USER_BY_ID_QUERY = gql`
 				name
 			}
 			isActive
+			employeeCode
 			assetDetails {
 				id
 				name
@@ -61,6 +62,21 @@ export const GET_USER_ROLE = gql`
 		role {
 		id
 		name
+		}
+	}
+`
+
+export const GET_USERS_BY_ROLE = gql`
+	query Query($roleId: RoleId) {
+		usersByRole(roleId: $roleId) {
+		id
+		firstName
+		lastName
+		email
+		role {
+			name
+			id
+		}
 		}
 	}
 `

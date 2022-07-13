@@ -25,7 +25,7 @@ const Login = () => {
 	};
 
 	if(error){
-		openNotificationWithIcon('loginUserError', 'error', 'INVALID CREDENTIALS')
+		openNotificationWithIcon('loginUserError', 'error', error.message)
 	}
 
 	if (data?.loginUser?.token) {

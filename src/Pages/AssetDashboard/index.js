@@ -1,11 +1,30 @@
 import { useState } from "react"
 import { DragDropContext } from 'react-beautiful-dnd'
+import { useQuery } from "@apollo/client"
 import CustomCard from "./Card"
 import { initialData } from "./CONSTANtS"
 import Column from "./Column"
+import { GET_ASSETS_QUERY } from "../../gql/Query/Assets"
+import { GET_ASSET_STATUS_QUERY } from "../../gql/Query/AssetStatus"
 
 const AssetDashboard = () => {
 
+    const { data : assetStatus } = useQuery(GET_ASSET_STATUS_QUERY)
+    const { data : assets, loading, error } = useQuery(GET_ASSETS_QUERY, {
+        variables : { status : null}
+    })
+
+    const generateData = () => {
+        
+    }
+
+    console.log(assets, assetStatus)
+
+    const initialState = {
+        assets : {},
+        columns : {},
+        columnOrder : {}
+    }
     const [ data, setData ] = useState(initialData)
     
     const onDragEnd = (result) => {

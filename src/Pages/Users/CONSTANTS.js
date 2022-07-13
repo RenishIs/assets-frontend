@@ -18,7 +18,7 @@ export const tableColumns = [
 		dataIndex: 'isActive',
 		key: 'isActive',
 		render: (_, record) => (
-			<div>{record.isActive ? <Tag color="success">ACTIVE</Tag> : <Tag color="success">INACTIVE</Tag>}</div>
+			<div>{record.isActive ? <Tag color="success">ACTIVE</Tag> : <Tag color="error">INACTIVE</Tag>}</div>
 		)
 	},
 	{
