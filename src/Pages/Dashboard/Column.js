@@ -1,14 +1,13 @@
 import { Droppable } from 'react-beautiful-dnd'
 import Task from "./Task"
 import { useState } from "react"
-import { Card, Row, Input } from "antd"
+import { Row, Input } from "antd"
 import { PlusOutlined, CloseOutlined } from "@ant-design/icons"
 
 const { TextArea } = Input;
 const Column = ({column, tasks}) => {
     const [ addCard, setAddCard ] = useState(false)
 	const [ content, setContent ] = useState('')
-	const [ data, setData ] = useState([])
 
 	const addInnerCard = () => setAddCard(true)
 	const cancel = () => {
@@ -18,11 +17,6 @@ const Column = ({column, tasks}) => {
 
 	const addCardRecord = () => {
 		if(content.trim()){
-			const newRecord = {
-				id : data?.length + 1,
-				content : content
-			}
-			setData([...data, newRecord])
 			setContent('')
 		}
 	}
@@ -32,12 +26,12 @@ const Column = ({column, tasks}) => {
                 <h2 className='d-inline fs-5 fw-bold px-4'>{column.title}</h2>
                 <Droppable droppableId={column.id}>
                 {
-                    
                     (provided, snapshot) => (
                         <div className={`dashboard-tasklist-container ${snapshot.isDraggingOver ? 'bg-warning' : 'bg-white'}`} 
                              {...provided.droppableProps} 
                              ref={provided.innerRef} 
-                             isDraggingOver={snapshot.isDraggingOver}>
+                            //  isdragging={snapshot.isDraggingOver}
+                             >
                         {
                             tasks?.map((task, index) => (
                                 <Task key={task.id} task={task} index={index}/>
