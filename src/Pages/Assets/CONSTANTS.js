@@ -29,9 +29,9 @@ export const tableColumns = [
 			render: (text) => <span style={{cursor:"pointer"}}>
 								{text.name == 'In-stock' && <Tag color="success">{text?.name}</Tag>}
 								{text.name == 'New' && <Tag color="processing">{text?.name}</Tag>}
-								{text.name == 'Assigned' && <Tag color="success">{text?.name}</Tag>}
-								{text.name == 'In-Repair' && <Tag color="processing">{text?.name}</Tag>}
-								{text.name == 'Broken' && <Tag color="error">{text?.name}</Tag>}
+								{text.name == 'Assigned' && <Tag color="cyan">{text?.name}</Tag>}
+								{text.name == 'In-Repair' && <Tag color="purple">{text?.name}</Tag>}
+								{text.name == 'Broken' && <Tag color="red">{text?.name}</Tag>}
 							</span>,
 	},
 	{

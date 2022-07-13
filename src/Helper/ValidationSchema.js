@@ -48,7 +48,7 @@ export const userValidations = yup.object().shape({
     employeeCode: name.required("*Employee code is required"),
     password : password,
     contactNo : contactNo,
-    isActive: name.required("*Status is required"),
+    //isActive: name.required("*Status is required"),
     role : name.required("*Role is required")
 })
 

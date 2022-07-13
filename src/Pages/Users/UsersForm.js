@@ -11,6 +11,7 @@ import { GET_USER_ROLE } from '../../gql/Query/Users/index';
 import MultiSelect from '../../Components/UI/MultiSelect';
 import { GET_ASSETS_QUERY } from '../../gql/Query/Assets';
 import Loader from '../../Components/UI/Loader';
+import { Status } from '../../Helper/constants';
 
 const UsersForm = ({ title, handleUser, loading, ...rest }) => {
 
@@ -129,7 +130,7 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                                         isLabel={true} />
                                 </Col>
                             </Row>
-                            <Row>
+                            {user && <Row>
                                 <Col span={12}>
                                     <div className='text-start ms-4 mb-1 mt-4'>
                                         <label htmlFor="Status" className="text-body text-start fs-6 fw-bold">Status</label>
@@ -140,8 +141,11 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                                         style={{ height: "43px" }}
                                         className="form-input">
                                         <option>Select Status</option>
-                                        <option value={true} key={true}>Active</option>
-                                        <option value={false} key={false}>In-Active</option>
+                                        {
+                                            Status.map(item => (
+                                                <option value={item.id} key={item.id}>{item.name}</option>
+                                            ))
+                                        }
                                     </Field>
                                     {
                                         touched.isActive && errors.isActive ? (
@@ -149,7 +153,7 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                                         ) : null
                                     }
                                 </Col>
-                            </Row>
+                            </Row>}
                             {/* <Row>
                         <Col span={12}>
                             <div className='text-start ms-4 mb-1 mt-4'>

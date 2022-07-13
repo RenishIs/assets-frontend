@@ -30,6 +30,7 @@ export const GET_USER_BY_ID_QUERY = gql`
 				name
 			}
 			isActive
+			employeeCode
 			assetDetails {
 				id
 				name
