@@ -23,7 +23,7 @@ const Column = ({column, tasks}) => {
     return (
         <div className="dashboard-column-container">
             <div style={{ height: "100%", width: "320px", padding : '4%' }}>
-                <h2 className='d-inline fs-5 fw-bold px-4'>{column.title}</h2>
+                <h2 className='d-inline fs-5 fw-bold px-4'>{column.name}</h2>
                 <Droppable droppableId={column.id}>
                 {
                     (provided, snapshot) => (

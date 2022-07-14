@@ -1,31 +1,48 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { DragDropContext } from 'react-beautiful-dnd'
 import { useQuery } from "@apollo/client"
-import CustomCard from "./Card"
-import { initialData } from "./CONSTANtS"
 import Column from "./Column"
 import { GET_ASSETS_QUERY } from "../../gql/Query/Assets"
 import { GET_ASSET_STATUS_QUERY } from "../../gql/Query/AssetStatus"
+import Loader from "../../Components/UI/Loader"
 
 const AssetDashboard = () => {
 
-    const { data : assetStatus } = useQuery(GET_ASSET_STATUS_QUERY)
+    const { data : assetStatus, loading : assetStatusLoading } = useQuery(GET_ASSET_STATUS_QUERY)
     const { data : assets, loading, error } = useQuery(GET_ASSETS_QUERY, {
         variables : { status : null}
     })
 
-    const generateData = () => {
-        
+    const [ data, setData ] = useState(null)
+
+    const getTasksId = (status) => {
+        const tasks = []
+        assets?.assets?.filter(asset => asset?.assetStatus?.id === status.id)?.forEach(asset => {
+            tasks.push(asset.id)
+        })
+        return tasks
     }
 
-    console.log(assets, assetStatus)
+    useEffect(() => {
+        const columns = {}
+        assetStatus?.assetStatus.forEach(status => {
+            columns[status.id] = {
+                ...status,
+                tasks : getTasksId(status)
+            }
+        })        
 
-    const initialState = {
-        assets : {},
-        columns : {},
-        columnOrder : {}
-    }
-    const [ data, setData ] = useState(initialData)
+        const tasks = {}
+        assets?.assets?.forEach(asset => {
+            tasks[asset.id] = {...asset}
+        })
+        const data = {
+            columns,
+            tasks,
+            columnOrder : assetStatus?.assetStatus.map(status => status.id)
+        }
+        setData(data)
+    }, [loading, assetStatusLoading])
     
     const onDragEnd = (result) => {
         const {destination, source, draggableId } = result;
@@ -84,9 +101,10 @@ const AssetDashboard = () => {
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
+            { assetStatusLoading || loading && <Loader />}
             <div className="dashboard-container" style={{width : '100%', overflow : 'auto'}}>
             {
-                data?.columnOrder.map(colId => {
+                data?.columnOrder?.map(colId => {
                     const column = data?.columns[colId]
                     const tasks = column.tasks.map(taskId => data?.tasks[taskId])
                     return <Column key={colId} column={column} tasks={tasks}/>
