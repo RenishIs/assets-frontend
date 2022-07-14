@@ -59,9 +59,9 @@ const AssetDashboard = () => {
              employeeId : rest?.employeeId.id
         }
         updateAssets({ variables: { updateAssetsId: id, input: { ...updatedMovedAsset } } })
-        refetchAssetStatus()
-        refetchAssets({ status : null })
-        
+        // refetchAssetStatus()
+        // refetchAssets({ status : null })
+
         // if(!destination){
         //     return
         // }
