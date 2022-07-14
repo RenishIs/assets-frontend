@@ -6,7 +6,10 @@ export const GET_TICKETS_QUERY = gql`
         id
         title
         description
-        status
+        status {
+            name
+            id
+          }
         assignedTo {
             firstName
             lastName
@@ -25,7 +28,10 @@ export const GET_TICKET_BY_ID_QUERY = gql`
         id
         title
         description
-        status
+        status {
+            name
+            id
+          }
         assignedTo {
             firstName
             lastName
@@ -33,4 +39,11 @@ export const GET_TICKET_BY_ID_QUERY = gql`
         }
     }
 `
-
+export const GET_TICKET_STATUS = gql`
+    query Tickets {
+        ticketStatus {
+        id
+        name
+        }
+    }
+`

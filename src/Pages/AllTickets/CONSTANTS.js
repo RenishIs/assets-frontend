@@ -31,15 +31,15 @@ export const tableColumns = [
 		key: 'status',
 		render: (text) => <span>
 							{ 
-							(text == 'New' || text == 'In-progress' || text == 'Resolved') 
+							(text.name == 'New' || text.name == 'In-progress' || text.name == 'Resolved') 
 							?
 							(<span>
-								{text == 'New' && <Tag color="cyan">{text}</Tag>}
-								{text == 'In-progress' && <Tag color="processing">{text}</Tag>}
-								{text == 'Resolved' && <Tag color="success">{text}</Tag>} 
+								{text.name == 'New' && <Tag color="cyan">{text.name}</Tag>}
+								{text.name == 'In-progress' && <Tag color="processing">{text.name}</Tag>}
+								{text.name == 'Resolved' && <Tag color="success">{text.name}</Tag>} 
 							</span>) 
 							:
-							(<span><Tag color="purple">{text}</Tag></span>)
+							(<span><Tag color="purple">{text.name}</Tag></span>)
 							}
 						</span>,
 	},

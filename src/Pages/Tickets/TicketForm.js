@@ -6,6 +6,8 @@ import { UserOutlined } from '@ant-design/icons';
 import { Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import Loader from '../../Components/UI/Loader';
+import { GET_TICKET_STATUS } from '../../gql/Query/Tickets/index';
+import { useQuery } from '@apollo/client';
 
 const status=[
     {'id':'1', 'name': 'New'},
@@ -16,6 +18,7 @@ const status=[
 const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
 
     const { ticket } = rest
+    const { data : ticketStatus } = useQuery(GET_TICKET_STATUS)
 
     const initialState = {
         title : '',
@@ -77,8 +80,8 @@ const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
                                     className="form-input">
                                 <option>Select Status</option>
                                 {
-                                status?.map(item => (
-                                    <option value={item.name} key={item.id}>{item.name}</option>
+                                ticketStatus?.ticketStatus?.map(item => (
+                                    <option value={item.id} key={item.id}>{item.name}</option>
                                 ))
                                 }
                             </Field>

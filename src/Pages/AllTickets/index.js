@@ -10,7 +10,10 @@ const AllTicketsListing = () => {
 
     const role = Cookies.get('role')
 
-	const { data : tickets, loading, refetch } = useQuery(GET_ALL_TICKETS_QUERY,{ variables : { userId: null }})
+	const { data : tickets, loading, refetch } = useQuery(GET_ALL_TICKETS_QUERY,{ variables : {
+		status : null,
+		userId : null
+	}})
 
 	const { data : employeeList } = useQuery(GET_USERS_BY_ROLE, {
 		variables: {  
@@ -19,7 +22,10 @@ const AllTicketsListing = () => {
 	});
 
 	const handleChange = (value) => {
-		refetch({ userId: { id: value } })
+		refetch({
+			status : null,
+			userId : value
+		})
 	};
 	
 	return (
