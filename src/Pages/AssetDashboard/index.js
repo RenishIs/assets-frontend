@@ -13,7 +13,7 @@ const AssetDashboard = () => {
     const { data : assets, loading, error } = useQuery(GET_ASSETS_QUERY, {
         variables : { status : null}
     })
-    const [ updateAssets, { data: updatedData, loading : editLoading }] = useMutation(UPDATE_ASSET_MUTATION, {
+    const [ updateAssets ] = useMutation(UPDATE_ASSET_MUTATION, {
         refetchQueries : [
              {query: GET_ASSETS_QUERY} 
         ],
@@ -60,7 +60,6 @@ const AssetDashboard = () => {
              assetType : rest?.assetType?.id,
              employeeId : rest?.employeeId.id
         }
-        updateAssets({ variables: { updateAssetsId: id, input: { ...updatedMovedAsset } } })
 
         if(!destination){
             return
@@ -68,7 +67,6 @@ const AssetDashboard = () => {
         if (destination.droppableId === source.droppableId && destination.index === source.index) {
             return
         }
-
 
         const start = data?.columns[source.droppableId]
         const finish = data?.columns[destination.droppableId]
@@ -114,6 +112,7 @@ const AssetDashboard = () => {
                 [newDestincationColumn.id] : newDestincationColumn
             }
         }))
+        updateAssets({ variables: { updateAssetsId: id, input: { ...updatedMovedAsset } } })
     }
 
     return (
