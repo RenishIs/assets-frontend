@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Layout, Menu } from 'antd';
 import { UserOutlined, LaptopOutlined } from '@ant-design/icons';
 import { Link, useLocation } from 'react-router-dom';
@@ -11,6 +11,7 @@ function getItem(label, icon, path, role) {
     return { label, icon, path, role}
 }
 const iconsData = [
+    getItem("Dashboard", UserOutlined, '/assets/dashboard', ['admin']),
     getItem("Users", UserOutlined, '/users', ['admin', 'employee']),
     getItem("Assets", LaptopOutlined, '/assets', ['admin']),
     getItem("Asset Categories", LaptopOutlined, '/asset-categories', ['admin']),
@@ -18,7 +19,6 @@ const iconsData = [
     getItem("Asset Status", LaptopOutlined, '/asset-status', ['admin']),
     getItem("Tickets", FaTicketAlt, '/tickets', ['employee']),
     getItem("All Tickets", FaTicketAlt, '/all-tickets', ['admin']),
-
 ]
 
 const SideNavbar = (props) => {

@@ -13,7 +13,11 @@ const confirm = Modal.confirm;
 
 const AssetsListing = () => {
 
-	const { loading, data } = useQuery(GET_ASSETS_QUERY);
+	const { loading, data } = useQuery(GET_ASSETS_QUERY, {
+		variables : {
+			status: null
+		}
+	})
 	const history = useHistory()
 
 	const showDeleteConfirm = (e, id) => {
