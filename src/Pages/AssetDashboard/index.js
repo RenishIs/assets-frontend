@@ -14,7 +14,9 @@ const AssetDashboard = () => {
         variables : { status : null}
     })
     const [ updateAssets, { data: updatedData, loading : editLoading }] = useMutation(UPDATE_ASSET_MUTATION, {
-        refetchQueries : { query : GET_ASSETS_QUERY }
+        refetchQueries : [
+             {query: GET_ASSETS_QUERY} 
+        ],
     })
 
     const [ data, setData ] = useState(null)
@@ -46,7 +48,7 @@ const AssetDashboard = () => {
             columnOrder : assetStatus?.assetStatus.map(status => status.id)
         }
         setData(data)
-    }, [loading, assetStatusLoading])
+    }, [ assetStatus, assets ])
     
     const onDragEnd = (result) => {
         const {destination, source, draggableId } = result;
@@ -59,61 +61,59 @@ const AssetDashboard = () => {
              employeeId : rest?.employeeId.id
         }
         updateAssets({ variables: { updateAssetsId: id, input: { ...updatedMovedAsset } } })
-        // refetchAssetStatus()
-        // refetchAssets({ status : null })
 
-        // if(!destination){
-        //     return
-        // }
-        // if (destination.droppableId === source.droppableId && destination.index === source.index) {
-        //     return
-        // }
+        if(!destination){
+            return
+        }
+        if (destination.droppableId === source.droppableId && destination.index === source.index) {
+            return
+        }
 
 
-        // const start = data?.columns[source.droppableId]
-        // const finish = data?.columns[destination.droppableId]
+        const start = data?.columns[source.droppableId]
+        const finish = data?.columns[destination.droppableId]
         
-        // if(start == finish){
-        //     const newTasks = Array.from(start.tasks)
-        //     newTasks.splice(source.index, 1)
-        //     newTasks.splice(destination.index, 0, draggableId)
+        if(start == finish){
+            const newTasks = Array.from(start.tasks)
+            newTasks.splice(source.index, 1)
+            newTasks.splice(destination.index, 0, draggableId)
     
-        //     const newColumn = {
-        //         ...start,
-        //         tasks : newTasks
-        //     }
+            const newColumn = {
+                ...start,
+                tasks : newTasks
+            }
     
-        //     setData((prevState) => ({
-        //         ...prevState,
-        //         columns : {
-        //             ...prevState.columns,
-        //             [newColumn.id] : newColumn
-        //         }
-        //     }))
-        // }
+            setData((prevState) => ({
+                ...prevState,
+                columns : {
+                    ...prevState.columns,
+                    [newColumn.id] : newColumn
+                }
+            }))
+        }
         
         // //moving from one list to another
-        // const startTasks = Array.from(start.tasks)
-        // startTasks.splice(source.index, 1)
-        // const newStartColumn = {
-        //     ...start,
-        //     tasks : startTasks
-        // }
+        const startTasks = Array.from(start.tasks)
+        startTasks.splice(source.index, 1)
+        const newStartColumn = {
+            ...start,
+            tasks : startTasks
+        }
 
-        // const destinationTasks = Array.from(finish.tasks)
-        // destinationTasks.splice(destination.index, 0, draggableId)
-        // const newDestincationColumn = {
-        //     ...finish,
-        //     tasks : destinationTasks
-        // }
-        // setData((prevState) => ({
-        //     ...prevState,
-        //     columns : {
-        //         ...prevState.columns,
-        //         [newStartColumn.id] : newStartColumn,
-        //         [newDestincationColumn.id] : newDestincationColumn
-        //     }
-        // }))
+        const destinationTasks = Array.from(finish.tasks)
+        destinationTasks.splice(destination.index, 0, draggableId)
+        const newDestincationColumn = {
+            ...finish,
+            tasks : destinationTasks
+        }
+        setData((prevState) => ({
+            ...prevState,
+            columns : {
+                ...prevState.columns,
+                [newStartColumn.id] : newStartColumn,
+                [newDestincationColumn.id] : newDestincationColumn
+            }
+        }))
     }
 
     return (
