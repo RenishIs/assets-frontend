@@ -13,7 +13,6 @@ import { GET_TICKETS_STATUS_QUERY } from '../../gql/Query/TicketsStatus';
 
 const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
     const { data } = useQuery(GET_TICKETS_STATUS_QUERY)
-    console.log(data)
     const { ticket } = rest
 
     const initialState = {
