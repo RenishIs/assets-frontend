@@ -13,11 +13,13 @@ import { GET_ASSETS_QUERY } from '../../gql/Query/Assets';
 import Loader from '../../Components/UI/Loader';
 import { Status } from '../../Helper/constants';
 
+
 const UsersForm = ({ title, handleUser, loading, ...rest }) => {
 
     const { user } = rest
 
-    const { data } = useQuery(GET_USER_ROLE)
+
+    const  { data }= useQuery(GET_USER_ROLE);
     const { data: assets } = useQuery(GET_ASSETS_QUERY)
 
     const initialState = {
@@ -32,6 +34,11 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
         password: user ? 'Albiorix@123' : ''
     }
 
+
+        // function for executing query doesn't return a promise
+        
+       
+   
     return (
         <div>
             {loading && <Loader />}
@@ -107,8 +114,8 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                                         disabled={user}>
                                         <option>Select Role</option>
                                         {
-                                            data?.role.map(item => (
-                                                <option value={item.id} key={item.id}>{item.name}</option>
+                                            data?.role?.map(item => (
+                                                <option value={item.id} key={item.id}>{item?.name.charAt(0).toUpperCase() + item?.name.slice(1)}</option>
                                             ))
                                         }
                                     </Field>

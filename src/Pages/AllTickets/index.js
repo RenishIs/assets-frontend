@@ -2,9 +2,10 @@ import { Table, Select } from 'antd';
 import { tableColumns } from './CONSTANTS';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_TICKETS_QUERY } from '../../gql/Query/AllTickets';
-import { GET_USERS_BY_ROLE } from "../../gql/Query/Users"
+import { GET_USERS_BY_ROLE, GET_USER_ROLE } from "../../gql/Query/Users"
 import Loader from '../../Components/UI/Loader';
 import Cookies from 'js-cookie';
+
 
 const AllTicketsListing = () => {
 
@@ -12,9 +13,11 @@ const AllTicketsListing = () => {
 
 	const { data : tickets, loading, refetch } = useQuery(GET_ALL_TICKETS_QUERY,{ variables : { userId: null }})
 
+    const  { data }= useQuery(GET_USER_ROLE);
 	const { data : employeeList } = useQuery(GET_USERS_BY_ROLE, {
-		variables: {  
-            roleId : "62bd8209a8e1f2f685107437"
+		variables: { 
+			skip: !data, 
+            roleId : data?.role?.filter((item) => item.name == "admin")[0].id
           }
 	});
 

@@ -6,7 +6,10 @@ export const CREATE_TICKET_MUTATION = gql`
         id
         title
         description
-        status
+        status{
+            id 
+            name
+        }
         assignedTo {
             firstName
         }
