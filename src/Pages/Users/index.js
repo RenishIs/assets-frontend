@@ -65,7 +65,6 @@ const UsersListing = () => {
 	}]
 
 	const handleChange = (value) => {
-		console.log("value", value)
 		if(value == null) {
 			refetch({ status: null })
 		}else {

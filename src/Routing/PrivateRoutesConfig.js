@@ -4,11 +4,6 @@ import { FaTicketAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Roles from "./Roles";
 
-import Registration from "../Pages/Registration";
-import Login from "../Pages/Login";
-import ForgotPassword from "../Pages/ForgotPassword";
-import ResetPassword from "../Pages/ResetPassword";
-
 import UsersListing from '../Pages/Users'
 import UsersAdd from "../Pages/Users/UsersAdd";
 import UsersEdit from "../Pages/Users/UsersEdit";
@@ -32,6 +27,7 @@ import AssetTypeEdit from "../Pages/AssetTypes/AssetTypeEdit";
 import AssetStatusListing from "../Pages/AssetStatus/index"
 import AssetStatusAdd from "../Pages/AssetStatus/AssetStatusAdd"
 import AssetStatusEdit from "../Pages/AssetStatus/AssetStatusEdit"
+import AssetDashboard from '../Pages/AssetDashboard';
 
 import TicketsListing from '../Pages/Tickets/index';
 import TicketAdd from '../Pages/Tickets/TicketAdd';
@@ -43,24 +39,14 @@ import TicketsStatusEdit from "../Pages/TicketsStatus/TicketsStatusEdit"
 
 export const PrivateRoutesConfig = [
     {
-        component : Registration,
-        path : '/',
-        exact : true
-    },
-    {
-        component : Login,
-        path : '/login',
-        exact : true
-    },
-    {
-        component : ForgotPassword,
-        path : '/forgot-password',
-        exact : true
-    },
-    {
-        component : ResetPassword,
-        path : '/reset-password/:id',
-        exact : true
+        key : 1,
+        sidebar : true,
+        component: AssetDashboard,
+        path: '/assets/dashboard',
+        exact : true,
+        permissions: [
+            Roles.ADMIN,
+        ],
     },
     {
         key : 2,
