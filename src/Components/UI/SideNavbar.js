@@ -18,6 +18,7 @@ const iconsData = [
     getItem("Asset Types", LaptopOutlined, '/asset-types', ['admin']),
     getItem("Asset Status", LaptopOutlined, '/asset-status', ['admin']),
     getItem("Tickets", FaTicketAlt, '/tickets', ['employee']),
+    getItem("Tickets Status", FaTicketAlt, '/tickets-status', ['admin']),
     getItem("All Tickets", FaTicketAlt, '/all-tickets', ['admin']),
 ]
 

@@ -7,14 +7,18 @@ import Roles from "./Roles";
 import UsersListing from '../Pages/Users'
 import UsersAdd from "../Pages/Users/UsersAdd";
 import UsersEdit from "../Pages/Users/UsersEdit";
+import UserDetails from '../Pages/Users/UserDetails';
+
 import Profile from "../Pages/Profile";
+
 import AssetsListing from "../Pages/Assets/index"
 import AssetsAdd from "../Pages/Assets/AssetsAdd"
 import AssetsEdit from "../Pages/Assets/AssetsEdit"
+import AssetDetails from "../Pages/Assets/AssetDetails";
+
 import AssetCategories from "../Pages/AssetCategories";
 import AssetCategoryAdd from "../Pages/AssetCategories/AssetCategoryAdd";
 import AssetCategoryEdit from "../Pages/AssetCategories/AssetCategoryEdit";
-import AssetDetails from "../Pages/Assets/AssetDetails";
 
 import AssetTypesListing from "../Pages/AssetTypes/index";
 import AssetTypeAdd from "../Pages/AssetTypes/AssetTypeAdd";
@@ -23,12 +27,15 @@ import AssetTypeEdit from "../Pages/AssetTypes/AssetTypeEdit";
 import AssetStatusListing from "../Pages/AssetStatus/index"
 import AssetStatusAdd from "../Pages/AssetStatus/AssetStatusAdd"
 import AssetStatusEdit from "../Pages/AssetStatus/AssetStatusEdit"
-import UserDetails from '../Pages/Users/UserDetails';
 import AssetDashboard from '../Pages/AssetDashboard';
 
 import TicketsListing from '../Pages/Tickets/index';
 import TicketAdd from '../Pages/Tickets/TicketAdd';
 import AllTicketsListing from '../Pages/AllTickets/index';
+
+import TicketsStatusListing from "../Pages/TicketsStatus"
+import TicketsStatusAdd from "../Pages/TicketsStatus/TicketsStatusAdd"
+import TicketsStatusEdit from "../Pages/TicketsStatus/TicketsStatusEdit"
 
 export const PrivateRoutesConfig = [
     {
@@ -250,6 +257,36 @@ export const PrivateRoutesConfig = [
         label : <Link to="/all-tickets">All Tickets</Link>,
         component : AllTicketsListing,
         path : '/all-tickets',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
+        ]
+    },
+    {
+        key : 22,
+        sidebar : true,
+        icon : React.createElement(LaptopOutlined, {className : 'side-nav-bar-icons',}),
+        label : <Link to="/tickets-status">Tickets Status</Link>,
+        component : TicketsStatusListing,
+        path : '/tickets-status',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
+        ]
+    },
+    {
+        key : 23,
+        component : TicketsStatusAdd,
+        path : '/tickets-status/add',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
+        ]
+    },
+    {
+        key : 24,
+        component : TicketsStatusEdit,
+        path : '/tickets-status/edit/:id',
         exact : true,
         permissions : [
             Roles.ADMIN
