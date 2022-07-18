@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { useHistory } from 'react-router-dom';
 import { CREATE_TICKET_MUTATION } from '../../gql/Mutation/Tickets';
 import { GET_TICKETS_QUERY } from '../../gql/Query/Tickets';
-import { GET_USERS_BY_ROLE } from '../../gql/Query/Users';
+import { GET_USERS_BY_ROLE, GET_USER_ROLE } from '../../gql/Query/Users';
 import TicketForm from './TicketForm';
 import openNotificationWithIcon from '../../Helper/Notification';
 
@@ -14,15 +14,18 @@ const TicketAdd = () => {
 			{ query: GET_TICKETS_QUERY },
 		]
 	});
+	const { data } = useQuery(GET_USER_ROLE);
 
-    const { data : adminList } = useQuery(GET_USERS_BY_ROLE, {
-		variables: {  
-            roleId : "62bd8209a8e1f2f685107438"
-          }
+
+	const { data: adminList } = useQuery(GET_USERS_BY_ROLE, {
+		variables: {
+			skip: !data,
+			roleId: data?.role?.filter((item) => item.name == "admin")[0].id
+		}
 	});
 
 	if (ticket) {
-		openNotificationWithIcon('addTicket','success', "TICKET ADDED SUCCESSFULLY")
+		openNotificationWithIcon('addTicket', 'success', "TICKET ADDED SUCCESSFULLY")
 		history.push('/tickets');
 	}
 
@@ -31,7 +34,7 @@ const TicketAdd = () => {
 	}
 
 	return (
-		<TicketForm handleTicket={handleTicket} loading={loading} adminList={adminList}/>
+		<TicketForm handleTicket={handleTicket} loading={loading} adminList={adminList} />
 	)
 }
 

@@ -6,7 +6,10 @@ export const GET_TICKETS_QUERY = gql`
         id
         title
         description
-        status
+        status {
+        id 
+        name
+        }
         assignedTo {
             firstName
             lastName

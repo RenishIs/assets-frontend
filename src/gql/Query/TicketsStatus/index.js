@@ -3,8 +3,8 @@ import { gql } from "@apollo/client";
 export const GET_TICKETS_STATUS_QUERY = gql`
     query TicketStatus {
         ticketStatus {
-        id
-        name
+            id
+            name
         }
     }
 `

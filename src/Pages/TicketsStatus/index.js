@@ -14,7 +14,7 @@ const confirm = Modal.confirm;
 const TicketsStatusListing = () => {
 
 	const { loading, data } = useQuery(GET_TICKETS_STATUS_QUERY);
-
+	console.log(data)
 	const showDeleteConfirm = (id) => {
 		confirm({
 		  title: 'Are you sure?',
@@ -68,6 +68,7 @@ const TicketsStatusListing = () => {
 			       columns={columns} 
 				   dataSource={data?.ticketStatus.map(item => ({...item, key: item.id}))} 
 				   pagination={false} />
+		
 		</>
 	)
 }
