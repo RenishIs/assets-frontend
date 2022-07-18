@@ -29,18 +29,20 @@ export const tableColumns = [
 		title: 'STATUS',
 		dataIndex: 'status',
 		key: 'status',
-		render: (text) => <span>
-							{ 
-							(text == 'New' || text == 'In-progress' || text == 'Resolved') 
-							?
-							(<span>
-								{text == 'New' && <Tag color="cyan">{text}</Tag>}
-								{text == 'In-progress' && <Tag color="processing">{text}</Tag>}
-								{text == 'Resolved' && <Tag color="success">{text}</Tag>} 
-							</span>) 
-							:
-							(<span><Tag color="purple">{text}</Tag></span>)
-							}
-						</span>,
+		render: (_, record) => (
+			<span>
+			{ 
+				(record?.status?.name == 'New' || record?.status?.name == 'In-progress' || record?.status?.name == 'Resolved') 
+				?
+				(<span>
+					{record?.status?.name == 'New' && <Tag color="cyan">{record?.status?.name}</Tag>}
+					{record?.status?.name == 'In-progress' && <Tag color="processing">{record?.status?.name}</Tag>}
+					{record?.status?.name == 'Resolved' && <Tag color="success">{record?.status?.name}</Tag>} 
+				</span>) 
+				:
+				(<span><Tag color="purple">{record?.status?.name}</Tag></span>)
+			}
+			</span>
+		)
 	},
 ]
