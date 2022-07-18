@@ -23,6 +23,7 @@ export const GET_ASSETS_QUERY = gql`
         }
         reason
         employeeId {
+            id
             firstName
             lastName
             email

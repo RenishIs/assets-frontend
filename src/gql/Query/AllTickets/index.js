@@ -1,20 +1,23 @@
 import { gql } from "@apollo/client";
 
 export const GET_ALL_TICKETS_QUERY = gql`
-    query Query($userId: UserId) {
-        tickets(userId: $userId) {
-    
-        title
-        description
-        status
-        assignedTo {
-            firstName
-            lastName
-        }
-        raisedBy {
-            firstName
-            lastName
-        }
+    query Query($input: QueryParam) {
+        tickets(input: $input) {
+            id
+            title
+            description
+            status {
+                id
+                name
+            }
+            assignedTo {
+                firstName
+                lastName
+            }
+            raisedBy {
+                firstName
+                lastName
+            }
         }
     }
 `

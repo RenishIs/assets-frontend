@@ -25,9 +25,7 @@ const UsersEdit = () => {
     const handleUser = (values) => {
         delete values.role;
         delete values.password;
-        if(values.isActive) {
-            values.isActive = Boolean(values.isActive);
-        }
+
         UpdateUser({ variables : {updateUserId : id,  input: {...values} }})
     }
 
