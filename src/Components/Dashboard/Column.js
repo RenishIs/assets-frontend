@@ -20,6 +20,7 @@ const Column = ({column, tasks}) => {
 			setContent('')
 		}
 	}
+
     return (
         <div className="dashboard-column-container">
             <div style={{ height: "100%", width: "320px", padding : '4%' }}>
@@ -31,7 +32,7 @@ const Column = ({column, tasks}) => {
                              {...provided.droppableProps} 
                              ref={provided.innerRef}>
                         {
-                            tasks?.map((task, index) => (
+                            tasks?.map((task, index) => ( 
                                 <Task key={task.id} task={task} index={index}/>
                             ))
                         }
@@ -39,7 +40,7 @@ const Column = ({column, tasks}) => {
                         </div>
                 )}
                 </Droppable>
-                {
+                {/* {
                     addCard ? (
                         <div style={{ width: "100%"}}>
                             <TextArea rows={4} 
@@ -60,8 +61,7 @@ const Column = ({column, tasks}) => {
 								<PlusOutlined /> 
 								<span className="px-2">Add a Card</span>
 							</Row>
-						)
-					}
+                )} */}
             </div>
         </div>
     )

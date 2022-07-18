@@ -36,6 +36,7 @@ import AllTicketsListing from '../Pages/AllTickets/index';
 import TicketsStatusListing from "../Pages/TicketsStatus"
 import TicketsStatusAdd from "../Pages/TicketsStatus/TicketsStatusAdd"
 import TicketsStatusEdit from "../Pages/TicketsStatus/TicketsStatusEdit"
+import TicketDashboard from '../Pages/TicketsDashboard';
 
 export const PrivateRoutesConfig = [
     {
@@ -287,6 +288,18 @@ export const PrivateRoutesConfig = [
         key : 24,
         component : TicketsStatusEdit,
         path : '/tickets-status/edit/:id',
+        exact : true,
+        permissions : [
+            Roles.ADMIN
+        ]
+    },
+    {
+        key : 25,
+        sidebar : true,
+        icon : React.createElement(FaTicketAlt, {className : 'side-nav-bar-icons',}),
+        label : <Link to="/tickets/dashboard">Tickets Dashboard</Link>,
+        component : TicketDashboard,
+        path : '/tickets/dashboard',
         exact : true,
         permissions : [
             Roles.ADMIN

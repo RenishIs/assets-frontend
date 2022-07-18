@@ -11,7 +11,7 @@ const Task = ({ task, index }) => {
                      {...provided.draggableProps} 
                      {...provided.dragHandleProps} 
                      ref={provided.innerRef}>
-                    {task.name}
+                    {task.name}  {task.title}
                 </div>
         )}}
         </Draggable>  
