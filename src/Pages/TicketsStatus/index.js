@@ -14,7 +14,6 @@ const confirm = Modal.confirm;
 const TicketsStatusListing = () => {
 
 	const { loading, data } = useQuery(GET_TICKETS_STATUS_QUERY);
-	console.log(data)
 	const showDeleteConfirm = (id) => {
 		confirm({
 		  title: 'Are you sure?',
