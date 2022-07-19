@@ -161,6 +161,7 @@ const AssetDashboard = () => {
 
     return (
         <>
+        <h2 className='text-start ms-2 fs-4 fw-bold'>ASSET DASHBOARD</h2>
         {
             newToAssigned && (
                 <Modal title="Select Employee" visible={newToAssigned} onOk={handleNewToAssigned} onCancel={handleCancel}>

@@ -63,7 +63,7 @@ const AssetCategories = () => {
 	return (
 		<>
 			{ (loading || deleteLoading ) && <Loader /> }
-			<div className='text-cente mb-3'>
+			<div className='text-center mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSET CATEGORIES</h2>
                 <div className='add-button'>
                     <Link to={`/asset-categories/add`}><Button type="primary">ADD</Button></Link>
