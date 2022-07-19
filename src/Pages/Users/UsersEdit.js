@@ -16,7 +16,7 @@ const UsersEdit = () => {
         variables : { userByIdId : id }
     })
 
-    const [ UpdateUser, { data : updatedUser, loading : editLoading }] = useMutation(UPDATE_USER_MUTATION, {
+    const [ UpdateUser, { data : updatedUser,error, loading : editLoading }] = useMutation(UPDATE_USER_MUTATION, {
         refetchQueries : [
             { query : GET_USERS_QUERY }
         ]
@@ -32,7 +32,9 @@ const UsersEdit = () => {
     if(loading){
 		return <Loader />
 	}
-
+	if(error){
+		openNotificationWithIcon('userUpdateError', 'error', 'DUPLICATE INPUT ERROR')
+	}
     if(updatedUser) {
         openNotificationWithIcon('userEdit', 'success', "USER EDITED SUCCESSFULLY")
         history.push('/users')

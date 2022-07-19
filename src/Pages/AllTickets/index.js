@@ -9,47 +9,54 @@ import Cookies from 'js-cookie';
 
 const AllTicketsListing = () => {
 
-    const role = Cookies.get('role')
+	const role = Cookies.get('role')
 
-	const { data : tickets, loading, refetch } = useQuery(GET_ALL_TICKETS_QUERY,{ variables : { userId: null }})
+	const { data: tickets, loading, refetch } = useQuery(GET_ALL_TICKETS_QUERY, { variables: { input: null } })
 
-    const  { data }= useQuery(GET_USER_ROLE);
-	const { data : employeeList } = useQuery(GET_USERS_BY_ROLE, {
-		variables: { 
-			skip: !data, 
-            roleId : data?.role?.filter((item) => item.name == "admin")[0].id
-          }
+	const { data } = useQuery(GET_USER_ROLE);
+	const { data: employeeList } = useQuery(GET_USERS_BY_ROLE, {
+		variables: {
+			skip: !data,
+			roleId: data?.role?.filter((item) => item.name == "employee")[0].id
+		}
 	});
 
 	const handleChange = (value) => {
-		refetch({ userId: { id: value } })
+	 
+			refetch({
+				input: {
+					status: null,
+					userId: value
+				}
+			})
+		
 	};
-	
+
 	return (
 		<>
-			{ loading && <Loader /> }
+			{loading && <Loader />}
 			<div className='text-center mb-3'>
-                <h2 className='d-inline fs-4 fw-bold text-center'>MANAGE ALL TICKETS</h2>
+				<h2 className='d-inline fs-4 fw-bold text-center'>MANAGE ALL TICKETS</h2>
 				{
 					role === "admin" && (
 						<div className='add-button'>
-							<Select defaultValue={true} style={{ width: 150 }} onChange={handleChange}>
-							<option>Select User</option>
-                                { 
-                                employeeList?.usersByRole?.map(item => (
-                                    <option value={item.id} key={item.id}>{`${item.firstName} ${item.lastName}`}</option>
-                                ))
-                                }
+							<Select defaultValue={null} style={{ width: 150 }} onChange={handleChange}>
+								<option value={null} key={null}>All users</option>
+								{
+									employeeList?.usersByRole?.map(item => (
+										<option value={item.id} key={item.id}>{`${item.firstName} ${item.lastName}`}</option>
+									))
+								}
 							</Select>
 						</div>
 					)
 				}
-            </div>
-			<Table bordered 
-			       columns={tableColumns} 
-				   dataSource={tickets?.tickets.map(item => ({...item, key: item.id}))} 
-				   pagination={false} 
-				   />
+			</div>
+			<Table bordered
+				columns={tableColumns}
+				dataSource={tickets?.tickets.map(item => ({ ...item, key: item.id }))}
+				pagination={false}
+			/>
 		</>
 	)
 }

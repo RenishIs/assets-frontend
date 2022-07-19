@@ -9,7 +9,7 @@ const UsersAdd = () => {
 
     const history = useHistory();
 
-    const [ CreateUser, { data, loading }] = useMutation(CREATE_USER_MUTATION, {
+    const [ CreateUser, { data,error, loading }] = useMutation(CREATE_USER_MUTATION, {
         refetchQueries : [
             {query : GET_USERS_QUERY}
         ]
@@ -19,7 +19,9 @@ const UsersAdd = () => {
     
         CreateUser({ variables : {input: {...values}}})
     }
-
+	if(error){
+		openNotificationWithIcon('userAddError', 'error', 'DUPLICATE INPUT ERROR')
+	}
     if(data){
         openNotificationWithIcon('userAdd', 'success', "USER ADDED SUCCESSFULLY")
         history.push('/users')
