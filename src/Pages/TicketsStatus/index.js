@@ -57,7 +57,7 @@ const TicketsStatusListing = () => {
 	return (
 		<>
 			{ (loading || deleteLoading ) && <Loader /> }
-			<div className='text-cente mb-3'>
+			<div className='text-center mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE TICKETS STATUS</h2>
                 <div className='add-button'>
                     <Link to={`/tickets-status/add`}><Button type="primary">ADD</Button></Link>
