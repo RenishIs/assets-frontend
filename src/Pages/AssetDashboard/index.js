@@ -14,21 +14,20 @@ const { TextArea } = Input;
 const AssetDashboard = () => {
 
     const { data : assetStatus, loading : assetStatusLoading } = useQuery(GET_ASSET_STATUS_QUERY)
-
-    const  { data : role }= useQuery(GET_USER_ROLE);
+    const { data : role }= useQuery(GET_USER_ROLE)
 	const { data : employeeList } = useQuery(GET_USERS_BY_ROLE, {
 		variables: { 
 			skip: !role, 
             roleId : role?.role?.filter((item) => item.name == "admin")[0].id
           }
-	});
+	})
 
     const { data : assets, loading, error } = useQuery(GET_ASSETS_QUERY, {
         variables : { status : null}
     })
     const [ updateAssets ] = useMutation(UPDATE_ASSET_MUTATION, {
         refetchQueries : [
-             {query: GET_ASSETS_QUERY} 
+            {query: GET_ASSETS_QUERY} 
         ],
     })
 
@@ -37,7 +36,7 @@ const AssetDashboard = () => {
     const [ employeeId, setEmployeeId ] = useState(null)
     const [ assignedToRepairBroken, setAssignedToRepairBroken ] = useState(false);
     const [ reason, setReason ] = useState('')
-    const [ updatedAsset, setUpdatedAsset ] = useState(null)
+    const [ updatedAssetFields, setUpdatedAssetFields ] = useState(null)
 
     const handleCancel = () => {
         setAssignedToRepairBroken(false)
@@ -45,13 +44,21 @@ const AssetDashboard = () => {
     }
 
     const handleNewToAssigned = () => {
+        const variables = { 
+            ...updatedAssetFields.variables,
+            input : {...updatedAssetFields?.variables?.input, employeeId}
+        }
         setNewToAssigned(false)
-        updateAssets({ variables: { updateAssetsId: updatedAsset.id, input: { employeeId : employeeId} } })
+        updateAssets({ variables })
     }
 
     const handleAssignedToRepairBroken = () => {
         setAssignedToRepairBroken(false)
-        updateAssets({ variables: { updateAssetsId: updatedAsset.id, input: {...updatedAsset, reason : reason} } })
+        const variables = { 
+            ...updatedAssetFields.variables,
+            input : {...updatedAssetFields?.variables?.input, reason}
+        }
+        updateAssets({ variables })
     }
 
     const getTasksId = (status) => {
@@ -85,13 +92,17 @@ const AssetDashboard = () => {
     
     const onDragEnd = (result) => {
         const {destination, source, draggableId } = result;
-        const { id, __typename, ...rest} = assets?.assets?.find(asset => asset.id === draggableId)
-        const updatedMovedAsset = {
-            ...rest,
-             assetStatus : assetStatus?.assetStatus.find(status => status.id === destination.droppableId).id,
-             assetCategory : rest?.assetCategory?.id,
-             assetType : rest?.assetType?.id,
-             employeeId : rest?.employeeId.id
+
+        const movedAsset = assets?.assets?.find(asset => asset.id === draggableId)
+        const updatedAssetFields = {
+            variables : {
+                updateAssetsId : draggableId,
+                input : {
+                    assetStatus : destination.droppableId,
+                    employeeId : movedAsset?.employeeId.id,
+                    dateOfAssetAssignment : movedAsset?.dateOfAssetAssignment
+                }
+            }
         }
 
         if(!destination){
@@ -145,18 +156,17 @@ const AssetDashboard = () => {
                 [newDestincationColumn.id] : newDestincationColumn
             }
         }))
+        setUpdatedAssetFields(updatedAssetFields)
 
         if(data?.columns[source.droppableId].name == 'New' && data?.columns[destination.droppableId].name == 'Assigned'){
             setNewToAssigned(true)
-            setUpdatedAsset(updatedMovedAsset)
             return
         }
         if(data?.columns[source.droppableId].name == 'Assigned' && (data?.columns[destination.droppableId].name == 'Broken' || data?.columns[destination.droppableId].name == 'In-Repair')){
             setAssignedToRepairBroken(true);
-            setUpdatedAsset(updatedMovedAsset)
             return
         }
-        updateAssets({ variables: { updateAssetsId: id, input: { ...updatedMovedAsset } } })
+        updateAssets(updatedAssetFields)
     }
 
     return (

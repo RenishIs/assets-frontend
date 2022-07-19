@@ -13,9 +13,23 @@ export const CREATE_ASSET_MUTATION = gql`
 export const UPDATE_ASSET_MUTATION = gql`
     mutation Mutation($input: UpdateAssetsInput!, $updateAssetsId: ID) {
         updateAsset(input: $input, id: $updateAssetsId) {
-        id
-        name
-        description
+            id
+            name
+            description
+            employeeId {
+                id
+                firstName
+                lastName
+                email
+                role {
+                    name
+                }
+            }
+            assetStatus {
+                id
+                name
+            }
+            reason
         }
     }
 `
