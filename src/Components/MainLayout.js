@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, Row, Dropdown, Menu, Col } from 'antd';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import Cookies from "js-cookie";
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
 import SideNavbar from './UI/SideNavbar';
@@ -12,6 +12,10 @@ const MainLayout = ({children, routes, path}) => {
     const [collapsed, setCollapsed] = useState(false);
 
     const history = useHistory()
+
+    const location = useLocation()
+
+    const isDashboard = location.pathname.includes('dashboard')
 
     const user= Cookies.get('user');
 
@@ -40,7 +44,7 @@ const MainLayout = ({children, routes, path}) => {
             <Layout>
                 <SideNavbar collapsed={collapsed} routes={routes} path={path}/>
                 <Layout className='overflow-auto'>
-                    <Header className='bg-white mb-4'>
+                    <Header className={`bg-white ${!isDashboard && 'mb-4'}`}>
                         <Row justify="space-between" className='px-4 header' >
                             <Col>
                             {
@@ -60,7 +64,7 @@ const MainLayout = ({children, routes, path}) => {
                             </Col>
                         </Row>
                     </Header>
-                    <div className="bg-white text-center p-4 mx-4 main-card mb-4">
+                    <div className={`bg-white px-4 ${!isDashboard && 'main-card mx-4 mb-4 py-4'}`}>
                         {children}
                     </div>
                 </Layout>

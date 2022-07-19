@@ -143,6 +143,7 @@ const TicketDashboard = () => {
 
     return (
         <>
+        <h2 className='text-start ms-2 fs-4 fw-bold'>TICKET DASHBOARD</h2>
         {
             isModalVisible && (
                 <Modal title="Add Notes" visible={isModalVisible} onOk={handleUpdateTicket} onCancel={handleCancel}>
