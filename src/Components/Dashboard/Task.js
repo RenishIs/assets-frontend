@@ -29,7 +29,7 @@ const Task = ({ task, index }) => {
 									(<span><Tag color="purple">{task?.assetStatus?.name}</Tag></span>)
 								}
                             <div className='d-flex justify-content-between mt-2'>
-                                <div className='text-muted' style={{fontSize:"12px"}}>#AMS-80</div>
+                                <div className='text-muted' style={{fontSize:"12px"}}>{task?.assetId}</div>
                                 <div style={{fontSize:"13px"}}>{task?.employeeId?.firstName}</div>
                             </div>
                         </div>}
@@ -48,7 +48,7 @@ const Task = ({ task, index }) => {
                                 (<span><Tag color="purple">{task?.status?.name}</Tag></span>)
                             }
                             <div className='d-flex justify-content-between mt-2'>
-                                <div className='text-muted' style={{fontSize:"12px"}}>#AMS-80</div>
+                                <div className='text-muted' style={{fontSize:"12px"}}>{task?.ticketId}</div>
                                 <div style={{fontSize:"13px"}}>{task?.assignedTo?.firstName}</div>
                             </div>
                         </div>}

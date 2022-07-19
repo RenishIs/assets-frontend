@@ -14,7 +14,7 @@ const Profile = () => {
             <div className='text-center mb-4'>
                 <h2 className='d-inline fs-5 fw-bold'>PROFILE DETAILS</h2>
             </div>
-            <div>
+            <div className='text-center'>
                 <img src="/user-1.png" alt="profile" width="10%"/>
                 <Row>
                     <Col span={8}></Col>
