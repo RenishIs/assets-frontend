@@ -7,6 +7,7 @@ export const GET_ASSETS_QUERY = gql`
         name
         description
         location
+        assetId
         assetCategory {
             id
             name

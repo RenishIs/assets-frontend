@@ -36,7 +36,7 @@ const AllTicketsListing = () => {
 		<>
 			{loading && <Loader />}
 			<div className='text-center mb-3'>
-				<h2 className='d-inline fs-4 fw-bold text-center'>MANAGE ALL TICKETS</h2>
+				<h2 className='d-inline fs-4 fw-bold text-center' style={{marginLeft:'6.5rem'}}>MANAGE ALL TICKETS</h2>
 				{
 					role === "admin" && (
 						<div className='add-button'>

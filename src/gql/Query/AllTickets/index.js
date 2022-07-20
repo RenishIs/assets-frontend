@@ -6,6 +6,7 @@ export const GET_ALL_TICKETS_QUERY = gql`
             id
             title
             description
+            ticketId
             status {
                 id
                 name

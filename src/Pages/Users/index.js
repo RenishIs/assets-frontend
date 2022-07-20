@@ -76,7 +76,7 @@ const UsersListing = () => {
 		<>
 			{(loading || deleteLoading) && <Loader />}
 			<div className='text-center mb-3'>
-				<h2 className='d-inline fs-4 fw-bold'>MANAGE USERS</h2>
+				<h2 className='d-inline fs-4 fw-bold' style={{marginLeft:'6.5rem'}}>MANAGE USERS</h2>
 				{
 					role === "admin" && (
 						<div className='add-button'>
