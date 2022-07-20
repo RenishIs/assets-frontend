@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "default": "assets-management-prod",
+    "prod": "assets-management-prod",
+    "staging": "assets-management-stagingg"
+  },
+  "targets": {},
+  "etags": {}
+}
