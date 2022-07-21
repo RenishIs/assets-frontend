@@ -18,7 +18,7 @@ const UsersEdit = () => {
 
     const [ UpdateUser, { data : updatedUser,error, loading : editLoading }] = useMutation(UPDATE_USER_MUTATION, {
         refetchQueries : [
-            { query : GET_USERS_QUERY }
+            { query : GET_USERS_QUERY,  variables: { status: null } }
         ]
     })
 
