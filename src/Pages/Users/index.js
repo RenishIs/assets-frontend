@@ -35,7 +35,7 @@ const UsersListing = () => {
 
 	const [DeleteUser, { error, data: deletedUser, loading: deleteLoading }] = useMutation(DELETE_USER_MUTATION, {
 		refetchQueries: [
-			{ query: GET_USERS_QUERY },
+			{ query: GET_USERS_QUERY, variables: { status: null }},
 		]
 	})
 

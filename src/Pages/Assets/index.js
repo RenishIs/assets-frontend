@@ -39,7 +39,7 @@ const AssetsListing = () => {
 
 	const [deleteAssets, { error, data : deletedAsset, loading : deleteLoading }] = useMutation(DELETE_ASSET_MUTATION, {
 		refetchQueries: [
-			{ query: GET_ASSETS_QUERY },
+			{ query: GET_ASSETS_QUERY, variables : { status: null }},
 		]
 	});
 

@@ -17,7 +17,7 @@ const AssetsEdit = () => {
 
 	const [updateAssets, { data : updatedData, loading : editLoading }] = useMutation(UPDATE_ASSET_MUTATION, {
 		refetchQueries: [
-			{ query: GET_ASSETS_QUERY },
+			{ query: GET_ASSETS_QUERY, variables : { status: null } },
 		]
 	});
 
