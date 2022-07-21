@@ -9,7 +9,7 @@ const AssetsAdd = () => {
 	const history = useHistory();
 	const [addAssets, { data, loading }] = useMutation(CREATE_ASSET_MUTATION, {
 		refetchQueries: [
-			{ query: GET_ASSETS_QUERY },
+			{ query: GET_ASSETS_QUERY, variables : { status: null } },
 		]
 	});
 

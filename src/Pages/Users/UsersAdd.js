@@ -11,7 +11,7 @@ const UsersAdd = () => {
 
     const [ CreateUser, { data,error, loading }] = useMutation(CREATE_USER_MUTATION, {
         refetchQueries : [
-            {query : GET_USERS_QUERY}
+            {query : GET_USERS_QUERY,  variables: { status: null }}
         ]
     })
 
