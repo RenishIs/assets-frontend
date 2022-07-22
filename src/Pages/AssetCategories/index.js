@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Table, Space, Button, Modal } from 'antd';
 import { useMutation, useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
@@ -23,20 +24,34 @@ const AssetCategories = () => {
 
 	const { loading, data } = useQuery(GET_ASSET_CATEGORIES_QUERY);
 
-	const showDeleteConfirm = (id) => {
-		confirm({
-		  title: 'Are you sure?',
-		  content: 'Do you really want to delete this Asset category? This process cannot be undone.',
-		  okText: 'Yes',
-		  okType: 'danger',
-		  cancelText: 'No',
-		  onOk() {
-			deleteAssetCategory({ variables: { deleteAssetCategoryId: id } })
-		  },
-		  onCancel() {
-			console.log('Cancel');
-		  },
+	const errorIfAssigned = () => {
+		Modal.error({
+		  title: 'This asset category is already being used!!',
+		  content: 'You cannot delete this asset category, if you want to then delete the asset associated with the category',
 		});
+	  };
+
+	const showDeleteConfirm = (id) => {
+		const assetCategory=data?.assetCategories.find(assetCategory => assetCategory.id === id)
+		{
+		assetCategory?.assigned 
+		?
+			errorIfAssigned()
+		:
+			confirm({
+			title: 'Are you sure?',
+			content: 'Do you really want to delete this Asset category? This process cannot be undone.',
+			okText: 'Yes',
+			okType: 'danger',
+			cancelText: 'No',
+			onOk() {
+				deleteAssetCategory({ variables: { deleteAssetCategoryId: id } })
+			},
+			onCancel() {
+				console.log('Cancel');
+			},
+			})
+	}
 	  }
 
 	const [ deleteAssetCategory, { data: deletedAssetCategory, loading : deleteLoading }] = useMutation(DELETE_ASSET_CATEGORY_MUTATION, {

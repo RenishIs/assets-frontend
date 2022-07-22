@@ -86,7 +86,7 @@ const AssetsListing = () => {
 				   pagination={false} 
 				   onRow={(record, rowIndex) => {
 						return {
-							onClick: (event) => navigation(record.id) 
+						  onClick: (event) => navigation(record.id) 
 						}
 				   }}
 				   />
