@@ -15,20 +15,34 @@ const AssetTypesListing = () => {
 
 	const { loading, data } = useQuery(GET_ASSET_TYPES_QUERY);
 
-	const showDeleteConfirm = (id) => {
-		confirm({
-		  title: 'Are you sure?',
-		  content: 'Do you really want to delete this Asset type? This process cannot be undone.',
-		  okText: 'Yes',
-		  okType: 'danger',
-		  cancelText: 'No',
-		  onOk() {
-			deleteAssetType({ variables:  { deleteAssetTypeId: id } })
-		  },
-		  onCancel() {
-			console.log('Cancel');
-		  },
+	const errorIfAssigned = () => {
+		Modal.error({
+		  title: 'This asset type is being used!!',
+		  content: 'You cannot delete this asset type, if you want to then delete the asset associated with the type',
 		});
+	  };
+
+	const showDeleteConfirm = (id) => {
+		const assetTypeById=data?.assetTypes.find(assetType => assetType.id === id)
+		{
+			assetTypeById?.assigned 
+			?
+				errorIfAssigned()
+			:
+				confirm({
+				title: 'Are you sure?',
+				content: 'Do you really want to delete this Asset type? This process cannot be undone.',
+				okText: 'Yes',
+				okType: 'danger',
+				cancelText: 'No',
+				onOk() {
+					deleteAssetType({ variables:  { deleteAssetTypeId: id } })
+				},
+				onCancel() {
+					console.log('Cancel');
+				},
+				});
+		}
 	  }
 
 	const [deleteAssetType, { error, data : deletedAssetType, loading : deleteLoading }] = useMutation(DELETE_ASSET_TYPE_MUTATION, {

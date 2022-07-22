@@ -5,6 +5,7 @@ export const GET_ASSET_STATUS_QUERY = gql`
         assetStatus {
         id
         name
+        assigned
         }
     }
 `
