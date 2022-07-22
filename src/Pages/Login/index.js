@@ -2,7 +2,6 @@ import { Button } from "antd";
 import { MailFilled, EyeInvisibleOutlined, EyeFilled } from '@ant-design/icons';
 import { Formik, Form } from 'formik';
 import { Link } from "react-router-dom";
-import { useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie'
 import TextInput from "../../Components/UI/TextInput";
 import { loginValidations } from "../../Helper/ValidationSchema";
@@ -11,10 +10,11 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER_MUTATION } from "../../gql/Mutation/Auth";
 import openNotificationWithIcon from "../../Helper/Notification";
 import AuthLoader from "../../Components/UI/AuthLoader";
+import { createBrowserHistory } from 'history'
 
 const Login = () => {
 
-	const history = useHistory();
+	const history = createBrowserHistory({forceRefresh:true})
 	const initialValues = { email: '', password: '' }
 	const [loginUser, { data, error, loading }] = useMutation(LOGIN_USER_MUTATION);
 
