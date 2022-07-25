@@ -129,11 +129,11 @@ const TicketDashboard = () => {
             }
         }))
 
-        if(data?.columns[source.droppableId].name == 'New' && data?.columns[destination.droppableId].name == 'In-Progress'){
+        if(data?.columns[source.droppableId].name == 'New' && data?.columns[destination.droppableId].name == 'In-progress'){
             setIsModalVisible(true)
             return
         }
-        if(data?.columns[source.droppableId].name == 'In-Progress' && data?.columns[destination.droppableId].name == 'Resolved'){
+        if(data?.columns[source.droppableId].name == 'In-progress' && data?.columns[destination.droppableId].name == 'Resolved'){
             setIsModalVisible(true)
             return
         }
