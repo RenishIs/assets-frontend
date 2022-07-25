@@ -22,6 +22,7 @@ const MainLayout = ({children, routes, path}) => {
     const logoutUser = () => {
         Cookies.remove('token')
         Cookies.remove('role')
+        Cookies.remove('user')
         history.push('/user/login')
     }
 
