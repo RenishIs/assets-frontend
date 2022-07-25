@@ -18,7 +18,7 @@ const AssetDashboard = () => {
 	const { data : employeeList } = useQuery(GET_USERS_BY_ROLE, {
 		variables: { 
 			skip: !role, 
-            roleId : role?.role?.filter((item) => item.name == "admin")[0].id
+            roleId : role?.role?.filter((item) => item.name == "employee")[0].id
           }
 	})
 
@@ -99,7 +99,6 @@ const AssetDashboard = () => {
                 updateAssetsId : draggableId,
                 input : {
                     assetStatus : destination.droppableId,
-                    employeeId : movedAsset?.employeeId.id,
                     dateOfAssetAssignment : movedAsset?.dateOfAssetAssignment
                 }
             }
