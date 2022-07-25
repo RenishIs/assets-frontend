@@ -6,6 +6,9 @@ import { GET_ASSETS_QUERY, GET_ASSET_BY_ID_QUERY } from '../../gql/Query/Assets'
 import AssetsForm from './AssetsForm';
 import openNotificationWithIcon from '../../Helper/Notification';
 import Loader from '../../Components/UI/Loader';
+import { GET_ASSET_STATUS_QUERY } from '../../gql/Query/AssetStatus';
+import { GET_ASSET_TYPES_QUERY } from '../../gql/Query/AssetTypes';
+import { GET_ASSET_CATEGORIES_QUERY } from '../../gql/Query/AssetCategories';
 
 const AssetsEdit = () => {
 	const history = useHistory();
@@ -18,6 +21,10 @@ const AssetsEdit = () => {
 	const [updateAssets, { data : updatedData, loading : editLoading }] = useMutation(UPDATE_ASSET_MUTATION, {
 		refetchQueries: [
 			{ query: GET_ASSETS_QUERY, variables : { status: null } },
+			{ query: GET_ASSET_STATUS_QUERY },
+			{ query: GET_ASSET_TYPES_QUERY },
+			{ query : GET_ASSET_CATEGORIES_QUERY}
+
 		]
 	});
 
