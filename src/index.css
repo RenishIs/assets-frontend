@@ -286,3 +286,7 @@ div#authForm .ant-input:focus{
 	max-height: fit-content;
 	min-height: 100vh;
 }
+
+.cursor-pointer{
+	cursor: pointer;
+}

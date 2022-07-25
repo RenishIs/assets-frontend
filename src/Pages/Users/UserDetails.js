@@ -4,6 +4,9 @@ import { Row, Col, Table } from 'antd';
 import { GET_USER_BY_ID_QUERY } from '../../gql/Query/Users';
 import Loader from "../../Components/UI/Loader";
 import { tableColumns } from '../Assets/CONSTANTS';
+import Cookies from "js-cookie";
+
+const role = Cookies.get('role')
 
 const RowUI = ({ label1, label2, loading, ...rest }) => (
     <Row className="mb-3">
@@ -68,7 +71,7 @@ const UserDetails = () => {
                             pagination={false}
                             onRow={(record, rowIndex) => {
                                 return {
-                                    onClick: (event) => navigation(record.id)
+                                    onClick: (event) => role === 'admin' && navigation(record.id)
                                 }
                             }} />
                     </>
