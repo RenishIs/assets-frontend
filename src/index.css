@@ -294,3 +294,12 @@ div#authForm .ant-input:focus{
 .cursor-pointer{
 	cursor: pointer;
 }
+
+.dropdown-list-main-container{
+	font-size: 18px;
+	margin-right: 6px;
+}
+
+.text-body{
+	font-weight: bold;
+}

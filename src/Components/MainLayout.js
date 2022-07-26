@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Layout, Row, Dropdown, Menu, Col } from 'antd';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import Cookies from "js-cookie";
-import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, LogoutOutlined, SettingOutlined } from '@ant-design/icons';
 import SideNavbar from './UI/SideNavbar';
 
 const { Header } = Layout;
@@ -29,12 +29,16 @@ const MainLayout = ({children, routes, path}) => {
     const menu = (
         <Menu items={[
             {
-                label: <Link to="/profile" className="text-body"><UserOutlined style={{color:"blue"}} />&nbsp;Profile</Link>,
+                label: <Link to="/profile" className="text-body"><UserOutlined style={{color:"blue"}} className='dropdown-list-main-container' />&nbsp;Profile</Link>,
                 key: '0',
             },
             {
-                label: <div onClick={logoutUser}><LogoutOutlined style={{color:"red"}} />&nbsp;Logout</div>,
+                label: <Link to="/" className="text-body"><SettingOutlined style={{color:"green"}} className='dropdown-list-main-container'/>&nbsp;Settings</Link>,
                 key: '1',
+            },
+            {
+                label: <div className="text-body" onClick={logoutUser}><LogoutOutlined style={{color:"red"}} className='dropdown-list-main-container'/>&nbsp;Logout</div>,
+                key: '2',
             },
           ]}
         />
