@@ -2,10 +2,10 @@ import { useState, useEffect } from "react"
 import { DragDropContext } from 'react-beautiful-dnd'
 import { useMutation, useQuery } from '@apollo/client';
 import { Modal, Input } from "antd"
-import { GET_ALL_TICKETS_QUERY } from '../../gql/Query/AllTickets';
-import { GET_TICKETS_STATUS_QUERY } from '../../gql/Query/TicketsStatus';
-import { UPDATE_TICKET_MUTATION } from "../../gql/Mutation/Tickets";
-import Column from "../../Components/Dashboard/Column";
+import { GET_ALL_TICKETS_QUERY } from '../../../gql/Query/AllTickets';
+import { GET_TICKETS_STATUS_QUERY } from '../../../gql/Query/TicketsStatus';
+import { UPDATE_TICKET_MUTATION } from "../../../gql/Mutation/Tickets";
+import Column from "../../../Components/Dashboard/Column";
 
 const { TextArea } = Input;
 const TicketDashboard = () => {

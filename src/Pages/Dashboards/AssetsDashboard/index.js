@@ -2,13 +2,13 @@ import { useState, useEffect } from "react"
 import { DragDropContext } from 'react-beautiful-dnd'
 import { useMutation, useQuery } from "@apollo/client"
 import { Modal, Input } from "antd"
-import Column from "../../Components/Dashboard/Column"
-import { GET_ASSETS_QUERY } from "../../gql/Query/Assets"
-import { GET_ASSET_STATUS_QUERY } from "../../gql/Query/AssetStatus"
-import Loader from "../../Components/UI/Loader"
-import { UPDATE_ASSET_MUTATION } from "../../gql/Mutation/Assets"
-import { GET_USER_ROLE } from "../../gql/Query/Users"
-import { GET_USERS_BY_ROLE } from "../../gql/Query/Users"
+import Column from "../../../Components/Dashboard/Column"
+import { GET_ASSETS_QUERY } from "../../../gql/Query/Assets"
+import { GET_ASSET_STATUS_QUERY } from "../../../gql/Query/AssetStatus"
+import Loader from "../../../Components/UI/Loader"
+import { UPDATE_ASSET_MUTATION } from "../../../gql/Mutation/Assets"
+import { GET_USER_ROLE } from "../../../gql/Query/Users"
+import { GET_USERS_BY_ROLE } from "../../../gql/Query/Users"
 
 const { TextArea } = Input;
 const AssetDashboard = () => {
