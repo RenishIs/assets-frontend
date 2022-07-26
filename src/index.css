@@ -257,11 +257,11 @@ div#authForm .ant-input:focus{
 }
 
 .dashboard-column-container{
-	width: 225px;
+	flex : 0.3%;
 	margin: 16px;
 	background-color : #f4f5f7;
 	margin: 1%;
-	border-radius: 5px;
+	border-radius: 7px;
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
