@@ -147,6 +147,10 @@ code {
 	width: 90%
 }
 
+.form-input-disabled{
+	border: 1px solid #d6d6d6;
+}
+
 .header{
   background-color: white;
   box-shadow: 5px 8px 24px 5px rgba(208, 216, 243, 0.6) 
