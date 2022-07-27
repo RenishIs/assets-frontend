@@ -12,6 +12,7 @@ export const GET_ALL_TICKETS_QUERY = gql`
                 name
             }
             asset {
+                id
                 name
             }
             raisedBy {

@@ -213,7 +213,7 @@ const AssetDashboard = () => {
             newToAssigned && (
                 <Modal title="Select Employee" visible={newToAssigned} onOk={handleNewToAssigned} onCancel={handleCancel}>
                     <select className="form-input" onChange={(e) => setEmployeeId(e.target.value)}>
-                    <option>Select Type</option>
+                    <option>Select Employee</option>
                     {
                         employeeList && employeeList?.usersByRole?.map(item => (
                             <option value={item.id} key={item.id}>{item.firstName} {item.lastName}</option>
