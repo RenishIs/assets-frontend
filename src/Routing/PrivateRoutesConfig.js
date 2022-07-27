@@ -69,8 +69,7 @@ export const PrivateRoutesConfig = [
         path : '/users',
         exact : true,
         permissions : [
-            Roles.ADMIN,
-            Roles.EMPLOYEE
+            Roles.ADMIN
         ]
     },
     {
@@ -97,8 +96,7 @@ export const PrivateRoutesConfig = [
         path : '/users/:id',
         exact : true,
         permissions : [
-            Roles.ADMIN,
-            Roles.EMPLOYEE
+            Roles.ADMIN
         ],
     },
     {
@@ -110,7 +108,8 @@ export const PrivateRoutesConfig = [
         path : '/assets',
         exact : true,
         permissions : [
-            Roles.ADMIN
+            Roles.ADMIN,
+            Roles.EMPLOYEE
         ]
     },
     {

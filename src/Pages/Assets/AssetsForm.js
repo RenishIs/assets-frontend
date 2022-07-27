@@ -61,7 +61,21 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                             <TextInput label="NAME" name="name" id="name" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
                         </Col>
                         <Col span={12}>
-                            <TextInput label="DESCRIPTION" name="description" id="description" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />
+                            <div className='text-start ms-4 mb-1 mt-4'>
+                                <label htmlFor="description" className="text-body text-start fs-6 fw-bold">DESCRIPTION</label>
+                            </div>
+                            <Field as="textarea" 
+                                    name="description" 
+                                    id="description"  
+                                    rows={4}
+                                    style={{height:"43px"}} 
+                                    className="form-input">
+                            </Field>
+                            {
+                                touched.description && errors.description ? (
+                                    <div className="text-start ms-4 mb-0 fs-6 text-danger">{errors.description}</div>
+                                ) : null
+                            }
                         </Col>
                     </Row>
                     <Row>

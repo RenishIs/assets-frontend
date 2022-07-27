@@ -12,12 +12,13 @@ function getItem(label, icon, path, role, hasChildren, children) {
 }
 
 const iconsData = [
-    getItem("Users", UserOutlined, '/users', ['admin', 'employee'], false),
+    getItem("Users", UserOutlined, '/users', ['admin'], false),
     getItem("Assets", LaptopOutlined, '/assets', ['admin'], true, [{label : 'Assets Dashboard', path : '/assets/dashboard'}]),
     getItem("Asset Categories", LaptopOutlined, '/asset-categories', ['admin'], false),
     getItem("Asset Types", LaptopOutlined, '/asset-types', ['admin'], false),
     getItem("Asset Status", LaptopOutlined, '/asset-status', ['admin'], false),
     getItem("Tickets", FaTicketAlt, '/tickets', ['employee'], false),
+    getItem("Assets", LaptopOutlined, '/assets', ['employee'], false),
     getItem("Tickets Status", FaTicketAlt, '/tickets-status', ['admin'], false),
     getItem("All Tickets", FaTicketAlt, '/all-tickets', ['admin'], true, [{label : 'Tickets Dashboard', path : '/tickets/dashboard'}]),
 ]
