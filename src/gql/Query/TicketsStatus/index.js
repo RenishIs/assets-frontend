@@ -5,6 +5,7 @@ export const GET_TICKETS_STATUS_QUERY = gql`
         ticketStatus {
             id
             name
+            assigned
         }
     }
 `
