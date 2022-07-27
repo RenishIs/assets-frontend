@@ -27,12 +27,6 @@ export const UPDATE_TICKET_MUTATION = gql`
             id
             title
             description
-            assignedTo {
-                id
-                firstName
-                email
-                lastName
-            }
             note
             raisedBy {
                 id
