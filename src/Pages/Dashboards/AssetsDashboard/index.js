@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { DragDropContext } from 'react-beautiful-dnd'
 import { useMutation, useQuery } from "@apollo/client"
-import { Modal, Input } from "antd"
+import { Modal, Input, Row, Col } from "antd"
 import Column from "../../../Components/Dashboard/Column"
 import { GET_ASSETS_QUERY } from "../../../gql/Query/Assets"
 import { GET_ASSET_STATUS_QUERY } from "../../../gql/Query/AssetStatus"
@@ -9,6 +9,7 @@ import Loader from "../../../Components/UI/Loader"
 import { UPDATE_ASSET_MUTATION } from "../../../gql/Mutation/Assets"
 import { GET_USER_ROLE } from "../../../gql/Query/Users"
 import { GET_USERS_BY_ROLE } from "../../../gql/Query/Users"
+import TextInput from "../../../Components/UI/TextInput"
 
 const { TextArea } = Input;
 const AssetDashboard = () => {
@@ -37,7 +38,8 @@ const AssetDashboard = () => {
     const [ assignedToRepairBroken, setAssignedToRepairBroken ] = useState(false);
     const [ reason, setReason ] = useState('')
     const [ updatedAssetFields, setUpdatedAssetFields ] = useState(null)
-
+    const [ searchByEmployee, setSearchByEmployee ] = useState('')
+ 
     const handleCancel = () => {
         setAssignedToRepairBroken(false)
         setNewToAssigned(false)
@@ -170,7 +172,16 @@ const AssetDashboard = () => {
 
     return (
         <>
-        <h2 className='text-start ms-2 fs-4 fw-bold'>ASSET DASHBOARD</h2>
+        <Row>
+            <h2 className='text-start ms-2 fs-4 fw-bold'>ASSET DASHBOARD</h2>
+            <Col span={1}/>
+            <Col span={9}>
+                <Input value={searchByEmployee}
+                       placeholder="Search by employee name, code or ticket number" 
+                       onChange={() => console.log(78)}
+                     />
+            </Col>
+        </Row>
         {
             newToAssigned && (
                 <Modal title="Select Employee" visible={newToAssigned} onOk={handleNewToAssigned} onCancel={handleCancel}>

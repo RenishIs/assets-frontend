@@ -6,6 +6,7 @@ import { GET_ALL_TICKETS_QUERY } from '../../../gql/Query/AllTickets';
 import { GET_TICKETS_STATUS_QUERY } from '../../../gql/Query/TicketsStatus';
 import { UPDATE_TICKET_MUTATION } from "../../../gql/Mutation/Tickets";
 import Column from "../../../Components/Dashboard/Column";
+import TicketDetails from "./TicketDetails";
 
 const { TextArea } = Input;
 const TicketDashboard = () => {
@@ -14,6 +15,8 @@ const TicketDashboard = () => {
     const [ isModalVisible, setIsModalVisible ] = useState(false)
     const [ note, setNote ] = useState('')
     const [ updatedTicketFields, setUpdatedTicketFields ] = useState(null)
+    const [ showTicketDeatils, setShowTicketDetails ] = useState(false)
+    const [ ticket, setTicket ] = useState(null)
 
     const { data : ticketStatus } = useQuery(GET_TICKETS_STATUS_QUERY);
 	const { data : tickets } = useQuery(GET_ALL_TICKETS_QUERY,{ variables : { input: null }})
@@ -141,6 +144,16 @@ const TicketDashboard = () => {
         updateTicket({variables : { updateTicketId : draggableId, input : { status : destination.droppableId}}})
     }
 
+    const ticketDetails = (data) => {
+        setShowTicketDetails(true)
+        setTicket(data)
+    }
+
+    const handleCloseTicketDetails = () => {
+        setShowTicketDetails(false)
+        setTicket(null)
+    }
+
     return (
         <>
         <h2 className='text-start ms-2 fs-4 fw-bold'>TICKET DASHBOARD</h2>
@@ -155,13 +168,23 @@ const TicketDashboard = () => {
                 </Modal>
             )
         }
+        {
+            showTicketDeatils && (
+                <Modal title="Ticket Details" visible={showTicketDeatils} onOk={handleCloseTicketDetails} onCancel={handleCloseTicketDetails}>
+                    <TicketDetails data={ticket}/>
+                </Modal>
+            )
+        }
         <DragDropContext onDragEnd={onDragEnd}>
             <div className="dashboard-container" style={{width : '100%', overflow : 'auto'}}>
             {
                 data?.columnOrder?.map(colId => {
                     const column = data?.columns[colId]
                     const tasks = column.tasks.map(taskId => data?.tasks[taskId])
-                    return <Column key={colId} column={column} tasks={tasks}/>
+                    return <Column key={colId} 
+                                   column={column} 
+                                   tasks={tasks} 
+                                   ticketDetails={ticketDetails}/>
                 })
             }
             </div>

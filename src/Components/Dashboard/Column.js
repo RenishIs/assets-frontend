@@ -5,7 +5,7 @@ import { Row, Input } from "antd"
 import { PlusOutlined, CloseOutlined } from "@ant-design/icons"
 
 const { TextArea } = Input;
-const Column = ({column, tasks}) => {
+const Column = ({column, tasks, ticketDetails}) => {
     const [ addCard, setAddCard ] = useState(false)
 	const [ content, setContent ] = useState('')
 
@@ -33,7 +33,9 @@ const Column = ({column, tasks}) => {
                              ref={provided.innerRef}>
                         {
                             tasks?.map((task, index) => ( 
-                                <Task key={task.id} task={task} index={index}/>
+                                <div onDoubleClick={() => ticketDetails(task)} key={task.id}>
+                                    <Task  task={task} index={index}/>
+                                </div>
                             ))
                         }
                         {provided.placeholder}
