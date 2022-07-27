@@ -33,7 +33,7 @@ const Column = ({column, tasks, ticketDetails}) => {
                              ref={provided.innerRef}>
                         {
                             tasks?.map((task, index) => ( 
-                                <div onDoubleClick={() => ticketDetails(task)} key={task.id}>
+                                <div onDoubleClick={() => ticketDetails && ticketDetails(task)} key={task.id}>
                                     <Task  task={task} index={index}/>
                                 </div>
                             ))
