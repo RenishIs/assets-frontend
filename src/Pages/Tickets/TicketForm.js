@@ -8,28 +8,34 @@ import { Link } from 'react-router-dom';
 import Loader from '../../Components/UI/Loader';
 import { useQuery } from '@apollo/client';
 import { GET_TICKETS_STATUS_QUERY } from '../../gql/Query/TicketsStatus';
-
-
+import { GET_EMPLOYEE_ASSETS_QUERY } from '../../gql/Query/Assets';
 
 const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
     const { data } = useQuery(GET_TICKETS_STATUS_QUERY)
     const { ticket } = rest
 
+    const { loading : employeeAssetsLoading, data : employeeAssets } = useQuery(GET_EMPLOYEE_ASSETS_QUERY, {
+		variables : {
+			status: null
+		}
+	})
+
     const initialState = {
         title : '',
         description : '',
-        assignedTo : '',
-        status : ''
+        asset : '',
+        status : '62d91c4cfe351881e925fa83'
     }
 
     return (
         <div>
-            { loading && <Loader />}
+            { loading || employeeAssetsLoading && <Loader />}
             <h2 className='text-center fs-4 fw-bold'>{ticket ? 'EDIT TICKET' : 'ADD TICKET'}</h2>
             <Formik initialValues={initialState} validationSchema={ticketValidations} onSubmit={(values) => handleTicket(values)}>
             {({
                 touched,
                 errors,
+                values
             }) => {
                 return (
                 <Form>
@@ -38,51 +44,43 @@ const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
                             <TextInput label="TITLE" name="title" id="title" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
                         </Col>
                         <Col span={12}>
-                            <TextInput label="DESCRIPTION" name="description" id="description" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />
+                            <div className='text-start ms-4 mb-1 mt-4'>
+                                <label htmlFor="description" className="text-body text-start fs-6 fw-bold">DESCRIPTION</label>
+                            </div>
+                            <Field as="textarea" 
+                                    name="description" 
+                                    id="description"  
+                                    rows={4}
+                                    style={{height:"43px"}} 
+                                    className="form-input">
+                            </Field>
+                            {
+                                touched.description && errors.description ? (
+                                    <div className="text-start ms-4 mb-0 fs-6 text-danger">{errors.description}</div>
+                                ) : null
+                            }
                         </Col>
                     </Row>
                     <Row>
                         <Col span={12}>
                             <div className='text-start ms-4 mb-1 mt-4'>
-                                <label htmlFor="assignedTo" className="text-body text-start fs-6 fw-bold">ASSIGNED TO</label>
+                                <label htmlFor="asset" className="text-body text-start fs-6 fw-bold">ASSET</label>
                             </div>
                             <Field as="select" 
-                                    name="assignedTo" 
-                                    id="assignedTo"  
+                                    name="asset" 
+                                    id="asset"  
                                     style={{height:"43px"}} 
                                     className="form-input">
-                                <option>Select Admin</option>
+                                <option>Select Asset</option>
                                 {
-                                adminList?.usersByRole?.map(item => (
-                                    <option value={item.id} key={item.id}>{`${item.firstName} ${item.lastName}`}</option>
-                                ))
-                                }
-                            </Field>
-                            {
-                                touched.assignedTo && errors.assignedTo ? (
-                                    <div className="text-start ms-4 mb-0 fs-6 text-danger">{errors.assignedTo}</div>
-                                ) : null
-                            }
-                        </Col>
-                        <Col span={12}>
-                            <div className='text-start ms-4 mb-1 mt-4'>
-                                <label htmlFor="status" className="text-body text-start fs-6 fw-bold">STATUS</label>
-                            </div>
-                            <Field as="select" 
-                                    name="status" 
-                                    id="status"  
-                                    style={{height:"43px"}} 
-                                    className="form-input">
-                                <option>Select Status</option>
-                                {
-                                data?.ticketStatus?.map(item => (
+                                employeeAssets?.employeeAssets?.map(item => (
                                     <option value={item.id} key={item.id}>{item.name}</option>
                                 ))
                                 }
                             </Field>
                             {
-                                touched.status && errors.status ? (
-                                    <div className="text-start ms-4 mb-0 fs-6 text-danger">{errors.status}</div>
+                                touched.asset && errors.asset ? (
+                                    <div className="text-start ms-4 mb-0 fs-6 text-danger">{errors.asset}</div>
                                 ) : null
                             }
                         </Col>

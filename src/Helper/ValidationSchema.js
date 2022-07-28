@@ -82,6 +82,5 @@ export const assetStatusValidations = yup.object().shape({
 export const ticketValidations = yup.object().shape({
     title : name.required("*Title is required"),
     description : name.required("*Description is required"),
-    assignedTo : name.required("*User is required"),
-    status : name.required("*Status is required")
+    asset : name.required("*Asset is required")
 })
