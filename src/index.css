@@ -147,6 +147,10 @@ code {
 	width: 90%
 }
 
+.form-input-disabled{
+	border: 1px solid #d6d6d6;
+}
+
 .header{
   background-color: white;
   box-shadow: 5px 8px 24px 5px rgba(208, 216, 243, 0.6) 
@@ -253,11 +257,11 @@ div#authForm .ant-input:focus{
 }
 
 .dashboard-column-container{
-	width: 225px;
+	flex : 0.3%;
 	margin: 16px;
 	background-color : #f4f5f7;
 	margin: 1%;
-	border-radius: 5px;
+	border-radius: 7px;
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
@@ -289,4 +293,17 @@ div#authForm .ant-input:focus{
 
 .cursor-pointer{
 	cursor: pointer;
+}
+
+.dropdown-list-main-container{
+	font-size: 18px;
+	margin-right: 6px;
+}
+
+.text-body{
+	font-weight: bold;
+}
+
+.vertical-timeline-element-icon svg{
+	left : 92% !important
 }

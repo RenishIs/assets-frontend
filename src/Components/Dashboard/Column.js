@@ -5,7 +5,7 @@ import { Row, Input } from "antd"
 import { PlusOutlined, CloseOutlined } from "@ant-design/icons"
 
 const { TextArea } = Input;
-const Column = ({column, tasks}) => {
+const Column = ({column, tasks, ticketDetails}) => {
     const [ addCard, setAddCard ] = useState(false)
 	const [ content, setContent ] = useState('')
 
@@ -23,7 +23,7 @@ const Column = ({column, tasks}) => {
 
     return (
         <div className="dashboard-column-container">
-            <div style={{ height: "100%",width:"225px", padding : '3%' }}>
+            <div style={{ height: "100%", padding : '3%' }}>
                 <h2 className='fs-6 mb-2 ms-1 mt-1'>{column.name}</h2>
                 <Droppable droppableId={column.id}>
                 {
@@ -33,7 +33,9 @@ const Column = ({column, tasks}) => {
                              ref={provided.innerRef}>
                         {
                             tasks?.map((task, index) => ( 
-                                <Task key={task.id} task={task} index={index}/>
+                                <div onDoubleClick={() => ticketDetails && ticketDetails(task)} key={task.id}>
+                                    <Task  task={task} index={index}/>
+                                </div>
                             ))
                         }
                         {provided.placeholder}

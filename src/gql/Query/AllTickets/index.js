@@ -11,9 +11,9 @@ export const GET_ALL_TICKETS_QUERY = gql`
                 id
                 name
             }
-            assignedTo {
-                firstName
-                lastName
+            asset {
+                id
+                name
             }
             raisedBy {
                 firstName

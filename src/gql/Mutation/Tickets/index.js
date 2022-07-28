@@ -24,16 +24,20 @@ export const CREATE_TICKET_MUTATION = gql`
 export const UPDATE_TICKET_MUTATION = gql`
     mutation Mutation($input: UpdateTicketInput!, $updateTicketId: ID) {
         updateTicket(input: $input, id: $updateTicketId) {
-        id
-        title
-        description
-        note
-        raisedBy {
             id
-            firstName
-            lastName
-            email
-        }
+            title
+            description
+            note
+            raisedBy {
+                id
+                firstName
+                lastName
+                email
+            }
+            status {
+                id 
+                name
+            }
         }
     }
 `  

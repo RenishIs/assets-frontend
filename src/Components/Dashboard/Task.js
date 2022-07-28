@@ -49,7 +49,7 @@ const Task = ({ task, index }) => {
                             }
                             <div className='d-flex justify-content-between mt-2'>
                                 <div className='text-muted' style={{fontSize:"12px"}}>{task?.ticketId}</div>
-                                <div style={{fontSize:"13px"}}>{task?.assignedTo?.firstName}</div>
+                                <div style={{fontSize:"13px"}}>{task?.raisedBy?.firstName}</div>
                             </div>
                         </div>}
                 </div>

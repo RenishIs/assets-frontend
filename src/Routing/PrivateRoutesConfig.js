@@ -27,7 +27,7 @@ import AssetTypeEdit from "../Pages/AssetTypes/AssetTypeEdit";
 import AssetStatusListing from "../Pages/AssetStatus/index"
 import AssetStatusAdd from "../Pages/AssetStatus/AssetStatusAdd"
 import AssetStatusEdit from "../Pages/AssetStatus/AssetStatusEdit"
-import AssetDashboard from '../Pages/AssetDashboard';
+import AssetDashboard from '../Pages/Dashboards/AssetsDashboard';
 
 import TicketsListing from '../Pages/Tickets/index';
 import TicketAdd from '../Pages/Tickets/TicketAdd';
@@ -36,7 +36,7 @@ import AllTicketsListing from '../Pages/AllTickets/index';
 import TicketsStatusListing from "../Pages/TicketsStatus"
 import TicketsStatusAdd from "../Pages/TicketsStatus/TicketsStatusAdd"
 import TicketsStatusEdit from "../Pages/TicketsStatus/TicketsStatusEdit"
-import TicketDashboard from '../Pages/TicketsDashboard';
+import TicketDashboard from '../Pages/Dashboards/TicketsDashboard';
 
 export const PrivateRoutesConfig = [
     {
