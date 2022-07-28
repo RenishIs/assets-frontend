@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { DragDropContext } from 'react-beautiful-dnd'
 import { useMutation, useQuery } from '@apollo/client';
-import { Modal, Input } from "antd"
-import { GET_ALL_TICKETS_QUERY } from '../../gql/Query/AllTickets';
-import { GET_TICKETS_STATUS_QUERY } from '../../gql/Query/TicketsStatus';
-import { UPDATE_TICKET_MUTATION } from "../../gql/Mutation/Tickets";
-import Column from "../../Components/Dashboard/Column";
+import { Modal, Input, Row, Col } from "antd"
+import { GET_ALL_TICKETS_QUERY } from '../../../gql/Query/AllTickets';
+import { GET_TICKETS_STATUS_QUERY } from '../../../gql/Query/TicketsStatus';
+import { UPDATE_TICKET_MUTATION } from "../../../gql/Mutation/Tickets";
+import Column from "../../../Components/Dashboard/Column";
+import TicketDetails from "./TicketDetails";
 
 const { TextArea } = Input;
 const TicketDashboard = () => {
@@ -14,6 +15,10 @@ const TicketDashboard = () => {
     const [ isModalVisible, setIsModalVisible ] = useState(false)
     const [ note, setNote ] = useState('')
     const [ updatedTicketFields, setUpdatedTicketFields ] = useState(null)
+    const [ showTicketDeatils, setShowTicketDetails ] = useState(false)
+    const [ ticket, setTicket ] = useState(null)
+    const [ searchText, setSearchText ] = useState('')
+    const [ searchTickets, setSearchTickets ] = useState(false)
 
     const { data : ticketStatus } = useQuery(GET_TICKETS_STATUS_QUERY);
 	const { data : tickets } = useQuery(GET_ALL_TICKETS_QUERY,{ variables : { input: null }})
@@ -34,9 +39,18 @@ const TicketDashboard = () => {
         setNote('')
     }
     
-    const getTasksId = (status, data) => {
+    const getTasksId = (status, data, searchText) => {
         const tasks = []
-        data?.filter(item => item?.status?.id === status.id)?.forEach(item => {
+        let filteredByStatus = data?.filter(item => item?.status?.id === status.id)
+        if(searchText){
+            const search = (ticket) => {
+                const username = ticket?.raisedBy?.firstName?.toLowerCase() + ticket?.raisedBy?.lastName?.toLowerCase()
+                const ticketNo = ticket?.ticketId.toLowerCase()
+                return username.includes(searchText) || ticketNo.includes(searchText)
+            }
+            filteredByStatus = filteredByStatus.filter(ticket => search(ticket))
+        }
+        filteredByStatus?.forEach(item => {
             tasks.push(item.id)
         })
         return tasks
@@ -47,7 +61,7 @@ const TicketDashboard = () => {
         ticketStatus?.ticketStatus.forEach(status => {
             columns[status.id] = {
                 ...status,
-                tasks : getTasksId(status, tickets?.tickets)
+                tasks : getTasksId(status, tickets?.tickets, searchText)
             }
         })        
 
@@ -61,7 +75,7 @@ const TicketDashboard = () => {
             columnOrder : ticketStatus?.ticketStatus.map(status => status.id)
         }
         setData(data)
-    }, [ ticketStatus, tickets ])
+    }, [ ticketStatus, tickets, searchTickets ])
 
     const onDragEnd = (result) => {
         const {destination, source, draggableId } = result;
@@ -141,9 +155,45 @@ const TicketDashboard = () => {
         updateTicket({variables : { updateTicketId : draggableId, input : { status : destination.droppableId}}})
     }
 
+    const ticketDetails = (data) => {
+        setShowTicketDetails(true)
+        setTicket(data)
+    }
+
+    const handleCloseTicketDetails = () => {
+        setShowTicketDetails(false)
+        setTicket(null)
+    }
+
+    const debounce = (func) => {
+        let timer
+        return (...args) => {
+            const context = this
+            if(timer) clearTimeout(timer)
+            timer = setTimeout(() => {
+                timer = null
+                func.apply(context, args)
+            }, 500)
+        }
+    }
+
+    const handleSearch = (value) => {
+        setSearchText(value.trim().toLowerCase())
+        setSearchTickets((prevState) => !prevState)
+    }
+
+    const optimisedSearch = useCallback(debounce(handleSearch), [])
+
     return (
         <>
-        <h2 className='text-start ms-2 fs-4 fw-bold'>TICKET DASHBOARD</h2>
+        <Row>
+            <h2 className='text-start ms-2 fs-4 fw-bold'>TICKET DASHBOARD</h2>
+            <Col span={1}/>
+            <Col span={9}>
+                <Input placeholder="Search by employee name, code or ticket number" 
+                       onChange={(e) => optimisedSearch(e.target.value)}/>
+            </Col>
+        </Row>
         {
             isModalVisible && (
                 <Modal title="Add Notes" visible={isModalVisible} onOk={handleUpdateTicket} onCancel={handleCancel}>
@@ -155,13 +205,23 @@ const TicketDashboard = () => {
                 </Modal>
             )
         }
+        {
+            showTicketDeatils && (
+                <Modal title="Ticket Details" visible={showTicketDeatils} onOk={handleCloseTicketDetails} onCancel={handleCloseTicketDetails}>
+                    <TicketDetails data={ticket}/>
+                </Modal>
+            )
+        }
         <DragDropContext onDragEnd={onDragEnd}>
             <div className="dashboard-container" style={{width : '100%', overflow : 'auto'}}>
             {
                 data?.columnOrder?.map(colId => {
                     const column = data?.columns[colId]
                     const tasks = column.tasks.map(taskId => data?.tasks[taskId])
-                    return <Column key={colId} column={column} tasks={tasks}/>
+                    return <Column key={colId} 
+                                   column={column} 
+                                   tasks={tasks} 
+                                   ticketDetails={ticketDetails}/>
                 })
             }
             </div>

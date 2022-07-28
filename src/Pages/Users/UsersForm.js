@@ -99,6 +99,7 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                                         <TextInput label="EMPLOYEE CODE"
                                             name="employeeCode"
                                             id="employeeCode"
+                                            disabled={user && user?.employeeCode}
                                             prefix={<UserOutlined style={{ color: 'black' }} />}
                                             isLabel={true} />
                                     </Col>
