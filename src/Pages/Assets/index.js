@@ -2,18 +2,27 @@ import { Link, useHistory } from 'react-router-dom';
 import { Table, Space, Button, Modal } from 'antd';
 import { tableColumns } from './CONSTANTS';
 import { useMutation, useQuery } from '@apollo/client';
-import { GET_ASSETS_QUERY } from '../../gql/Query/Assets';
+import { GET_ASSETS_QUERY, GET_EMPLOYEE_ASSETS_QUERY } from '../../gql/Query/Assets';
 import { DELETE_ASSET_MUTATION } from '../../gql/Mutation/Assets';
 import openNotificationWithIcon from '../../Helper/Notification';
 import { EditFilled, DeleteFilled, EyeFilled } from '@ant-design/icons';
 import Loader from '../../Components/UI/Loader';
 import { Tooltip } from 'antd';
+import Cookies from 'js-cookie';
 
 const confirm = Modal.confirm;
 
 const AssetsListing = () => {
 
-	const { loading, data } = useQuery(GET_ASSETS_QUERY, {
+	const role = Cookies.get('role')
+
+	const { loading : adminAssetsLoading, data : adminAssets } = useQuery(GET_ASSETS_QUERY, {
+		variables : {
+			status: null
+		}
+	})
+
+	const { loading : employeeAssetsLoading, data : employeeAssets } = useQuery(GET_EMPLOYEE_ASSETS_QUERY, {
 		variables : {
 			status: null
 		}
@@ -73,16 +82,16 @@ const AssetsListing = () => {
 	
 	return (
 		<>
-			{ (loading || deleteLoading ) && <Loader /> }
+			{ (adminAssetsLoading || employeeAssetsLoading || deleteLoading ) && <Loader /> }
 			<div className='text-center mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSETS</h2>
-                <div className='add-button'>
+                {role === 'admin' &&<div className='add-button'>
                     <Link to={`/assets/add`}><Button type="primary">ADD</Button></Link>
-                </div>
+                </div>}
             </div>
 			<Table bordered 
-			       columns={columns} 
-				   dataSource={data?.assets.map(item => ({...item, key: item.id}))} 
+			       columns={role === 'admin' ? columns : tableColumns} 
+				   dataSource={role === 'admin' ? adminAssets?.assets.map(item => ({...item, key: item.id})) : employeeAssets?.employeeAssets.map(item => ({...item, key: item.id}))} 
 				   pagination={false} 
 				   onRow={(record, rowIndex) => {
 						return {

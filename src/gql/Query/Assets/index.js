@@ -77,3 +77,36 @@ export const GET_ASSET_BY_ID_QUERY = gql`
         }
     }
 `
+export const GET_EMPLOYEE_ASSETS_QUERY = gql`
+query Query {
+    employeeAssets {
+      id
+      name
+      description
+      location
+      assetCategory {
+        name
+      }
+      assetType {
+        name
+      }
+      purchasedOn
+      assetCondition
+      assetStatus {
+        name
+      }
+      reason
+      employeeId {
+        firstName
+        lastName
+      }
+      assetId
+      dateOfAssetAssignment
+      history {
+        employeeId {
+          firstName
+          lastName
+        }
+      }
+    }
+  }`

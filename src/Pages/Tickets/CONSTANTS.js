@@ -14,10 +14,10 @@ export const tableColumns = [
 		render: (text) => <span>{text}</span>,
 	},
 	{
-		title: 'ASSIGNED TO',
-		dataIndex: 'assignedTo',
-		key: 'assignedTo',
-        render: (text) => <span>{text.firstName} {text.lastName}</span>
+		title: 'ASSET',
+		dataIndex: 'asset',
+		key: 'asset',
+		render: (text) => <span>{text.name}</span>,
 	},
 	{
 		title: 'STATUS',
