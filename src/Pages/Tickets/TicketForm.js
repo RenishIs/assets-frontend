@@ -20,6 +20,8 @@ const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
 		}
 	})
 
+    const empAssets = employeeAssets?.employeeAssets?.assets
+
     const initialState = {
         title : '',
         description : '',
@@ -73,9 +75,9 @@ const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
                                     className="form-input">
                                 <option>Select Asset</option>
                                 {
-                                employeeAssets?.employeeAssets?.map(item => (
-                                    <option value={item.id} key={item.id}>{item.name}</option>
-                                ))
+                                    empAssets?.map(item => (
+                                        <option value={item.id} key={item.id}>{item.name}</option>
+                                    ))
                                 }
                             </Field>
                             {
