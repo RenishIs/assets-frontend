@@ -70,7 +70,8 @@ const AssetDashboard = () => {
             const search = (asset) => {
                 const username = asset?.employeeId?.firstName?.toLowerCase() + asset?.employeeId?.lastName?.toLowerCase()
                 const assetNo = asset?.assetId.toLowerCase()
-                return username.includes(searchText) || assetNo.includes(searchText)
+                const empCode = asset?.employeeId.employeeCode.toLowerCase()
+                return username.includes(searchText) || assetNo.includes(searchText) || empCode.includes(searchText)
             }
             filteredByStatus = filteredByStatus.filter(asset => search(asset))
         }

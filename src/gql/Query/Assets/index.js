@@ -29,6 +29,7 @@ export const GET_ASSETS_QUERY = gql`
             firstName
             lastName
             email
+            employeeCode
             role {
             name
             }

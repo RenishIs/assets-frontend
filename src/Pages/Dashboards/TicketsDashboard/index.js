@@ -46,7 +46,8 @@ const TicketDashboard = () => {
             const search = (ticket) => {
                 const username = ticket?.raisedBy?.firstName?.toLowerCase() + ticket?.raisedBy?.lastName?.toLowerCase()
                 const ticketNo = ticket?.ticketId.toLowerCase()
-                return username.includes(searchText) || ticketNo.includes(searchText)
+                const empCode = ticket?.raisedBy.employeeCode.toLowerCase()
+                return username.includes(searchText) || ticketNo.includes(searchText) || empCode.includes(searchText)
             }
             filteredByStatus = filteredByStatus.filter(ticket => search(ticket))
         }
