@@ -23,7 +23,7 @@ const AssetDashboard = () => {
 	})
 
     const { data : assets, loading, error } = useQuery(GET_ASSETS_QUERY, {
-        variables : { status : null}
+        variables : { status : null, page: 0}
     })
     const [ updateAssets ] = useMutation(UPDATE_ASSET_MUTATION, {
         refetchQueries : [
@@ -85,12 +85,12 @@ const AssetDashboard = () => {
         assetStatus?.assetStatus.forEach(status => {
             columns[status.id] = {
                 ...status,
-                tasks : getTasksId(status, assets?.assets, searchText)
+                tasks : getTasksId(status, assets?.assets?.assets, searchText)
             }
         })        
 
         const tasks = {}
-        assets?.assets?.forEach(asset => {
+        assets?.assets?.assets?.forEach(asset => {
             tasks[asset.id] = {...asset}
         })
         const data = {
@@ -105,7 +105,7 @@ const AssetDashboard = () => {
     const onDragEnd = (result) => {
         const {destination, source, draggableId } = result;
 
-        const movedAsset = assets?.assets?.find(asset => asset.id === draggableId)
+        const movedAsset = assets?.assets?.assets?.find(asset => asset.id === draggableId)
         const updatedAssetFields = {
             variables : {
                 updateAssetsId : draggableId,

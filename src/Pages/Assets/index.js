@@ -16,13 +16,13 @@ const AssetsListing = () => {
 
 	const role = Cookies.get('role')
 
-	const { loading : adminAssetsLoading, data : adminAssets } = useQuery(GET_ASSETS_QUERY, {
+	const { loading : adminAssetsLoading, data : adminAssets, refetch : refetchAdminAssets } = useQuery(GET_ASSETS_QUERY, {
 		variables : {
 			status: null
 		}
 	})
 
-	const { loading : employeeAssetsLoading, data : employeeAssets } = useQuery(GET_EMPLOYEE_ASSETS_QUERY, {
+	const { loading : employeeAssetsLoading, data : employeeAssets, refetch : refetchEmployeeAssets } = useQuery(GET_EMPLOYEE_ASSETS_QUERY, {
 		variables : {
 			status: null
 		}
@@ -59,8 +59,6 @@ const AssetsListing = () => {
 		alert(error);	
 	}
 
-
-	
 	const columns = [...tableColumns, {
 		title: 'ACTION',
 		key: 'action',
@@ -79,6 +77,15 @@ const AssetsListing = () => {
 	const navigation = (id) => {
 		history.push(`/assets/${id}`)
 	}
+
+	const handlePageChange = (page) => {
+		if(role === 'admin'){
+			refetchAdminAssets({ status: null, page: page-1 })
+		}
+		else{
+			refetchEmployeeAssets({ status: null, page: page-1 })
+		}
+	}
 	
 	return (
 		<>
@@ -91,8 +98,12 @@ const AssetsListing = () => {
             </div>
 			<Table bordered 
 			       columns={role === 'admin' ? columns : tableColumns} 
-				   dataSource={role === 'admin' ? adminAssets?.assets.map(item => ({...item, key: item.id})) : employeeAssets?.employeeAssets.map(item => ({...item, key: item.id}))} 
-				   pagination={false} 
+				   dataSource={role === 'admin' ? adminAssets?.assets?.assets?.map(item => ({...item, key: item.id})) : employeeAssets?.employeeAssets?.assets?.map(item => ({...item, key: item.id}))} 
+				   pagination={{ defaultCurrent:1, 
+					             defaultPageSize: 10, 
+								 total: role === 'admin' ? adminAssets?.assets?.total : employeeAssets?.employeeAssets?.total, 
+								 current: role === 'admin' ? adminAssets?.assets?.currentPage+1 : employeeAssets?.employeeAssets?.currentPage+1, 
+								 onChange: handlePageChange}}
 				   onRow={(record, rowIndex) => {
 						return {
 						  onClick: (event) => navigation(record.id) 
