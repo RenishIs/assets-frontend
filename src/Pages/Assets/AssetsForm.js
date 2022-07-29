@@ -18,7 +18,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
 
     const { asset } = rest
 
-    const { data : users } = useQuery(GET_USERS_QUERY, {
+    const { data : apiUsers } = useQuery(GET_USERS_QUERY, {
         variables : { 
             status: {
                 isActive: true
@@ -28,6 +28,8 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
     const { data : assetCategories } = useQuery(GET_ASSET_CATEGORIES_QUERY)
     const { data : assetStatus } = useQuery(GET_ASSET_STATUS_QUERY)
     const { data : assetTypes } = useQuery(GET_ASSET_TYPES_QUERY)
+
+    const users = apiUsers?.users 
 
     let initialState = {
         name : asset ? asset.name : '',
