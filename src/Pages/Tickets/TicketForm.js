@@ -7,11 +7,9 @@ import { Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import Loader from '../../Components/UI/Loader';
 import { useQuery } from '@apollo/client';
-import { GET_TICKETS_STATUS_QUERY } from '../../gql/Query/TicketsStatus';
 import { GET_EMPLOYEE_ASSETS_QUERY } from '../../gql/Query/Assets';
 
 const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
-    const { data } = useQuery(GET_TICKETS_STATUS_QUERY)
     const { ticket } = rest
 
     const { loading : employeeAssetsLoading, data : employeeAssets } = useQuery(GET_EMPLOYEE_ASSETS_QUERY, {
@@ -26,7 +24,6 @@ const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
         title : '',
         description : '',
         asset : '',
-        status : '62d91c4cfe351881e925fa83'
     }
 
     return (

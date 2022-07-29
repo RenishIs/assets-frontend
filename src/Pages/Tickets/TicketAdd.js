@@ -5,6 +5,7 @@ import { GET_TICKETS_QUERY } from '../../gql/Query/Tickets';
 import { GET_USERS_BY_ROLE, GET_USER_ROLE } from '../../gql/Query/Users';
 import TicketForm from './TicketForm';
 import openNotificationWithIcon from '../../Helper/Notification';
+import { GET_TICKETS_STATUS_QUERY } from '../../gql/Query/TicketsStatus';
 
 const TicketAdd = () => {
 	const history = useHistory();
@@ -15,7 +16,7 @@ const TicketAdd = () => {
 		]
 	});
 	const { data } = useQuery(GET_USER_ROLE);
-
+	const { data : ticketStatus } = useQuery(GET_TICKETS_STATUS_QUERY)
 
 	const { data: adminList } = useQuery(GET_USERS_BY_ROLE, {
 		variables: {
@@ -30,7 +31,11 @@ const TicketAdd = () => {
 	}
 
 	const handleTicket = (values) => {
-		addTicket({ variables: { input: { ...values } } });
+		const updatedValues = {
+			...values,
+			status : ticketStatus?.ticketStatus?.find(status => status.name?.toLowerCase() === 'new')?.id?.toString()
+		}
+		addTicket({ variables: { input: { ...updatedValues } } });
 	}
 
 	return (
