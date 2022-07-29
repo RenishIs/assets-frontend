@@ -51,7 +51,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
             { loading && <Loader />}
             <h2 className='text-center fs-4 fw-bold'>{asset ? 'EDIT ASSET' : 'ADD ASSET'}</h2>
             <Formik initialValues={initialState} 
-                    validationSchema={asset ? assetValidationsAdd :assetValidationsEdit} 
+                    validationSchema={asset ? assetValidationsEdit : assetValidationsAdd} 
                     onSubmit={(values) => handleAsset(values)}>
             {({ values, touched, errors, setFieldValue }) => (
                 <Form>

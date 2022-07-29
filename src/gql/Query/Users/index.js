@@ -1,20 +1,27 @@
 import { gql } from "@apollo/client";
 
 export const GET_USERS_QUERY = gql`
-    query Users($status: Status) {
-        users(status: $status) {
+	query Users($status: Status, $page: Int) {
+		users(status: $status, page: $page) {
+		  users {
 			id
 			firstName
 			lastName
 			email
-			role{
+			contactNo
+			address
+			isActive
+			role {
 				id,
 				name
 			}
-			isActive
-			address
+			employeeCode
+		  }
+		  total
+		  totalPages
+		  currentPage
 		}
-	}
+	  }
 `
 
 export const GET_USER_BY_ID_QUERY = gql`

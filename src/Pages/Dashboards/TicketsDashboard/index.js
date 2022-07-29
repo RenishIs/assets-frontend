@@ -21,7 +21,7 @@ const TicketDashboard = () => {
     const [ searchTickets, setSearchTickets ] = useState(false)
 
     const { data : ticketStatus } = useQuery(GET_TICKETS_STATUS_QUERY);
-	const { data : tickets } = useQuery(GET_ALL_TICKETS_QUERY,{ variables : { input: null }})
+	const { data : tickets } = useQuery(GET_ALL_TICKETS_QUERY,{ variables : { input: null,  page: 0 }})
     const [ updateTicket ] = useMutation(UPDATE_TICKET_MUTATION)
 
     const handleCancel = () => {
@@ -61,12 +61,12 @@ const TicketDashboard = () => {
         ticketStatus?.ticketStatus.forEach(status => {
             columns[status.id] = {
                 ...status,
-                tasks : getTasksId(status, tickets?.tickets, searchText)
+                tasks : getTasksId(status, tickets?.tickets?.tickets, searchText)
             }
         })        
 
         const tasks = {}
-        tickets?.tickets?.forEach(asset => {
+        tickets?.tickets?.tickets?.forEach(asset => {
             tasks[asset.id] = {...asset}
         })
         const data = {

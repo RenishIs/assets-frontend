@@ -12,12 +12,21 @@ const Profile = () => {
 
     const role = Cookies.get('role')
     const { data : profile, loading : profileLoading } = useQuery(GET_PROFILE_QUERY);
-    const { loading: ticketsLoading, data : tickets } = useQuery(GET_TICKETS_QUERY);
-    const { loading : employeeAssetsLoading, data : employeeAssets } = useQuery(GET_EMPLOYEE_ASSETS_QUERY, {
+    const { loading: ticketsLoading, data : tickets, refetch: refetchTicket } = useQuery(GET_TICKETS_QUERY, { variables: { page: 0 } });
+    const { loading : employeeAssetsLoading, data : employeeAssets, refetch: refetchAsset } = useQuery(GET_EMPLOYEE_ASSETS_QUERY, {
 		variables : {
-			status: null
+			status: null,
+            page: 0
 		}
 	})
+
+    const handleTicketPageChange = (page) => {
+		refetchTicket({ variables: { page: page-1 } })
+	}
+
+    const handleAssetPageChange = (page) => {
+		refetchAsset({ variables: { page: page-1 } })
+	}
 
     return (
         <>
@@ -84,9 +93,13 @@ const Profile = () => {
                         <h2 className='d-inline fs-4 fw-bold'>TICKETS</h2>
                     </div>
                     <Table bordered 
-                        columns={ticketTableColumns} 
-                        dataSource={tickets?.employeeTickets.map(item => ({...item, key: item.id}))} 
-                        pagination={false} 
+                           columns={ticketTableColumns} 
+                           dataSource={tickets?.employeeTickets?.tickets?.map(item => ({...item, key: item.id}))} 
+                           pagination={{ defaultCurrent:1, 
+                                         defaultPageSize: 10, 
+                                         total: tickets?.employeeTickets?.total, 
+                                         current:tickets?.employeeTickets?.currentPage+1, 
+                                         onChange: handleTicketPageChange}} 
                         />
                 </div>
                 <div className='mt-5'>
@@ -94,10 +107,14 @@ const Profile = () => {
                         <h2 className='d-inline fs-4 fw-bold'>ASSETS</h2>
                     </div>
                     <Table bordered 
-                        columns={assetTableColumns} 
-                        dataSource={employeeAssets?.employeeAssets.map(item => ({...item, key: item.id}))} 
-                        pagination={false} 
-                        />
+                           columns={assetTableColumns} 
+                           dataSource={employeeAssets?.employeeAssets?.assets?.map(item => ({...item, key: item.id}))} 
+                           pagination={{ defaultCurrent:1, 
+                                         defaultPageSize: 10, 
+                                         total: employeeAssets?.employeeAssets?.total, 
+                                         current:employeeAssets?.employeeAssets?.currentPage+1, 
+                                         onChange: handleAssetPageChange}} 
+                    />
                 </div>
             </div>}
             
