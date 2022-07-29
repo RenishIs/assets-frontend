@@ -11,7 +11,7 @@ const TicketAdd = () => {
 
 	const [addTicket, { data: ticket, loading }] = useMutation(CREATE_TICKET_MUTATION, {
 		refetchQueries: [
-			{ query: GET_TICKETS_QUERY },
+			{ query: GET_TICKETS_QUERY, variables : {page : 0} },
 		]
 	});
 	const { data } = useQuery(GET_USER_ROLE);

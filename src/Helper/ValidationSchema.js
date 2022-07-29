@@ -12,6 +12,16 @@ const password = yup.string().trim().matches(passwordRegex, "Your password is no
 const contactNo = yup.string().matches(phoneRegExp, 'Phone number is not valid')
 const name = yup.string().trim().required("*Name is required")
 
+const assetValidations = {
+    name : name,
+    location : name.required("*Location is required"),
+    assetCategory : name.required("*Asset Category is required"),
+    assetType : name.required("*Asset Type is required"),
+    assetCondition : name.required("*Asset Condition is required"),
+    assetStatus : name.required("*Asset Status is required"),
+    dateOfAssetAssignment : name.required("*Assignment Date is required"),
+}
+
 export const registerValidations = yup.object().shape({
     firstName : firstName,
     lastName : lastName,
@@ -52,18 +62,10 @@ export const userValidations = yup.object().shape({
     role : name.required("*Role is required")
 })
 
-export const assetValidationsAdd = yup.object().shape({
-    name : name,
-    location : name.required("*Location is required"),
-    assetCategory : name.required("*Asset Category is required"),
-    assetType : name.required("*Asset Type is required"),
-    assetCondition : name.required("*Asset Condition is required"),
-    assetStatus : name.required("*Asset Status is required"),
-    dateOfAssetAssignment : name.required("*Assignment Date is required")
-})
+export const assetValidationsAdd = yup.object().shape({...assetValidations})
 
 export const assetValidationsEdit = yup.object().shape({
-    ...assetValidationsAdd,
+   ...assetValidations,
     employeeId : name.required("*Employee is required")
 })
 
