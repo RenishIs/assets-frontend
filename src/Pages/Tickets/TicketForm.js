@@ -19,7 +19,7 @@ const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
 			status: null
 		}
 	})
-
+console.log(employeeAssets)
     const initialState = {
         title : '',
         description : '',
@@ -73,7 +73,7 @@ const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
                                     className="form-input">
                                 <option>Select Asset</option>
                                 {
-                                employeeAssets?.employeeAssets?.map(item => (
+                                employeeAssets?.employeeAssets?.assets?.map(item => (
                                     <option value={item.id} key={item.id}>{item.name}</option>
                                 ))
                                 }
