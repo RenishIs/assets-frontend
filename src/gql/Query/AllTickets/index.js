@@ -1,25 +1,34 @@
 import { gql } from "@apollo/client";
 
 export const GET_ALL_TICKETS_QUERY = gql`
-    query Query($input: QueryParam) {
-        tickets(input: $input) {
+  query Query($page: Int, $input: QueryParam) {
+      tickets(page: $page, input: $input) {
+        tickets {
+          id
+          title
+          description
+          status {
             id
-            title
+            name
+          }
+          raisedBy {
+            employeeCode
+            firstName
+            lastName
+          }
+          ticketId
+          note
+          asset {
+            id
+            name
             description
-            ticketId
-            status {
-                id
-                name
-            }
-            assignedTo {
-                firstName
-                lastName
-            }
-            raisedBy {
-                firstName
-                lastName
-            }
+            location
+          }
         }
+        total
+        totalPages
+        currentPage
+      }
     }
 `
 

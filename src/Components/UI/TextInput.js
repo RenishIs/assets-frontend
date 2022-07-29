@@ -27,7 +27,7 @@ const TextInput = ({label, forgotPassword=false, isPassword=false, isAuth=false,
                     <Input.Password className={`form-input`} size="large" {...field} {...props} />
 
                 ) : (
-                    <Input className={`form-input`} size="large" {...field} {...props} />
+                    <Input className={`form-input ${props.disabled && 'form-input-disabled'}`} size="large" {...field} {...props} />
 
                 )
             }

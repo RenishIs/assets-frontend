@@ -5,6 +5,7 @@ export const GET_ASSET_TYPES_QUERY = gql`
         assetTypes {
         id
         name
+        assigned
         }
     }
 `

@@ -14,20 +14,35 @@ const confirm = Modal.confirm;
 const TicketsStatusListing = () => {
 
 	const { loading, data } = useQuery(GET_TICKETS_STATUS_QUERY);
-	const showDeleteConfirm = (id) => {
-		confirm({
-		  title: 'Are you sure?',
-		  content: 'Do you really want to delete this Tickets Status? This process cannot be undone.',
-		  okText: 'Yes',
-		  okType: 'danger',
-		  cancelText: 'No',
-		  onOk() {
-			deleteTicketsStatus({ variables:  { deleteTicketStatusId: id } } )
-		  },
-		  onCancel() {
-			console.log('Cancel');
-		  },
+
+	const errorIfAssigned = () => {
+		Modal.error({
+		  title: 'This ticket status is being used!!',
+		  content: 'You cannot delete this ticket status, if you want to then delete the ticket associated with the status',
 		});
+	  };
+	
+	const showDeleteConfirm = (id) => {
+		const ticketSatusById=data?.ticketStatus.find(ticketStatus => ticketStatus.id === id)
+		{
+			ticketSatusById?.assigned 
+			?
+				errorIfAssigned()
+			:
+				confirm({
+				title: 'Are you sure?',
+				content: 'Do you really want to delete this Tickets Status? This process cannot be undone.',
+				okText: 'Yes',
+				okType: 'danger',
+				cancelText: 'No',
+				onOk() {
+					deleteTicketsStatus({ variables:  { deleteTicketStatusId: id } } )
+				},
+				onCancel() {
+					console.log('Cancel');
+				},
+				});
+		}
 	  }
 
 	const [deleteTicketsStatus, { error, data : deletedTicketsStatus, loading : deleteLoading }] = useMutation(DELETE_TICKETS_STATUS_MUTATION, {

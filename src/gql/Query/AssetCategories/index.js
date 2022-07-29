@@ -5,15 +5,17 @@ export const GET_ASSET_CATEGORIES_QUERY = gql`
         assetCategories {
             id
             name
+            assigned
         }
     }
 `
 
 export const GET_ASSET_CATEGORY_BY_ID_QUERY = gql`
-    query AssetCategoryById($assetCategoryById: ID!) {
-        assetCategoryById(id: $assetCategoryById) {
-            id
-            name
-        }
+query AssetCategoryById($assetCategoryByIdId: ID!) {
+    assetCategoryById(id: $assetCategoryByIdId) {
+      id
+      name
+      assigned
     }
+  }
 `

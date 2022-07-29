@@ -13,12 +13,6 @@ export const tableColumns = [
 		key: 'description',
 		render: (text) => <span>{text}</span>,
 	},
-	{
-		title: 'ASSIGNED TO',
-		dataIndex: 'assignedTo',
-		key: 'assignedTo',
-        render: (text) => <span>{text.firstName} {text.lastName}</span>
-	},
     {
 		title: 'RAISED BY',
 		dataIndex: 'raisedBy',

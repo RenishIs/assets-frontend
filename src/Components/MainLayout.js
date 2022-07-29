@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Layout, Row, Dropdown, Menu, Col } from 'antd';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import Cookies from "js-cookie";
-import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, LogoutOutlined, SettingOutlined } from '@ant-design/icons';
 import SideNavbar from './UI/SideNavbar';
 
 const { Header } = Layout;
@@ -22,18 +22,23 @@ const MainLayout = ({children, routes, path}) => {
     const logoutUser = () => {
         Cookies.remove('token')
         Cookies.remove('role')
+        Cookies.remove('user')
         history.push('/user/login')
     }
 
     const menu = (
         <Menu items={[
             {
-                label: <Link to="/profile" className="text-body"><UserOutlined style={{color:"blue"}} />&nbsp;Profile</Link>,
+                label: <Link to="/profile" className="text-body"><UserOutlined style={{color:"blue"}} className='dropdown-list-main-container' />&nbsp;Profile</Link>,
                 key: '0',
             },
             {
-                label: <div onClick={logoutUser}><LogoutOutlined style={{color:"red"}} />&nbsp;Logout</div>,
+                label: <Link to="/" className="text-body"><SettingOutlined style={{color:"green"}} className='dropdown-list-main-container'/>&nbsp;Settings</Link>,
                 key: '1',
+            },
+            {
+                label: <div className="text-body" onClick={logoutUser}><LogoutOutlined style={{color:"red"}} className='dropdown-list-main-container'/>&nbsp;Logout</div>,
+                key: '2',
             },
           ]}
         />
@@ -54,7 +59,7 @@ const MainLayout = ({children, routes, path}) => {
                             })
                             }
                             </Col>
-                            <Col span={8}>
+                            <Col>
                                 <Dropdown overlay={menu} trigger={['click']} style={{minWidth:"150px", width:'150px'}}>
                                     <div className='text-center d-flex align-items-center justify-content-end fs-5 fw-bolder'>
                                         <img src="/user-1.png" alt='pic' width="45px" /> &nbsp;

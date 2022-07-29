@@ -15,20 +15,34 @@ const AssetStatusListing = () => {
 
 	const { loading, data } = useQuery(GET_ASSET_STATUS_QUERY);
 
-	const showDeleteConfirm = (id) => {
-		confirm({
-		  title: 'Are you sure?',
-		  content: 'Do you really want to delete this Asset Status? This process cannot be undone.',
-		  okText: 'Yes',
-		  okType: 'danger',
-		  cancelText: 'No',
-		  onOk() {
-			deleteAssetStatus({ variables:  { deleteAssetStatusId: id } } )
-		  },
-		  onCancel() {
-			console.log('Cancel');
-		  },
+	const errorIfAssigned = () => {
+		Modal.error({
+		  title: 'This asset status is being used!!',
+		  content: 'You cannot delete this asset status, if you want to then delete the asset associated with the status',
 		});
+	  };
+
+	const showDeleteConfirm = (id) => {
+		const assetSatusById=data?.assetStatus.find(assetStatus => assetStatus.id === id)
+		{
+			assetSatusById?.assigned 
+			?
+				errorIfAssigned()
+			:
+				confirm({
+				title: 'Are you sure?',
+				content: 'Do you really want to delete this Asset Status? This process cannot be undone.',
+				okText: 'Yes',
+				okType: 'danger',
+				cancelText: 'No',
+				onOk() {
+					deleteAssetStatus({ variables:  { deleteAssetStatusId: id } } )
+				},
+				onCancel() {
+					console.log('Cancel');
+				},
+				});
+		}
 	  }
 
 	const [deleteAssetStatus, { error, data : deletedAssetStatus, loading : deleteLoading }] = useMutation(DELETE_ASSET_STATUS_MUTATION, {

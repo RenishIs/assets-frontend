@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Table, Select } from 'antd';
 import { tableColumns } from './CONSTANTS';
 import { useQuery } from '@apollo/client';
@@ -11,7 +12,10 @@ const AllTicketsListing = () => {
 
 	const role = Cookies.get('role')
 
-	const { data: tickets, loading, refetch } = useQuery(GET_ALL_TICKETS_QUERY, { variables: { input: null } })
+	const [userValue, setUserValue] = useState(null);
+	const [currentPage, setCurrentPage] = useState(0)
+
+	const { data: tickets, loading, refetch } = useQuery(GET_ALL_TICKETS_QUERY, { variables: { input: null, page: 0 } })
 
 	const { data } = useQuery(GET_USER_ROLE);
 	const { data: employeeList } = useQuery(GET_USERS_BY_ROLE, {
@@ -22,8 +26,9 @@ const AllTicketsListing = () => {
 	});
 
 	const handleChange = (value) => {
-	 
+	    setUserValue(value)
 			refetch({
+				page: currentPage,
 				input: {
 					status: null,
 					userId: value
@@ -31,6 +36,17 @@ const AllTicketsListing = () => {
 			})
 		
 	};
+
+	const handlePageChange = (page) => {
+		setCurrentPage(page-1)
+			refetch({ 
+				page: page-1,
+				input: {
+					status: null,
+					userId: userValue
+			    } 
+		    })
+	}
 
 	return (
 		<>
@@ -53,9 +69,13 @@ const AllTicketsListing = () => {
 				}
 			</div>
 			<Table bordered
-				columns={tableColumns}
-				dataSource={tickets?.tickets.map(item => ({ ...item, key: item.id }))}
-				pagination={false}
+				   columns={tableColumns}
+				   dataSource={tickets?.tickets?.tickets?.map(item => ({ ...item, key: item.id }))}
+				   pagination={{ defaultCurrent:1, 
+					             defaultPageSize: 10, 
+							     total: tickets?.tickets?.total,
+							     current: tickets?.tickets?.currentPage+1, 
+							     onChange: handlePageChange}}
 			/>
 		</>
 	)

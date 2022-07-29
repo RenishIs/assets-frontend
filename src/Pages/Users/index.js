@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Table, Space, Button, Modal, Tooltip, Select } from 'antd';
 import { Link } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
@@ -15,7 +16,9 @@ const { Option } = Select;
 
 const UsersListing = () => {
 	const role = Cookies.get('role')
-	const { loading, data, refetch } = useQuery(GET_USERS_QUERY, { variables: { status: null } })
+	const [statusValue, setStatusValue] = useState(null);
+	const [currentPage, setCurrentPage] = useState(0)
+	const { loading, data, refetch } = useQuery(GET_USERS_QUERY, { variables: { status: null, page: 0} })
 
 	const showDeleteConfirm = (id) => {
 		confirm({
@@ -35,7 +38,7 @@ const UsersListing = () => {
 
 	const [DeleteUser, { error, data: deletedUser, loading: deleteLoading }] = useMutation(DELETE_USER_MUTATION, {
 		refetchQueries: [
-			{ query: GET_USERS_QUERY, variables: { status: null }},
+			{ query: GET_USERS_QUERY, variables: { status: null, page: 0 }},
 		]
 	})
 
@@ -65,12 +68,22 @@ const UsersListing = () => {
 	}]
 
 	const handleChange = (value) => {
-		if(value == null) {
-			refetch({ status: null })
+		setStatusValue(value)
+		if(value === null) {
+			refetch({ status: null, page: 0 })
 		}else {
-			refetch({ status: { isActive: value } })
+			refetch({ status: { isActive: value }, page: 0 })
 		}
 	};
+
+	const handlePageChange = (page) => {
+		setCurrentPage(page-1)
+		if(statusValue == null) {
+			refetch({ status: null, page: page-1 })
+		}else {
+			refetch({ status: { isActive: statusValue }, page: page-1 })
+		}
+	}
 
 	return (
 		<>
@@ -90,7 +103,16 @@ const UsersListing = () => {
 					)
 				}
 			</div>
-			<Table bordered columns={columns} dataSource={data?.users.map(item => ({ ...item, key: item.id }))} pagination={false} />
+			<Table bordered 
+			       columns={columns} 
+				   dataSource={data?.users?.users?.map(item => ({ ...item, key: item.id }))} 
+			       pagination={{ defaultCurrent:1, 
+								 defaultPageSize: 10, 
+								 total: data?.users?.total, 
+								 current:data?.users?.currentPage+1, 
+								 onChange: handlePageChange}}
+			/>
+		
 		</>
 	)
 }
