@@ -19,7 +19,7 @@ const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
 			status: null
 		}
 	})
-console.log(employeeAssets)
+
     const initialState = {
         title : '',
         description : '',
