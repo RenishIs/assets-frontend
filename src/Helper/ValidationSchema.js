@@ -52,15 +52,19 @@ export const userValidations = yup.object().shape({
     role : name.required("*Role is required")
 })
 
-export const assetValidations = yup.object().shape({
+export const assetValidationsAdd = yup.object().shape({
     name : name,
     location : name.required("*Location is required"),
     assetCategory : name.required("*Asset Category is required"),
     assetType : name.required("*Asset Type is required"),
     assetCondition : name.required("*Asset Condition is required"),
     assetStatus : name.required("*Asset Status is required"),
-    employeeId : name.required("*Employee is required"),
     dateOfAssetAssignment : name.required("*Assignment Date is required")
+})
+
+export const assetValidationsEdit = yup.object().shape({
+    ...assetValidationsAdd,
+    employeeId : name.required("*Employee is required")
 })
 
 export const assetCategoryValidation = yup.object().shape({
@@ -78,6 +82,5 @@ export const assetStatusValidations = yup.object().shape({
 export const ticketValidations = yup.object().shape({
     title : name.required("*Title is required"),
     description : name.required("*Description is required"),
-    assignedTo : name.required("*User is required"),
-    status : name.required("*Status is required")
+    asset : name.required("*Asset is required")
 })

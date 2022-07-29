@@ -7,7 +7,11 @@ import Loader from '../../Components/UI/Loader';
 
 const TicketsListing = () => {
 
-	const { loading, data } = useQuery(GET_TICKETS_QUERY);
+	const { loading, data, refetch } = useQuery(GET_TICKETS_QUERY, { variables: { page: 0 } });
+
+	const handlePageChange = (page) => {
+		refetch({ variables: { page: page-1 } })
+	}
 
 	return (
 		<>
@@ -20,9 +24,13 @@ const TicketsListing = () => {
             </div>
 			<Table bordered 
 			       columns={tableColumns} 
-				   dataSource={data?.employeeTickets.map(item => ({...item, key: item.id}))} 
-				   pagination={false} 
-				   />
+				   dataSource={data?.employeeTickets?.tickets?.map(item => ({...item, key: item.id}))} 
+				   pagination={{ defaultCurrent:1, 
+					             defaultPageSize: 10, 
+								 total: data?.employeeTickets?.total, 
+								 current:data?.employeeTickets?.currentPage+1, 
+								 onChange: handlePageChange}} 
+			/>
 		</>
 	)
 }
