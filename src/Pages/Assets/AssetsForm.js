@@ -210,7 +210,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                            className="form-input">
                                     <option>Select Employee</option>
                                     {
-                                        users?.users.map(item => (
+                                        users?.users?.map(item => (
                                             <option value={item.id} key={item.id}>{item.firstName} {item.lastName}</option>
                                     ))}
                                     </Field>
