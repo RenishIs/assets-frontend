@@ -18,6 +18,7 @@ const MainLayout = ({children, routes, path}) => {
     const isDashboard = location.pathname.includes('dashboard')
 
     const user= Cookies.get('user');
+    const role = Cookies.get('role')
 
     const logoutUser = () => {
         Cookies.remove('token')
@@ -26,21 +27,22 @@ const MainLayout = ({children, routes, path}) => {
         history.push('/user/login')
     }
 
+    const items = [
+        {
+            label: <Link to="/profile" className="text-body"><UserOutlined style={{color:"blue"}} className='dropdown-list-main-container' />&nbsp;Profile</Link>,
+            key: '0',
+        },
+        {
+            label: <div className="text-body" onClick={logoutUser}><LogoutOutlined style={{color:"red"}} className='dropdown-list-main-container'/>&nbsp;Logout</div>,
+            key: '2',
+        },
+    ]
+
+    const settingsItem = { label: <Link to="/" className="text-body"><SettingOutlined style={{color:"green"}} className='dropdown-list-main-container'/>&nbsp;Settings</Link>, key: '1',}
+    const updatedItems = role === 'admin' ? [...items, settingsItem ] : [...items]
+
     const menu = (
-        <Menu items={[
-            {
-                label: <Link to="/profile" className="text-body"><UserOutlined style={{color:"blue"}} className='dropdown-list-main-container' />&nbsp;Profile</Link>,
-                key: '0',
-            },
-            {
-                label: <Link to="/" className="text-body"><SettingOutlined style={{color:"green"}} className='dropdown-list-main-container'/>&nbsp;Settings</Link>,
-                key: '1',
-            },
-            {
-                label: <div className="text-body" onClick={logoutUser}><LogoutOutlined style={{color:"red"}} className='dropdown-list-main-container'/>&nbsp;Logout</div>,
-                key: '2',
-            },
-          ]}
+        <Menu items={updatedItems}
         />
     );
 

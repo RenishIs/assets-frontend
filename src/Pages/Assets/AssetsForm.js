@@ -18,7 +18,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
 
     const { asset } = rest
 
-    const { data : users } = useQuery(GET_USERS_QUERY, {
+    const { data : apiUsers } = useQuery(GET_USERS_QUERY, {
         variables : { 
             status: {
                 isActive: true
@@ -28,6 +28,8 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
     const { data : assetCategories } = useQuery(GET_ASSET_CATEGORIES_QUERY)
     const { data : assetStatus } = useQuery(GET_ASSET_STATUS_QUERY)
     const { data : assetTypes } = useQuery(GET_ASSET_TYPES_QUERY)
+
+    const users = apiUsers?.users 
 
     let initialState = {
         name : asset ? asset.name : '',
@@ -100,7 +102,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                     className="form-input">
                                 <option>Select Category</option>
                                 { 
-                                    assetCategories?.assetCategories.map(item => (
+                                    assetCategories?.assetCategories?.map(item => (
                                         <option value={item.id} key={item.id}>{item.name}</option>
                                 ))}
                             </Field>
@@ -123,7 +125,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                     className="form-input">
                                 <option>Select Type</option>
                                 {
-                                    assetTypes?.assetTypes.map(item => (
+                                    assetTypes?.assetTypes?.map(item => (
                                         <option value={item.id} key={item.id}>{item.name}</option>
                                 ))}
                             </Field>
@@ -162,7 +164,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                     className="form-input">
                                 <option>Select Status</option>
                                 {
-                                    assetStatus?.assetStatus.map(item => (
+                                    assetStatus?.assetStatus?.map(item => (
                                         <option value={item.id} key={item.id}>{item.name}</option>
                                 ))}
                             </Field>
@@ -210,7 +212,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                            className="form-input">
                                     <option>Select Employee</option>
                                     {
-                                        users?.users.map(item => (
+                                        users?.users?.map(item => (
                                             <option value={item.id} key={item.id}>{item.firstName} {item.lastName}</option>
                                     ))}
                                     </Field>

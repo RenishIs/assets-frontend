@@ -12,7 +12,7 @@ const AssetCategoryEdit = () => {
     const history = useHistory()
 
     const { data, loading } = useQuery(GET_ASSET_CATEGORY_BY_ID_QUERY, {
-        variables : { assetCategoryById : id }
+        variables : { assetCategoryByIdId : id }
     })
 
     const [ updateAssetCategory, { data : updatedAssetCategory, loading : editLoading }] = useMutation(UPDATE_ASSET_CATEGORY_MUTATION, {
