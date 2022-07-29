@@ -100,7 +100,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                     className="form-input">
                                 <option>Select Category</option>
                                 { 
-                                    assetCategories?.assetCategories.map(item => (
+                                    assetCategories?.assetCategories?.map(item => (
                                         <option value={item.id} key={item.id}>{item.name}</option>
                                 ))}
                             </Field>
@@ -123,7 +123,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                     className="form-input">
                                 <option>Select Type</option>
                                 {
-                                    assetTypes?.assetTypes.map(item => (
+                                    assetTypes?.assetTypes?.map(item => (
                                         <option value={item.id} key={item.id}>{item.name}</option>
                                 ))}
                             </Field>
@@ -162,7 +162,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                     className="form-input">
                                 <option>Select Status</option>
                                 {
-                                    assetStatus?.assetStatus.map(item => (
+                                    assetStatus?.assetStatus?.map(item => (
                                         <option value={item.id} key={item.id}>{item.name}</option>
                                 ))}
                             </Field>
