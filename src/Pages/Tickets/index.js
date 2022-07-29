@@ -4,10 +4,18 @@ import { tableColumns } from './CONSTANTS';
 import { useQuery } from '@apollo/client';
 import { GET_TICKETS_QUERY } from '../../gql/Query/Tickets';
 import Loader from '../../Components/UI/Loader';
+import { GET_EMPLOYEE_ASSETS_QUERY } from '../../gql/Query/Assets';
 
 const TicketsListing = () => {
 
 	const { loading, data, refetch } = useQuery(GET_TICKETS_QUERY, { variables: { page: 0 } });
+	const { data : employeeAssets } = useQuery(GET_EMPLOYEE_ASSETS_QUERY, {
+		variables : {
+			status: null
+		}
+	})
+
+	const empAssets = employeeAssets?.employeeAssets?.assets
 
 	const handlePageChange = (page) => {
 		refetch({ variables: { page: page-1 } })
@@ -19,7 +27,7 @@ const TicketsListing = () => {
 			<div className='text-center mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE TICKETS</h2>
                 <div className='add-button'>
-                    <Link to={`/tickets/add`}><Button type="primary">ADD</Button></Link>
+                    <Link to={`/tickets/add`}><Button type="primary" disabled={empAssets?.length === 0}>ADD</Button></Link>
                 </div>
             </div>
 			<Table bordered 

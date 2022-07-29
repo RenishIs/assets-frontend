@@ -23,8 +23,8 @@ const AssetsEdit = () => {
 			{ query: GET_ASSETS_QUERY, variables : { status: null } },
 			{ query: GET_ASSET_STATUS_QUERY },
 			{ query: GET_ASSET_TYPES_QUERY },
-			{ query : GET_ASSET_CATEGORIES_QUERY}
-
+			{ query : GET_ASSET_CATEGORIES_QUERY},
+			{ query : GET_ASSET_BY_ID_QUERY, variables: { assetById: id } }
 		]
 	});
 
