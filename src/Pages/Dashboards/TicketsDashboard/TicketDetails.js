@@ -1,6 +1,5 @@
 import { Col, Row, Tag } from "antd"
 import { Link } from "react-router-dom"
-
 const RowUI = ({label, value, status, linkTo}) => {
     return (
         <Row  className="mb-3">
@@ -14,7 +13,7 @@ const RowUI = ({label, value, status, linkTo}) => {
                         {value == 'Resolved' && <Tag color="success">{value}</Tag>} 
                     </span> 
                     : linkTo ?
-                    <Link to={linkTo} target="_blank" className="text-body fw-bold">{value}</Link>
+                    <Link to={linkTo} target="_blank" > <u> {value}</u> </Link>
                     : <span className="text-body fw-bold">{value}</span>                     
             }
             </Col>
