@@ -28,7 +28,6 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
         contactNo: user ? user.contactNo ? user.contactNo : '' : '',
         address: user ? user.address : '',
         isActive: user ? user.isActive : true,
-        role: user ? user.role.id : '',
         password: user ? 'Albiorix@123' : '',
         confirmPassword: user ? 'Albiorix@123' : ''
     }
@@ -124,29 +123,6 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                                 </Row>
                                 <Row>
                                     <Col span={12}>
-                                        <div className='text-start mb-1 mt-4'>
-                                            <label htmlFor="role" className="text-body text-start fs-6 fw-bold">ROLE</label>
-                                        </div>
-                                        <Field as="select"
-                                            name="role"
-                                            id="role"
-                                            style={{ height: "43px" }}
-                                            className="form-input"
-                                            disabled={user}>
-                                            <option>Select Role</option>
-                                            {
-                                                data?.role?.map(item => (
-                                                    <option value={item.id} key={item.id}>{item?.name.charAt(0).toUpperCase() + item?.name.slice(1)}</option>
-                                                ))
-                                            }
-                                        </Field>
-                                        {
-                                            touched.role && errors.role ? (
-                                                <div className="text-start ms-4 mb-0 fs-6 text-danger">{errors.role}</div>
-                                            ) : null
-                                        }
-                                    </Col>
-                                    <Col span={12}>
                                         <TextInput label="PASSWORD"
                                             name="password"
                                             id="password"
@@ -157,8 +133,6 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                                             prefix={<KeyOutlined />}
                                             isLabel={true} />
                                     </Col>
-                                </Row>
-                                <Row>
                                     <Col span={12}>
                                         <TextInput label="CONFIRM PASSWORD"
                                             name="confirmPassword"
@@ -171,7 +145,6 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                                             isLabel={true} />
                                     </Col>
                                 </Row>
-                       
                             {/* <Row>
                         <Col span={12}>
                             <div className='text-start mb-1 mt-4'>

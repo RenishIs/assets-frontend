@@ -68,7 +68,6 @@ export const userValidations = yup.object().shape({
       }),
     contactNo : contactNo,
     //isActive: name.required("*Status is required"),
-    role : name.required("*Role is required")
 })
 
 export const assetValidationsAdd = yup.object().shape({...assetValidations})

@@ -16,6 +16,7 @@ const UsersAdd = () => {
     })
 
     const handleUser = (values) => {
+        delete values.isActive
         const {confirmPassword, ...rest} = values
         CreateUser({ variables : {input: {...rest}}})
     }
