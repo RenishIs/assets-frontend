@@ -54,18 +54,22 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                             <Row>
                                 <Col span={3}>
                                     {user &&
-                                        <Switch
-                                            name="isActive"
-                                            id="isActive"
-                                            style={{ float: 'right' }}
-                                            checkedChildren={"ACTIVE"}
-                                            unCheckedChildren={"IN-ACTIVE"}
-                                            defaultChecked={initialState.isActive}
-                                            onChange={(checked) => {
-                                              
-                                                setFieldValue("isActive", checked ? true : false);
-                                            }}
-                                        />
+                                        <div>
+                                            <div className='text-start mb-1 mt-4'>
+                                                <label htmlFor="status" className="text-body text-start fs-6 fw-bold">STATUS</label>
+                                            </div>
+                                            <Switch
+                                                name="isActive"
+                                                id="isActive"
+                                                checkedChildren={"ACTIVE"}
+                                                unCheckedChildren={"IN-ACTIVE"}
+                                                defaultChecked={initialState.isActive}
+                                                onChange={(checked) => {
+                                                
+                                                    setFieldValue("isActive", checked ? true : false);
+                                                }}
+                                            />
+                                        </div>
                                     }
                                 </Col>
                             </Row>
