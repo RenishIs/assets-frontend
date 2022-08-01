@@ -29,7 +29,8 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
         address: user ? user.address : '',
         isActive: user ? user.isActive : true,
         role: user ? user.role.id : '',
-        password: user ? 'Albiorix@123' : ''
+        password: user ? 'Albiorix@123' : '',
+        confirmPassword: user ? 'Albiorix@123' : ''
     }
 
 
@@ -149,6 +150,19 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                                         <TextInput label="PASSWORD"
                                             name="password"
                                             id="password"
+                                            type="password"
+                                            isPassword={true}
+                                            isAuth={false}
+                                            disabled={user}
+                                            prefix={<KeyOutlined />}
+                                            isLabel={true} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col span={12}>
+                                        <TextInput label="CONFIRM PASSWORD"
+                                            name="confirmPassword"
+                                            id="confirmPassword"
                                             type="password"
                                             isPassword={true}
                                             isAuth={false}
