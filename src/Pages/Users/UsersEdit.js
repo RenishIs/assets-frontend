@@ -23,10 +23,8 @@ const UsersEdit = () => {
     })
 
     const handleUser = (values) => {
-        delete values.role;
-        delete values.password;
-
-        UpdateUser({ variables : {updateUserId : id,  input: {...values} }})
+        const {confirmPassword, role, password, ...rest} = values
+        UpdateUser({ variables : {updateUserId : id,  input: {...rest} }})
     }
 
     if(loading){

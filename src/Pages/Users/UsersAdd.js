@@ -16,8 +16,8 @@ const UsersAdd = () => {
     })
 
     const handleUser = (values) => {
-    
-        CreateUser({ variables : {input: {...values}}})
+        const {confirmPassword, ...rest} = values
+        CreateUser({ variables : {input: {...rest}}})
     }
 	if(error){
 		openNotificationWithIcon('userAddError', 'error', 'DUPLICATE INPUT ERROR')
