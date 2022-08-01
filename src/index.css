@@ -307,3 +307,7 @@ div#authForm .ant-input:focus{
 .vertical-timeline-element-icon svg{
 	left : 92% !important
 }
+
+.ant-menu-dark .ant-menu-inline.ant-menu-sub {
+	background-color: inherit;
+}
