@@ -43,7 +43,7 @@ const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
                             <TextInput label="TITLE" name="title" id="title" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
                         </Col>
                         <Col span={12}>
-                            <div className='text-start ms-4 mb-1 mt-4'>
+                            <div className='text-start mb-1 mt-4'>
                                 <label htmlFor="description" className="text-body text-start fs-6 fw-bold">DESCRIPTION</label>
                             </div>
                             <Field as="textarea" 
@@ -62,7 +62,7 @@ const TicketForm = ({title, handleTicket, loading, adminList, ...rest}) => {
                     </Row>
                     <Row>
                         <Col span={12}>
-                            <div className='text-start ms-4 mb-1 mt-4'>
+                            <div className='text-start mb-1 mt-4'>
                                 <label htmlFor="asset" className="text-body text-start fs-6 fw-bold">ASSET</label>
                             </div>
                             <Field as="select" 

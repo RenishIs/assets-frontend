@@ -123,7 +123,7 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                                 </Row>
                                 <Row>
                                     <Col span={12}>
-                                        <div className='text-start ms-4 mb-1 mt-4'>
+                                        <div className='text-start mb-1 mt-4'>
                                             <label htmlFor="role" className="text-body text-start fs-6 fw-bold">ROLE</label>
                                         </div>
                                         <Field as="select"
@@ -160,7 +160,7 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                        
                             {/* <Row>
                         <Col span={12}>
-                            <div className='text-start ms-4 mb-1 mt-4'>
+                            <div className='text-start mb-1 mt-4'>
                                 <label htmlFor="role" className="text-body text-start fs-6 fw-bold">ROLE</label>
                             </div>
                             <Field name="assets"

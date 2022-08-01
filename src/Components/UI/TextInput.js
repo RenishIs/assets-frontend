@@ -11,7 +11,7 @@ const TextInput = ({label, forgotPassword=false, isPassword=false, isAuth=false,
         <div className='mt-4 w-full'>
             {
                 isLabel && (
-                    <div className='text-start ms-4 mb-1'>
+                    <div className='text-start mb-1'>
                     <label htmlFor={props.id || props.name} className="text-body text-start fs-6 fw-bold">{label}</label>
                     </div>
             )}
