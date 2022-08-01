@@ -16,7 +16,7 @@ const UsersAdd = () => {
     })
 
     const handleUser = (values) => {
-    
+        delete values.isActive
         CreateUser({ variables : {input: {...values}}})
     }
 	if(error){
