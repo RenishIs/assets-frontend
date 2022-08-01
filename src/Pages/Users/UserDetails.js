@@ -2,6 +2,7 @@ import { useParams, useHistory } from "react-router-dom"
 import { useQuery } from "@apollo/client";
 import { Row, Col, Table } from 'antd';
 import Cookies from "js-cookie";
+import { LeftOutlined } from '@ant-design/icons';
 import { GET_USER_BY_ID_QUERY } from '../../gql/Query/Users';
 import Loader from "../../Components/UI/Loader";
 import { tableColumns } from '../Assets/CONSTANTS';
@@ -40,14 +41,19 @@ const UserDetails = () => {
 
     const navigation = (id) => history.push(`/assets/${id}`)
     const handlePageChange = (page) => refetchAdminAssets({ status: null, page: page-1 })
+    const navigateBack = () => history.push('/users')
 
     return (
         <>
             {loading ? <Loader /> :
                 <>
-                    <div className='text-center mb-4'>
-                        <h2 className='d-inline fs-5 fw-bold'>USER DETAILS</h2>
+                    <div className='text-center mb-4 d-flex w-50 justify-content-between align-items-center'>
+                        <div className="pe-4" onClick={navigateBack}>
+                            <LeftOutlined style={{fontSize : '23px', marginBottom : '5px'}}/>
+                        </div>
+                        <h2 className='fs-5 fw-bold'>USER DETAILS</h2>
                     </div>
+
                     <div className="mt-4">
                         <RowUI label1="Username"
                             value1={user?.firstName + `   ` + user?.lastName}
