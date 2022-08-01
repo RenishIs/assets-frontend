@@ -57,6 +57,15 @@ export const userValidations = yup.object().shape({
     email : email,
     employeeCode: name.required("*Employee code is required"),
     password : password,
+    confirmPassword: yup.string().trim().required("*Confirm Password is required").when("password", {
+        is: (val) => (val && val.length > 0 ? true : false),
+        then: yup
+          .string()
+          .oneOf(
+            [yup.ref("password")],
+            "New Password and Confirm password should match."
+          ),
+      }),
     contactNo : contactNo,
     //isActive: name.required("*Status is required"),
 })

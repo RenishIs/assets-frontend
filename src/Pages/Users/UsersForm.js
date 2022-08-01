@@ -24,11 +24,12 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
         firstName: user ? user.firstName : '',
         lastName: user ? user.lastName : '',
         email: user ? user.email : '',
-        employeeCode: user ? user.employeeCode : '',
-        contactNo: user ? user.contactNo : '',
+        employeeCode: user ? user.employeeCode ? user.employeeCode : '' : '',
+        contactNo: user ? user.contactNo ? user.contactNo : '' : '',
         address: user ? user.address : '',
         isActive: user ? user.isActive : true,
-        password: user ? 'Albiorix@123' : ''
+        password: user ? 'Albiorix@123' : '',
+        confirmPassword: user ? 'Albiorix@123' : ''
     }
 
 
@@ -132,11 +133,21 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                                             prefix={<KeyOutlined />}
                                             isLabel={true} />
                                     </Col>
+                                    <Col span={12}>
+                                        <TextInput label="CONFIRM PASSWORD"
+                                            name="confirmPassword"
+                                            id="confirmPassword"
+                                            type="password"
+                                            isPassword={true}
+                                            isAuth={false}
+                                            disabled={user}
+                                            prefix={<KeyOutlined />}
+                                            isLabel={true} />
+                                    </Col>
                                 </Row>
-                       
                             {/* <Row>
                         <Col span={12}>
-                            <div className='text-start ms-4 mb-1 mt-4'>
+                            <div className='text-start mb-1 mt-4'>
                                 <label htmlFor="role" className="text-body text-start fs-6 fw-bold">ROLE</label>
                             </div>
                             <Field name="assets"
