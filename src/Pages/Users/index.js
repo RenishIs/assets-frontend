@@ -58,7 +58,7 @@ const UsersListing = () => {
 					role === 'admin' && (
 						<>
 							<Tooltip title="Edit"><Link to={`/users/edit/${record.id}`}><EditFilled style={{ color: "blue" }} /></Link></Tooltip>
-							{/* <Tooltip title="Delete"><DeleteFilled style={{color: "red"}} onClick={() => showDeleteConfirm(record.id)}/></Tooltip> */}
+							<Tooltip title="Delete"><DeleteFilled style={{color: "red"}} onClick={() => showDeleteConfirm(record.id)}/></Tooltip>
 						</>
 					)
 				}

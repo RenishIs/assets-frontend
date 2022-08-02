@@ -18,15 +18,13 @@ const UsersEdit = () => {
 
     const [ UpdateUser, { data : updatedUser,error, loading : editLoading }] = useMutation(UPDATE_USER_MUTATION, {
         refetchQueries : [
-            { query : GET_USERS_QUERY,  variables: { status: null } }
+            { query : GET_USERS_QUERY,  variables: { status: null,  page: 0 } }
         ]
     })
 
     const handleUser = (values) => {
-        delete values.role;
-        delete values.password;
-
-        UpdateUser({ variables : {updateUserId : id,  input: {...values} }})
+        const {confirmPassword, role, password, ...rest} = values
+        UpdateUser({ variables : {updateUserId : id,  input: {...rest} }})
     }
 
     if(loading){

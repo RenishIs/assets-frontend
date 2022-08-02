@@ -1,7 +1,8 @@
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import { useQuery } from "@apollo/client"
 import { GET_ASSET_BY_ID_QUERY } from "../../gql/Query/Assets"
 import { Row, Col, Tag } from 'antd';
+import { LeftOutlined } from '@ant-design/icons';
 import Loader from "../../Components/UI/Loader";
 import moment from 'moment'
 import Timeline from "../../Components/UI/Timeline";
@@ -34,16 +35,21 @@ const RowUI = ({label, ...rest}) => (
 const AssetDetails = () => {
 
     const { id } = useParams()
+    const history = useHistory()
     const { data, loading } = useQuery(GET_ASSET_BY_ID_QUERY, {
 		variables: { assetById: id }
 	});
     const asset = data?.assetById
+    const navigateBack = () => history.push('/assets')
 
     return (
         <>
             { loading && <Loader /> }
-            <div className='text-center mb-4'>
-                <h2 className='d-inline fs-5 fw-bold'>ASSET DETAILS</h2>
+            <div className='text-center mb-4 d-flex w-50 justify-content-between align-items-center'>
+                <div className="pe-4" onClick={navigateBack}>
+                    <LeftOutlined style={{fontSize : '23px', marginBottom : '5px'}}/>
+                </div>
+                <h2 className='fs-5 fw-bold'>ASSET DETAILS</h2>
             </div>
             <Row>
                 <Col span={8}></Col>

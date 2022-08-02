@@ -9,10 +9,6 @@ export const CREATE_USER_MUTATION = gql`
             email
             contactNo
             address
-            role {
-                name
-            }
-            isActive
             employeeCode
         }
     }
@@ -27,9 +23,6 @@ export const UPDATE_USER_MUTATION = gql`
             email
             contactNo
             address
-            role {
-                name
-            }
             isActive
             employeeCode
         }

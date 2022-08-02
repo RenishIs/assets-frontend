@@ -11,13 +11,14 @@ const UsersAdd = () => {
 
     const [ CreateUser, { data,error, loading }] = useMutation(CREATE_USER_MUTATION, {
         refetchQueries : [
-            {query : GET_USERS_QUERY,  variables: { status: null }}
+            {query : GET_USERS_QUERY,  variables: { status: null, page: 0 }}
         ]
     })
 
     const handleUser = (values) => {
-    
-        CreateUser({ variables : {input: {...values}}})
+        delete values.isActive
+        const {confirmPassword, ...rest} = values
+        CreateUser({ variables : {input: {...rest}}})
     }
 	if(error){
 		openNotificationWithIcon('userAddError', 'error', 'DUPLICATE INPUT ERROR')

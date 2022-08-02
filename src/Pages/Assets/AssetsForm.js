@@ -66,7 +66,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                        isLabel={true} />	
                         </Col>
                         <Col span={12}>
-                            <div className='text-start ms-4 mb-1 mt-4'>
+                            <div className='text-start mb-1 mt-4'>
                                 <label htmlFor="description" className="text-body text-start fs-6 fw-bold">DESCRIPTION</label>
                             </div>
                             <Field as="textarea" 
@@ -92,7 +92,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                        isLabel={true} />	
                         </Col>
                         <Col span={12}>
-                            <div className='text-start ms-4 mb-1 mt-4'>
+                            <div className='text-start mb-1 mt-4'>
                                 <label htmlFor="assetCategory" className="text-body text-start fs-6 fw-bold">CATEGORY</label>
                             </div>
                             <Field as="select" 
@@ -115,7 +115,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                     </Row>
                     <Row>
                         <Col span={12}>
-                            <div className='text-start ms-4 mb-1 mt-4'>
+                            <div className='text-start mb-1 mt-4'>
                                 <label htmlFor="assetType" className="text-body text-start fs-6 fw-bold">TYPE</label>
                             </div>
                             <Field as="select" 
@@ -136,7 +136,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                             }
                         </Col>
                         <Col span={12}>
-                            <div className='text-start ms-4 mb-1 mt-4'>
+                            <div className='text-start mb-1 mt-4'>
                                 <label htmlFor="purchasedOn" className="text-body text-start fs-6 fw-bold">PURCHASED ON</label>
                             </div>
                             <DatePicker style={{height:"43px"}} 
@@ -154,7 +154,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                        isLabel={true} />	
                         </Col>
                         <Col span={12}>
-                            <div className='text-start ms-4 mb-1 mt-4'>
+                            <div className='text-start mb-1 mt-4'>
                                 <label htmlFor="assetStatus" className="text-body text-start fs-6 fw-bold">STATUS</label>
                             </div>
                             <Field as="select" 
@@ -184,7 +184,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                                        isLabel={true} />	
                         </Col>
                         <Col span={12}>
-                            <div className='text-start ms-4 mb-1 mt-4'>
+                            <div className='text-start mb-1 mt-4'>
                                 <label htmlFor="dateOfAssetAssignment" className="text-body text-start fs-6 fw-bold">DATE OF ASSET ASSIGNMENT</label>
                             </div>
                             <DatePicker style={{height:"43px"}}  
@@ -202,7 +202,7 @@ const AssetsForm = ({title, handleAsset, loading, ...rest}) => {
                         {
                             asset && (
                                 <Col span={12}>
-                                    <div className='text-start ms-4 mb-1 mt-4'>
+                                    <div className='text-start mb-1 mt-4'>
                                         <label htmlFor="employeeId" className="text-body text-start fs-6 fw-bold">EMPLOYEE ID</label>
                                     </div>
                                     <Field as="select" 
