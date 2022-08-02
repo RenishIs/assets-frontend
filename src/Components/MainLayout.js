@@ -39,7 +39,7 @@ const MainLayout = ({children, routes, path}) => {
     ]
 
     const settingsItem = { label: <Link to="/" className="text-body"><SettingOutlined style={{color:"green"}} className='dropdown-list-main-container'/>&nbsp;Settings</Link>, key: '1',}
-    const updatedItems = role === 'admin' ? [...items, settingsItem ] : [...items]
+    const updatedItems = role === 'admin' ? [items[0], settingsItem, items[1] ] : [...items]
 
     const menu = (
         <Menu items={updatedItems}

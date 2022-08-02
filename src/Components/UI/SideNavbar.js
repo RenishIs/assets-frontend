@@ -7,24 +7,24 @@ import { FaTicketAlt } from 'react-icons/fa';
 
 const { Sider } = Layout;
 
-function getItem(label, icon, path, role, hasChildren, children) {
-    return { label, icon, path, role, hasChildren, children}
+function getItem(label, icon, path, role, children) {
+    return { label, icon, path, role, children}
 }
 
 const iconsData = [
-    getItem("Dashboard", LaptopOutlined, null , ['admin'], true, [ 
+    getItem("Dashboard", LaptopOutlined, null , ['admin'], [ 
         getItem("Assets", null, '/assets/dashboard', ['admin'] ),
-        getItem("Tickets", null, '/tickets/dashboard', ['admin'] ),
+        getItem("Tickets", null, '/tickets/dashboard', ['admin'])
     ]),
-    getItem("Users", UserOutlined, '/users', ['admin'], false),
-    getItem("Assets", LaptopOutlined, '/assets', ['admin'], true),
-    getItem("Asset Categories", LaptopOutlined, '/asset-categories', ['admin'], false),
-    getItem("Asset Types", LaptopOutlined, '/asset-types', ['admin'], false),
-    getItem("Asset Status", LaptopOutlined, '/asset-status', ['admin'], false),
-    getItem("Tickets", FaTicketAlt, '/tickets', ['employee'], false),
-    getItem("Assets", LaptopOutlined, '/assets', ['employee'], false),
-    getItem("Tickets Status", FaTicketAlt, '/tickets-status', ['admin'], false),
-    getItem("All Tickets", FaTicketAlt, '/all-tickets', ['admin'], true),
+    getItem("Users", UserOutlined, '/users', ['admin']),
+    getItem("Assets", LaptopOutlined, '/assets', ['admin']),
+    getItem("Asset Categories", LaptopOutlined, '/asset-categories', ['admin']),
+    getItem("Asset Types", LaptopOutlined, '/asset-types', ['admin']),
+    getItem("Asset Status", LaptopOutlined, '/asset-status', ['admin']),
+    getItem("Tickets", FaTicketAlt, '/tickets', ['employee']),
+    getItem("Assets", LaptopOutlined, '/assets', ['employee']),
+    getItem("Tickets Status", FaTicketAlt, '/tickets-status', ['admin']),
+    getItem("All Tickets", FaTicketAlt, '/all-tickets', ['admin'])
 ]
 
 const SideNavbar = (props) => {
@@ -32,18 +32,16 @@ const SideNavbar = (props) => {
     const role = Cookies.get('role')
     const menuItems = iconsData.filter(item => item.role?.includes(role)).map((item, index) => {
         return {
-            key: item.path,
+            key: item?.label?.includes('Dashboard') ? '/dashboard' : item.path,
             icon: React.createElement(item.icon, { className: 'side-nav-bar-icons', }),
             label: item.path ? (<Link to={`${item.path}`}>{item.label}</Link>) : item.label,
-            children: item.hasChildren ? (
-                item?.children?.map((child, childIndex) => {
-                    const subKey = index * 4 + childIndex + 1
-                    return {
-                        key: subKey,
-                        label: <Link to={`${child.path}`}>{child.label}</Link>,
-                    };
-                })
-            ) : null
+            children: item?.children?.map((child, childIndex) => {
+                const subKey = child.path
+                return {
+                    key: subKey,
+                    label: <Link to={`${child.path}`}>{child.label}</Link>,
+                };
+            })
         }
     })
 
@@ -57,7 +55,8 @@ const SideNavbar = (props) => {
             <Menu
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={["/users"]}
+                defaultOpenKeys={['/dashboard']} 
+                defaultSelectedKeys={["/tickets/dashboard"]}
                 selectedKeys={[location.pathname]}
                 items={menuItems}
             />
