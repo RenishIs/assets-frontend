@@ -5,10 +5,12 @@ import { useQuery, useMutation } from '@apollo/client';
 import { EditFilled, DeleteFilled, EyeFilled } from '@ant-design/icons';
 import Cookies from 'js-cookie';
 import { tableColumns } from './CONSTANTS';
-import { GET_USERS_QUERY } from '../../gql/Query/Users/index';
+import { GET_USERS_QUERY, GET_USER_BY_ID_QUERY } from '../../gql/Query/Users/index';
 import { DELETE_USER_MUTATION } from '../../gql/Mutation/Users/index';
 import openNotificationWithIcon from '../../Helper/Notification';
 import Loader from '../../Components/UI/Loader';
+import { UPDATE_USER_MUTATION } from '../../gql/Mutation/Users';
+import { Switch } from 'antd';
 
 const confirm = Modal.confirm;
 const { Option } = Select;
@@ -35,6 +37,11 @@ const UsersListing = () => {
 			},
 		});
 	}
+	const [ UpdateUser, { data : updatedUser, loading : editLoading }] = useMutation(UPDATE_USER_MUTATION, {
+        refetchQueries : [
+            { query : GET_USERS_QUERY,  variables: { status: null,  page: 0 } }
+        ]
+    })
 
 	const [DeleteUser, { error, data: deletedUser, loading: deleteLoading }] = useMutation(DELETE_USER_MUTATION, {
 		refetchQueries: [
@@ -49,7 +56,36 @@ const UsersListing = () => {
 		alert(error);
 	}
 
-	const columns = [...tableColumns, {
+	const columns = [...tableColumns,
+		{
+			title: 'STATUS',
+			dataIndex: 'isActive',
+			key: 'isActive',
+			render: (_, record) => (
+				<Switch
+					name="isActive"
+					id="isActive"
+					checkedChildren={"ACTIVE"}
+					unCheckedChildren={"IN-ACTIVE"}
+					defaultChecked={record.isActive}
+					onChange={(checked) => {
+						const { address, contactNo, email, employeeCode, firstName, lastName } = record
+						UpdateUser({ variables : {updateUserId : record.id,  input: {
+							                                                         address, 
+							                                                         contactNo,
+																					 email, 
+																					 employeeCode,
+																					 firstName,
+																					 lastName,
+																					 isActive : checked ? true : false
+																					} 
+												    }
+									})
+					}}
+				/>
+			)
+		}, 
+		{
 		title: 'ACTION',
 		key: 'action',
 		render: (_, record) => (
@@ -58,7 +94,7 @@ const UsersListing = () => {
 					role === 'admin' && (
 						<>
 							<Tooltip title="Edit"><Link to={`/users/edit/${record.id}`}><EditFilled style={{ color: "blue" }} /></Link></Tooltip>
-							<Tooltip title="Delete"><DeleteFilled style={{color: "red"}} onClick={() => showDeleteConfirm(record.id)}/></Tooltip>
+							{/* <Tooltip title="Delete"><DeleteFilled style={{color: "red"}} onClick={() => showDeleteConfirm(record.id)}/></Tooltip> */}
 						</>
 					)
 				}
