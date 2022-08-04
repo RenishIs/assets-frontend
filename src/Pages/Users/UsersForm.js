@@ -11,7 +11,6 @@ import { GET_USER_ROLE } from '../../gql/Query/Users/index';
 import MultiSelect from '../../Components/UI/MultiSelect';
 import { GET_ASSETS_QUERY } from '../../gql/Query/Assets';
 import Loader from '../../Components/UI/Loader';
-import { Switch } from 'antd';
 
 const UsersForm = ({ title, handleUser, loading, ...rest }) => {
 
@@ -27,7 +26,6 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
         employeeCode: user ? user.employeeCode ? user.employeeCode : '' : '',
         contactNo: user ? user.contactNo ? user.contactNo : '' : '',
         address: user ? user.address : '',
-        isActive: user ? user.isActive : true,
         password: user ? 'Albiorix@123' : '',
         confirmPassword: user ? 'Albiorix@123' : ''
     }
@@ -52,116 +50,93 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                     return (
                         <Form>
                             <Row>
-                                <Col span={3}>
-                                    {user &&
-                                        <div>
-                                            <div className='text-start mb-1 mt-4'>
-                                                <label htmlFor="status" className="text-body text-start fs-6 fw-bold">STATUS</label>
-                                            </div>
-                                            <Switch
-                                                name="isActive"
-                                                id="isActive"
-                                                checkedChildren={"ACTIVE"}
-                                                unCheckedChildren={"IN-ACTIVE"}
-                                                defaultChecked={initialState.isActive}
-                                                onChange={(checked) => {
-                                                
-                                                    setFieldValue("isActive", checked ? true : false);
-                                                }}
-                                            />
-                                        </div>
-                                    }
+                                <Col span={12}>
+                                    <TextInput label="FIRSTNAME"
+                                        name="firstName"
+                                        id="firstName"
+                                        prefix={<UserOutlined style={{ color: 'black' }} />}
+                                        isLabel={true} />
+                                </Col>
+                                <Col span={12}>
+                                    <TextInput label="LASTNAME"
+                                        name="lastName"
+                                        id="lastName"
+                                        prefix={<UserOutlined style={{ color: 'black' }} />}
+                                        isLabel={true} />
                                 </Col>
                             </Row>
-                      
-                                <Row>
-                                    <Col span={12}>
-                                        <TextInput label="FIRSTNAME"
-                                            name="firstName"
-                                            id="firstName"
-                                            prefix={<UserOutlined style={{ color: 'black' }} />}
-                                            isLabel={true} />
-                                    </Col>
-                                    <Col span={12}>
-                                        <TextInput label="LASTNAME"
-                                            name="lastName"
-                                            id="lastName"
-                                            prefix={<UserOutlined style={{ color: 'black' }} />}
-                                            isLabel={true} />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col span={12}>
-                                        <TextInput label="EMAIL"
-                                            name="email"
-                                            id="email"
-                                            type="email"
-                                            prefix={<MailFilled style={{ color: 'black' }} />}
-                                            isLabel={true} />
-                                    </Col>
-                                    <Col span={12}>
-                                        <TextInput label="EMPLOYEE CODE"
-                                            name="employeeCode"
-                                            id="employeeCode"
-                                            disabled={user && user?.employeeCode}
-                                            prefix={<UserOutlined style={{ color: 'black' }} />}
-                                            isLabel={true} />
-                                    </Col>
-                                </Row>
-                                <Row>
+                            <Row>
+                                <Col span={12}>
+                                    <TextInput label="EMAIL"
+                                        name="email"
+                                        id="email"
+                                        type="email"
+                                        prefix={<MailFilled style={{ color: 'black' }} />}
+                                        isLabel={true} />
+                                </Col>
+                                <Col span={12}>
+                                    <TextInput label="EMPLOYEE CODE"
+                                        name="employeeCode"
+                                        id="employeeCode"
+                                        disabled={user && user?.employeeCode}
+                                        prefix={<UserOutlined style={{ color: 'black' }} />}
+                                        isLabel={true} />
+                                </Col>
+                            </Row>
+                            <Row>
 
-                                    <Col span={12}>
-                                        <TextInput label="ADDRESS"
-                                            name="address"
-                                            id="address"
-                                            prefix={<EnvironmentFilled style={{ color: 'black' }} />}
-                                            isLabel={true} />
-                                    </Col>
-                                    <Col span={12}>
-                                        <TextInput label="CONTACT NUMBER"
-                                            name="contactNo"
-                                            id="contactNo"
-                                            prefix={<PhoneFilled style={{ color: 'black' }} />}
-                                            isLabel={true} />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col span={12}>
-                                        <TextInput label="PASSWORD"
-                                            name="password"
-                                            id="password"
-                                            type="password"
-                                            isPassword={true}
-                                            isAuth={false}
-                                            disabled={user}
-                                            prefix={<KeyOutlined />}
-                                            isLabel={true} />
-                                    </Col>
-                                    <Col span={12}>
-                                        <TextInput label="CONFIRM PASSWORD"
-                                            name="confirmPassword"
-                                            id="confirmPassword"
-                                            type="password"
-                                            isPassword={true}
-                                            isAuth={false}
-                                            disabled={user}
-                                            prefix={<KeyOutlined />}
-                                            isLabel={true} />
-                                    </Col>
-                                </Row>
+                                <Col span={12}>
+                                    <TextInput label="ADDRESS"
+                                        name="address"
+                                        id="address"
+                                        prefix={<EnvironmentFilled style={{ color: 'black' }} />}
+                                        isLabel={true} />
+                                </Col>
+                                <Col span={12}>
+                                    <TextInput label="CONTACT NUMBER"
+                                        name="contactNo"
+                                        id="contactNo"
+                                        prefix={<PhoneFilled style={{ color: 'black' }} />}
+                                        isLabel={true} />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col span={12}>
+                                    <TextInput label="PASSWORD"
+                                        name="password"
+                                        id="password"
+                                        type="password"
+                                        isPassword={true}
+                                        isAuth={false}
+                                        disabled={user}
+                                        prefix={<KeyOutlined />}
+                                        isLabel={true} />
+                                </Col>
+                                <Col span={12}>
+                                    <TextInput label="CONFIRM PASSWORD"
+                                        name="confirmPassword"
+                                        id="confirmPassword"
+                                        type="password"
+                                        isPassword={true}
+                                        isAuth={false}
+                                        disabled={user}
+                                        prefix={<KeyOutlined />}
+                                        isLabel={true} />
+                                </Col>
+                            </Row>
                             {/* <Row>
-                        <Col span={12}>
-                            <div className='text-start mb-1 mt-4'>
-                                <label htmlFor="role" className="text-body text-start fs-6 fw-bold">ROLE</label>
-                            </div>
-                            <Field name="assets"
-                                   id="assets"  
-                                   component={MultiSelect}
-                                   style={{height:"50px"}} 
-                                   options={assets?.assets}
-                                    />
-                        </Col>
-                    </Row> */}
+                                    <Col span={12}>
+                                        <div className='text-start mb-1 mt-4'>
+                                            <label htmlFor="role" className="text-body text-start fs-6 fw-bold">ROLE</label>
+                                        </div>
+                                        <Field name="assets"
+                                            id="assets"  
+                                            component={MultiSelect}
+                                            style={{height:"50px"}} 
+                                            options={assets?.assets}
+                                                />
+                                            </Col>
+                            </Row> */}
                             <div className="d-flex mt-4 me-4 flex-row-reverse">
                                 <Link to="/users"><Button type="primary">Back</Button></Link>
                                 <Button type="primary" htmlType="submit" className='me-3'>Submit</Button>
