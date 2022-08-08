@@ -49,7 +49,7 @@ const UserDetails = () => {
                 <>
                     <div className='text-center mb-4 d-flex w-50 justify-content-between align-items-center'>
                         <div className="pe-4" onClick={navigateBack}>
-                            <LeftOutlined style={{fontSize : '23px', marginBottom : '5px'}}/>
+                            <LeftOutlined style={{fontSize : '23px', marginBottom : '5px', cursor:"pointer"}}/>
                         </div>
                         <h2 className='fs-5 fw-bold'>USER DETAILS</h2>
                     </div>
