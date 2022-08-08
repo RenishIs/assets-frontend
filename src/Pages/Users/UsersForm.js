@@ -109,7 +109,7 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                                         isPassword={true}
                                         isAuth={false}
                                         disabled={user}
-                                        prefix={<KeyOutlined />}
+                                   
                                         isLabel={true} />
                                 </Col>
                                 <Col span={12}>
@@ -120,7 +120,7 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                                         isPassword={true}
                                         isAuth={false}
                                         disabled={user}
-                                        prefix={<KeyOutlined />}
+                                        prefix={<KeyOutlined  />}
                                         isLabel={true} />
                                 </Col>
                             </Row>
