@@ -33,7 +33,7 @@ const Login = () => {
 		Cookies.set('token', data?.loginUser?.token)
 		Cookies.set('user',data?.loginUser?.user?.firstName + `   `+ data?.loginUser?.user?.lastName)
 		Cookies.set('role', data?.loginUser?.user?.role?.name)
-		openNotificationWithIcon('loginUser', 'success', "LOGIN SUCCESSFUL")
+		openNotificationWithIcon('loginUser', 'success', "Login successful")
 		const directTo = role === 'admin' ? '/tickets/dashboard' : '/profile' 
 		history.push(directTo);
 	}

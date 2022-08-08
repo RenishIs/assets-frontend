@@ -20,7 +20,7 @@ const AssetsAdd = () => {
 	});
 
 	if (data) {
-		openNotificationWithIcon('addAssest','success', "ASSET ADDED SUCCESSFULLY")
+		openNotificationWithIcon('addAssest','success', "Asset added successfully")
 		history.push('/assets');
 	}
 
