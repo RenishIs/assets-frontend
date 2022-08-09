@@ -9,10 +9,19 @@ import Timeline from "../../Components/UI/Timeline";
 
 const RowUI = ({ label, ...rest }) => (
     <Row className="mb-3">
-        <Col span={12}>
-            <span className="text-muted">{label} :</span>
+
+        <Col span={8} style={{
+            justifyContent: "flex-start",
+            display: "flex"
+        }}>
+            <span className="text-muted" >{label} :</span>
         </Col>
-        <Col span={12}>
+        <Col span={4}></Col>
+        <Col span={4}></Col>
+        <Col span={8} style={{
+            justifyContent: "flex-start",
+            display: "flex"
+        }}>
             <span>
                 {
                     (rest?.value == 'In-stock' || rest?.value == 'New' || rest?.value == 'Assigned' || rest?.value == 'In-Repair' || rest?.value == 'Broken')
@@ -29,6 +38,7 @@ const RowUI = ({ label, ...rest }) => (
                 }
             </span>
         </Col>
+
     </Row>
 )
 
@@ -55,32 +65,34 @@ const AssetDetails = () => {
             <div className="justify-content-between align-items-center d-flex flex-column ">
 
                 <h2 className='fs-5 fw-bold'>ASSET DETAILS</h2>
-          
-                <div className="mt-4 text-center w-50 ">
-                    <RowUI label="Name" value={asset?.name} />
-                    {
-                        asset?.description && (
-                            <RowUI label="Description" value={asset?.description} />
-                        )
-                    }
-                    <RowUI label="Location" value={asset?.location} />
-                    <RowUI label="Asset Category" value={asset?.assetCategory?.name} />
-                    <RowUI label="Asset Type" value={asset?.assetType?.name} />
-                    {
-                        asset?.purchasedOn && (
-                            <RowUI label="Purchased On" value={moment(asset?.purchasedOn).format("MMMM Do YYYY")} />
-                        )
-                    }
-                    <RowUI label="Asset Condition" value={asset?.assetCondition} />
-                    <RowUI label="Asset Status" value={asset?.assetStatus?.name} />
-                    {
-                        asset?.reason && (
-                            <RowUI label="Reason" value={asset?.reason} />
-                        )
-                    }
-                    <RowUI label="Employee" value={asset?.employeeId?.firstName + `   ` + asset?.employeeId?.lastName} />
-                </div>
-           
+
+                <Row className="mt-4 text-center w-100">
+                    <Col span={6}></Col>
+                    <Col span={12} className="mt-4 text-start w-40"><RowUI label="Name" value={asset?.name} />
+                        {
+                            asset?.description && (
+                                <RowUI label="Description" value={asset?.description} />
+                            )
+                        }
+                        <RowUI label="Location" value={asset?.location} />
+                        <RowUI label="Asset Category" value={asset?.assetCategory?.name} />
+                        <RowUI label="Asset Type" value={asset?.assetType?.name} />
+                        {
+                            asset?.purchasedOn && (
+                                <RowUI label="Purchased On" value={moment(asset?.purchasedOn).format("MMMM Do YYYY")} />
+                            )
+                        }
+                        <RowUI label="Asset Condition" value={asset?.assetCondition} />
+                        <RowUI label="Asset Status" value={asset?.assetStatus?.name} />
+                        {
+                            asset?.reason && (
+                                <RowUI label="Reason" value={asset?.reason} />
+                            )
+                        }
+                        <RowUI label="Employee" value={asset?.employeeId?.firstName + `   ` + asset?.employeeId?.lastName} /></Col>
+                    <Col span={6}></Col>
+                </Row>
+
 
             </div>
 
