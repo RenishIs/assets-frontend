@@ -57,7 +57,7 @@ const SideNavbar = (props) => {
                 theme="dark"
                 mode="inline"
                 defaultOpenKeys={['/dashboard']} 
-                defaultSelectedKeys={["/tickets/dashboard"]}
+                defaultSelectedKeys={["/tickets-dashboard"]}
                 selectedKeys={["/"+location.pathname.split('/')[1]]}
                 items={menuItems}
             />
