@@ -12,7 +12,7 @@ import AuthLoader from "../../Components/UI/AuthLoader";
 const ForgotPassword = () => {
 
     const initialState ={email : ''}
-	const [sendResetPasswordLink,{ data, loading }] = useMutation(RESET_PASSWORD_LINK);
+	const [sendResetPasswordLink,{ data,error, loading }] = useMutation(RESET_PASSWORD_LINK);
 
     const onFinish = (values: object) => {
         sendResetPasswordLink({
@@ -24,7 +24,9 @@ const ForgotPassword = () => {
         openNotificationWithIcon('forgotPassword', 'success', "Reset password link is sent to your registered e-mail id")
 	
 	}
-
+	if(error){
+		openNotificationWithIcon('forgotPassword', 'error', error.message)
+	}
     return (
         <AuthLayout headerText="Forgot Password?">
             <p className="auth-sub-heading">Please enter your registered email address.<br/>We'll send instructions to help you reset your password</p>
