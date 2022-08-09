@@ -314,3 +314,7 @@ div#authForm .ant-input:focus{
 .ant-menu-dark .ant-menu-inline.ant-menu-sub {
 	background-color: inherit;
 }
+
+.removeCursor span span{
+	cursor: default !important;
+}
