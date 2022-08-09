@@ -26,7 +26,7 @@ const AssetCategoryEdit = () => {
     }
 
     if(updatedAssetCategory){
-        openNotificationWithIcon('editAssetCategory','success', "ASSET CATEGORY EDITED SUCCESSFULLY")
+        openNotificationWithIcon('editAssetCategory','success', "Asset category edited successfully")
 		history.push('/asset-categories');
     }
     

@@ -21,7 +21,7 @@ const ForgotPassword = () => {
     }
 
 	if (data?.sendResetPasswordLink?.message) {
-        openNotificationWithIcon('forgotPassword', 'success', "Reset password link is sent to your Registered mail")
+        openNotificationWithIcon('forgotPassword', 'success', "Reset password link is sent to your registered e-mail id")
 	
 	}
 
