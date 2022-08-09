@@ -136,7 +136,8 @@ export const PrivateRoutesConfig = [
         path : '/assets/:id',
         exact : true,
         permissions : [
-            Roles.ADMIN
+            Roles.ADMIN,
+            Roles.EMPLOYEE
         ]
     },
     {
