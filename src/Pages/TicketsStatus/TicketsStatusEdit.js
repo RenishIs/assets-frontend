@@ -26,7 +26,7 @@ const TicketsStatusEdit = () => {
 	}
 
 	if (updatedData) {
-		openNotificationWithIcon('editTicketsStatus','success', "TICKETS STATUS EDITED SUCCESSFULLY")
+		openNotificationWithIcon('editTicketsStatus','success', "Ticket status edited successfully")
 		history.push('/tickets-status');
 	}
 	if(loading){

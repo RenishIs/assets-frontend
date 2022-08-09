@@ -26,7 +26,7 @@ const TicketAdd = () => {
 	});
 
 	if (ticket) {
-		openNotificationWithIcon('addTicket', 'success', "TICKET ADDED SUCCESSFULLY")
+		openNotificationWithIcon('addTicket', 'success', "Ticket added successfully")
 		history.push('/tickets');
 	}
 

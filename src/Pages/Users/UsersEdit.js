@@ -31,7 +31,8 @@ const UsersEdit = () => {
 		return <Loader />
 	}
 	if(error){
-		openNotificationWithIcon('userUpdateError', 'error', 'DUPLICATE INPUT ERROR')
+    
+		openNotificationWithIcon('userUpdateError', 'error', 'The Email already exists')
 	}
     if(updatedUser) {
         openNotificationWithIcon('userEdit', 'success', "User edited successfully")
