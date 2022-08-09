@@ -34,7 +34,7 @@ const UsersEdit = () => {
 		openNotificationWithIcon('userUpdateError', 'error', 'DUPLICATE INPUT ERROR')
 	}
     if(updatedUser) {
-        openNotificationWithIcon('userEdit', 'success', "USER EDITED SUCCESSFULLY")
+        openNotificationWithIcon('userEdit', 'success', "User edited successfully")
         history.push('/users')
     }
     return (

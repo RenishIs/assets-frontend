@@ -24,7 +24,7 @@ const AssetsForm = ({title, handleAssetStatus, loading, ...rest}) => {
                     <Row>
                         <Col span={6}></Col>
                         <Col span={12}>
-                            <TextInput label="STATUS" name="name" id="name" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
+                            <TextInput label="STATUS" name="name" id="name" isLabel={true} />	
                         </Col>
                         <Col span={6}></Col>
                     </Row>

@@ -24,7 +24,7 @@ const AssetsForm = ({ handleAssetCategory, loading, ...rest}) => {
                     <Row>
                         <Col span={6}></Col>
                         <Col span={12}>
-                            <TextInput label="CATEGORY" name="name" id="name" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />
+                            <TextInput label="CATEGORY" name="name" id="name"  isLabel={true} />
                         </Col>
                         <Col span={6}></Col>
                     </Row>  

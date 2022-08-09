@@ -24,7 +24,7 @@ const UsersAdd = () => {
 		openNotificationWithIcon('userAddError', 'error', 'DUPLICATE INPUT ERROR')
 	}
     if(data){
-        openNotificationWithIcon('userAdd', 'success', "USER ADDED SUCCESSFULLY")
+        openNotificationWithIcon('userAdd', 'success', "User added successfully")
         history.push('/users')
     }
 
