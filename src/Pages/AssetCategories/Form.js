@@ -1,7 +1,6 @@
 import { Button } from 'antd';
 import { Formik, Form } from 'formik';
 import { Link } from 'react-router-dom';
-import { UserOutlined } from '@ant-design/icons';
 import TextInput from '../../Components/UI/TextInput';
 import { assetCategoryValidation } from '../../Helper/ValidationSchema';
 import { Row, Col } from 'antd';
@@ -24,7 +23,7 @@ const AssetsForm = ({ handleAssetCategory, loading, ...rest}) => {
                     <Row>
                         <Col span={6}></Col>
                         <Col span={12}>
-                            <TextInput label="CATEGORY" name="name" id="name"  isLabel={true} />
+                            <TextInput label="CATEGORY" name="name" id="name" isLabel={true} />
                         </Col>
                         <Col span={6}></Col>
                     </Row>  

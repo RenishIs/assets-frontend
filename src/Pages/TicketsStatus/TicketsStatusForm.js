@@ -2,7 +2,6 @@ import { Button } from 'antd';
 import { Formik, Form } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
 import { assetStatusValidations } from '../../Helper/ValidationSchema';
-import { UserOutlined } from '@ant-design/icons';
 import { Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import Loader from '../../Components/UI/Loader';

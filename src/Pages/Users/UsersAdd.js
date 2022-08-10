@@ -8,7 +8,6 @@ import UsersForm from './UsersForm';
 const UsersAdd = () => {
 
     const history = useHistory();
-
     const [CreateUser, { data, error, loading }] = useMutation(CREATE_USER_MUTATION, {
         refetchQueries: [
             { query: GET_USERS_QUERY, variables: { status: null, page: 0 } }
@@ -20,7 +19,7 @@ const UsersAdd = () => {
         const { confirmPassword, ...rest } = values
 
         try {
-            const result = await CreateUser({ variables: { input: { ...rest } } })
+            await CreateUser({ variables: { input: { ...rest } } })
         } catch (e) {
             let messageShown = false;
             if (isApolloError(e)) {
