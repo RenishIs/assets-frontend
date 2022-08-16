@@ -2,7 +2,6 @@ import { Button } from 'antd';
 import { Formik, Form } from 'formik';
 import TextInput from '../../Components/UI/TextInput';
 import { assetTypeValidations } from '../../Helper/ValidationSchema';
-import { UserOutlined } from '@ant-design/icons';
 import { Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import Loader from '../../Components/UI/Loader';
@@ -24,7 +23,7 @@ const AssetTypesForm = ({title, handleAssetType, loading, ...rest}) => {
                     <Row>
                         <Col span={6}></Col>
                         <Col span={12}>
-                            <TextInput label="TYPE" name="name" id="name" prefix={<UserOutlined style={{color : 'black'}}/>} isLabel={true} />	
+                            <TextInput label="TYPE" name="name" id="name" isLabel={true} />	
                         </Col>
                         <Col span={6}></Col>
                     </Row>

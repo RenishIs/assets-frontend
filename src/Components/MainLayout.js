@@ -4,6 +4,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import Cookies from "js-cookie";
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, LogoutOutlined, SettingOutlined } from '@ant-design/icons';
 import SideNavbar from './UI/SideNavbar';
+import openNotificationWithIcon from '../Helper/Notification';
 
 const { Header } = Layout;
 
@@ -25,6 +26,7 @@ const MainLayout = ({children, routes, path}) => {
         Cookies.remove('role')
         Cookies.remove('user')
         history.push('/user/login')
+        openNotificationWithIcon('logout','success', "Logout successful")
     }
 
     const items = [

@@ -109,7 +109,7 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                                         isPassword={true}
                                         isAuth={false}
                                         disabled={user}
-                                        prefix={<KeyOutlined />}
+                                        className={user ? "removeCursor form-input":"form-input"}
                                         isLabel={true} />
                                 </Col>
                                 <Col span={12}>
@@ -119,8 +119,8 @@ const UsersForm = ({ title, handleUser, loading, ...rest }) => {
                                         type="password"
                                         isPassword={true}
                                         isAuth={false}
-                                        disabled={user}
-                                        prefix={<KeyOutlined />}
+                                        disabled={user}       
+                                        className={user ? "removeCursor form-input":"form-input"}
                                         isLabel={true} />
                                 </Col>
                             </Row>

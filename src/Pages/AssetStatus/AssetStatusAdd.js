@@ -14,7 +14,7 @@ const AssetStatusAdd = () => {
 	});
 
 	if (data) {
-		openNotificationWithIcon('addAssetStatus','success', "ASSET STATUS ADDED SUCCESSFULLY")
+		openNotificationWithIcon('addAssetStatus','success', "Asset status added successfully")
 		history.push('/asset-status');
 	}
 

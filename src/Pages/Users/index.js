@@ -20,7 +20,7 @@ const UsersListing = () => {
 	const role = Cookies.get('role')
 	const [statusValue, setStatusValue] = useState(null);
 	const [currentPage, setCurrentPage] = useState(0)
-	const { loading, data, refetch } = useQuery(GET_USERS_QUERY, { variables: { status: null, page: 0} })
+	const { loading, data, refetch } = useQuery(GET_USERS_QUERY, { variables: { status: null, page: 0 } })
 
 	const showDeleteConfirm = (id) => {
 		confirm({
@@ -37,18 +37,20 @@ const UsersListing = () => {
 			},
 		});
 	}
-	const [ UpdateUser, { data : updatedUser, loading : editLoading }] = useMutation(UPDATE_USER_MUTATION, {
-        refetchQueries : [
-            { query : GET_USERS_QUERY,  variables: { status: null,  page: 0 } }
-        ]
-    })
-
-	const [DeleteUser, { error, data: deletedUser, loading: deleteLoading }] = useMutation(DELETE_USER_MUTATION, {
+	const [UpdateUser, { data: updatedUser, loading: editLoading }] = useMutation(UPDATE_USER_MUTATION, {
 		refetchQueries: [
-			{ query: GET_USERS_QUERY, variables: { status: null, page: 0 }},
+			{ query: GET_USERS_QUERY, variables: { status: null, page: 0 } }
 		]
 	})
 
+	const [DeleteUser, { error, data: deletedUser, loading: deleteLoading }] = useMutation(DELETE_USER_MUTATION, {
+		refetchQueries: [
+			{ query: GET_USERS_QUERY, variables: { status: null, page: 0 } },
+		]
+	})
+	if (updatedUser) {
+		openNotificationWithIcon('userDelete', 'success', "User status updated successfully")
+	}
 	if (deletedUser) {
 		openNotificationWithIcon('userDelete', 'success', "USER DELETED SUCCESSFULLY")
 	}
@@ -57,35 +59,31 @@ const UsersListing = () => {
 	}
 
 	const columns = [...tableColumns,
-		{
-			title: 'STATUS',
-			dataIndex: 'isActive',
-			key: 'isActive',
-			render: (_, record) => (
-				<Switch
-					name="isActive"
-					id="isActive"
-					checkedChildren={"ACTIVE"}
-					unCheckedChildren={"IN-ACTIVE"}
-					defaultChecked={record.isActive}
-					onChange={(checked) => {
-						const { address, contactNo, email, employeeCode, firstName, lastName } = record
-						UpdateUser({ variables : {updateUserId : record.id,  input: {
-							                                                         address, 
-							                                                         contactNo,
-																					 email, 
-																					 employeeCode,
-																					 firstName,
-																					 lastName,
-																					 isActive : checked ? true : false
-																					} 
-												    }
-									})
-					}}
-				/>
-			)
-		}, 
-		{
+	{
+		title: 'STATUS',
+		dataIndex: 'isActive',
+		key: 'isActive',
+		render: (_, record) => (
+			<Switch
+				name="isActive"
+				id="isActive"
+				checkedChildren={"ACTIVE"}
+				unCheckedChildren={"IN-ACTIVE"}
+				defaultChecked={record.isActive}
+				onChange={(checked) => {
+
+					UpdateUser({
+						variables: {
+							updateUserId: record.id, input: {
+								isActive: checked ? true : false
+							}
+						}
+					})
+				}}
+			/>
+		)
+	},
+	{
 		title: 'ACTION',
 		key: 'action',
 		render: (_, record) => (
@@ -105,19 +103,19 @@ const UsersListing = () => {
 
 	const handleChange = (value) => {
 		setStatusValue(value)
-		if(value === null) {
+		if (value === null) {
 			refetch({ status: null, page: 0 })
-		}else {
+		} else {
 			refetch({ status: { isActive: value }, page: 0 })
 		}
 	};
 
 	const handlePageChange = (page) => {
-		setCurrentPage(page-1)
-		if(statusValue == null) {
-			refetch({ status: null, page: page-1 })
-		}else {
-			refetch({ status: { isActive: statusValue }, page: page-1 })
+		setCurrentPage(page - 1)
+		if (statusValue == null) {
+			refetch({ status: null, page: page - 1 })
+		} else {
+			refetch({ status: { isActive: statusValue }, page: page - 1 })
 		}
 	}
 
@@ -125,7 +123,7 @@ const UsersListing = () => {
 		<>
 			{(loading || deleteLoading) && <Loader />}
 			<div className='text-center mb-3'>
-				<h2 className='d-inline fs-4 fw-bold' style={{marginLeft:'6.5rem'}}>MANAGE USERS</h2>
+				<h2 className='d-inline fs-4 fw-bold' style={{ marginLeft: '6.5rem' }}>MANAGE USERS</h2>
 				{
 					role === "admin" && (
 						<div className='add-button'>
@@ -139,16 +137,18 @@ const UsersListing = () => {
 					)
 				}
 			</div>
-			<Table bordered 
-			       columns={columns} 
-				   dataSource={data?.users?.users?.map(item => ({ ...item, key: item.id }))} 
-			       pagination={{ defaultCurrent:1, 
-								 defaultPageSize: 10, 
-								 total: data?.users?.total, 
-								 current:data?.users?.currentPage+1, 
-								 onChange: handlePageChange}}
+			<Table bordered
+				columns={columns}
+				dataSource={data?.users?.users?.map(item => ({ ...item, key: item.id }))}
+				pagination={{
+					defaultCurrent: 1,
+					defaultPageSize: 10,
+					total: data?.users?.total,
+					current: data?.users?.currentPage + 1,
+					onChange: handlePageChange
+				}}
 			/>
-		
+
 		</>
 	)
 }

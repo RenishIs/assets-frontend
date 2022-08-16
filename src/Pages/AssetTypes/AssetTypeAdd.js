@@ -15,7 +15,7 @@ const AssetTypeAdd = () => {
 	});
 
 	if (data) {
-		openNotificationWithIcon('addAssetType','success', "ASSET TYPE ADDED SUCCESSFULLY")
+		openNotificationWithIcon('addAssetType','success', "Asset type added successfully")
 		history.push('/asset-types');
 	}
 
