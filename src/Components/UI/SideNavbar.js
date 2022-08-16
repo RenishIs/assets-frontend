@@ -13,8 +13,8 @@ function getItem(label, icon, path, role, children) {
 
 const iconsData = [
     getItem("Dashboard", LaptopOutlined, null , ['admin'], [ 
-        getItem("Assets", null, '/assets/dashboard', ['admin'] ),
-        getItem("Tickets", null, '/tickets/dashboard', ['admin'])
+        getItem("Assets", null, '/assets-dashboard', ['admin'] ),
+        getItem("Tickets", null, '/tickets-dashboard', ['admin'])
     ]),
     getItem("Users", UserOutlined, '/users', ['admin']),
     getItem("Assets", LaptopOutlined, '/assets', ['admin']),
@@ -46,6 +46,7 @@ const SideNavbar = (props) => {
     })
 
     let location = useLocation()
+
     return (
         <Sider width='18%' height="100vh" className='overflow-hidden' trigger={null} collapsible collapsed={props?.collapsed}>
             <div className='d-flex justify-content-center align-items-center p-1'>
@@ -56,8 +57,8 @@ const SideNavbar = (props) => {
                 theme="dark"
                 mode="inline"
                 defaultOpenKeys={['/dashboard']} 
-                defaultSelectedKeys={["/tickets/dashboard"]}
-                selectedKeys={[location.pathname]}
+                defaultSelectedKeys={["/tickets-dashboard"]}
+                selectedKeys={["/"+location.pathname.split('/')[1]]}
                 items={menuItems}
             />
         </Sider>

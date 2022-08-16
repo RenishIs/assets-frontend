@@ -16,7 +16,7 @@ const AssetCategoryAdd = () => {
     })
 
     if(data){
-        openNotificationWithIcon('addAssetCategory', 'success', 'ASSET CATEGORY ADDED SUCCESSFULLY')
+        openNotificationWithIcon('addAssetCategory', 'success', 'Asset category added successfully')
         history.push('/asset-categories')
     }
 

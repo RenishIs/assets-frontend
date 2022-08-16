@@ -26,7 +26,7 @@ const AssetStatusEdit = () => {
 	}
 
 	if (updatedData) {
-		openNotificationWithIcon('editAssetStatus','success', "ASSET STATUS EDITED SUCCESSFULLY")
+		openNotificationWithIcon('editAssetStatus','success', "Asset status added successfully")
 		history.push('/asset-status');
 	}
 	if(loading){

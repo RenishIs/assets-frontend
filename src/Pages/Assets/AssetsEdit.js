@@ -33,7 +33,7 @@ const AssetsEdit = () => {
 	}
 
 	if (updatedData) {
-		openNotificationWithIcon('editAsset','success', "ASSET EDITED SUCCESSFULLY")
+		openNotificationWithIcon('editAsset','success', "Asset edited successfully")
 		history.push('/assets');
 	}
 	if(loading){

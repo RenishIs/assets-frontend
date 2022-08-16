@@ -25,7 +25,7 @@ const ResetPassword = () => {
         resetPassword({ variables : data});
     };
 	if (data?.resetPassword?.message) {
-        openNotificationWithIcon('resetPassword', 'success', "RESET PASSWORD SUCCESSFUL")
+        openNotificationWithIcon('resetPassword', 'success', "Reset password successful")
 		history.push('/login');
 	}
     return (

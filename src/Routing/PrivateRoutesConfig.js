@@ -43,7 +43,7 @@ export const PrivateRoutesConfig = [
         key : 1,
         sidebar : true,
         component: AssetDashboard,
-        path: '/assets/dashboard',
+        path: '/assets-dashboard',
         exact : true,
         permissions: [
             Roles.ADMIN,
@@ -136,7 +136,8 @@ export const PrivateRoutesConfig = [
         path : '/assets/:id',
         exact : true,
         permissions : [
-            Roles.ADMIN
+            Roles.ADMIN,
+            Roles.EMPLOYEE
         ]
     },
     {
@@ -296,9 +297,9 @@ export const PrivateRoutesConfig = [
         key : 25,
         sidebar : true,
         icon : React.createElement(FaTicketAlt, {className : 'side-nav-bar-icons',}),
-        label : <Link to="/tickets/dashboard">Tickets Dashboard</Link>,
+        label : <Link to="/tickets-dashboard">Tickets Dashboard</Link>,
         component : TicketDashboard,
-        path : '/tickets/dashboard',
+        path : '/tickets-dashboard',
         exact : true,
         permissions : [
             Roles.ADMIN

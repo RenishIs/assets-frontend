@@ -29,7 +29,7 @@ const Registration = () => {
 	}
 
 	if (data?.registerUser?.token) {
-		openNotificationWithIcon('registerUser', 'success', "REGISTRATION SUCCESSFUL")
+		openNotificationWithIcon('registerUser', 'success', "Registeration successful")
 		history.push('/user/login');
 	}
 

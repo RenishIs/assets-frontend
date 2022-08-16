@@ -14,7 +14,7 @@ const TicketsStatusAdd = () => {
 	});
 
 	if (data) {
-		openNotificationWithIcon('addTicketsStatus','success', "TICKETS STATUS ADDED SUCCESSFULLY")
+		openNotificationWithIcon('addTicketsStatus','success', "Ticket status added successfully")
 		history.push('/tickets-status');
 	}
 
