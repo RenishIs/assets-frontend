@@ -176,7 +176,9 @@ div#authForm .ant-input:focus{
 	display: inline-block;
 	float: right;
 }
-
+ul.ant-pagination li{
+	height: auto !important;
+}
 .app-loader{
 	position: fixed; /* Stay in place */
 	z-index: 999; /* Sit on top */
