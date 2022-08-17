@@ -10,26 +10,26 @@ export const tableColumns = [
 		dataIndex: 'name',
 		key: 'name',
 		render: (_, record) => (
-			<span className={`${role === 'admin'  && 'cursor-pointer'}`}>{record.name}</span>
+			<span className='cursor-pointer'>{record.name}</span>
 		),
 	},
 	{
 		title: 'CATEGORY',
 		dataIndex: 'assetCategory',
 		key: 'assetCategory',
-		render: (text) => <span className={`${role === 'admin'  && 'cursor-pointer'}`}>{text?.name}</span>,
+		render: (text) => <span className='cursor-pointer'>{text?.name}</span>,
 	},
 	{
 		title: 'TYPE',
 		dataIndex: 'assetType',
 		key: 'assetType',
-		render: (text) => <span className={`${role === 'admin'  && 'cursor-pointer'}`}>{text?.name}</span>,
+		render: (text) => <span className='cursor-pointer'>{text?.name}</span>,
 	},
 	{
 		title: 'STATUS',
 		dataIndex: 'assetStatus',
 		key: 'assetStatus',
-			render: (text) => <span className={`${role === 'admin'  && 'cursor-pointer'}`}>
+			render: (text) => <span className='cursor-pointer'>
 								{ 
 									(text.name == 'In-stock' || text.name == 'New' || text.name == 'Assigned' || text.name == 'In-Repair' || text.name == 'Broken') 
 									?
@@ -49,6 +49,6 @@ export const tableColumns = [
 		title: 'EMPLOYEE',
 		dataIndex: 'employeeId',
 		key: 'employeeId',
-		render:  (_, record) => (<span className={`${role === 'admin'  && 'cursor-pointer'}`}>{record.employeeId.firstName} {record.employeeId.lastName}</span>)
+		render:  (_, record) => (<span className='cursor-pointer'>{record.employeeId.firstName} {record.employeeId.lastName}</span>)
 	}
 ]
