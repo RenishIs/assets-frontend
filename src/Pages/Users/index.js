@@ -48,8 +48,11 @@ const UsersListing = () => {
 			{ query: GET_USERS_QUERY, variables: { status: null, page: 0 } },
 		]
 	})
-	if (updatedUser) {
-		openNotificationWithIcon('userDelete', 'success', "User status updated successfully")
+	if (updatedUser && updatedUser?.updateUser?.isActive) {
+		openNotificationWithIcon('userDelete', 'success', "User activated successfully")
+	}
+	if (updatedUser && !updatedUser?.updateUser?.isActive) {
+		openNotificationWithIcon('userDelete', 'success', "User deactivated successfully")
 	}
 	if (deletedUser) {
 		openNotificationWithIcon('userDelete', 'success', "USER DELETED SUCCESSFULLY")
