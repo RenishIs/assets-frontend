@@ -208,7 +208,15 @@ ul.ant-pagination li{
 	border: #001529;
 }
 
-.ant-table-thead > tr > th{
+ .ant-table-thead > tr > th{
+	background-color: #021a30;
+	color: white;
+} 
+.ant-table-thead th.ant-table-column-has-sorters:hover {
+	background-color: #021a30;
+	color: white;
+}
+.ant-table-thead th.ant-table-column-sort{
 	background-color: #021a30;
 	color: white;
 }
