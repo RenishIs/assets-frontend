@@ -303,7 +303,9 @@ div#authForm .ant-input:focus{
 .text-body{
 	font-weight: bold;
 }
-
+.user-admin .vertical-timeline-element-content.bounce-in{
+	cursor: pointer;
+}
 .vertical-timeline-element-icon svg{
 	left : 92% !important
 
