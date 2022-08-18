@@ -26,33 +26,33 @@ const AllTicketsListing = () => {
 	});
 
 	const handleChange = (value) => {
-	    setUserValue(value)
-			refetch({
-				page: currentPage,
-				input: {
-					status: null,
-					userId: value
-				}
-			})
-		
+		setUserValue(value)
+		refetch({
+			page: currentPage,
+			input: {
+				status: null,
+				userId: value
+			}
+		})
+
 	};
 
 	const handlePageChange = (page) => {
-		setCurrentPage(page-1)
-			refetch({ 
-				page: page-1,
-				input: {
-					status: null,
-					userId: userValue
-			    } 
-		    })
+		setCurrentPage(page - 1)
+		refetch({
+			page: page - 1,
+			input: {
+				status: null,
+				userId: userValue
+			}
+		})
 	}
 
 	return (
 		<>
 			{loading && <Loader />}
 			<div className='text-center mb-3'>
-				<h2 className='d-inline fs-4 fw-bold text-center' style={{marginLeft:'6.5rem'}}>MANAGE ALL TICKETS</h2>
+				<h2 className='d-inline fs-4 fw-bold text-center' style={{ marginLeft: '6.5rem' }}>MANAGE ALL TICKETS</h2>
 				{
 					role === "admin" && (
 						<div className='add-button'>
@@ -69,13 +69,15 @@ const AllTicketsListing = () => {
 				}
 			</div>
 			<Table bordered
-				   columns={tableColumns}
-				   dataSource={tickets?.tickets?.tickets?.map(item => ({ ...item, key: item.id }))}
-				   pagination={{ defaultCurrent:1, 
-					             defaultPageSize: 10, 
-							     total: tickets?.tickets?.total,
-							     current: tickets?.tickets?.currentPage+1, 
-							     onChange: handlePageChange}}
+				columns={tableColumns}
+				dataSource={tickets?.tickets?.tickets?.map(item => ({ ...item, key: item.id }))}
+				pagination={{
+					defaultCurrent: 1,
+					defaultPageSize: 10,
+					total: tickets?.tickets?.total,
+					current: tickets?.tickets?.currentPage + 1,
+					onChange: handlePageChange
+				}}
 			/>
 		</>
 	)
