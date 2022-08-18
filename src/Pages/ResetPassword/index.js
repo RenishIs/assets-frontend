@@ -1,26 +1,35 @@
 import { Button } from "antd";
 import { Form, Formik } from "formik";
 import { EyeInvisibleOutlined, EyeFilled } from '@ant-design/icons';
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import TextInput from "../../Components/UI/TextInput";
 import { resetPasswordValidations } from "../../Helper/ValidationSchema";
 import AuthLayout from "../../Components/AuthLayout";
 import { RESET_PASSWORD } from "../../gql/Mutation/Auth";
 import openNotificationWithIcon from "../../Helper/Notification";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import AuthLoader from "../../Components/UI/AuthLoader";
+import { TOKEN_CHECK } from "../../gql/Query/Auth";
 
 const ResetPassword = () => {
 
     const history = useHistory();
     const initialState = { oldPassword: '', newPassword: '', confirmPassword: '' }
-    const [resetPassword, { data, loading }] = useMutation(RESET_PASSWORD);
 
     const params = useParams();
+    const { data: message, error: errorMessage } = useQuery(TOKEN_CHECK, {
+        variables: {
+            id: params.id,
+            token: params.token
+        }
+    });
+    const [resetPassword, { data, loading }] = useMutation(RESET_PASSWORD);
+
     const onFinish = (values) => {
         const data = {
             password: values?.newPassword,
-            id: params.id
+            id: params.id,
+            token: params.token
         }
         resetPassword({ variables: data });
     };
@@ -28,9 +37,10 @@ const ResetPassword = () => {
         openNotificationWithIcon('resetPassword', 'success', "Reset password successful")
         history.push('/login');
     }
+
     return (
         <AuthLayout headerText="Reset Password">
-            <Formik initialValues={initialState} validationSchema={resetPasswordValidations} onSubmit={values => onFinish(values)}>
+            {!errorMessage ? <Formik initialValues={initialState} validationSchema={resetPasswordValidations} onSubmit={values => onFinish(values)}>
                 <Form>
                     <div id="authForm">
                         <TextInput placeholder="New Password" label="New Password" type="password" name="newPassword" id="newPassword"
@@ -44,9 +54,15 @@ const ResetPassword = () => {
                         {loading ? <AuthLoader /> : 'Submit'}
                     </Button>
                 </Form>
-       
-            </Formik>
-        </AuthLayout>
+
+            </Formik> :
+                <>
+                    <p className="auth-sub-heading">Invalid Reset Password link.<br/>
+                        This link is already used.</p>
+                    <div> <Link to="/user/login" className="auth-text-inner">Back to Sign In</Link></div>
+                </>
+            }
+        </AuthLayout >
     )
 }
 
