@@ -66,6 +66,7 @@ const UsersListing = () => {
 		title: 'STATUS',
 		dataIndex: 'isActive',
 		key: 'isActive',
+	
 		render: (_, record) => (
 			<Switch
 				name="isActive"

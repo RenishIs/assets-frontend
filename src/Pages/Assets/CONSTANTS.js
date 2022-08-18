@@ -1,14 +1,13 @@
 import { Tag } from 'antd';
-import { Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
 
-const role = Cookies.get('role')
 
 export const tableColumns = [
 	{
 		title: 'NAME',
 		dataIndex: 'name',
 		key: 'name',
+		sortDirections: ['descend', 'ascend'],
+		sorter: (a, b) => a.name.localeCompare(b.name),
 		render: (_, record) => (
 			<span className='cursor-pointer'>{record.name}</span>
 		),
@@ -17,12 +16,16 @@ export const tableColumns = [
 		title: 'CATEGORY',
 		dataIndex: 'assetCategory',
 		key: 'assetCategory',
+		sortDirections: ['descend', 'ascend'],
+		sorter: (a, b) => a?.assetCategory?.name.localeCompare(b?.assetCategory?.name),
 		render: (text) => <span className='cursor-pointer'>{text?.name}</span>,
 	},
 	{
 		title: 'TYPE',
 		dataIndex: 'assetType',
 		key: 'assetType',
+		sortDirections: ['descend', 'ascend'],
+		sorter: (a, b) => a?.assetType?.name.localeCompare(b?.assetType?.name),
 		render: (text) => <span className='cursor-pointer'>{text?.name}</span>,
 	},
 	{
@@ -49,6 +52,8 @@ export const tableColumns = [
 		title: 'EMPLOYEE',
 		dataIndex: 'employeeId',
 		key: 'employeeId',
+		sortDirections: ['descend', 'ascend'],
+		sorter: (a, b) => a?.employeeId?.firstName.localeCompare(b?.employeeId?.firstName),
 		render:  (_, record) => (<span className='cursor-pointer'>{record.employeeId.firstName} {record.employeeId.lastName}</span>)
 	}
 ]
