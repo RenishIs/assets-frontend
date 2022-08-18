@@ -9,7 +9,6 @@ import { tableColumns as assetTableColumns } from '../Assets/CONSTANTS';
 import Cookies from 'js-cookie';
 
 const Profile = () => {
-
     const role = Cookies.get('role')
     const { data: profile, loading: profileLoading } = useQuery(GET_PROFILE_QUERY);
     const { loading: ticketsLoading, data: tickets, refetch: refetchTicket } = useQuery(GET_TICKETS_QUERY, { variables: { page: 0 } });
