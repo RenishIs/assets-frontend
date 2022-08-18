@@ -9,7 +9,6 @@ import { tableColumns as assetTableColumns } from '../Assets/CONSTANTS';
 import Cookies from 'js-cookie';
 
 const Profile = () => {
-
     const role = Cookies.get('role')
     const { data: profile, loading: profileLoading } = useQuery(GET_PROFILE_QUERY);
     const { loading: ticketsLoading, data: tickets, refetch: refetchTicket } = useQuery(GET_TICKETS_QUERY, { variables: { page: 0 } });
@@ -43,36 +42,36 @@ const Profile = () => {
                     <Col span={10}>
                         <div className="mt-4 text-start">
                             <Row className="mb-3">
-                                <Col span={5}>
+                                <Col span={4}>
                                 </Col>
-                                <Col span={7}>
+                                <Col span={6}>
                                     <span className="text-muted">Username :</span>
                                 </Col>
-                                <Col span={7}>
+                                <Col span={9}>
                                     <span className="text-body fw-bold">{profile?.Profile?.firstName} {profile?.Profile?.lastName}</span>
                                 </Col>
                                 <Col span={5}>
                                 </Col>
                             </Row>
                             <Row className="mb-3">
-                                <Col span={5}>
+                                <Col span={4}>
                                 </Col>
-                                <Col span={7}>
+                                <Col span={6}>
                                     <span className="text-muted">Email :</span>
                                 </Col>
-                                <Col span={7}>
+                                <Col span={9}>
                                     <span className="text-body fw-bold">{profile?.Profile?.email}</span>
                                 </Col>
                                 <Col span={5}>
                                 </Col>
                             </Row>
                             <Row className="mb-3">
-                                <Col span={5}>
+                                <Col span={4}>
                                 </Col>
-                                <Col span={7}>
+                                <Col span={6}>
                                     <span className="text-muted">Role :</span>
                                 </Col>
-                                <Col span={7}>
+                                <Col span={9}>
                                     <span className="text-body fw-bold">{profile?.Profile?.role?.name}</span>
                                 </Col>
                                 <Col span={5}>
@@ -80,24 +79,24 @@ const Profile = () => {
                             </Row>
 
                             {profile?.Profile?.contactNo && <Row className="mb-3">
-                                <Col span={5}>
+                                <Col span={4}>
                                 </Col>
-                                <Col span={7}>
+                                <Col span={6}>
                                     <span className="text-muted">Contact Number :</span>
                                 </Col>
-                                <Col span={7}>
+                                <Col span={9}>
                                     <span className="text-body fw-bold">{profile?.Profile?.contactNo}</span>
                                 </Col>
                                 <Col span={5}>
                                 </Col>
                             </Row>}
                             {profile?.Profile?.address && <Row className="mb-3">
-                                <Col span={5}>
+                                <Col span={4}>
                                 </Col>
-                                <Col span={7}>
+                                <Col span={6}>
                                     <span className="text-muted">Address :</span>
                                 </Col>
-                                <Col span={7}>
+                                <Col span={9}>
                                     <span className="text-body fw-bold">{profile?.Profile?.address}</span>
                                 </Col>
                                 <Col span={5}>
