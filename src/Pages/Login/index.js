@@ -14,7 +14,7 @@ import { createBrowserHistory } from 'history'
 
 const Login = () => {
 
-	const history = createBrowserHistory({forceRefresh:true})
+	const history = createBrowserHistory({ forceRefresh: true })
 	const initialValues = { email: '', password: '' }
 	const [loginUser, { data, error, loading }] = useMutation(LOGIN_USER_MUTATION);
 
@@ -24,17 +24,17 @@ const Login = () => {
 		});
 	};
 
-	if(error){
+	if (error) {
 		openNotificationWithIcon('loginUserError', 'error', error.message)
 	}
 
 	if (data?.loginUser?.token) {
 		const role = data?.loginUser?.user?.role?.name
 		Cookies.set('token', data?.loginUser?.token)
-		Cookies.set('user',data?.loginUser?.user?.firstName + `   `+ data?.loginUser?.user?.lastName)
+		Cookies.set('user', data?.loginUser?.user?.firstName + `   ` + data?.loginUser?.user?.lastName)
 		Cookies.set('role', data?.loginUser?.user?.role?.name)
 		openNotificationWithIcon('loginUser', 'success', "Login successful")
-		const directTo = role === 'admin' ? '/tickets-dashboard' : '/profile' 
+		const directTo = role === 'admin' ? '/tickets-dashboard' : '/profile'
 		history.push(directTo);
 	}
 
@@ -43,14 +43,18 @@ const Login = () => {
 			<Formik initialValues={initialValues} validationSchema={loginValidations} onSubmit={(values) => onFinish(values)}>
 				<Form >
 					<div id="authForm">
-						<TextInput placeholder="Email" label="EMAIL" name="email" type="email" id="email" prefix={<MailFilled style={{ color: 'white' }} />} isAuth={true}/>
-						<TextInput placeholder="Password" label="PASSWORD" name="password" type="password" id="password" prefix={<img src="/icon-password-key.png" alt="password" />} 
-						isPassword={true} forgotPassword={true}
-						iconRender={(visible) => (visible ? <EyeFilled style={{color:"white", fontSize:"1rem"}}/> : <EyeInvisibleOutlined style={{color:"white" , fontSize:"1rem"}}/>)}
+						<TextInput placeholder="Email" label="EMAIL" name="email" type="email" id="email" prefix={<MailFilled style={{ color: 'white' }} />} isAuth={true} />
+						<TextInput placeholder="Password" label="PASSWORD" name="password" type="password" id="password" prefix={<img src="/icon-password-key.png" alt="password" />}
+							isPassword={true}
+							iconRender={(visible) => (visible ? <EyeFilled style={{ color: "white", fontSize: "1rem" }} /> : <EyeInvisibleOutlined style={{ color: "white", fontSize: "1rem" }} />)}
 						/>
+						<Button type="link"  block style={{ width: '90%' }}>
+						<Link to="/user/forgot-password">Forget Password</Link>	
+						</Button>
 					</div>
-					<Button type="primary" className="auth-button" htmlType="submit" style={{width:'90%'}}>
-						{ loading ? <AuthLoader/> : 'Sign In' }
+
+					<Button type="primary" className="auth-button" htmlType="submit" style={{ width: '90%' }}>
+						{loading ? <AuthLoader /> : 'Sign In'}
 					</Button>
 					<div className="auth-text">Don't have an account? <Link to="/user/signup" className="auth-text-inner">Sign Up</Link></div>
 				</Form>

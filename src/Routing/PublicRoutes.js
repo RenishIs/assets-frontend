@@ -12,7 +12,7 @@ const PublicRoutes = () => {
 				<Route exact path="/user/signup" component={Registration}/>
 				<Route exact path="/user/login" component={Login}/>
 				<Route exact path="/user/forgot-password" component={ForgotPassword}/>
-				<Route path="/user/reset-password/:id" component={ResetPassword}/>
+				<Route path="/user/reset-password/:id/:token" component={ResetPassword}/>
 			</Switch>
 		</Fragment>
 	)
