@@ -48,8 +48,11 @@ const UsersListing = () => {
 			{ query: GET_USERS_QUERY, variables: { status: null, page: 0 } },
 		]
 	})
-	if (updatedUser) {
-		openNotificationWithIcon('userDelete', 'success', "User status updated successfully")
+	if (updatedUser && updatedUser?.updateUser?.isActive) {
+		openNotificationWithIcon('userDelete', 'success', "User activated successfully")
+	}
+	if (updatedUser && !updatedUser?.updateUser?.isActive) {
+		openNotificationWithIcon('userDelete', 'success', "User deactivated successfully")
 	}
 	if (deletedUser) {
 		openNotificationWithIcon('userDelete', 'success', "USER DELETED SUCCESSFULLY")
@@ -63,6 +66,7 @@ const UsersListing = () => {
 		title: 'STATUS',
 		dataIndex: 'isActive',
 		key: 'isActive',
+	
 		render: (_, record) => (
 			<Switch
 				name="isActive"
@@ -145,7 +149,7 @@ const UsersListing = () => {
 					defaultPageSize: 10,
 					total: data?.users?.total,
 					current: data?.users?.currentPage + 1,
-					onChange: handlePageChange
+					onChange: handlePageChange,
 				}}
 			/>
 
