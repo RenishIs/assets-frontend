@@ -39,7 +39,7 @@ const ForgotPassword = () => {
                     <Button type="primary" className="auth-button" htmlType="submit" style={{ width: "90%" }}>
                         {loading ? <AuthLoader /> : 'Send reset Instructions'}
                     </Button>
-                    <div> <Link to="/user/signup" className="auth-text-inner">Back to Sign In</Link></div>
+                    <div> <Link to="/user/login" className="auth-text-inner">Back to Sign In</Link></div>
                 </Form>
             </Formik>
         </AuthLayout>
