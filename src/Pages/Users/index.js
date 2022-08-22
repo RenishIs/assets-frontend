@@ -48,12 +48,24 @@ const UsersListing = () => {
 			{ query: GET_USERS_QUERY, variables: { status: null, page: 0 } },
 		]
 	})
-	if (updatedUser && updatedUser?.updateUser?.isActive) {
-		openNotificationWithIcon('userDelete', 'success', "User activated successfully")
+
+	const updateUserStatusHandler = async (checked, record) => {
+		const res = await UpdateUser({
+			variables: {
+				updateUserId: record.id, input: {
+					isActive: checked ? true : false
+				}
+			}
+		})
+		const { updateUser } = res.data
+		if (updateUser && updateUser?.isActive) {
+			openNotificationWithIcon('userDelete', 'success', "User activated successfully")
+		}
+		else if(updateUser && !updateUser?.isActive){
+			openNotificationWithIcon('userDelete', 'success', "User deactivated successfully")
+		}
 	}
-	if (updatedUser && !updatedUser?.updateUser?.isActive) {
-		openNotificationWithIcon('userDelete', 'success', "User deactivated successfully")
-	}
+
 	if (deletedUser) {
 		openNotificationWithIcon('userDelete', 'success', "USER DELETED SUCCESSFULLY")
 	}
@@ -74,16 +86,7 @@ const UsersListing = () => {
 				checkedChildren={"ACTIVE"}
 				unCheckedChildren={"IN-ACTIVE"}
 				defaultChecked={record.isActive}
-				onChange={(checked) => {
-
-					UpdateUser({
-						variables: {
-							updateUserId: record.id, input: {
-								isActive: checked ? true : false
-							}
-						}
-					})
-				}}
+				onChange={(checked) => updateUserStatusHandler(checked, record)}
 			/>
 		)
 	},
