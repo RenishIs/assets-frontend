@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Table, Space, Button, Modal, Tooltip, Select } from 'antd';
+import React, { useCallback, useState } from 'react';
+import { Table, Space, Button, Modal, Tooltip, Select, Input } from 'antd';
 import { Link } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { EditFilled, DeleteFilled, EyeFilled } from '@ant-design/icons';
@@ -20,7 +20,8 @@ const UsersListing = () => {
 	const role = Cookies.get('role')
 	const [statusValue, setStatusValue] = useState(null);
 	const [currentPage, setCurrentPage] = useState(0)
-	const { loading, data, refetch } = useQuery(GET_USERS_QUERY, { variables: { status: null, page: 0 } })
+	const [ searchText, setSearchText ] = useState('')
+	const { loading, data, refetch } = useQuery(GET_USERS_QUERY, { variables: { status: null, page: 0, key : searchText } })
 
 	const showDeleteConfirm = (id) => {
 		confirm({
@@ -125,11 +126,29 @@ const UsersListing = () => {
 			refetch({ status: { isActive: statusValue }, page: page - 1 })
 		}
 	}
+	
+	const debounce = (func) => {
+		let timer
+		return (...args) => {
+			const context = this
+			if(timer) clearTimeout(timer)
+			timer = setTimeout(() => {
+				timer = null
+				func.apply(context, args)
+			}, 500)
+		}
+	}
+
+	const handleSearch = value => setSearchText(value.trim())
+	const optimisedSearch = useCallback(debounce(handleSearch),[])
 
 	return (
 		<>
 			{(loading || deleteLoading) && <Loader />}
 			<div className='text-center mb-3'>
+				<div className='search-box'>
+					<Input placeholder='Search...' onChange={(e) => optimisedSearch(e.target.value)}/>
+				</div>
 				<h2 className='d-inline fs-4 fw-bold' style={{ marginLeft: '6.5rem' }}>MANAGE USERS</h2>
 				{
 					role === "admin" && (
