@@ -151,7 +151,7 @@ const UsersListing = () => {
 					defaultCurrent: 1,
 					defaultPageSize: 10,
 					total: data?.users?.total,
-					current: data?.users?.currentPage + 1,
+					// current: data?.users?.currentPage + 1,
 					onChange: handlePageChange,
 				}}
 			/>
