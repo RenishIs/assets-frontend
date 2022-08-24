@@ -32,19 +32,20 @@ const MainLayout = ({children, routes, path}) => {
     const items = [
         {
             label: <Link to="/profile" className="text-body"><UserOutlined style={{color:"blue"}} className='dropdown-list-main-container' />&nbsp;Profile</Link>,
-            key: '0',
+            key: 'profile',
         },
         {
             label: <div className="text-body" onClick={logoutUser}><LogoutOutlined style={{color:"red"}} className='dropdown-list-main-container'/>&nbsp;Logout</div>,
-            key: '2',
+            key: 'logout',
         },
     ]
 
-    const settingsItem = { label: <Link to="/" className="text-body"><SettingOutlined style={{color:"green"}} className='dropdown-list-main-container'/>&nbsp;Settings</Link>, key: '1',}
+    const settingsItem = { label: <Link to="/setting" className="text-body"><SettingOutlined style={{color:"green"}} className='dropdown-list-main-container'/>&nbsp;Settings</Link>, key: 'setting',}
     const updatedItems = role === 'admin' ? [items[0], settingsItem, items[1] ] : [...items]
 
     const menu = (
         <Menu items={updatedItems}
+        selectedKeys={[location.pathname.split('/')[1]]}
         />
     );
 
