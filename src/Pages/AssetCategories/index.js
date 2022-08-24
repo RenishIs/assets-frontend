@@ -62,7 +62,7 @@ const AssetCategories = () => {
 	})
 
 	if(deletedAssetCategory){
-		openNotificationWithIcon('deleteAssetCategory', 'success', "ASSET CATEGORY DELETED SUCCESSFULLY")
+		openNotificationWithIcon('deleteAssetCategory', 'success', "Asset category deleted successfully")
 	}
 
 	const columns = [...tableColumns, {

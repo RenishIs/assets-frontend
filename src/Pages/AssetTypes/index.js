@@ -52,7 +52,7 @@ const AssetTypesListing = () => {
 	});
 
 	if(deletedAssetType){
-        openNotificationWithIcon('deleteAssetType', 'success', "ASSET TYPE DELETED SUCCESSFULLY")
+        openNotificationWithIcon('deleteAssetType', 'success', "Asset type deleted successfully")
     }
 	if(error) {
 		alert(error);	
