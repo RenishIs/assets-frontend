@@ -199,8 +199,8 @@ const TicketDashboard = () => {
             isModalVisible && (
                 <Modal title="Add Notes" visible={isModalVisible} onOk={handleUpdateTicket} onCancel={handleCancel}>
                     <TextArea rows={4} 
-                              placeholder="Add note her..." 
-                              onChange={(e) => setNote(e.target.value.trim())} 
+                              placeholder="Add note here..." 
+                              onChange={(e) => setNote(e.target.value)} 
                               value={note}
                               maxLength={200}/>
                 </Modal>
