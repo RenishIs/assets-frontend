@@ -157,7 +157,7 @@ const UsersListing = () => {
 				{
 					role === "admin" && (
 						<div className='add-button'>
-							<a href={`${process.env.REACT_APP_BASE_URL.slice(0,39)}${csvData?.generateCSV?.outputString}`}><Button type="primary" style={{ marginRight: 10 }}>EXPORT</Button></a>
+							<a href={`${process.env.REACT_APP_BASE_URL}${csvData?.generateCSV?.outputString}`}><Button type="primary" style={{ marginRight: 10 }}>EXPORT</Button></a>
 							<Select defaultValue={null} style={{ width: 120, marginRight: 10 }} onChange={handleChange}>
 								<Option value={null} key={null}>All</Option>
 								<Option value={true} key={true}>Active</Option>
