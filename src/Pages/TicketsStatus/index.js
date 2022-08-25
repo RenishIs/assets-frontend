@@ -52,7 +52,7 @@ const TicketsStatusListing = () => {
 	});
 
 	if(deletedTicketsStatus){
-        openNotificationWithIcon('deleteTicketStatus', 'success', "TICKET STATUS DELETED SUCCESSFULLY")
+        openNotificationWithIcon('deleteTicketStatus', 'success', "Ticket status deleted successfully")
     }
 	if(error) {
 		alert(error);	
