@@ -53,8 +53,8 @@ const Profile = () => {
             <div className='text-center mb-4'>
                 <h2 className='d-inline fs-5 fw-bold'>PROFILE DETAILS</h2>
             </div>
-            <div className='text-center'>
-                <Avatar  size={64} >{profile.Profile.firstName.charAt(0)}{profile?.Profile?.lastName.charAt(0)}</Avatar> &nbsp;
+            {profile && <div className='text-center'>
+                <Avatar  size={64} >{profile && profile?.Profile?.firstName.charAt(0)}{profile?.Profile?.lastName.charAt(0)}</Avatar> &nbsp;
                 <Row>
                     <Col span={8} />
                     <Col span={10}>
@@ -72,7 +72,7 @@ const Profile = () => {
                     </Col>
                     <Col span={6} />
                 </Row>
-            </div>
+            </div>}
             {role === 'employee' && <div>
                 <div className='mt-5'>
                     <div className='text-center mb-3'>
