@@ -87,6 +87,7 @@ const UsersListing = () => {
 				checkedChildren={"ACTIVE"}
 				unCheckedChildren={"IN-ACTIVE"}
 				defaultChecked={record.isActive}
+				disabled={record?.role?.name?.toLowerCase() === 'admin'}
 				onChange={(checked) => updateUserStatusHandler(checked, record)}
 			/>
 		)
