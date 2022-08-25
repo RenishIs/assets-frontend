@@ -60,15 +60,15 @@ const UsersListing = () => {
 		})
 		const { updateUser } = res.data
 		if (updateUser && updateUser?.isActive) {
-			openNotificationWithIcon('userDelete', 'success', "User activated successfully")
+			openNotificationWithIcon('updateUser', 'success', "User activated successfully")
 		}
 		else if(updateUser && !updateUser?.isActive){
-			openNotificationWithIcon('userDelete', 'success', "User deactivated successfully")
+			openNotificationWithIcon('updateUser', 'success', "User deactivated successfully")
 		}
 	}
 
 	if (deletedUser) {
-		openNotificationWithIcon('userDelete', 'success', "USER DELETED SUCCESSFULLY")
+		openNotificationWithIcon('userDelete', 'success', "User deleted successfully")
 	}
 	if (error) {
 		alert(error);
