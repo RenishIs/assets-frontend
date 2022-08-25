@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Table, Space, Button, Modal, Tooltip, Select } from 'antd';
+import React, { useCallback, useState } from 'react';
+import { Table, Space, Button, Modal, Tooltip, Select, Input } from 'antd';
 import { Link } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { EditFilled, DeleteFilled, EyeFilled } from '@ant-design/icons';
@@ -11,6 +11,7 @@ import openNotificationWithIcon from '../../Helper/Notification';
 import Loader from '../../Components/UI/Loader';
 import { UPDATE_USER_MUTATION } from '../../gql/Mutation/Users';
 import { Switch } from 'antd';
+import { GENERATE_CSV_QUERY } from '../../gql/Query/GenerateCSV/index'
 
 const confirm = Modal.confirm;
 const { Option } = Select;
@@ -20,7 +21,10 @@ const UsersListing = () => {
 	const role = Cookies.get('role')
 	const [statusValue, setStatusValue] = useState(null);
 	const [currentPage, setCurrentPage] = useState(0)
-	const { loading, data, refetch } = useQuery(GET_USERS_QUERY, { variables: { status: null, page: 0 } })
+	const [ searchText, setSearchText ] = useState('')
+	const { loading, data, refetch } = useQuery(GET_USERS_QUERY, { variables: { status: null, page: 0, key : searchText } })
+
+	const { data : csvData } = useQuery(GENERATE_CSV_QUERY, { variables: { table: 'users'} })
 
 	const showDeleteConfirm = (id) => {
 		confirm({
@@ -48,14 +52,26 @@ const UsersListing = () => {
 			{ query: GET_USERS_QUERY, variables: { status: null, page: 0 } },
 		]
 	})
-	if (updatedUser && updatedUser?.updateUser?.isActive) {
-		openNotificationWithIcon('userDelete', 'success', "User activated successfully")
+
+	const updateUserStatusHandler = async (checked, record) => {
+		const res = await UpdateUser({
+			variables: {
+				updateUserId: record.id, input: {
+					isActive: checked ? true : false
+				}
+			}
+		})
+		const { updateUser } = res.data
+		if (updateUser && updateUser?.isActive) {
+			openNotificationWithIcon('updateUser', 'success', "User activated successfully")
+		}
+		else if(updateUser && !updateUser?.isActive){
+			openNotificationWithIcon('updateUser', 'success', "User deactivated successfully")
+		}
 	}
-	if (updatedUser && !updatedUser?.updateUser?.isActive) {
-		openNotificationWithIcon('userDelete', 'success', "User deactivated successfully")
-	}
+
 	if (deletedUser) {
-		openNotificationWithIcon('userDelete', 'success', "USER DELETED SUCCESSFULLY")
+		openNotificationWithIcon('userDelete', 'success', "User deleted successfully")
 	}
 	if (error) {
 		alert(error);
@@ -74,16 +90,8 @@ const UsersListing = () => {
 				checkedChildren={"ACTIVE"}
 				unCheckedChildren={"IN-ACTIVE"}
 				defaultChecked={record.isActive}
-				onChange={(checked) => {
-
-					UpdateUser({
-						variables: {
-							updateUserId: record.id, input: {
-								isActive: checked ? true : false
-							}
-						}
-					})
-				}}
+				disabled={record?.role?.name?.toLowerCase() === 'admin'}
+				onChange={(checked) => updateUserStatusHandler(checked, record)}
 			/>
 		)
 	},
@@ -122,15 +130,34 @@ const UsersListing = () => {
 			refetch({ status: { isActive: statusValue }, page: page - 1 })
 		}
 	}
+	
+	const debounce = (func) => {
+		let timer
+		return (...args) => {
+			const context = this
+			if(timer) clearTimeout(timer)
+			timer = setTimeout(() => {
+				timer = null
+				func.apply(context, args)
+			}, 500)
+		}
+	}
+
+	const handleSearch = value => setSearchText(value.trim())
+	const optimisedSearch = useCallback(debounce(handleSearch),[])
 
 	return (
 		<>
 			{(loading || deleteLoading) && <Loader />}
 			<div className='text-center mb-3'>
+				<div className='search-box'>
+					<Input placeholder='Search...' onChange={(e) => optimisedSearch(e.target.value)}/>
+				</div>
 				<h2 className='d-inline fs-4 fw-bold' style={{ marginLeft: '6.5rem' }}>MANAGE USERS</h2>
 				{
 					role === "admin" && (
 						<div className='add-button'>
+							<a href={`${process.env.REACT_APP_BASE_URL.slice(0,39)}${csvData?.generateCSV?.outputString}`}><Button type="primary" style={{ marginRight: 10 }}>EXPORT</Button></a>
 							<Select defaultValue={null} style={{ width: 120, marginRight: 10 }} onChange={handleChange}>
 								<Option value={null} key={null}>All</Option>
 								<Option value={true} key={true}>Active</Option>
@@ -148,7 +175,7 @@ const UsersListing = () => {
 					defaultCurrent: 1,
 					defaultPageSize: 10,
 					total: data?.users?.total,
-					current: data?.users?.currentPage + 1,
+					// current: data?.users?.currentPage + 1,
 					onChange: handlePageChange,
 				}}
 			/>

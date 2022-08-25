@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Table, Select } from 'antd';
+import { Table, Select, Button } from 'antd';
 import { tableColumns } from './CONSTANTS';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_TICKETS_QUERY } from '../../gql/Query/AllTickets';
 import { GET_USERS_BY_ROLE, GET_USER_ROLE } from "../../gql/Query/Users"
 import Loader from '../../Components/UI/Loader';
 import Cookies from 'js-cookie';
-
+import { GENERATE_CSV_QUERY } from '../../gql/Query/GenerateCSV/index'
 
 const AllTicketsListing = () => {
 
@@ -24,6 +24,8 @@ const AllTicketsListing = () => {
 			roleId: data?.role?.filter((item) => item.name == "employee")[0].id
 		}
 	});
+
+	const { data : csvData } = useQuery(GENERATE_CSV_QUERY, { variables: { table: 'tickets'} })
 
 	const handleChange = (value) => {
 		setUserValue(value)
@@ -56,6 +58,7 @@ const AllTicketsListing = () => {
 				{
 					role === "admin" && (
 						<div className='add-button'>
+							<a href={`${process.env.REACT_APP_BASE_URL.slice(0,39)}${csvData?.generateCSV?.outputString.slice(1)}`}><Button type="primary" style={{ marginRight: 10 }}>EXPORT</Button></a>
 							<Select defaultValue={null} style={{ width: 150 }} onChange={handleChange}>
 								<option value={null} key={null}>All users</option>
 								{

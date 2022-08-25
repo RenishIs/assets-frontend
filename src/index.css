@@ -329,3 +329,8 @@ ul.ant-pagination li{
 .removeCursor span span{
 	cursor: default !important;
 }
+
+.search-box{
+	display: inline-block;
+	float: left;
+}
