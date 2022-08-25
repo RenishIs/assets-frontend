@@ -97,7 +97,7 @@ const AssetsListing = () => {
 			<div className='text-center mb-3'>
 				<h2 className='d-inline fs-4 fw-bold'>MANAGE ASSETS</h2>
 				{role === 'admin' && <div className='add-button'>
-				<a href={`${process.env.REACT_APP_BASE_URL.slice(0,39)}${csvData?.generateCSV?.outputString.slice(1)}`}><Button type="primary" style={{ marginRight: 10 }}>EXPORT</Button></a>
+				<a href={`${process.env.REACT_APP_BASE_URL}${csvData?.generateCSV?.outputString}`}><Button type="primary" style={{ marginRight: 10 }}>EXPORT</Button></a>
 					<Link to={`/assets/add`}><Button type="primary">ADD</Button></Link>
 				</div>}
 			</div>

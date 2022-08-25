@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import { MenuFoldOutlined, MenuUnfoldOutlined, UserOutlined, LogoutOutlined, SettingOutlined } from '@ant-design/icons';
 import SideNavbar from './UI/SideNavbar';
 import openNotificationWithIcon from '../Helper/Notification';
-
+import { Avatar } from 'antd';
 const { Header } = Layout;
 
 const MainLayout = ({children, routes, path}) => {
@@ -67,7 +67,7 @@ const MainLayout = ({children, routes, path}) => {
                             <Col>
                                 <Dropdown overlay={menu} trigger={['click']} style={{minWidth:"150px", width:'150px'}}>
                                     <div className='text-center d-flex align-items-center justify-content-end fs-5 fw-bolder'>
-                                        <img src="/user-1.png" alt='pic' width="45px" /> &nbsp;
+                                    <Avatar size="large" >{user.split(" ")[0].charAt(0)}{user.split(" ")[1].charAt(0)}</Avatar> &nbsp;
                                         Hi, {user}
                                     </div>
                                 </Dropdown>
