@@ -9,6 +9,7 @@ import { EditFilled, DeleteFilled, EyeFilled } from '@ant-design/icons';
 import Loader from '../../Components/UI/Loader';
 import { Tooltip } from 'antd';
 import Cookies from 'js-cookie';
+import { GENERATE_CSV_QUERY } from '../../gql/Query/GenerateCSV/index'
 
 const confirm = Modal.confirm;
 
@@ -27,6 +28,9 @@ const AssetsListing = () => {
 			status: null
 		}
 	})
+
+	const { data : csvData } = useQuery(GENERATE_CSV_QUERY, { variables: { table: 'assets'} })
+
 	const history = useHistory()
 
 	const showDeleteConfirm = (e, id) => {
@@ -53,7 +57,7 @@ const AssetsListing = () => {
 	});
 
 	if (deletedAsset) {
-		openNotificationWithIcon('deleteAsset', 'success', "ASSET DELETED SUCCESSFULLY")
+		openNotificationWithIcon('deleteAsset', 'success', "Asset deleted successfully")
 	}
 	if (error) {
 		alert(error);
@@ -93,6 +97,7 @@ const AssetsListing = () => {
 			<div className='text-center mb-3'>
 				<h2 className='d-inline fs-4 fw-bold'>MANAGE ASSETS</h2>
 				{role === 'admin' && <div className='add-button'>
+				<a href={`${process.env.REACT_APP_BASE_URL.slice(0,39)}${csvData?.generateCSV?.outputString.slice(1)}`}><Button type="primary" style={{ marginRight: 10 }}>EXPORT</Button></a>
 					<Link to={`/assets/add`}><Button type="primary">ADD</Button></Link>
 				</div>}
 			</div>

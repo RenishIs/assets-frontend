@@ -1,14 +1,30 @@
 import { useQuery } from '@apollo/client';
-import { GET_PROFILE_QUERY } from '../../gql/Query/Profile/index';
 import { Row, Col, Table } from 'antd';
+import Cookies from 'js-cookie';
+import { useHistory } from 'react-router-dom';
+import { GET_PROFILE_QUERY } from '../../gql/Query/Profile/index';
 import Loader from '../../Components/UI/Loader';
 import { GET_TICKETS_QUERY } from '../../gql/Query/Tickets';
 import { GET_EMPLOYEE_ASSETS_QUERY } from '../../gql/Query/Assets';
 import { tableColumns as ticketTableColumns } from '../Tickets/CONSTANTS';
 import { tableColumns as assetTableColumns } from '../Assets/CONSTANTS';
-import Cookies from 'js-cookie';
+
+const RowUI = ({ label, value}) => (
+    <Row className="mb-3">
+        <Col span={4}/>
+        <Col span={6}>
+            <span className="text-muted">{label} :</span>
+        </Col>
+        <Col span={9}>
+            <span className="text-body fw-bold">{value ? value : '' }</span>
+        </Col>
+        <Col span={5}/>
+    </Row>
+)
 
 const Profile = () => {
+
+    const history = useHistory()
     const role = Cookies.get('role')
     const { data: profile, loading: profileLoading } = useQuery(GET_PROFILE_QUERY);
     const { loading: ticketsLoading, data: tickets, refetch: refetchTicket } = useQuery(GET_TICKETS_QUERY, { variables: { page: 0 } });
@@ -27,6 +43,8 @@ const Profile = () => {
         refetchAsset({ variables: { page: page - 1 } })
     }
 
+    const navigation = (id) => history.push(`/assets/${id}`)
+	
     return (
         <>
             {
@@ -38,73 +56,21 @@ const Profile = () => {
             <div className='text-center'>
                 <img src="/user-1.png" alt="profile" width="10%" />
                 <Row>
-                    <Col span={8}></Col>
+                    <Col span={8}/>
                     <Col span={10}>
                         <div className="mt-4 text-start">
-                            <Row className="mb-3">
-                                <Col span={4}>
-                                </Col>
-                                <Col span={6}>
-                                    <span className="text-muted">Username :</span>
-                                </Col>
-                                <Col span={9}>
-                                    <span className="text-body fw-bold">{profile?.Profile?.firstName} {profile?.Profile?.lastName}</span>
-                                </Col>
-                                <Col span={5}>
-                                </Col>
-                            </Row>
-                            <Row className="mb-3">
-                                <Col span={4}>
-                                </Col>
-                                <Col span={6}>
-                                    <span className="text-muted">Email :</span>
-                                </Col>
-                                <Col span={9}>
-                                    <span className="text-body fw-bold">{profile?.Profile?.email}</span>
-                                </Col>
-                                <Col span={5}>
-                                </Col>
-                            </Row>
-                            <Row className="mb-3">
-                                <Col span={4}>
-                                </Col>
-                                <Col span={6}>
-                                    <span className="text-muted">Role :</span>
-                                </Col>
-                                <Col span={9}>
-                                    <span className="text-body fw-bold">{profile?.Profile?.role?.name}</span>
-                                </Col>
-                                <Col span={5}>
-                                </Col>
-                            </Row>
-
-                            {profile?.Profile?.contactNo && <Row className="mb-3">
-                                <Col span={4}>
-                                </Col>
-                                <Col span={6}>
-                                    <span className="text-muted">Contact Number :</span>
-                                </Col>
-                                <Col span={9}>
-                                    <span className="text-body fw-bold">{profile?.Profile?.contactNo}</span>
-                                </Col>
-                                <Col span={5}>
-                                </Col>
-                            </Row>}
-                            {profile?.Profile?.address && <Row className="mb-3">
-                                <Col span={4}>
-                                </Col>
-                                <Col span={6}>
-                                    <span className="text-muted">Address :</span>
-                                </Col>
-                                <Col span={9}>
-                                    <span className="text-body fw-bold">{profile?.Profile?.address}</span>
-                                </Col>
-                                <Col span={5}>
-                                </Col>
-                            </Row>}
+                            <RowUI label="Username" value={profile && `${profile?.Profile?.firstName} ${profile?.Profile?.lastName}`} />
+                            <RowUI label="Email" value={profile?.Profile?.email} />
+                            <RowUI label="Role" value={profile?.Profile?.role?.name} />
+                            {
+                                profile?.Profile?.contactNo && <RowUI label="Contact Number" value={profile?.Profile?.contactNo} />
+                            }
+                            {
+                                profile?.Profile?.address && <RowUI label="Address" value={profile?.Profile?.address} />
+                            }
                         </div>
                     </Col>
-                    <Col span={6}></Col>
+                    <Col span={6}/>
                 </Row>
             </div>
             {role === 'employee' && <div>
@@ -137,6 +103,11 @@ const Profile = () => {
                             total: employeeAssets?.employeeAssets?.total,
                             current: employeeAssets?.employeeAssets?.currentPage + 1,
                             onChange: handleAssetPageChange
+                        }}
+                        onRow={(record, rowIndex) => {
+                            return {
+                                onClick: (event) => navigation(record.id)
+                            }
                         }}
                     />
                 </div>
