@@ -51,7 +51,6 @@ const Registration = () => {
 						iconRender={(visible) => (visible ? <EyeFilled style={{color:"white", fontSize:"1rem"}}/> : <EyeInvisibleOutlined style={{color:"white" , fontSize:"1rem"}}/>)}
 						/>
 					</div>		
-					<Checkbox onChange={(e) => onChange(e.target.value)}>I agree to the Terms & Conditions</Checkbox>
 					<Button type="primary" className="auth-button" htmlType="submit" style={{width:"90%"}}>
 						{ loading ? <AuthLoader /> : 'Create my account' }
 					</Button>
