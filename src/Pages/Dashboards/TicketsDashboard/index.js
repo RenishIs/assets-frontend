@@ -11,18 +11,18 @@ import TicketDetails from "./TicketDetails";
 const { TextArea } = Input;
 const TicketDashboard = () => {
 
-    const [ data, setData ] = useState(null)
-    const [ isModalVisible, setIsModalVisible ] = useState(false)
-    const [ note, setNote ] = useState('')
-    const [ updatedTicketFields, setUpdatedTicketFields ] = useState(null)
-    const [ showTicketDeatils, setShowTicketDetails ] = useState(false)
-    const [ ticket, setTicket ] = useState(null)
-    const [ searchText, setSearchText ] = useState('')
-    const [ searchTickets, setSearchTickets ] = useState(false)
+    const [data, setData] = useState(null)
+    const [isModalVisible, setIsModalVisible] = useState(false)
+    const [note, setNote] = useState('')
+    const [updatedTicketFields, setUpdatedTicketFields] = useState(null)
+    const [showTicketDeatils, setShowTicketDetails] = useState(false)
+    const [ticket, setTicket] = useState(null)
+    const [searchText, setSearchText] = useState('')
+    const [searchTickets, setSearchTickets] = useState(false)
 
-    const { data : ticketStatus } = useQuery(GET_TICKETS_STATUS_QUERY);
-	const { data : tickets } = useQuery(GET_ALL_TICKETS_QUERY,{ variables : { input: null,  page: 0 }})
-    const [ updateTicket ] = useMutation(UPDATE_TICKET_MUTATION)
+    const { data: ticketStatus } = useQuery(GET_TICKETS_STATUS_QUERY);
+    const { data: tickets } = useQuery(GET_ALL_TICKETS_QUERY, { variables: { input: null, page: 0 } })
+    const [updateTicket] = useMutation(UPDATE_TICKET_MUTATION)
 
     const handleCancel = () => {
         setIsModalVisible(false)
@@ -30,19 +30,19 @@ const TicketDashboard = () => {
     }
 
     const handleUpdateTicket = () => {
-        const variables = { 
+        const variables = {
             ...updatedTicketFields.variables,
-            input : {...updatedTicketFields?.variables?.input, note}
+            input: { ...updatedTicketFields?.variables?.input, note }
         }
         updateTicket({ variables })
         setIsModalVisible(false)
         setNote('')
     }
-    
+
     const getTasksId = (status, data, searchText) => {
         const tasks = []
         let filteredByStatus = data?.filter(item => item?.status?.id === status.id)
-        if(searchText){
+        if (searchText) {
             const search = (ticket) => {
                 const username = ticket?.raisedBy?.firstName?.toLowerCase() + ticket?.raisedBy?.lastName?.toLowerCase()
                 const ticketNo = ticket?.ticketId?.toLowerCase()
@@ -62,98 +62,97 @@ const TicketDashboard = () => {
         ticketStatus?.ticketStatus.forEach(status => {
             columns[status.id] = {
                 ...status,
-                tasks : getTasksId(status, tickets?.tickets?.tickets, searchText)
+                tasks: getTasksId(status, tickets?.tickets?.tickets, searchText)
             }
-        })        
+        })
 
         const tasks = {}
         tickets?.tickets?.tickets?.forEach(asset => {
-            tasks[asset.id] = {...asset}
+            tasks[asset.id] = { ...asset }
         })
         const data = {
             columns,
             tasks,
-            columnOrder : ticketStatus?.ticketStatus.map(status => status.id)
+            columnOrder: ticketStatus?.ticketStatus.map(status => status.id)
         }
         setData(data)
-    }, [ ticketStatus, tickets, searchTickets ])
+    }, [ticketStatus, tickets, searchTickets])
 
     const onDragEnd = (result) => {
-        const {destination, source, draggableId } = result;
-        
-        if(!destination){
+        const { destination, source, draggableId } = result;
+        if (!destination) {
             return
         }
-        if (destination.droppableId === source.droppableId && destination.index === source.index) {
-            return
-        }
+
 
         const start = data?.columns[source.droppableId]
         const finish = data?.columns[destination.droppableId]
-        
-        if(start == finish){
+
+        if (start == finish) {
+
             const newTasks = Array.from(start.tasks)
             newTasks.splice(source.index, 1)
             newTasks.splice(destination.index, 0, draggableId)
-    
+
             const newColumn = {
                 ...start,
-                tasks : newTasks
+                tasks: newTasks
             }
-    
+
             setData((prevState) => ({
                 ...prevState,
-                columns : {
+                columns: {
                     ...prevState.columns,
-                    [newColumn.id] : newColumn
+                    [newColumn.id]: newColumn
+                }
+            }))
+        } else {
+            // //moving from one list to another
+            const startTasks = Array.from(start.tasks)
+            startTasks.splice(source.index, 1)
+            const newStartColumn = {
+                ...start,
+                tasks: startTasks
+            }
+
+            const destinationTasks = Array.from(finish.tasks)
+            destinationTasks.splice(destination.index, 0, draggableId)
+            const newDestincationColumn = {
+                ...finish,
+                tasks: destinationTasks
+            }
+
+            const updatedTicketFields = {
+                variables: {
+                    updateTicketId: draggableId,
+                    input: {
+                        status: destination.droppableId
+                    }
+                }
+            }
+            setUpdatedTicketFields(updatedTicketFields)
+            setData((prevState) => ({
+                ...prevState,
+                columns: {
+                    ...prevState.columns,
+                    [newStartColumn.id]: newStartColumn,
+                    [newDestincationColumn.id]: newDestincationColumn
                 }
             }))
         }
-        
-        // //moving from one list to another
-        const startTasks = Array.from(start.tasks)
-        startTasks.splice(source.index, 1)
-        const newStartColumn = {
-            ...start,
-            tasks : startTasks
-        }
 
-        const destinationTasks = Array.from(finish.tasks)
-        destinationTasks.splice(destination.index, 0, draggableId)
-        const newDestincationColumn = {
-            ...finish,
-            tasks : destinationTasks
-        }
 
-        const updatedTicketFields = {
-            variables : {
-                updateTicketId : draggableId,
-                input : {
-                    status : destination.droppableId
-                }
-            }
-        }
-        
-        setUpdatedTicketFields(updatedTicketFields)
-        setData((prevState) => ({
-            ...prevState,
-            columns : {
-                ...prevState.columns,
-                [newStartColumn.id] : newStartColumn,
-                [newDestincationColumn.id] : newDestincationColumn
-            }
-        }))
 
-        if(data?.columns[source.droppableId].name == 'New' && data?.columns[destination.droppableId].name == 'In-progress'){
+        if (data?.columns[source.droppableId].name == 'New' && data?.columns[destination.droppableId].name == 'In-progress') {
             setIsModalVisible(true)
             return
         }
-        if(data?.columns[source.droppableId].name == 'In-progress' && data?.columns[destination.droppableId].name == 'Resolved'){
+        if (data?.columns[source.droppableId].name == 'In-progress' && data?.columns[destination.droppableId].name == 'Resolved') {
             setIsModalVisible(true)
             return
         }
 
-        updateTicket({variables : { updateTicketId : draggableId, input : { status : destination.droppableId}}})
+        updateTicket({ variables: { updateTicketId: draggableId, input: { status: destination.droppableId } } })
     }
 
     const ticketDetails = (data) => {
@@ -170,7 +169,7 @@ const TicketDashboard = () => {
         let timer
         return (...args) => {
             const context = this
-            if(timer) clearTimeout(timer)
+            if (timer) clearTimeout(timer)
             timer = setTimeout(() => {
                 timer = null
                 func.apply(context, args)
@@ -187,46 +186,46 @@ const TicketDashboard = () => {
 
     return (
         <>
-        <Row>
-            <h2 className='text-start ms-2 fs-4 fw-bold'>TICKET DASHBOARD</h2>
-            <Col span={1}/>
-            <Col span={9}>
-                <Input placeholder="Search by employee name, code or ticket number" 
-                       onChange={(e) => optimisedSearch(e.target.value)}/>
-            </Col>
-        </Row>
-        {
-            isModalVisible && (
-                <Modal title="Add Notes" visible={isModalVisible} onOk={handleUpdateTicket} onCancel={handleCancel}>
-                    <TextArea rows={4} 
-                              placeholder="Add note here..." 
-                              onChange={(e) => setNote(e.target.value)} 
-                              value={note}
-                              maxLength={200}/>
-                </Modal>
-            )
-        }
-        {
-            showTicketDeatils && (
-                <Modal title="Ticket Details" visible={showTicketDeatils} onOk={handleCloseTicketDetails} onCancel={handleCloseTicketDetails}>
-                    <TicketDetails data={ticket}/>
-                </Modal>
-            )
-        }
-        <DragDropContext onDragEnd={onDragEnd}>
-            <div className="dashboard-container" style={{width : '100%', overflow : 'auto'}}>
+            <Row>
+                <h2 className='text-start ms-2 fs-4 fw-bold'>TICKET DASHBOARD</h2>
+                <Col span={1} />
+                <Col span={9}>
+                    <Input placeholder="Search by employee name, code or ticket number"
+                        onChange={(e) => optimisedSearch(e.target.value)} />
+                </Col>
+            </Row>
             {
-                data?.columnOrder?.map(colId => {
-                    const column = data?.columns[colId]
-                    const tasks = column.tasks.map(taskId => data?.tasks[taskId])
-                    return <Column key={colId} 
-                                   column={column} 
-                                   tasks={tasks} 
-                                   ticketDetails={ticketDetails}/>
-                })
+                isModalVisible && (
+                    <Modal title="Add Notes" visible={isModalVisible} onOk={handleUpdateTicket} onCancel={handleCancel}>
+                        <TextArea rows={4}
+                            placeholder="Add note here..."
+                            onChange={(e) => setNote(e.target.value)}
+                            value={note}
+                            maxLength={200} />
+                    </Modal>
+                )
             }
-            </div>
-        </DragDropContext>
+            {
+                showTicketDeatils && (
+                    <Modal title="Ticket Details" visible={showTicketDeatils} onOk={handleCloseTicketDetails} onCancel={handleCloseTicketDetails}>
+                        <TicketDetails data={ticket} />
+                    </Modal>
+                )
+            }
+            <DragDropContext onDragEnd={onDragEnd}>
+                <div className="dashboard-container" style={{ width: '100%', overflow: 'auto' }}>
+                    {
+                        data?.columnOrder?.map(colId => {
+                            const column = data?.columns[colId]
+                            const tasks = column.tasks.map(taskId => data?.tasks[taskId])
+                            return <Column key={colId}
+                                column={column}
+                                tasks={tasks}
+                                ticketDetails={ticketDetails} />
+                        })
+                    }
+                </div>
+            </DragDropContext>
         </>
     )
 }
