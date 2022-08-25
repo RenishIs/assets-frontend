@@ -22,7 +22,8 @@ const AssetsForm = ({ title, handleAsset, loading, ...rest }) => {
         variables: {
             status: {
                 isActive: true
-            }
+            },
+            key : ''
         }
     })
     const { data: assetCategories } = useQuery(GET_ASSET_CATEGORIES_QUERY)
