@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { Row, Col, Table } from 'antd';
+import { Row, Col, Table, Avatar } from 'antd';
 import Cookies from 'js-cookie';
 import { useHistory } from 'react-router-dom';
 import { GET_PROFILE_QUERY } from '../../gql/Query/Profile/index';
@@ -9,16 +9,16 @@ import { GET_EMPLOYEE_ASSETS_QUERY } from '../../gql/Query/Assets';
 import { tableColumns as ticketTableColumns } from '../Tickets/CONSTANTS';
 import { tableColumns as assetTableColumns } from '../Assets/CONSTANTS';
 
-const RowUI = ({ label, value}) => (
+const RowUI = ({ label, value }) => (
     <Row className="mb-3">
-        <Col span={4}/>
+        <Col span={4} />
         <Col span={6}>
             <span className="text-muted">{label} :</span>
         </Col>
         <Col span={9}>
-            <span className="text-body fw-bold">{value ? value : '' }</span>
+            <span className="text-body fw-bold">{value ? value : ''}</span>
         </Col>
-        <Col span={5}/>
+        <Col span={5} />
     </Row>
 )
 
@@ -44,7 +44,7 @@ const Profile = () => {
     }
 
     const navigation = (id) => history.push(`/assets/${id}`)
-	
+
     return (
         <>
             {
@@ -54,9 +54,9 @@ const Profile = () => {
                 <h2 className='d-inline fs-5 fw-bold'>PROFILE DETAILS</h2>
             </div>
             <div className='text-center'>
-                <img src="/user-1.png" alt="profile" width="10%" />
+                <Avatar  size={64} >{profile.Profile.firstName.charAt(0)}{profile?.Profile?.lastName.charAt(0)}</Avatar> &nbsp;
                 <Row>
-                    <Col span={8}/>
+                    <Col span={8} />
                     <Col span={10}>
                         <div className="mt-4 text-start">
                             <RowUI label="Username" value={profile && `${profile?.Profile?.firstName} ${profile?.Profile?.lastName}`} />
@@ -70,7 +70,7 @@ const Profile = () => {
                             }
                         </div>
                     </Col>
-                    <Col span={6}/>
+                    <Col span={6} />
                 </Row>
             </div>
             {role === 'employee' && <div>
