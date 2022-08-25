@@ -11,6 +11,7 @@ import openNotificationWithIcon from '../../Helper/Notification';
 import Loader from '../../Components/UI/Loader';
 import { UPDATE_USER_MUTATION } from '../../gql/Mutation/Users';
 import { Switch } from 'antd';
+import { GENERATE_CSV_QUERY } from '../../gql/Query/GenerateCSV/index'
 
 const confirm = Modal.confirm;
 const { Option } = Select;
@@ -22,6 +23,8 @@ const UsersListing = () => {
 	const [currentPage, setCurrentPage] = useState(0)
 	const [ searchText, setSearchText ] = useState('')
 	const { loading, data, refetch } = useQuery(GET_USERS_QUERY, { variables: { status: null, page: 0, key : searchText } })
+
+	const { data : csvData } = useQuery(GENERATE_CSV_QUERY, { variables: { table: 'users'} })
 
 	const showDeleteConfirm = (id) => {
 		confirm({
@@ -154,6 +157,7 @@ const UsersListing = () => {
 				{
 					role === "admin" && (
 						<div className='add-button'>
+							<a href={`${process.env.REACT_APP_BASE_URL.slice(0,39)}${csvData?.generateCSV?.outputString}`}><Button type="primary" style={{ marginRight: 10 }}>EXPORT</Button></a>
 							<Select defaultValue={null} style={{ width: 120, marginRight: 10 }} onChange={handleChange}>
 								<Option value={null} key={null}>All</Option>
 								<Option value={true} key={true}>Active</Option>

@@ -8,6 +8,7 @@ import openNotificationWithIcon from '../../Helper/Notification';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
 import Loader from '../../Components/UI/Loader';
 import { Tooltip } from 'antd';
+import { GENERATE_CSV_QUERY } from '../../gql/Query/GenerateCSV/index'
 
 const confirm = Modal.confirm;
 
@@ -21,6 +22,8 @@ const AssetTypesListing = () => {
 		  content: 'You cannot delete this asset type, if you want to then delete the asset associated with the type',
 		});
 	  };
+
+	const { data : csvData } = useQuery(GENERATE_CSV_QUERY, { variables: { table: 'assetTypes'} })
 
 	const showDeleteConfirm = (id) => {
 		const assetTypeById=data?.assetTypes.find(assetType => assetType.id === id)
@@ -75,6 +78,7 @@ const AssetTypesListing = () => {
 			<div className='text-center mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSET TYPES</h2>
                 <div className='add-button'>
+					<a href={`${process.env.REACT_APP_BASE_URL.slice(0,39)}${csvData?.generateCSV?.outputString.slice(1)}`}><Button type="primary" style={{ marginRight: 10 }}>EXPORT</Button></a>
                     <Link to={`/asset-types/add`}><Button type="primary">ADD</Button></Link>
                 </div>
             </div>
