@@ -42,6 +42,7 @@ const AssetsForm = ({ title, handleAsset, loading, ...rest }) => {
         assetCondition: asset ? asset.assetCondition : '',
         assetStatus: asset ? asset.assetStatus.id : '',
         reason: asset ? asset.reason : '',
+        assetId:asset ? asset.assetId : '',
         dateOfAssetAssignment: asset ? moment(asset.dateOfAssetAssignment) : moment()
     }
 
@@ -198,6 +199,12 @@ const AssetsForm = ({ title, handleAsset, loading, ...rest }) => {
                                         <div className="text-start ms-4 mb-0 fs-6 text-danger">{errors.dateOfAssetAssignment}</div>
                                     ) : null
                                 }
+                            </Col>
+                            <Col span={12}>
+                                <TextInput label="ASSET ID"
+                                    name="assetId"
+                                    id="assetId"
+                                    isLabel={true} />
                             </Col>
                         </Row>
                         <Row>
