@@ -49,6 +49,7 @@ export const GET_ASSET_BY_ID_QUERY = gql`
         assetById(id: $assetById) {
         id
         name
+        assetId
         description
         location
         assetCategory {
