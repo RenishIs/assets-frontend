@@ -1,8 +1,8 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Table, Space, Button, Modal, Tooltip, Select, Input } from 'antd';
 import { Link } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client';
-import { EditFilled, DeleteFilled, EyeFilled } from '@ant-design/icons';
+import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
+import { EditFilled, EyeFilled } from '@ant-design/icons';
 import Cookies from 'js-cookie';
 import { tableColumns } from './CONSTANTS';
 import { GET_USERS_QUERY, GET_USER_BY_ID_QUERY } from '../../gql/Query/Users/index';
@@ -12,6 +12,7 @@ import Loader from '../../Components/UI/Loader';
 import { UPDATE_USER_MUTATION } from '../../gql/Mutation/Users';
 import { Switch } from 'antd';
 import { GENERATE_CSV_QUERY } from '../../gql/Query/GenerateCSV/index'
+import { generateCSV } from '../../Helper/generateCSV';
 
 const confirm = Modal.confirm;
 const { Option } = Select;
@@ -24,7 +25,7 @@ const UsersListing = () => {
 	const [ searchText, setSearchText ] = useState('')
 	const { loading, data, refetch } = useQuery(GET_USERS_QUERY, { variables: { status: null, page: 0, key : searchText } })
 
-	const { data : csvData } = useQuery(GENERATE_CSV_QUERY, { variables: { table: 'users'} })
+	const [generateUsersCSV, { data : csvData }] = useLazyQuery(GENERATE_CSV_QUERY, { variables: { table: 'users'} })
 
 	const showDeleteConfirm = (id) => {
 		confirm({
@@ -143,6 +144,7 @@ const UsersListing = () => {
 		}
 	}
 
+	const handleCsv = () => generateCSV(generateUsersCSV)
 	const handleSearch = value => setSearchText(value.trim())
 	const optimisedSearch = useCallback(debounce(handleSearch),[])
 
@@ -157,7 +159,9 @@ const UsersListing = () => {
 				{
 					role === "admin" && (
 						<div className='add-button'>
-							<a href={`${process.env.REACT_APP_BASE_URL}${csvData?.generateCSV?.outputString}`}><Button type="primary" style={{ marginRight: 10 }}>EXPORT</Button></a>
+							<Button type="primary" style={{ marginRight: 10 }} onClick={handleCsv}>
+								EXPORT
+							</Button>
 							<Select defaultValue={null} style={{ width: 120, marginRight: 10 }} onChange={handleChange}>
 								<Option value={null} key={null}>All</Option>
 								<Option value={true} key={true}>Active</Option>

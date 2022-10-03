@@ -1,7 +1,7 @@
 import { Link, useHistory } from 'react-router-dom';
 import { Table, Space, Button, Modal } from 'antd';
 import { tableColumns } from './CONSTANTS';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery, useLazyQuery } from '@apollo/client';
 import { GET_ASSETS_QUERY, GET_EMPLOYEE_ASSETS_QUERY } from '../../gql/Query/Assets';
 import { DELETE_ASSET_MUTATION } from '../../gql/Mutation/Assets';
 import openNotificationWithIcon from '../../Helper/Notification';
@@ -10,6 +10,7 @@ import Loader from '../../Components/UI/Loader';
 import { Tooltip } from 'antd';
 import Cookies from 'js-cookie';
 import { GENERATE_CSV_QUERY } from '../../gql/Query/GenerateCSV/index'
+import { generateCSV } from '../../Helper/generateCSV';
 
 const confirm = Modal.confirm;
 
@@ -29,7 +30,7 @@ const AssetsListing = () => {
 		}
 	})
 
-	const { data : csvData } = useQuery(GENERATE_CSV_QUERY, { variables: { table: 'assets'} })
+	const [ generateAssetsCSV, { data : csvData } ] = useLazyQuery(GENERATE_CSV_QUERY, { variables: { table: 'assets'} })
 
 	const history = useHistory()
 
@@ -78,9 +79,8 @@ const AssetsListing = () => {
 		),
 	}]
 
-	const navigation = (id) => {
-		history.push(`/assets/${id}`)
-	}
+	const navigation = (id) => history.push(`/assets/${id}`)
+	const handleCsv = () => generateCSV(generateAssetsCSV)
 
 	const handlePageChange = (page) => {
 		if (role === 'admin') {
@@ -97,7 +97,10 @@ const AssetsListing = () => {
 			<div className='text-center mb-3'>
 				<h2 className='d-inline fs-4 fw-bold'>MANAGE ASSETS</h2>
 				{role === 'admin' && <div className='add-button'>
-				<a href={`${process.env.REACT_APP_BASE_URL}${csvData?.generateCSV?.outputString}`}><Button type="primary" style={{ marginRight: 10 }}>EXPORT</Button></a>
+				<Button type="primary" style={{ marginRight: 10 }} onClick={handleCsv}>
+					EXPORT
+				</Button>
+				{/* <a href={`${process.env.REACT_APP_BASE_URL}${csvData?.generateCSV?.outputString}`}><Button type="primary" style={{ marginRight: 10 }}>EXPORT</Button></a> */}
 					<Link to={`/assets/add`}><Button type="primary">ADD</Button></Link>
 				</div>}
 			</div>
