@@ -1,5 +1,5 @@
 import { Table, Space, Button, Modal } from 'antd';
-import { useMutation, useQuery } from '@apollo/client';
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { GET_ASSET_CATEGORIES_QUERY } from '../../gql/Query/AssetCategories';
 import { DELETE_ASSET_CATEGORY_MUTATION } from '../../gql/Mutation/AssetCategories';
@@ -8,6 +8,7 @@ import { EditFilled, DeleteFilled } from '@ant-design/icons';
 import Loader from '../../Components/UI/Loader';
 import { Tooltip } from 'antd';
 import { GENERATE_CSV_QUERY } from '../../gql/Query/GenerateCSV/index'
+import { generateCSV } from '../../Helper/generateCSV';
 
 const confirm = Modal.confirm;
 
@@ -25,7 +26,7 @@ const tableColumns = [
 const AssetCategories = () => {
 
 	const { loading, data } = useQuery(GET_ASSET_CATEGORIES_QUERY);
-
+	const [ generateAssetCatCSV, { data : csvData } ] = useLazyQuery(GENERATE_CSV_QUERY, { variables: { table: 'assetCategories'} })
 	const errorIfAssigned = () => {
 		Modal.error({
 		  title: 'This asset category is already being used!!',
@@ -33,8 +34,8 @@ const AssetCategories = () => {
 		});
 	  };
 
-	const { data : csvData } = useQuery(GENERATE_CSV_QUERY, { variables: { table: 'assetCategories'} })
-
+	
+	  const handleCsv = () => generateCSV(generateAssetCatCSV)
 	const showDeleteConfirm = (id) => {
 		const assetCategory=data?.assetCategories.find(assetCategory => assetCategory.id === id)
 		{
@@ -85,7 +86,7 @@ const AssetCategories = () => {
 			<div className='text-center mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSET CATEGORIES</h2>
                 <div className='add-button'>
-					<a href={`${process.env.REACT_APP_BASE_URL}${csvData?.generateCSV?.outputString}`}><Button type="primary" style={{ marginRight: 10 }}>EXPORT</Button></a>
+			<Button type="primary" style={{ marginRight: 10 }}  onClick={handleCsv}>EXPORT</Button>
                     <Link to={`/asset-categories/add`}><Button type="primary">ADD</Button></Link>
                 </div>
             </div>
