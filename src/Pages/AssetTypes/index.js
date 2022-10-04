@@ -1,7 +1,7 @@
 import { Table, Space, Button, Modal } from 'antd';
 import { Link } from 'react-router-dom';
 import { tableColumns } from './CONSTANTS';
-import { useMutation, useQuery } from '@apollo/client';
+import { useLazyQuery, useMutation, useQuery } from '@apollo/client';
 import { GET_ASSET_TYPES_QUERY } from '../../gql/Query/AssetTypes';
 import { DELETE_ASSET_TYPE_MUTATION } from '../../gql/Mutation/AssetTypes';
 import openNotificationWithIcon from '../../Helper/Notification';
@@ -9,6 +9,7 @@ import { EditFilled, DeleteFilled } from '@ant-design/icons';
 import Loader from '../../Components/UI/Loader';
 import { Tooltip } from 'antd';
 import { GENERATE_CSV_QUERY } from '../../gql/Query/GenerateCSV/index'
+import { generateCSV } from '../../Helper/generateCSV';
 
 const confirm = Modal.confirm;
 
@@ -22,8 +23,8 @@ const AssetTypesListing = () => {
 		  content: 'You cannot delete this asset type, if you want to then delete the asset associated with the type',
 		});
 	  };
+	  const [ generateAssetTypeCSV, { data : csvData } ] = useLazyQuery(GENERATE_CSV_QUERY, { variables: { table: 'assetTypes'} })
 
-	const { data : csvData } = useQuery(GENERATE_CSV_QUERY, { variables: { table: 'assetTypes'} })
 
 	const showDeleteConfirm = (id) => {
 		const assetTypeById=data?.assetTypes.find(assetType => assetType.id === id)
@@ -47,7 +48,7 @@ const AssetTypesListing = () => {
 				});
 		}
 	  }
-
+	  const handleCsv = () => generateCSV(generateAssetTypeCSV)
 	const [deleteAssetType, { error, data : deletedAssetType, loading : deleteLoading }] = useMutation(DELETE_ASSET_TYPE_MUTATION, {
 		refetchQueries: [
 			{ query: GET_ASSET_TYPES_QUERY },
@@ -78,7 +79,7 @@ const AssetTypesListing = () => {
 			<div className='text-center mb-3'>
                 <h2 className='d-inline fs-4 fw-bold'>MANAGE ASSET TYPES</h2>
                 <div className='add-button'>
-					<a href={`${process.env.REACT_APP_BASE_URL}${csvData?.generateCSV?.outputString}`}><Button type="primary" style={{ marginRight: 10 }}>EXPORT</Button></a>
+			<Button type="primary" style={{ marginRight: 10 }} onClick={handleCsv}>EXPORT</Button>
                     <Link to={`/asset-types/add`}><Button type="primary">ADD</Button></Link>
                 </div>
             </div>
