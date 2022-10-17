@@ -20,8 +20,8 @@ export const tableColumns = [
 		dataIndex: 'asset',
 		key: 'asset',
 		sortDirections: ['descend', 'ascend'],
-		sorter: (a, b) => a?.asset?.name.localeCompare(b?.asset?.name),
-		render: (text) => <span>{text.name}</span>,
+		sorter: (a, b) => a?.asset?.name?.localeCompare(b?.asset?.name),
+		render: (text) => <span>{text?.name}</span>,
 	},
 	{
 		title: 'STATUS',
