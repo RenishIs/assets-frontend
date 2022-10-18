@@ -11,6 +11,9 @@ import { Tooltip } from 'antd';
 import Cookies from 'js-cookie';
 import { GENERATE_CSV_QUERY } from '../../gql/Query/GenerateCSV/index'
 import { generateCSV } from '../../Helper/generateCSV';
+import { GET_ASSET_CATEGORIES_QUERY } from '../../gql/Query/AssetCategories/index';
+import { GET_ASSET_STATUS_QUERY } from '../../gql/Query/AssetStatus/index';
+import { GET_ASSET_TYPES_QUERY } from '../../gql/Query/AssetTypes/index';
 
 const confirm = Modal.confirm;
 
@@ -54,6 +57,9 @@ const AssetsListing = () => {
 	const [deleteAssets, { error, data: deletedAsset, loading: deleteLoading }] = useMutation(DELETE_ASSET_MUTATION, {
 		refetchQueries: [
 			{ query: GET_ASSETS_QUERY, variables: { status: null } },
+			{ query: GET_ASSET_CATEGORIES_QUERY },
+			{ query: GET_ASSET_STATUS_QUERY },
+			{ query: GET_ASSET_TYPES_QUERY },
 		]
 	});
 
