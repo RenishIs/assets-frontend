@@ -24,7 +24,10 @@ const Column = ({column, tasks, ticketDetails}) => {
     return (
         <div className="dashboard-column-container">
             <div style={{ height: "100%", padding : '3%' }}>
-                <h2 className='fs-6 mb-2 ms-1 mt-1'>{column.name}</h2>
+                <div className='d-flex justify-content-between'>
+                    <h2 className='fs-6 mb-2 ms-1 mt-1'>{column.name}</h2>
+                    <h2 className='fs-6 mb-2 ms-1 mt-1'>{tasks?.length ? tasks.length : ''}</h2>
+                </div>
                 <Droppable droppableId={column.id}>
                 {
                     (provided, snapshot) => (

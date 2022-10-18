@@ -68,7 +68,9 @@ const AssetDetails = () => {
 
                     <Row className="mt-4 text-center w-100">
                         <Col span={6}></Col>
-                        <Col span={12} className="mt-4 text-start w-40"><RowUI label="Name" value={asset?.name} />
+                        <Col span={12} className="mt-4 text-start w-40">
+                            <RowUI label="Name" value={asset?.name} />
+                            <RowUI label="Asset ID" value={asset?.assetId} />
                             {
                                 asset?.description && (
                                     <RowUI label="Description" value={asset?.description} />
